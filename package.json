@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "@shopify/polaris": "^12.0.0",
+    "@shopify/polaris-icons": "^7.9.0",
     "lodash-es": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
