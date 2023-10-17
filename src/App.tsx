@@ -11,12 +11,15 @@ import { Header } from "./components/Header";
 import { LeftSideBar } from "./components/LeftSideBar";
 import { MainBody } from "./components/MainBody";
 import { RightSideBar } from "./components/RightSideBar";
+import { useShortcuts } from "./hooks/useShortcuts";
 import { usePolarisStore } from "./store";
 
 export default function AppSettingsLayoutExample() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const addComponentToParent = usePolarisStore.use.addComponentToParent();
+
+  useShortcuts();
 
   function handleDragStart(event: DragStartEvent) {
     setActiveDraggableId(event.active.id);

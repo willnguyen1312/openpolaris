@@ -1,4 +1,5 @@
 import { useHotkeys } from "react-hotkeys-hook";
+import { usePolarisStore } from "../store";
 
 const keyLookup = {
   DELETE_NODE: "Backspace, del",
@@ -8,10 +9,12 @@ const keyLookup = {
   DUPLICATE: "ctrl+d, command+d",
 };
 
-const useShortcuts = () => {
+export const useShortcuts = () => {
+  const setActiveComponent = usePolarisStore.use.setActiveComponent();
+
   const deleteNode = () => {};
 
-  const onUnselect = () => {};
+  const onUnselect = () => setActiveComponent(null);
 
   const onDuplicate = () => {};
 
@@ -25,5 +28,3 @@ const useShortcuts = () => {
   useHotkeys(keyLookup.UNSELECT, onUnselect);
   useHotkeys(keyLookup.DUPLICATE, onDuplicate);
 };
-
-export default useShortcuts;
