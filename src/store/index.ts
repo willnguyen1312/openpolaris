@@ -4,7 +4,8 @@ import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
-import { RenderedComponent, rootComponentId } from "../types";
+import { ComponentName, RenderedComponent, rootComponentId } from "../types";
+import { generateId } from "../utils/generateId";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }
@@ -60,7 +61,8 @@ const useStoreBase = createWithEqualityFn(
           if (parentComponentId === rootComponentId) {
             state.renderedComponents.push({
               children: [],
-              id: childComponentId,
+              id: generateId(),
+              componentName: childComponentId as ComponentName,
             });
           }
         });

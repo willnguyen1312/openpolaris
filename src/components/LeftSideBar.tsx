@@ -1,9 +1,14 @@
 import styles from "./LeftSideBar.module.css";
 
 import { useDraggable } from "@dnd-kit/core";
-import { TextField } from "@shopify/polaris";
+import { Box, Text, TextField } from "@shopify/polaris";
 import React, { useCallback, useDeferredValue, useState } from "react";
-import { listOfComponent } from "../types";
+import {
+  ComponentCategoryName,
+  ComponentName,
+  componentCategories,
+  listOfComponent,
+} from "../types";
 
 export function LeftSideBar() {
   const [textFieldValue, setTextFieldValue] = useState("");
@@ -33,21 +38,48 @@ export function LeftSideBar() {
 }
 
 function SearchResult({ query }: { query: string }) {
-  const renderedComponent: React.JSX.Element[] = [];
   const normalizedQuery = query.toLowerCase().replace(/\s/g, "");
 
-  for (const component of listOfComponent) {
-    if (component.name.toLowerCase().includes(normalizedQuery)) {
-      const item = (
-        <DraggableItem componentName={component.name} key={component.name}>
-          {component.name}
-        </DraggableItem>
-      );
-      renderedComponent.push(item);
+  const componentsByCategory = componentCategories.reduce(
+    (acc, category) => {
+      acc.set(category, []);
+      return acc;
+    },
+    new Map() as Map<ComponentCategoryName, ComponentName[]>
+  );
+
+  for (const { componentName, category } of listOfComponent) {
+    if (componentName.toLowerCase().includes(normalizedQuery)) {
+      componentsByCategory.set(category, [
+        ...componentsByCategory.get(category)!,
+        componentName,
+      ]);
     }
   }
 
-  return renderedComponent;
+  return [...componentsByCategory.entries()].map(([category, components]) => {
+    if (components.length === 0) {
+      return null;
+    }
+
+    return (
+      <Box key={category}>
+        <Text as="p" variant="headingMd">
+          {category}
+        </Text>
+
+        <Box paddingInlineStart="400" paddingBlockStart="100">
+          {components.map((componentName: ComponentName) => {
+            return (
+              <DraggableItem key={componentName} componentName={componentName}>
+                <Text as="p">{componentName}</Text>
+              </DraggableItem>
+            );
+          })}
+        </Box>
+      </Box>
+    );
+  });
 }
 
 function DraggableItem({

@@ -1,6 +1,6 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 
-type ComponentName =
+export type ComponentName =
   | "AccountConnection"
   | "Button"
   | "ButtonGroup"
@@ -91,283 +91,390 @@ type ComponentName =
   | "Frame"
   | "Scrollable";
 
-export type MenuItem = {
-  name: ComponentName;
+export type ComponentMenuItem = {
+  componentName: ComponentName;
+  category: ComponentCategoryName;
 };
+
+export type ComponentCategoryName =
+  | "Actions"
+  | "Layout and structure"
+  | "Selection and input"
+  | "Images and icons"
+  | "Feedback indicators"
+  | "Typography"
+  | "Table"
+  | "List"
+  | "Navigation"
+  | "Overlays"
+  | "Utilities";
+
+export const componentCategories: ComponentCategoryName[] = [
+  "Actions",
+  "Layout and structure",
+  "Selection and input",
+  "Images and icons",
+  "Feedback indicators",
+  "Typography",
+  "Table",
+  "List",
+  "Navigation",
+  "Overlays",
+  "Utilities",
+];
 
 export type RenderedComponent = {
   id: UniqueIdentifier;
   children: RenderedComponent[];
+  componentName: ComponentName;
 };
 
-export const listOfComponent: MenuItem[] = [
+export const listOfComponent: ComponentMenuItem[] = [
   {
-    name: "AccountConnection",
+    componentName: "AccountConnection",
+    category: "Actions",
   },
   {
-    name: "Button",
+    componentName: "Button",
+    category: "Actions",
   },
   {
-    name: "ButtonGroup",
+    componentName: "ButtonGroup",
+    category: "Actions",
   },
   {
-    name: "PageActions",
+    componentName: "PageActions",
+    category: "Actions",
   },
   {
-    name: "Caption",
+    componentName: "Badge",
+    category: "Feedback indicators",
   },
   {
-    name: "DisplayText",
+    componentName: "Banner",
+    category: "Feedback indicators",
   },
   {
-    name: "Heading",
+    componentName: "ExceptionList",
+    category: "Feedback indicators",
   },
   {
-    name: "LegacyCard",
+    componentName: "Loading",
+    category: "Feedback indicators",
   },
   {
-    name: "LegacyFilters",
+    componentName: "ProgressBar",
+    category: "Feedback indicators",
   },
   {
-    name: "LegacyStack",
+    componentName: "SkeletonBodyText",
+    category: "Feedback indicators",
   },
   {
-    name: "LegacyTabs",
+    componentName: "SkeletonDisplayText",
+    category: "Feedback indicators",
   },
   {
-    name: "SettingToggle",
+    componentName: "SkeletonPage",
+    category: "Feedback indicators",
   },
   {
-    name: "Sheet",
+    componentName: "SkeletonTabs",
+    category: "Feedback indicators",
   },
   {
-    name: "Subheading",
+    componentName: "SkeletonThumbnail",
+    category: "Feedback indicators",
   },
   {
-    name: "TextContainer",
+    componentName: "Spinner",
+    category: "Feedback indicators",
   },
   {
-    name: "TextStyle",
+    componentName: "Toast",
+    category: "Feedback indicators",
   },
   {
-    name: "VisuallyHidden",
+    componentName: "Avatar",
+    category: "Images and icons",
   },
   {
-    name: "Badge",
+    componentName: "Icon",
+    category: "Images and icons",
   },
   {
-    name: "Banner",
+    componentName: "KeyboardKey",
+    category: "Images and icons",
   },
   {
-    name: "ExceptionList",
+    componentName: "Thumbnail",
+    category: "Images and icons",
   },
   {
-    name: "Loading",
+    componentName: "VideoThumbnail",
+    category: "Images and icons",
   },
   {
-    name: "ProgressBar",
+    componentName: "Bleed",
+    category: "Layout and structure",
   },
   {
-    name: "SkeletonBodyText",
+    componentName: "BlockStack",
+    category: "Layout and structure",
   },
   {
-    name: "SkeletonDisplayText",
+    componentName: "Box",
+    category: "Layout and structure",
   },
   {
-    name: "SkeletonPage",
+    componentName: "CalloutCard",
+    category: "Layout and structure",
   },
   {
-    name: "SkeletonTabs",
+    componentName: "Card",
+    category: "Layout and structure",
   },
   {
-    name: "SkeletonThumbnail",
+    componentName: "Divider",
+    category: "Layout and structure",
   },
   {
-    name: "Spinner",
+    componentName: "EmptyState",
+    category: "Layout and structure",
   },
   {
-    name: "Toast",
+    componentName: "FormLayout",
+    category: "Layout and structure",
   },
   {
-    name: "Avatar",
+    componentName: "Grid",
+    category: "Layout and structure",
   },
   {
-    name: "Icon",
+    componentName: "InlineGrid",
+    category: "Layout and structure",
   },
   {
-    name: "KeyboardKey",
+    componentName: "InlineStack",
+    category: "Layout and structure",
   },
   {
-    name: "Thumbnail",
+    componentName: "Layout",
+    category: "Layout and structure",
   },
   {
-    name: "VideoThumbnail",
+    componentName: "MediaCard",
+    category: "Layout and structure",
   },
   {
-    name: "Bleed",
+    componentName: "Page",
+    category: "Layout and structure",
   },
   {
-    name: "BlockStack",
+    componentName: "ActionList",
+    category: "List",
   },
   {
-    name: "Box",
+    componentName: "DescriptionList",
+    category: "List",
   },
   {
-    name: "CalloutCard",
+    componentName: "List",
+    category: "List",
   },
   {
-    name: "Card",
+    componentName: "Listbox",
+    category: "List",
   },
   {
-    name: "Divider",
+    componentName: "OptionList",
+    category: "List",
   },
   {
-    name: "EmptyState",
+    componentName: "ResourceItem",
+    category: "List",
   },
   {
-    name: "FormLayout",
+    componentName: "ResourceList",
+    category: "List",
   },
   {
-    name: "Grid",
+    componentName: "FooterHelp",
+    category: "Navigation",
   },
   {
-    name: "InlineGrid",
+    componentName: "FullscreenBar",
+    category: "Navigation",
   },
   {
-    name: "InlineStack",
+    componentName: "Link",
+    category: "Navigation",
   },
   {
-    name: "Layout",
+    componentName: "Navigation",
+    category: "Navigation",
   },
   {
-    name: "MediaCard",
+    componentName: "Pagination",
+    category: "Navigation",
   },
   {
-    name: "Page",
+    componentName: "Tabs",
+    category: "Navigation",
   },
   {
-    name: "ActionList",
+    componentName: "TopBar",
+    category: "Navigation",
   },
   {
-    name: "DescriptionList",
+    componentName: "Modal",
+    category: "Overlays",
   },
   {
-    name: "List",
+    componentName: "Popover",
+    category: "Overlays",
   },
   {
-    name: "Listbox",
+    componentName: "Tooltip",
+    category: "Overlays",
   },
   {
-    name: "OptionList",
+    componentName: "Autocomplete",
+    category: "Selection and input",
   },
   {
-    name: "ResourceItem",
+    componentName: "Checkbox",
+    category: "Selection and input",
   },
   {
-    name: "ResourceList",
+    componentName: "ChoiceList",
+    category: "Selection and input",
   },
   {
-    name: "FooterHelp",
+    componentName: "ColorPicker",
+    category: "Selection and input",
   },
   {
-    name: "FullscreenBar",
+    componentName: "Combobox",
+    category: "Selection and input",
   },
   {
-    name: "Link",
+    componentName: "ContextualSaveBar",
+    category: "Selection and input",
   },
   {
-    name: "Navigation",
+    componentName: "DatePicker",
+    category: "Selection and input",
   },
   {
-    name: "Pagination",
+    componentName: "DropZone",
+    category: "Selection and input",
   },
   {
-    name: "Tabs",
+    componentName: "Filters",
+    category: "Selection and input",
   },
   {
-    name: "TopBar",
+    componentName: "Form",
+    category: "Selection and input",
   },
   {
-    name: "Modal",
+    componentName: "IndexFilters",
+    category: "Selection and input",
   },
   {
-    name: "Popover",
+    componentName: "InlineError",
+    category: "Selection and input",
   },
   {
-    name: "Tooltip",
+    componentName: "RadioButton",
+    category: "Selection and input",
   },
   {
-    name: "Autocomplete",
+    componentName: "RangeSlider",
+    category: "Selection and input",
   },
   {
-    name: "Checkbox",
+    componentName: "Select",
+    category: "Selection and input",
   },
   {
-    name: "ChoiceList",
+    componentName: "Tag",
+    category: "Selection and input",
   },
   {
-    name: "ColorPicker",
+    componentName: "TextField",
+    category: "Selection and input",
   },
   {
-    name: "Combobox",
+    componentName: "DataTable",
+    category: "Table",
   },
   {
-    name: "ContextualSaveBar",
+    componentName: "IndexTable",
+    category: "Table",
   },
   {
-    name: "DatePicker",
+    componentName: "Text",
+    category: "Typography",
   },
   {
-    name: "DropZone",
+    componentName: "AppProvider",
+    category: "Utilities",
   },
   {
-    name: "Filters",
+    componentName: "Collapsible",
+    category: "Utilities",
   },
   {
-    name: "Form",
+    componentName: "Frame",
+    category: "Utilities",
   },
   {
-    name: "IndexFilters",
+    componentName: "Scrollable",
+    category: "Utilities",
   },
-  {
-    name: "InlineError",
-  },
-  {
-    name: "RadioButton",
-  },
-  {
-    name: "RangeSlider",
-  },
-  {
-    name: "Select",
-  },
-  {
-    name: "Tag",
-  },
-  {
-    name: "TextField",
-  },
-  {
-    name: "DataTable",
-  },
-  {
-    name: "IndexTable",
-  },
-  {
-    name: "Text",
-  },
-  {
-    name: "AppProvider",
-  },
-  {
-    name: "Collapsible",
-  },
-  {
-    name: "Frame",
-  },
-  {
-    name: "Scrollable",
-  },
+
+  // TODO: Should I support deprecated components? 😗
+  // {
+  //   componentName: "Caption",
+  // },
+  // {
+  //   componentName: "DisplayText",
+  // },
+  // {
+  //   componentName: "Heading",
+  // },
+  // {
+  //   componentName: "LegacyCard",
+  // },
+  // {
+  //   componentName: "LegacyFilters",
+  // },
+  // {
+  //   componentName: "LegacyStack",
+  // },
+  // {
+  //   componentName: "LegacyTabs",
+  // },
+  // {
+  //   componentName: "SettingToggle",
+  // },
+  // {
+  //   componentName: "Sheet",
+  // },
+  // {
+  //   componentName: "Subheading",
+  // },
+  // {
+  //   componentName: "TextContainer",
+  // },
+  // {
+  //   componentName: "TextStyle",
+  // },
+  // {
+  //   componentName: "VisuallyHidden",
+  // },
 ];
 
 export const rootComponentId = "root";
