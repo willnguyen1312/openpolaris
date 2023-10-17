@@ -16,6 +16,7 @@
     "@shopify/polaris-icons": "^7.9.0",
     "lodash-es": "^4.17.21",
     "lz-string": "^1.5.0",
+    "nanoid": "^5.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
