@@ -14,6 +14,9 @@ dependencies:
   lodash-es:
     specifier: ^4.17.21
     version: 4.17.21
+  lz-string:
+    specifier: ^1.5.0
+    version: 1.5.0
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -685,6 +688,14 @@ packages:
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
+    dev: false
+
+  /lz-string@1.5.0:
+    resolution:
+      {
+        integrity: sha512-h5bgJWpxJNswbU7qCrV0tIKQCaS3blPDrqKWx+QxzuzL1zGUzij9XCWLrSLsJPu5t+eWA/ycetzYAO5IOMcWAQ==,
+      }
+    hasBin: true
     dev: false
 
   /nanoid@3.3.6:
