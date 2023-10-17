@@ -4,6 +4,7 @@ import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
+import { RenderedComponent, rootComponentId } from "../types";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }
@@ -24,11 +25,17 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 interface StoreState {
   isShowCodePanel: boolean;
   activeDraggableId: UniqueIdentifier | null;
+  renderedComponents: RenderedComponent[];
 }
 
 type StoreActions = {
   setIsShowCodePanel: (showCodePanel: boolean) => void;
   setActiveDraggableId: (id: UniqueIdentifier | null) => void;
+  addComponentToParent: (arg: {
+    childComponentId: UniqueIdentifier;
+    parentComponentId: UniqueIdentifier;
+    index?: number;
+  }) => void;
 };
 
 const useStoreBase = createWithEqualityFn(
@@ -36,15 +43,26 @@ const useStoreBase = createWithEqualityFn(
     persist(
       immer<StoreState & StoreActions>((set) => ({
         isShowCodePanel: false,
-        activeDraggableId: null,
         setIsShowCodePanel: (showCodePanel: boolean) =>
           set((state: StoreState) => {
             state.isShowCodePanel = showCodePanel;
           }),
+        activeDraggableId: null,
         setActiveDraggableId: (id) =>
           set((state: StoreState) => {
             state.activeDraggableId = id;
           }),
+        renderedComponents: [],
+        addComponentToParent: ({ childComponentId, parentComponentId }) => {
+          set((state: StoreState) => {
+            if (parentComponentId === rootComponentId) {
+              state.renderedComponents.push({
+                children: [],
+                id: childComponentId,
+              });
+            }
+          });
+        },
       })),
       { name: "openPolaris" }
     )

@@ -3,7 +3,7 @@ import styles from "./LeftSideBar.module.css";
 import { useDraggable } from "@dnd-kit/core";
 import { TextField } from "@shopify/polaris";
 import React, { useCallback, useDeferredValue, useState } from "react";
-import { listOfComponent } from "../constants";
+import { listOfComponent } from "../types";
 
 export function LeftSideBar() {
   const [textFieldValue, setTextFieldValue] = useState("");

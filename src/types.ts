@@ -1,3 +1,5 @@
+import { UniqueIdentifier } from "@dnd-kit/core";
+
 type ComponentName =
   | "AccountConnection"
   | "Button"
@@ -91,6 +93,11 @@ type ComponentName =
 
 export type MenuItem = {
   name: ComponentName;
+};
+
+export type RenderedComponent = {
+  id: UniqueIdentifier;
+  children: RenderedComponent[];
 };
 
 export const listOfComponent: MenuItem[] = [
@@ -363,4 +370,4 @@ export const listOfComponent: MenuItem[] = [
   },
 ];
 
-export const parentRootId = "root";
+export const rootComponentId = "root";
