@@ -5,4 +5,8 @@
   padding: var(--p-space-200);
   overflow: scroll;
   background-color: var(--p-color-bg-surface-success);
+
+  display: flex;
+  flex-direction: column;
+  gap: var(--p-space-200);
 }
