@@ -25,7 +25,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 };
 
 interface StoreState {
-  activeComponentId: UniqueIdentifier | null;
+  activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
   activeDraggableId: UniqueIdentifier | null;
   renderedComponents: RenderedComponent[];
@@ -39,14 +39,32 @@ type StoreActions = {
     parentComponentId: UniqueIdentifier;
     index?: number;
   }) => void;
-  setActiveComponentId: (id: UniqueIdentifier | null) => void;
-  getActiveComponent: () => RenderedComponent | null;
+  setActiveComponent: (component: RenderedComponent | null) => void;
+  setActiveComponentPropValue: (name: string, value: any) => void;
+};
+
+const findComponentBy = (
+  tree: RenderedComponent[],
+  predicate: (component: RenderedComponent) => boolean
+) => {
+  for (const component of tree) {
+    if (predicate(component)) {
+      return component;
+    } else {
+      const found: any = findComponentBy(component.children, predicate);
+      if (found) {
+        return found;
+      }
+    }
+  }
+
+  return null;
 };
 
 const useStoreBase = createWithEqualityFn(
   devtools(
     // persist(
-    immer<StoreState & StoreActions>((set, get) => ({
+    immer<StoreState & StoreActions>((set) => ({
       isShowCodePanel: false,
       setIsShowCodePanel: (showCodePanel: boolean) =>
         set((state: StoreState) => {
@@ -73,36 +91,26 @@ const useStoreBase = createWithEqualityFn(
         });
       },
 
-      activeComponentId: null,
-      setActiveComponentId: (id) =>
+      activeComponent: null,
+      setActiveComponent: (component) =>
         set((state: StoreState) => {
-          state.activeComponentId = id;
+          state.activeComponent = component;
         }),
-      getActiveComponent: () => {
-        const { renderedComponents, activeComponentId } = get();
+      setActiveComponentPropValue: (name, value) => {
+        set((state: StoreState) => {
+          if (state.activeComponent) {
+            state.activeComponent.props[name] = value;
 
-        const findComponent = (
-          components: RenderedComponent[]
-        ): RenderedComponent | null => {
-          for (const component of components) {
-            if (component.id === activeComponentId) {
-              return component;
-            }
+            const foundComponent = findComponentBy(
+              state.renderedComponents,
+              (component) => component.id === state.activeComponent?.id
+            );
 
-            if (component.children.length > 0) {
-              const foundComponent = findComponent(component.children);
-              if (foundComponent) {
-                return foundComponent;
-              }
+            if (foundComponent) {
+              foundComponent.props[name] = value;
             }
           }
-
-          return null;
-        };
-
-        const result = findComponent(renderedComponents);
-
-        return result;
+        });
       },
     }))
     //   { name: "openPolaris" }
