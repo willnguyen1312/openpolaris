@@ -1,3 +1,4 @@
 .wrapper {
   height: var(--header-height);
+  overflow: hidden;
 }

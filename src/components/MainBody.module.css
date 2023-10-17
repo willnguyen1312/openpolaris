@@ -1,3 +1,4 @@
 .wrapper {
   overflow: scroll;
+  padding: var(--p-space-200);
 }

@@ -10,16 +10,16 @@ export default function AppSettingsLayoutExample() {
   return (
     <AppProvider i18n={enTranslations}>
       <Header />
-      <Grid>
-        <Grid.Cell columnSpan={{ lg: 2 }}>
+      <Grid gap={{ lg: "0", xl: "0" }}>
+        <Grid.Cell columnSpan={{ lg: 2, xl: 2 }}>
           <LeftSideBar />
         </Grid.Cell>
 
-        <Grid.Cell columnSpan={{ lg: 8 }}>
+        <Grid.Cell columnSpan={{ lg: 8, xl: 8 }}>
           <MainBody />
         </Grid.Cell>
 
-        <Grid.Cell columnSpan={{ lg: 2 }}>
+        <Grid.Cell columnSpan={{ lg: 2, xl: 2 }}>
           <RightSideBar />
         </Grid.Cell>
       </Grid>

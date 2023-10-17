@@ -3,4 +3,6 @@
   max-width: var(--right-sidebar-max-width);
   overscroll-behavior: contain;
   overflow: scroll;
+  padding: var(--p-space-200);
+  background-color: var(--p-color-bg-surface-info-active);
 }
