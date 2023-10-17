@@ -9,15 +9,15 @@ const keyLookup = {
 };
 
 const useShortcuts = () => {
-  const deleteNode = () => { };
+  const deleteNode = () => {};
 
-  const onUnselect = () => { };
+  const onUnselect = () => {};
 
-  const onDuplicate = () => { };
+  const onDuplicate = () => {};
 
-  const undo = () => { };
+  const undo = () => {};
 
-  const redo = () => { };
+  const redo = () => {};
 
   useHotkeys(keyLookup.DELETE_NODE, deleteNode);
   useHotkeys(keyLookup.UNDO, undo);
