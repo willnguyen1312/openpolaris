@@ -127,6 +127,7 @@ export type RenderedComponent = {
   id: UniqueIdentifier;
   children: RenderedComponent[];
   componentName: ComponentName;
+  props: any;
 };
 
 export const listOfComponent: ComponentMenuItem[] = [

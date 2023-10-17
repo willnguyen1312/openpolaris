@@ -1,0 +1,8 @@
+.hover:hover {
+  border: 1px solid var(--p-color-border-focus);
+  cursor: pointer;
+}
+
+.selected {
+  border: 1px solid var(--p-color-border-focus);
+}

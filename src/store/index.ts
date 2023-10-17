@@ -4,6 +4,7 @@ import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
+import { defaultProps } from "../defaultProps";
 import { ComponentName, RenderedComponent, rootComponentId } from "../types";
 import { generateId } from "../utils/generateId";
 
@@ -24,6 +25,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 };
 
 interface StoreState {
+  activeComponentId: UniqueIdentifier | null;
   isShowCodePanel: boolean;
   activeDraggableId: UniqueIdentifier | null;
   renderedComponents: RenderedComponent[];
@@ -37,12 +39,14 @@ type StoreActions = {
     parentComponentId: UniqueIdentifier;
     index?: number;
   }) => void;
+  setActiveComponentId: (id: UniqueIdentifier | null) => void;
+  getActiveComponent: () => RenderedComponent | null;
 };
 
 const useStoreBase = createWithEqualityFn(
   devtools(
     // persist(
-    immer<StoreState & StoreActions>((set) => ({
+    immer<StoreState & StoreActions>((set, get) => ({
       isShowCodePanel: false,
       setIsShowCodePanel: (showCodePanel: boolean) =>
         set((state: StoreState) => {
@@ -63,9 +67,42 @@ const useStoreBase = createWithEqualityFn(
               children: [],
               id: generateId(),
               componentName: childComponentId as ComponentName,
+              props: defaultProps[childComponentId as ComponentName],
             });
           }
         });
+      },
+
+      activeComponentId: null,
+      setActiveComponentId: (id) =>
+        set((state: StoreState) => {
+          state.activeComponentId = id;
+        }),
+      getActiveComponent: () => {
+        const { renderedComponents, activeComponentId } = get();
+
+        const findComponent = (
+          components: RenderedComponent[]
+        ): RenderedComponent | null => {
+          for (const component of components) {
+            if (component.id === activeComponentId) {
+              return component;
+            }
+
+            if (component.children.length > 0) {
+              const foundComponent = findComponent(component.children);
+              if (foundComponent) {
+                return foundComponent;
+              }
+            }
+          }
+
+          return null;
+        };
+
+        const result = findComponent(renderedComponents);
+
+        return result;
       },
     }))
     //   { name: "openPolaris" }

@@ -23,9 +23,6 @@ export default function AppSettingsLayoutExample() {
   }
 
   function handleDragEnd(event: DragEndEvent) {
-    console.log(event.active.id);
-    console.log(event.over?.id);
-
     if (event.over && event.over.id) {
       addComponentToParent({
         childComponentId: event.active.id,
