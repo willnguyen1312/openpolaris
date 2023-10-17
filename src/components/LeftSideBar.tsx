@@ -1,5 +1,6 @@
 import styles from "./LeftSideBar.module.css";
 
+import { useDraggable } from "@dnd-kit/core";
 import { TextField } from "@shopify/polaris";
 import React, { useCallback, useDeferredValue, useState } from "react";
 import { listOfComponent } from "../constants";
@@ -38,7 +39,9 @@ function SearchResult({ query }: { query: string }) {
   for (const component of listOfComponent) {
     if (component.name.toLowerCase().includes(normalizedQuery)) {
       const item = (
-        <DraggableItem key={component.name}>{component.name}</DraggableItem>
+        <DraggableItem componentName={component.name} key={component.name}>
+          {component.name}
+        </DraggableItem>
       );
       renderedComponent.push(item);
     }
@@ -47,6 +50,25 @@ function SearchResult({ query }: { query: string }) {
   return renderedComponent;
 }
 
-function DraggableItem(props: { children: React.ReactNode }) {
-  return <div>{props.children}</div>;
+function DraggableItem({
+  children,
+  componentName,
+}: {
+  children: React.ReactNode;
+  componentName: string;
+}) {
+  const { attributes, listeners, setNodeRef } = useDraggable({
+    id: componentName,
+  });
+
+  return (
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      style={{ cursor: "pointer" }}
+    >
+      {children}
+    </div>
+  );
 }

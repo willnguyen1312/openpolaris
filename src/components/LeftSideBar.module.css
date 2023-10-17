@@ -3,7 +3,7 @@
   max-width: var(--left-sidebar-max-width);
   overscroll-behavior: contain;
   padding: var(--p-space-200);
-  overflow: scroll;
+  overflow: auto;
   background-color: var(--p-color-bg-surface-success);
 
   display: flex;

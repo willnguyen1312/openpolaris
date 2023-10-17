@@ -1,4 +1,9 @@
 .wrapper {
-  overflow: scroll;
+  height: calc(100vh - var(--header-height));
+  overflow: auto;
   padding: var(--p-space-200);
+}
+
+.isOver {
+  background-color: var(--p-surface-highlight);
 }

@@ -362,3 +362,5 @@ export const listOfComponent: MenuItem[] = [
     name: "Scrollable",
   },
 ];
+
+export const parentRootId = "root";
