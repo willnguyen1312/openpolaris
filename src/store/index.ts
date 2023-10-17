@@ -1,6 +1,6 @@
 import { UniqueIdentifier } from "@dnd-kit/core";
 import { StoreApi, UseBoundStore } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
@@ -40,32 +40,34 @@ type StoreActions = {
 
 const useStoreBase = createWithEqualityFn(
   devtools(
-    persist(
-      immer<StoreState & StoreActions>((set) => ({
-        isShowCodePanel: false,
-        setIsShowCodePanel: (showCodePanel: boolean) =>
-          set((state: StoreState) => {
-            state.isShowCodePanel = showCodePanel;
-          }),
-        activeDraggableId: null,
-        setActiveDraggableId: (id) =>
-          set((state: StoreState) => {
-            state.activeDraggableId = id;
-          }),
-        renderedComponents: [],
-        addComponentToParent: ({ childComponentId, parentComponentId }) => {
-          set((state: StoreState) => {
-            if (parentComponentId === rootComponentId) {
-              state.renderedComponents.push({
-                children: [],
-                id: childComponentId,
-              });
-            }
-          });
-        },
-      })),
-      { name: "openPolaris" }
-    )
+    // persist(
+    immer<StoreState & StoreActions>((set) => ({
+      isShowCodePanel: false,
+      setIsShowCodePanel: (showCodePanel: boolean) =>
+        set((state: StoreState) => {
+          state.isShowCodePanel = showCodePanel;
+        }),
+
+      activeDraggableId: null,
+      setActiveDraggableId: (id) =>
+        set((state: StoreState) => {
+          state.activeDraggableId = id;
+        }),
+
+      renderedComponents: [],
+      addComponentToParent: ({ childComponentId, parentComponentId }) => {
+        set((state: StoreState) => {
+          if (parentComponentId === rootComponentId) {
+            state.renderedComponents.push({
+              children: [],
+              id: childComponentId,
+            });
+          }
+        });
+      },
+    }))
+    //   { name: "openPolaris" }
+    // )
   ),
   shallow
 );
