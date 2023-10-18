@@ -3,11 +3,12 @@ import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
 
 import { usePolarisStore } from "../../store";
-import { RenderedComponent } from "../../types";
+import { ComponentName, RenderedComponent } from "../../types";
 
 import styles from "./Preview.module.css";
 
-const inlineBlockComponents = ["Button"];
+const inlineBlockComponents: ComponentName[] = ["Button"];
+const emptyChildCOmponents: ComponentName[] = ["ButtonGroup"];
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
   const { componentName } = component;
@@ -28,10 +29,14 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
     icon: icon ? PolarisIcon[icon] : undefined,
   };
 
+  const isEmptyChild =
+    emptyChildCOmponents.includes(componentName) && !component.children.length;
+
   return (
     <div
       onClick={selectComponent}
       className={classNames(styles.wrapper, {
+        [styles.emptyChild]: isEmptyChild,
         [styles.selected]: isSelected,
         [styles.inlineBlock]: inlineBlockComponents.includes(componentName),
       })}

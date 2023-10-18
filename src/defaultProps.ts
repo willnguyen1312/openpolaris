@@ -1,4 +1,4 @@
-import { ButtonProps, DividerProps } from "@shopify/polaris";
+import { ButtonGroupProps, ButtonProps, DividerProps } from "@shopify/polaris";
 
 import { ComponentName } from "./types";
 
@@ -28,4 +28,12 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     loading: false,
     pressed: false,
   } as ButtonProps,
+  ButtonGroup: {
+    gap: "loose",
+    variant: undefined,
+    fullWidth: false,
+    connectedTop: false,
+    noWrap: false,
+    children: undefined,
+  } as ButtonGroupProps,
 };

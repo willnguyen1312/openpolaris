@@ -6,6 +6,11 @@
   cursor: pointer;
 }
 
+.emptyChild {
+  min-height: 50px;
+  border: 1px dashed var(--p-color-border-focus);
+}
+
 .inlineBlock {
   display: inline-block;
 }
