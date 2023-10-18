@@ -21,7 +21,7 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
 
   // @ts-ignore
   const Component = Polaris[componentName];
-  const icon = activeComponent?.props?.icon;
+  const icon = component?.props?.icon;
 
   const specialProps = {
     // @ts-ignore
