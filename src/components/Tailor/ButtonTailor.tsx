@@ -1,4 +1,4 @@
-import { BlockStack, ButtonProps, Text } from "@shopify/polaris";
+import { BlockStack, ButtonProps, Link } from "@shopify/polaris";
 
 import type { PropItem } from "./shared";
 import * as Shared from "./shared";
@@ -67,9 +67,12 @@ const buttonPropItems: PropItem<keyof ButtonProps>[] = [
 export const ButtonTailor = () => {
   return (
     <BlockStack>
-      <Text as="p" variant="headingMd">
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/actions/button"
+      >
         Button
-      </Text>
+      </Link>
 
       {buttonPropItems.map((item) => {
         const Component = Shared[item.type];

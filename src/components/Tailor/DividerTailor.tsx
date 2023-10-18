@@ -1,4 +1,4 @@
-import { BlockStack, DividerProps, Text } from "@shopify/polaris";
+import { BlockStack, DividerProps, Link } from "@shopify/polaris";
 import type { PropItem } from "./shared";
 import * as Shared from "./shared";
 
@@ -52,9 +52,12 @@ const dividerPropsItem: PropItem[] = [
 export const DividerTailor = () => {
   return (
     <BlockStack>
-      <Text as="p" variant="headingMd">
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/layout-and-structure/divider"
+      >
         Divider
-      </Text>
+      </Link>
 
       {dividerPropsItem.map((item) => {
         const Component = Shared[item.type];
