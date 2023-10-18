@@ -38,13 +38,11 @@ const dividerBorderWidths: DividerBorderWidths[] = [
 
 const dividerPropsItem: PropItem[] = [
   {
-    label: "Border color",
     prop: "borderColor",
     type: "Select",
     options: dividerBorderColors,
   },
   {
-    label: "Border width",
     prop: "borderWidth",
     type: "Select",
     options: dividerBorderWidths,
@@ -64,7 +62,6 @@ export const DividerTailor = () => {
         return (
           <Component
             key={item.prop}
-            label={item.label}
             prop={item.prop}
             options={item.options as any}
           />

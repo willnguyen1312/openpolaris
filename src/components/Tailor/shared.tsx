@@ -6,17 +6,17 @@ import {
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
+import { getHumanReadableProp } from "../../utils/text";
 
 export type Tailor = "Text" | "Select" | "Checkbox";
 
 export type PropItem<PropType = string> = {
   type: Tailor;
-  label: string;
   options?: string[];
   prop: PropType;
 };
 
-export const Text = ({ label, prop }: { label: string; prop: string }) => {
+export const Text = ({ prop }: { prop: string }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -29,7 +29,7 @@ export const Text = ({ label, prop }: { label: string; prop: string }) => {
   return (
     <TextField
       onChange={handleChange}
-      label={label}
+      label={getHumanReadableProp(prop)}
       value={activeComponent.props[prop]}
       autoComplete="off"
     />
@@ -37,11 +37,9 @@ export const Text = ({ label, prop }: { label: string; prop: string }) => {
 };
 
 export const Select = ({
-  label,
   options,
   prop,
 }: {
-  label: string;
   options: string[];
   prop: string;
 }) => {
@@ -56,7 +54,7 @@ export const Select = ({
 
   return (
     <PolarisSelect
-      label={label}
+      label={getHumanReadableProp(prop)}
       options={options}
       value={activeComponent.props[prop] || ""}
       onChange={handleChange}
@@ -64,7 +62,7 @@ export const Select = ({
   );
 };
 
-export const Checkbox = ({ label, prop }: { label: string; prop: string }) => {
+export const Checkbox = ({ prop }: { prop: string }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -76,7 +74,7 @@ export const Checkbox = ({ label, prop }: { label: string; prop: string }) => {
 
   return (
     <PolarisCheckbox
-      label={label}
+      label={getHumanReadableProp(prop)}
       checked={activeComponent.props[prop]}
       onChange={handleChange}
     />

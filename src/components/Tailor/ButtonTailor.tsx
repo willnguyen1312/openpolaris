@@ -30,41 +30,38 @@ type ButtonDisclosure = NonNullable<ButtonProps["disclosure"]> | "";
 const buttonDisclosure: ButtonDisclosure[] = ["down", "up", "select", ""];
 
 const buttonPropItems: PropItem<keyof ButtonProps>[] = [
-  { label: "Children", prop: "children", type: "Text" },
-  { label: "Size", prop: "size", type: "Select", options: buttonSizes },
+  { prop: "children", type: "Text" },
+  { prop: "size", type: "Select", options: buttonSizes },
   {
-    label: "Text align",
     prop: "textAlign",
     type: "Select",
     options: buttonTextAligns,
   },
-  { label: "Full width", prop: "fullWidth", type: "Checkbox" },
+  { prop: "fullWidth", type: "Checkbox" },
   {
-    label: "Disclosure",
     prop: "disclosure",
     type: "Select",
     options: buttonDisclosure as string[],
   },
-  { label: "Data primary link", prop: "dataPrimaryLink", type: "Checkbox" },
-  { label: "Tone", prop: "tone", type: "Select", options: buttonTones },
+  { prop: "dataPrimaryLink", type: "Checkbox" },
+  { prop: "tone", type: "Select", options: buttonTones },
   {
-    label: "Variant",
     prop: "variant",
     type: "Select",
     options: buttonVariants,
   },
 
   // Base Button Props
-  { label: "Id", prop: "id", type: "Text" },
-  { label: "Url", prop: "url", type: "Text" },
-  { label: "External", prop: "external", type: "Checkbox" },
-  { label: "Download", prop: "download", type: "Text" },
-  { label: "Submit", prop: "submit", type: "Checkbox" },
-  { label: "Disabled", prop: "disabled", type: "Checkbox" },
-  { label: "Loading", prop: "loading", type: "Checkbox" },
-  { label: "Pressed", prop: "pressed", type: "Checkbox" },
-  { label: "Accessibility Label", prop: "accessibilityLabel", type: "Text" },
-  { label: "Role", prop: "role", type: "Text" },
+  { prop: "id", type: "Text" },
+  { prop: "url", type: "Text" },
+  { prop: "external", type: "Checkbox" },
+  { prop: "download", type: "Text" },
+  { prop: "submit", type: "Checkbox" },
+  { prop: "disabled", type: "Checkbox" },
+  { prop: "loading", type: "Checkbox" },
+  { prop: "pressed", type: "Checkbox" },
+  { prop: "accessibilityLabel", type: "Text" },
+  { prop: "role", type: "Text" },
 ];
 
 export const ButtonTailor = () => {
@@ -80,7 +77,6 @@ export const ButtonTailor = () => {
         return (
           <Component
             key={item.prop}
-            label={item.label}
             prop={item.prop}
             options={item.options as any}
           />
