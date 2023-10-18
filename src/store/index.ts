@@ -176,6 +176,7 @@ const useStoreBase = createWithEqualityFn(
           const activeId = active.id;
           const overId = over?.id;
 
+          state.activeDraggableId = null;
           const isOverRootComponent = overId === rootComponentId;
 
           // Find the containers

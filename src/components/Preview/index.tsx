@@ -10,7 +10,6 @@ import { CSS } from "@dnd-kit/utilities";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
-const inlineBlockComponents: ComponentName[] = ["Button"];
 const canHaveChildComponents: ComponentName[] = ["ButtonGroup"];
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
@@ -29,7 +28,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
   const Component = Polaris[component.componentName];
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const activeComponent = usePolarisStore.use.activeComponent();
   const icon = component.props.icon;
+  const isSelected = activeComponent?.id === component.id;
 
   return (
     <div
@@ -37,7 +38,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
-      className={styles.wrapper}
+      className={classNames(styles.wrapper, {
+        [styles.selected]: isSelected,
+      })}
     >
       <SortableItem component={component}>
         <Component
@@ -61,11 +64,13 @@ function ComponentWithContainer({
     id,
   });
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const activeComponent = usePolarisStore.use.activeComponent();
 
   const items = children.map((child) => child.id);
   // @ts-ignore
   const Component = Polaris[component.componentName];
   const isEmptyChild = !component.children.length;
+  const isSelected = activeComponent?.id === component.id;
 
   return (
     <SortableContext id={id} items={items}>
@@ -73,6 +78,7 @@ function ComponentWithContainer({
         ref={setNodeRef}
         className={classNames(styles.wrapper, {
           [styles.emptyChild]: isEmptyChild,
+          [styles.selected]: isSelected,
         })}
         onPointerDown={() => {
           setActiveComponentId(component);

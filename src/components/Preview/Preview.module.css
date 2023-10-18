@@ -7,10 +7,6 @@
   border: 1px dashed var(--p-color-border-focus);
 }
 
-.inlineBlock {
-  display: inline-block;
-}
-
 .selected {
   border: 1px solid var(--p-color-border-focus);
 }
