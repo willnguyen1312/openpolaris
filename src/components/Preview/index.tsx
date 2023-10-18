@@ -39,7 +39,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
-      className={classNames({
+      className={classNames(styles.pointer, {
         [styles.selected]: isSelected,
         [styles.inlineBlock]: inlineBlockComponents.includes(
           component.componentName,
@@ -79,7 +79,7 @@ function ComponentWithContainer({
     <SortableContext id={id} items={items}>
       <div
         ref={setNodeRef}
-        className={classNames({
+        className={classNames(styles.pointer, {
           [styles.emptyChild]: isEmptyChild,
           [styles.selected]: isSelected,
         })}
