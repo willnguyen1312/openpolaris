@@ -1,7 +1,6 @@
 import { BlockStack, ButtonProps, Link } from "@shopify/polaris";
 
-import type { PropItem } from "./shared";
-import * as Shared from "./shared";
+import { PropItem, TailorList } from "./shared";
 
 type ButtonSizes = NonNullable<ButtonProps["size"]>;
 const buttonSizes: ButtonSizes[] = ["micro", "slim", "medium", "large"];
@@ -75,17 +74,7 @@ export const ButtonTailor = () => {
         Button
       </Link>
 
-      {buttonPropItems.map((item) => {
-        const Component = Shared[item.type];
-
-        return (
-          <Component
-            key={item.prop}
-            prop={item.prop}
-            options={item.options as any}
-          />
-        );
-      })}
+      <TailorList items={buttonPropItems} />
     </BlockStack>
   );
 };

@@ -156,3 +156,25 @@ export const Icon = () => {
     />
   );
 };
+
+const TailorMap = {
+  Text,
+  Select,
+  Checkbox,
+  Icon,
+};
+
+export function TailorList({ items }: { items: PropItem[] }) {
+  return items.map((item) => {
+    // @ts-ignore
+    const Component = TailorMap[item.type];
+
+    return (
+      <Component
+        key={item.prop}
+        prop={item.prop}
+        options={item.options as any}
+      />
+    );
+  });
+}
