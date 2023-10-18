@@ -33,7 +33,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
 
   return (
     <div
-      onPointerDown={() => {
+      onPointerDown={(event) => {
+        event.stopPropagation();
         setActiveComponentId(component);
       }}
       className={styles.wrapper}

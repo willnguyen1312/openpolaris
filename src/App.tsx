@@ -25,7 +25,7 @@ export default function AppSettingsLayoutExample() {
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      delay: 50,
+      delay: 100,
       tolerance: 5,
     },
   });

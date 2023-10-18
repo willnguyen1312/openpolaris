@@ -1,4 +1,5 @@
 import { DragEndEvent, DragOverEvent } from "@dnd-kit/core";
+import { arrayMove } from "@dnd-kit/sortable";
 import { StoreApi, UseBoundStore } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -225,6 +226,20 @@ const useStoreBase = createWithEqualityFn(
             });
 
             overContainer?.children.push(component);
+            return;
+          }
+
+          // Drag inside the same parent
+          const isDragInsideSameParent =
+            activeContainer?.id === overContainer?.id && activeId !== overId;
+
+          if (isDragInsideSameParent) {
+            const list = activeContainer?.children as RenderedComponent[];
+            const oldIndex = list.findIndex((item) => item.id === activeId);
+            const newIndex = list.findIndex((item) => item.id === overId);
+
+            activeContainer.children = arrayMove(list, oldIndex, newIndex);
+            return;
           }
         }),
     })),
