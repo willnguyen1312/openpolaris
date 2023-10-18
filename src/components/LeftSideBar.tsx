@@ -16,7 +16,7 @@ export function LeftSideBar() {
 
   const handleTextFieldChange = useCallback(
     (value: string) => setTextFieldValue(value),
-    []
+    [],
   );
 
   const handleClearButtonClick = useCallback(() => setTextFieldValue(""), []);
@@ -45,7 +45,7 @@ function SearchResult({ query }: { query: string }) {
       acc.set(category, []);
       return acc;
     },
-    new Map() as Map<ComponentCategoryName, ComponentName[]>
+    new Map() as Map<ComponentCategoryName, ComponentName[]>,
   );
 
   for (const { componentName, category } of listOfComponent) {

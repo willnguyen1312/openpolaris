@@ -1,6 +1,13 @@
-.hover:hover {
+.wrapper:hover {
   border: 1px solid var(--p-color-border-focus);
+}
+
+.wrapper {
   cursor: pointer;
+}
+
+.inlineBlock {
+  display: inline-block;
 }
 
 .selected {

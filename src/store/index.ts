@@ -13,7 +13,7 @@ type WithSelectors<S> = S extends { getState: () => infer T }
   : never;
 
 const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
-  _store: S
+  _store: S,
 ) => {
   let store = _store as WithSelectors<typeof _store>;
   store.use = {};
@@ -46,7 +46,7 @@ type StoreActions = {
 
 const findComponentBy = (
   tree: RenderedComponent[],
-  predicate: (component: RenderedComponent) => boolean
+  predicate: (component: RenderedComponent) => boolean,
 ) => {
   for (const component of tree) {
     if (predicate(component)) {
@@ -110,7 +110,7 @@ const useStoreBase = createWithEqualityFn(
 
             const foundComponent = findComponentBy(
               state.renderedComponents,
-              (component) => component.id === state.activeComponent?.id
+              (component) => component.id === state.activeComponent?.id,
             );
 
             if (foundComponent) {
@@ -119,11 +119,11 @@ const useStoreBase = createWithEqualityFn(
           }
         });
       },
-    }))
+    })),
     //   { name: "openPolaris" }
     // )
   ),
-  shallow
+  shallow,
 );
 
 export const usePolarisStore = createSelectors(useStoreBase);

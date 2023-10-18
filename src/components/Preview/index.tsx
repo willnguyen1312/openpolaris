@@ -4,7 +4,9 @@ import classNames from "classnames";
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
 
-import styles from "./shared.module.css";
+import styles from "./Preview.module.css";
+
+const inlineBlockComponents = ["Button"];
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
   const { componentName } = component;
@@ -22,8 +24,9 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
   return (
     <div
       onClick={selectComponent}
-      className={classNames(styles.hover, {
+      className={classNames(styles.wrapper, {
         [styles.selected]: isSelected,
+        [styles.inlineBlock]: inlineBlockComponents.includes(componentName),
       })}
     >
       <Component {...component.props} />

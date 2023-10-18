@@ -479,31 +479,3 @@ export const listOfComponent: ComponentMenuItem[] = [
 ];
 
 export const rootComponentId = "root";
-
-// ========================================
-// Re-exported from @shopify/polaris-tokens
-// ========================================
-export type ColorBorderAlias =
-  | "border-brand"
-  | "border-caution"
-  | "border-critical-secondary"
-  | "border-critical"
-  | "border-disabled"
-  | "border-emphasis-active"
-  | "border-emphasis-hover"
-  | "border-emphasis"
-  | "border-focus"
-  | "border-hover"
-  | "border-info"
-  | "border-inverse-active"
-  | "border-inverse-hover"
-  | "border-inverse"
-  | "border-magic-secondary"
-  | "border-magic"
-  | "border-secondary"
-  | "border-success"
-  | "border-tertiary"
-  | "border-warning"
-  | "border";
-
-export type BorderWidthScale = "0165" | "025" | "050" | "100";

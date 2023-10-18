@@ -1,13 +1,8 @@
-import { usePolarisStore } from "../../store";
-import {
-  BorderWidthScale,
-  ColorBorderAlias,
-  RenderedComponent,
-} from "../../types";
+import { BlockStack, DividerProps, Text } from "@shopify/polaris";
+import type { PropItem } from "./shared";
+import * as Shared from "./shared";
 
-import { Select, Text } from "@shopify/polaris";
-
-type DividerBorderColors = ColorBorderAlias | "transparent";
+type DividerBorderColors = NonNullable<DividerProps["borderColor"]>;
 const dividerBorderColors: DividerBorderColors[] = [
   "border-brand",
   "border-caution",
@@ -32,40 +27,49 @@ const dividerBorderColors: DividerBorderColors[] = [
   "border",
   "transparent",
 ];
-const dividerBorderWidths: BorderWidthScale[] = ["0165", "025", "050", "100"];
+
+type DividerBorderWidths = NonNullable<DividerProps["borderWidth"]>;
+const dividerBorderWidths: DividerBorderWidths[] = [
+  "0165",
+  "025",
+  "050",
+  "100",
+];
+
+const dividerPropsItem: PropItem[] = [
+  {
+    label: "Border color",
+    prop: "borderColor",
+    type: "Select",
+    options: dividerBorderColors,
+  },
+  {
+    label: "Border width",
+    prop: "borderWidth",
+    type: "Select",
+    options: dividerBorderWidths,
+  },
+];
 
 export const DividerTailor = () => {
-  const activeComponent =
-    usePolarisStore.use.activeComponent() as RenderedComponent;
-  const setActiveComponentPropValue =
-    usePolarisStore.use.setActiveComponentPropValue();
-
-  const changeBorderColor = (value: DividerBorderColors) => {
-    setActiveComponentPropValue("borderColor", value);
-  };
-
-  const changeBorderWidth = (value: BorderWidthScale) => {
-    setActiveComponentPropValue("borderWidth", value);
-  };
-
   return (
-    <>
+    <BlockStack>
       <Text as="p" variant="headingMd">
         Divider
       </Text>
-      <Select
-        label="Border color"
-        options={dividerBorderColors}
-        onChange={changeBorderColor}
-        value={activeComponent.props.borderColor}
-      />
 
-      <Select
-        label="Border width"
-        options={dividerBorderWidths}
-        onChange={changeBorderWidth}
-        value={activeComponent.props.borderWidth}
-      />
-    </>
+      {dividerPropsItem.map((item) => {
+        const Component = Shared[item.type];
+
+        return (
+          <Component
+            key={item.prop}
+            label={item.label}
+            prop={item.prop}
+            options={item.options as any}
+          />
+        );
+      })}
+    </BlockStack>
   );
 };
