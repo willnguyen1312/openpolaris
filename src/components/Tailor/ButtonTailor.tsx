@@ -85,6 +85,8 @@ export const ButtonTailor = () => {
           />
         );
       })}
+
+      <Shared.Icon />
     </BlockStack>
   );
 };

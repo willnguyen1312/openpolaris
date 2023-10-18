@@ -1,8 +1,13 @@
 import {
+  Autocomplete,
   Checkbox as PolarisCheckbox,
+  Icon as PolarisIcon,
   Select as PolarisSelect,
   TextField,
 } from "@shopify/polaris";
+import { SearchMinor } from "@shopify/polaris-icons";
+import iconMetadata from "@shopify/polaris-icons/metadata";
+import { useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
@@ -77,6 +82,75 @@ export const Checkbox = ({ prop }: { prop: string }) => {
       label={getHumanReadableProp(prop)}
       checked={activeComponent.props[prop]}
       onChange={handleChange}
+    />
+  );
+};
+
+const iconList = Object.keys(iconMetadata)
+  .sort()
+  .map((icon) => ({
+    value: icon,
+    label: icon,
+  }));
+
+export const Icon = () => {
+  const activeComponent =
+    usePolarisStore.use.activeComponent() as RenderedComponent;
+  const setActiveComponentPropValue =
+    usePolarisStore.use.setActiveComponentPropValue();
+
+  const [inputValue, setInputValue] = useState("");
+  const [options, setOptions] = useState(iconList);
+
+  const updateText = (value: string) => {
+    setInputValue(value);
+
+    if (value === "") {
+      setOptions(iconList);
+      return;
+    }
+
+    const filterRegex = new RegExp(value, "i");
+    const resultOptions = iconList.filter((option) =>
+      option.label.match(filterRegex)
+    );
+    setOptions(resultOptions);
+  };
+
+  const updateSelection = (selected: string[]) => {
+    const selectedValue = selected.map((selectedItem) => {
+      const matchedOption = options.find((option) => {
+        return option.value.match(selectedItem);
+      });
+      return matchedOption && matchedOption.label;
+    });
+
+    setActiveComponentPropValue("icon", selectedValue[0] ?? "");
+    setInputValue(selectedValue[0] ?? "");
+  };
+
+  const syncWithIconInStore = () => {
+    setInputValue(activeComponent.props.icon ?? "");
+  };
+
+  const textField = (
+    <Autocomplete.TextField
+      onBlur={syncWithIconInStore}
+      onChange={updateText}
+      label="Icon"
+      value={inputValue}
+      prefix={<PolarisIcon source={SearchMinor} tone="base" />}
+      placeholder="Search"
+      autoComplete="off"
+    />
+  );
+
+  return (
+    <Autocomplete
+      options={options}
+      selected={activeComponent.props.icon ?? ""}
+      onSelect={updateSelection}
+      textField={textField}
     />
   );
 };

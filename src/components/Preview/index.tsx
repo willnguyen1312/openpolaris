@@ -1,4 +1,5 @@
 import * as Polaris from "@shopify/polaris";
+import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
 
 import { usePolarisStore } from "../../store";
@@ -20,6 +21,12 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
 
   // @ts-ignore
   const Component = Polaris[componentName];
+  const icon = activeComponent?.props?.icon;
+
+  const specialProps = {
+    // @ts-ignore
+    icon: icon ? PolarisIcon[icon] : undefined,
+  };
 
   return (
     <div
@@ -29,7 +36,7 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
         [styles.inlineBlock]: inlineBlockComponents.includes(componentName),
       })}
     >
-      <Component {...component.props} />
+      <Component {...component.props} {...specialProps} />
     </div>
   );
 };
