@@ -32,6 +32,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const activeComponent = usePolarisStore.use.activeComponent();
   const icon = component.props.icon;
   const isSelected = activeComponent?.id === component.id;
+  const activeDraggableId = usePolarisStore.use.activeDraggableId();
+  const isDragging = activeDraggableId === component.id;
 
   return (
     <div
@@ -40,10 +42,10 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         setActiveComponentId(component);
       }}
       className={classNames(styles.pointer, {
-        [styles.selected]: isSelected,
-        [styles.inlineBlock]: inlineBlockComponents.includes(
-          component.componentName,
-        ),
+        [styles.selected]: isSelected && !isDragging,
+        [styles.inlineBlock]:
+          inlineBlockComponents.includes(component.componentName) &&
+          !isDragging,
       })}
     >
       <SortableItem component={component}>
@@ -74,6 +76,8 @@ function ComponentWithContainer({
   const Component = Polaris[component.componentName];
   const isEmptyChild = !component.children.length;
   const isSelected = activeComponent?.id === component.id;
+  const activeDraggableId = usePolarisStore.use.activeDraggableId();
+  const isDragging = activeDraggableId === component.id;
 
   return (
     <SortableContext id={id} items={items}>
@@ -81,7 +85,7 @@ function ComponentWithContainer({
         ref={setNodeRef}
         className={classNames(styles.pointer, {
           [styles.emptyChild]: isEmptyChild,
-          [styles.selected]: isSelected,
+          [styles.selected]: isSelected && !isDragging,
         })}
         onPointerDown={() => {
           setActiveComponentId(component);
