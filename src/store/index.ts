@@ -178,6 +178,9 @@ const useStoreBase = createWithEqualityFn(
 
           state.activeDraggableId = null;
           const isOverRootComponent = overId === rootComponentId;
+          const isInListOfComponent = listOfComponent.some(
+            (component) => component.componentName === activeId,
+          );
 
           // Find the containers
           const activeContainer = findComponentBy(
@@ -195,7 +198,10 @@ const useStoreBase = createWithEqualityFn(
 
           // Drag from the menu to the canvas
           const isDragFromMenuToCanvas =
-            activeContainer === null && isOverRootComponent;
+            isInListOfComponent &&
+            activeContainer === null &&
+            isOverRootComponent;
+
           if (isDragFromMenuToCanvas) {
             const component = {
               children: [],
@@ -232,7 +238,9 @@ const useStoreBase = createWithEqualityFn(
 
           // Drag inside the same parent
           const isDragInsideSameParent =
-            activeContainer?.id === overContainer?.id && activeId !== overId;
+            overContainer !== rootComponentId &&
+            activeContainer?.id === overContainer?.id &&
+            activeId !== overId;
 
           if (isDragInsideSameParent) {
             const list = activeContainer?.children as RenderedComponent[];
