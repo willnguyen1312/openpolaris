@@ -41,6 +41,7 @@ type StoreActions = {
   }) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
+  reset: () => void;
 };
 
 const findComponentBy = (
@@ -65,6 +66,12 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     // persist(
     immer<StoreState & StoreActions>((set) => ({
+      reset: () => {
+        set((state: StoreState) => {
+          state.activeComponent = null;
+          state.renderedComponents = [];
+        });
+      },
       isShowCodePanel: false,
       setIsShowCodePanel: (showCodePanel: boolean) =>
         set((state: StoreState) => {

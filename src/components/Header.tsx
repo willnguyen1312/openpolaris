@@ -15,7 +15,7 @@ import styles from "./Header.module.css";
 export function Header() {
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
-
+  const reset = usePolarisStore.use.reset();
   const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
 
   return (
@@ -35,7 +35,11 @@ export function Header() {
             />
 
             <ButtonGroup>
-              <Button variant="tertiary" icon={MobileCancelMajor}>
+              <Button
+                onClick={reset}
+                variant="tertiary"
+                icon={MobileCancelMajor}
+              >
                 Clear
               </Button>
               <Button variant="tertiary" icon={ExportMinor}>
