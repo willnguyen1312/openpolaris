@@ -1,5 +1,6 @@
 import {
   Autocomplete,
+  BlockStack,
   Checkbox as PolarisCheckbox,
   Icon as PolarisIcon,
   Select as PolarisSelect,
@@ -165,16 +166,20 @@ const TailorMap = {
 };
 
 export function TailorList({ items }: { items: PropItem[] }) {
-  return items.map((item) => {
-    // @ts-ignore
-    const Component = TailorMap[item.type];
+  return (
+    <BlockStack gap="050">
+      {items.map((item) => {
+        // @ts-ignore
+        const Component = TailorMap[item.type];
 
-    return (
-      <Component
-        key={item.prop}
-        prop={item.prop}
-        options={item.options as any}
-      />
-    );
-  });
+        return (
+          <Component
+            key={item.prop}
+            prop={item.prop}
+            options={item.options as any}
+          />
+        );
+      })}
+    </BlockStack>
+  );
 }

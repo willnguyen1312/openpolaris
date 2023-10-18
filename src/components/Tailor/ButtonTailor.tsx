@@ -1,4 +1,4 @@
-import { BlockStack, ButtonProps, Link } from "@shopify/polaris";
+import { ButtonProps, Link } from "@shopify/polaris";
 
 import { PropItem, TailorList } from "./shared";
 
@@ -66,7 +66,7 @@ const buttonPropItems: PropItem<keyof ButtonProps>[] = [
 
 export const ButtonTailor = () => {
   return (
-    <BlockStack>
+    <>
       <Link
         target="_blank"
         url="https://polaris.shopify.com/components/actions/button"
@@ -75,6 +75,6 @@ export const ButtonTailor = () => {
       </Link>
 
       <TailorList items={buttonPropItems} />
-    </BlockStack>
+    </>
   );
 };

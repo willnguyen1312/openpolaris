@@ -1,4 +1,4 @@
-import { BlockStack, DividerProps, Link } from "@shopify/polaris";
+import { DividerProps, Link } from "@shopify/polaris";
 import { PropItem, TailorList } from "./shared";
 
 type DividerBorderColors = NonNullable<DividerProps["borderColor"]>;
@@ -50,7 +50,7 @@ const dividerPropsItem: PropItem[] = [
 
 export const DividerTailor = () => {
   return (
-    <BlockStack>
+    <>
       <Link
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/divider"
@@ -59,6 +59,6 @@ export const DividerTailor = () => {
       </Link>
 
       <TailorList items={dividerPropsItem} />
-    </BlockStack>
+    </>
   );
 };
