@@ -101,7 +101,7 @@ export const Icon = () => {
     usePolarisStore.use.setActiveComponentPropValue();
 
   const [inputValue, setInputValue] = useState(
-    activeComponent.props.icon ?? ""
+    activeComponent.props.icon ?? "",
   );
   const [options, setOptions] = useState(iconList);
 
@@ -115,7 +115,7 @@ export const Icon = () => {
 
     const filterRegex = new RegExp(value, "i");
     const resultOptions = iconList.filter((option) =>
-      option.label.match(filterRegex)
+      option.label.match(filterRegex),
     );
     setOptions(resultOptions);
   };

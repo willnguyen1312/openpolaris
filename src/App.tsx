@@ -1,44 +1,39 @@
-import {
-  DndContext,
-  DragEndEvent,
-  DragOverlay,
-  DragStartEvent,
-} from "@dnd-kit/core";
+import { DndContext, DragOverlay, DragStartEvent } from "@dnd-kit/core";
 import { AppProvider, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
 import { Header } from "./components/Header";
 import { LeftSideBar } from "./components/LeftSideBar";
 import { MainBody } from "./components/MainBody";
+import { Preview } from "./components/Preview";
 import { RightSideBar } from "./components/RightSideBar";
 import { useShortcuts } from "./hooks/useShortcuts";
-import { usePolarisStore } from "./store";
+import { findComponentBy, usePolarisStore } from "./store";
+import { listOfComponent } from "./types";
 
 export default function AppSettingsLayoutExample() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
-  const addComponentToParent = usePolarisStore.use.addComponentToParent();
+  const handleDragOver = usePolarisStore.use.handleDragOver();
+  const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
   useShortcuts();
 
   function handleDragStart(event: DragStartEvent) {
-    setActiveDraggableId(event.active.id);
+    setActiveDraggableId(event.active.id as string);
   }
 
-  function handleDragEnd(event: DragEndEvent) {
-    if (event.over && event.over.id) {
-      addComponentToParent({
-        childComponentId: event.active.id,
-        parentComponentId: event.over.id,
-      });
-    }
+  // function handleDragOver(event: DragOverEvent) {}
 
-    setActiveDraggableId(null);
-  }
+  // function handleDragEnd(event: DragEndEvent) {}
 
   return (
     <AppProvider i18n={enTranslations}>
-      <DndContext onDragStart={handleDragStart} onDragEnd={handleDragEnd}>
+      <DndContext
+        onDragStart={handleDragStart}
+        onDragOver={handleDragOver}
+        onDragEnd={handleDragEnd}
+      >
         <Header />
         <Grid gap={{ lg: "0", xl: "0" }}>
           <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
@@ -56,16 +51,33 @@ export default function AppSettingsLayoutExample() {
 
         <DragOverlay dropAnimation={null}>
           {activeDraggableId ? (
-            <div
-              style={{
-                cursor: "pointer",
-              }}
-            >
-              {activeDraggableId}
-            </div>
+            <OverlayComponent id={activeDraggableId} />
           ) : null}
         </DragOverlay>
       </DndContext>
     </AppProvider>
   );
+}
+
+function OverlayComponent({ id }: { id: string }) {
+  const renderedComponent = usePolarisStore.use.renderedComponents();
+
+  if (listOfComponent.find((component) => component.componentName === id)) {
+    return (
+      <div
+        style={{
+          cursor: "pointer",
+        }}
+      >
+        {id}
+      </div>
+    );
+  }
+
+  const component = findComponentBy(
+    renderedComponent,
+    (component) => component.id === id,
+  );
+
+  return <Preview component={component} />;
 }

@@ -1,5 +1,3 @@
-import { UniqueIdentifier } from "@dnd-kit/core";
-
 export type ComponentName =
   | "AccountConnection"
   | "Button"
@@ -124,7 +122,7 @@ export const componentCategories: ComponentCategoryName[] = [
 ];
 
 export type RenderedComponent = {
-  id: UniqueIdentifier;
+  id: string;
   children: RenderedComponent[];
   componentName: ComponentName;
   props: any;

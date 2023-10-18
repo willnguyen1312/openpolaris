@@ -1,4 +1,4 @@
-import { UniqueIdentifier } from "@dnd-kit/core";
+import { DragEndEvent, DragOverEvent } from "@dnd-kit/core";
 import { StoreApi, UseBoundStore } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -27,24 +27,28 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 interface StoreState {
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
-  activeDraggableId: UniqueIdentifier | null;
+  activeDraggableId: string | null;
   renderedComponents: RenderedComponent[];
 }
 
 type StoreActions = {
   setIsShowCodePanel: (showCodePanel: boolean) => void;
-  setActiveDraggableId: (id: UniqueIdentifier | null) => void;
+  setActiveDraggableId: (id: string | null) => void;
   addComponentToParent: (arg: {
-    childComponentId: UniqueIdentifier;
-    parentComponentId: UniqueIdentifier;
+    childComponentId: string;
+    parentComponentId: string;
     index?: number;
   }) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   reset: () => void;
+
+  // DnD stuff
+  handleDragOver: (event: DragOverEvent) => void;
+  handleDragEnd: (event: DragEndEvent) => void;
 };
 
-const findComponentBy = (
+export const findComponentBy = (
   tree: RenderedComponent[],
   predicate: (component: RenderedComponent) => boolean,
 ) => {
@@ -119,6 +123,85 @@ const useStoreBase = createWithEqualityFn(
           }
         });
       },
+
+      // DnD stuff
+      handleDragOver: (event) =>
+        set((state: StoreState) => {
+          const {
+            active,
+            over,
+            // draggingRect
+          } = event;
+          const activeId = active.id;
+          const overId = over?.id;
+
+          // Find the containers
+          const activeContainer = findComponentBy(
+            state.renderedComponents,
+            (component) => {
+              return component.children.some((child) => child.id === activeId);
+            },
+          );
+
+          const overContainer =
+            overId === rootComponentId
+              ? rootComponentId
+              : findComponentBy(state.renderedComponents, (component) => {
+                  return component.children.some(
+                    (child) => child.id === overId,
+                  );
+                });
+
+          // Drag from the menu to the canvas
+          const isDragFromMenuToCanvas =
+            activeContainer === null && overContainer === rootComponentId;
+          if (isDragFromMenuToCanvas) {
+            return;
+          }
+        }),
+
+      handleDragEnd: (event) =>
+        set((state: StoreState) => {
+          const {
+            active,
+            over,
+            // draggingRect
+          } = event;
+          const activeId = active.id;
+          const overId = over?.id;
+
+          // Find the containers
+          const activeContainer = findComponentBy(
+            state.renderedComponents,
+            (component) => {
+              return component.children.some((child) => child.id === activeId);
+            },
+          );
+
+          const overContainer =
+            overId === rootComponentId
+              ? rootComponentId
+              : findComponentBy(state.renderedComponents, (component) => {
+                  return component.children.some(
+                    (child) => child.id === overId,
+                  );
+                });
+
+          // Drag from the menu to the canvas
+          const isDragFromMenuToCanvas =
+            activeContainer === null && overContainer === rootComponentId;
+          if (isDragFromMenuToCanvas) {
+            const component = {
+              children: [],
+              id: generateId(),
+              componentName: activeId as ComponentName,
+              props: defaultProps[activeId as ComponentName],
+            };
+
+            state.renderedComponents.push(component);
+            return;
+          }
+        }),
     })),
     //   { name: "openPolaris" }
     // )
