@@ -1,7 +1,3 @@
-.wrapper {
-  cursor: pointer;
-}
-
 .emptyChild {
   min-height: 50px;
   border: 1px dashed var(--p-color-border-focus);
@@ -9,4 +5,8 @@
 
 .selected {
   border: 1px solid var(--p-color-border-focus);
+}
+
+.inlineBlock {
+  display: inline-block;
 }

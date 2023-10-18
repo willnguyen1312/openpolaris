@@ -25,7 +25,7 @@ export default function AppSettingsLayoutExample() {
 
   const mouseSensor = useSensor(MouseSensor, {
     activationConstraint: {
-      delay: 100,
+      delay: 250,
       tolerance: 5,
     },
   });
@@ -76,7 +76,7 @@ function OverlayComponent({ id }: { id: string }) {
     return (
       <div
         style={{
-          cursor: "pointer",
+          cursor: "move",
         }}
       >
         {id}

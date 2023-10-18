@@ -11,6 +11,7 @@ import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
 const canHaveChildComponents: ComponentName[] = ["ButtonGroup"];
+const inlineBlockComponents: ComponentName[] = ["Button"];
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
   const { componentName } = component;
@@ -38,8 +39,11 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
-      className={classNames(styles.wrapper, {
+      className={classNames({
         [styles.selected]: isSelected,
+        [styles.inlineBlock]: inlineBlockComponents.includes(
+          component.componentName,
+        ),
       })}
     >
       <SortableItem component={component}>
@@ -65,7 +69,6 @@ function ComponentWithContainer({
   });
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
-
   const items = children.map((child) => child.id);
   // @ts-ignore
   const Component = Polaris[component.componentName];
@@ -76,7 +79,7 @@ function ComponentWithContainer({
     <SortableContext id={id} items={items}>
       <div
         ref={setNodeRef}
-        className={classNames(styles.wrapper, {
+        className={classNames({
           [styles.emptyChild]: isEmptyChild,
           [styles.selected]: isSelected,
         })}
