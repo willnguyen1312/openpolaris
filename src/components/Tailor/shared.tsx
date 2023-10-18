@@ -9,11 +9,11 @@ import { RenderedComponent } from "../../types";
 
 export type Tailor = "Text" | "Select" | "Checkbox";
 
-export type PropItem = {
+export type PropItem<PropType = string> = {
   type: Tailor;
   label: string;
   options?: string[];
-  prop: string;
+  prop: PropType;
 };
 
 export const Text = ({ label, prop }: { label: string; prop: string }) => {
@@ -58,7 +58,7 @@ export const Select = ({
     <PolarisSelect
       label={label}
       options={options}
-      value={activeComponent.props[prop]}
+      value={activeComponent.props[prop] || ""}
       onChange={handleChange}
     />
   );
