@@ -5,7 +5,12 @@ import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 import { defaultProps } from "../defaultProps";
-import { ComponentName, RenderedComponent, rootComponentId } from "../types";
+import {
+  ComponentName,
+  RenderedComponent,
+  listOfComponent,
+  rootComponentId,
+} from "../types";
 import { generateId } from "../utils/generateId";
 
 type WithSelectors<S> = S extends { getState: () => infer T }
@@ -170,6 +175,8 @@ const useStoreBase = createWithEqualityFn(
           const activeId = active.id;
           const overId = over?.id;
 
+          const isOverRootComponent = overId === rootComponentId;
+
           // Find the containers
           const activeContainer = findComponentBy(
             state.renderedComponents,
@@ -178,18 +185,15 @@ const useStoreBase = createWithEqualityFn(
             },
           );
 
-          const overContainer =
-            overId === rootComponentId
-              ? rootComponentId
-              : findComponentBy(state.renderedComponents, (component) => {
-                  return component.children.some(
-                    (child) => child.id === overId,
-                  );
-                });
+          let overContainer = isOverRootComponent
+            ? rootComponentId
+            : findComponentBy(state.renderedComponents, (component) => {
+                return component.children.some((child) => child.id === overId);
+              });
 
           // Drag from the menu to the canvas
           const isDragFromMenuToCanvas =
-            activeContainer === null && overContainer === rootComponentId;
+            activeContainer === null && isOverRootComponent;
           if (isDragFromMenuToCanvas) {
             const component = {
               children: [],
@@ -200,6 +204,27 @@ const useStoreBase = createWithEqualityFn(
 
             state.renderedComponents.push(component);
             return;
+          }
+
+          // Drag from the menu to the parent component
+          const isComponentFromMenu = listOfComponent.some(
+            (component) => component.componentName === activeId,
+          );
+
+          const isAmongTopParents = overContainer === null;
+          if (isComponentFromMenu && isAmongTopParents) {
+            const component = {
+              children: [],
+              id: generateId(),
+              componentName: activeId as ComponentName,
+              props: defaultProps[activeId as ComponentName],
+            };
+
+            overContainer = state.renderedComponents.find((component) => {
+              return component.id === overId;
+            });
+
+            overContainer?.children.push(component);
           }
         }),
     })),

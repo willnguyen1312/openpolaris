@@ -1,4 +1,10 @@
-import { DndContext, DragOverlay, DragStartEvent } from "@dnd-kit/core";
+import {
+  DndContext,
+  DragOverlay,
+  DragStartEvent,
+  MouseSensor,
+  useSensor,
+} from "@dnd-kit/core";
 import { AppProvider, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
@@ -17,19 +23,23 @@ export default function AppSettingsLayoutExample() {
   const handleDragOver = usePolarisStore.use.handleDragOver();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
+  const mouseSensor = useSensor(MouseSensor, {
+    activationConstraint: {
+      delay: 50,
+      tolerance: 5,
+    },
+  });
+
   useShortcuts();
 
   function handleDragStart(event: DragStartEvent) {
     setActiveDraggableId(event.active.id as string);
   }
 
-  // function handleDragOver(event: DragOverEvent) {}
-
-  // function handleDragEnd(event: DragEndEvent) {}
-
   return (
     <AppProvider i18n={enTranslations}>
       <DndContext
+        sensors={[mouseSensor]}
         onDragStart={handleDragStart}
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
