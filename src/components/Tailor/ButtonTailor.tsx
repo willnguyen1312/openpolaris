@@ -62,6 +62,7 @@ const buttonPropItems: PropItem<keyof ButtonProps>[] = [
   { prop: "pressed", type: "Checkbox" },
   { prop: "accessibilityLabel", type: "Text" },
   { prop: "role", type: "Text" },
+  { prop: "icon", type: "Icon" },
 ];
 
 export const ButtonTailor = () => {
@@ -85,8 +86,6 @@ export const ButtonTailor = () => {
           />
         );
       })}
-
-      <Shared.Icon />
     </BlockStack>
   );
 };

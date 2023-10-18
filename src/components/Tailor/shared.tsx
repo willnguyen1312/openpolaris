@@ -13,7 +13,7 @@ import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
 import { getHumanReadableProp } from "../../utils/text";
 
-export type Tailor = "Text" | "Select" | "Checkbox";
+export type Tailor = "Text" | "Select" | "Checkbox" | "Icon";
 
 export type PropItem<PropType = string> = {
   type: Tailor;
@@ -99,7 +99,9 @@ export const Icon = () => {
   const setActiveComponentPropValue =
     usePolarisStore.use.setActiveComponentPropValue();
 
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState(
+    activeComponent.props.icon ?? ""
+  );
   const [options, setOptions] = useState(iconList);
 
   const updateText = (value: string) => {
