@@ -11,7 +11,6 @@ import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
 const canHaveChildComponents: ComponentName[] = ["ButtonGroup"];
-const inlineBlockComponents: ComponentName[] = ["Button"];
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
   const { componentName } = component;
@@ -43,9 +42,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
       }}
       className={classNames(styles.pointer, {
         [styles.selected]: isSelected && !isDragging,
-        [styles.inlineBlock]:
-          inlineBlockComponents.includes(component.componentName) &&
-          !isDragging,
       })}
     >
       <SortableItem component={component}>

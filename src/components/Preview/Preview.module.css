@@ -10,7 +10,3 @@
 .selected {
   border: 1px solid var(--p-color-border-focus);
 }
-
-.inlineBlock {
-  display: inline-block;
-}
