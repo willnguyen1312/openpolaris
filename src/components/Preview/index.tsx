@@ -25,25 +25,6 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
   );
 };
 
-function SortableItem(props: {
-  component: RenderedComponent;
-  children: React.ReactNode;
-}) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.component.id });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
-
-  return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {props.children}
-    </div>
-  );
-}
-
 function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
   const Component = Polaris[component.componentName];
@@ -52,9 +33,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
 
   return (
     <div
-      onPointerDown={(event) => {
-        event.stopPropagation();
-        event.preventDefault();
+      onPointerDown={() => {
         setActiveComponentId(component);
       }}
       className={styles.wrapper}
@@ -94,22 +73,37 @@ function ComponentWithContainer({
         className={classNames(styles.wrapper, {
           [styles.emptyChild]: isEmptyChild,
         })}
-        onPointerDown={(event) => {
-          event.stopPropagation();
-          event.preventDefault();
+        onPointerDown={() => {
           setActiveComponentId(component);
         }}
       >
-        {items.map((id) => (
-          <SortableItem key={id} component={component}>
-            <Component {...component.props}>
-              {children.map((child) => (
-                <Preview key={child.id} component={child} />
-              ))}
-            </Component>
-          </SortableItem>
-        ))}
+        <SortableItem key={id} component={component}>
+          <Component {...component.props}>
+            {children.map((child) => (
+              <Preview key={child.id} component={child} />
+            ))}
+          </Component>
+        </SortableItem>
       </div>
     </SortableContext>
+  );
+}
+
+function SortableItem(props: {
+  component: RenderedComponent;
+  children: React.ReactNode;
+}) {
+  const { attributes, listeners, setNodeRef, transform, transition } =
+    useSortable({ id: props.component.id });
+
+  const style = {
+    transform: CSS.Transform.toString(transform),
+    transition,
+  };
+
+  return (
+    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+      {props.children}
+    </div>
   );
 }
