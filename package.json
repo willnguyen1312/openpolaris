@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "vite",
     "format": "prettier -w --cache .",
-    "build": "typecheck && vite build",
+    "build": "npm run typecheck && vite build",
     "typecheck": "tsc",
     "preview": "vite preview"
   },
