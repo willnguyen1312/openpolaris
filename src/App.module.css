@@ -1,0 +1,6 @@
+.overlayWrapper {
+  cursor: move;
+  background: var(--p-color-bg-surface-success-active);
+  border-radius: var(--p-border-radius-200);
+  padding: 0 var(--p-space-200);
+}

@@ -7,6 +7,7 @@ import {
 } from "@dnd-kit/core";
 import { AppProvider, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
+import styles from "./App.module.css";
 
 import { Header } from "./components/Header";
 import { LeftSideBar } from "./components/LeftSideBar";
@@ -73,15 +74,7 @@ function OverlayComponent({ id }: { id: string }) {
   const renderedComponent = usePolarisStore.use.renderedComponents();
 
   if (listOfComponent.find((component) => component.componentName === id)) {
-    return (
-      <div
-        style={{
-          cursor: "move",
-        }}
-      >
-        {id}
-      </div>
-    );
+    return <div className={styles.overlayWrapper}>{id}</div>;
   }
 
   const component = findComponentBy(
