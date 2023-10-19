@@ -57,7 +57,7 @@ type StoreActions = {
 export const findComponentBy = (
   tree: RenderedComponent[],
   predicate: (component: RenderedComponent) => boolean,
-) => {
+): undefined | null | RenderedComponent => {
   for (const component of tree) {
     if (predicate(component)) {
       return component;
@@ -175,8 +175,12 @@ const useStoreBase = createWithEqualityFn(
           } = event;
           const activeId = active.id;
           const overId = over?.id;
-
           state.activeDraggableId = null;
+
+          if (activeId === overId) {
+            return;
+          }
+
           const isOverRootComponent = overId === rootComponentId;
           const isInListOfComponent = listOfComponent.some(
             (component) => component.componentName === activeId,
@@ -219,8 +223,8 @@ const useStoreBase = createWithEqualityFn(
             (component) => component.componentName === activeId,
           );
 
-          const isAmongTopParents = overContainer === null;
-          if (isComponentFromMenu && isAmongTopParents) {
+          const isOverContainerAmongTopParents = overContainer === null;
+          if (isComponentFromMenu && isOverContainerAmongTopParents) {
             const component = {
               children: [],
               id: generateId(),
@@ -232,22 +236,50 @@ const useStoreBase = createWithEqualityFn(
               return component.id === overId;
             });
 
-            overContainer?.children.push(component);
+            overContainer && overContainer.children.push(component);
             return;
           }
 
           // Drag inside the same parent
           const isDragInsideSameParent =
-            overContainer !== rootComponentId &&
-            activeContainer?.id === overContainer?.id &&
-            activeId !== overId;
+            // @ts-ignore
+            !isOverRootComponent && activeContainer?.id === overContainer?.id;
 
           if (isDragInsideSameParent) {
             const list = activeContainer?.children as RenderedComponent[];
             const oldIndex = list.findIndex((item) => item.id === activeId);
             const newIndex = list.findIndex((item) => item.id === overId);
 
-            activeContainer.children = arrayMove(list, oldIndex, newIndex);
+            if (activeContainer) {
+              activeContainer.children = arrayMove(list, oldIndex, newIndex);
+            }
+
+            return;
+          }
+
+          // Drag from one parent to another parent
+          const isDragFromOneParentToAnotherParent =
+            // @ts-ignore
+            !isOverRootComponent && activeContainer?.id !== overContainer?.id;
+
+          if (
+            activeContainer &&
+            !overContainer &&
+            isDragFromOneParentToAnotherParent &&
+            isOverContainerAmongTopParents
+          ) {
+            const componentIndex = activeContainer.children.findIndex(
+              (child) => child.id === activeId,
+            );
+            const component = activeContainer.children[componentIndex];
+
+            activeContainer.children.splice(componentIndex, 1);
+
+            overContainer = state.renderedComponents.find(
+              (component) => component.id === overId,
+            );
+            overContainer && overContainer.children.push(component);
+
             return;
           }
         }),
