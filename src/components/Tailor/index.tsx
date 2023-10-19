@@ -6,12 +6,16 @@ import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { DividerTailor } from "./DividerTailor";
+import { PageActionsTailor } from "./PageActionsTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
-  Divider: DividerTailor,
+  // Actions
+  AccountConnection: AccountConnectionTailor,
   Button: ButtonTailor,
   ButtonGroup: ButtonGroupTailor,
-  AccountConnection: AccountConnectionTailor,
+  PageActions: PageActionsTailor,
+
+  Divider: DividerTailor,
 };
 
 export const Tailor = () => {

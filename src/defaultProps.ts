@@ -3,6 +3,7 @@ import {
   ButtonGroupProps,
   ButtonProps,
   DividerProps,
+  PageActionsProps,
 } from "@shopify/polaris";
 
 import { ComponentName } from "./types";
@@ -52,6 +53,28 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     noWrap: false,
     children: undefined,
   } as ButtonGroupProps,
+  PageActions: {
+    primaryAction: {
+      content: "Save",
+      loading: false,
+      disabled: false,
+      external: false,
+      id: "id",
+      accessibilityLabel: "accessibilityLabel",
+      url: "url",
+    },
+    secondaryActions: [
+      {
+        content: "Delete",
+        loading: false,
+        disabled: false,
+        external: false,
+        id: "id",
+        accessibilityLabel: "accessibilityLabel",
+        url: "url",
+      },
+    ],
+  } as PageActionsProps,
 
   Divider: {
     borderColor: "border-magic",

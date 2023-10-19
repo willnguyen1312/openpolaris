@@ -170,31 +170,45 @@ const ComplexMap = {
   boolean: Checkbox,
 };
 
-const Complex: React.FunctionComponent<{ prop: string }> = ({ prop }) => {
+const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
+  prop,
+  level = 0,
+}) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
 
   // @ts-ignore
-  const propObject = activeComponent.props[prop];
+  const propObject = lodashGet(activeComponent.props, prop);
   const keys = Object.keys(propObject);
+  const isTopLevel = level === 0;
 
   return (
     <>
-      <PolarisText as="p">{getHumanReadableProp(prop)}</PolarisText>
-      <Box paddingInlineStart="200">
-        {keys.map((key) => {
-          const value = propObject[key];
-          const type = typeof value;
+      {isTopLevel && (
+        <PolarisText as="p">{getHumanReadableProp(prop)}</PolarisText>
+      )}
+      <Box paddingInlineStart={isTopLevel ? "400" : "0"}>
+        <BlockStack gap="050">
+          {keys.map((key) => {
+            const value = propObject[key];
+            const type = typeof value;
 
-          // @ts-ignore
-          const Component = ComplexMap[type];
+            if (type === "object") {
+              return (
+                <Complex prop={`${prop}.${key}`} key={key} level={level + 1} />
+              );
+            }
 
-          if (!Component) {
-            return null;
-          }
+            // @ts-ignore
+            const Component = ComplexMap[type];
 
-          return <Component label={key} prop={`${prop}.${key}`} key={key} />;
-        })}
+            if (!Component) {
+              return null;
+            }
+
+            return <Component label={key} prop={`${prop}.${key}`} key={key} />;
+          })}
+        </BlockStack>
       </Box>
     </>
   );
