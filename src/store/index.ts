@@ -119,7 +119,6 @@ const useStoreBase = createWithEqualityFn(
         set((state: StoreState) => {
           if (state.activeComponent) {
             lodashSet(state.activeComponent.props, name, value);
-            // state.activeComponent.props[name] = value;
 
             const foundComponent = findComponentBy(
               state.renderedComponents,
@@ -127,7 +126,6 @@ const useStoreBase = createWithEqualityFn(
             );
 
             if (foundComponent) {
-              // foundComponent.props[name] = value;
               lodashSet(foundComponent.props, name, value);
             }
           }

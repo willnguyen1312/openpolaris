@@ -17,6 +17,8 @@ import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
 import { getHumanReadableProp } from "../../utils/text";
 
+import styles from "./shared.module.css";
+
 export type Tailor = "Text" | "Select" | "Checkbox" | "Icon" | "Complex";
 
 export type PropItem<PropType = string> = {
@@ -62,12 +64,14 @@ export const Select: React.FunctionComponent<{
   };
 
   return (
-    <PolarisSelect
-      label={getHumanReadableProp(prop)}
-      options={options}
-      value={activeComponent.props[prop]}
-      onChange={handleChange}
-    />
+    <div className={styles.selectWrapper}>
+      <PolarisSelect
+        label={getHumanReadableProp(prop)}
+        options={options}
+        value={activeComponent.props[prop]}
+        onChange={handleChange}
+      />
+    </div>
   );
 };
 
