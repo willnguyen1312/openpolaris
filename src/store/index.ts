@@ -1,5 +1,6 @@
 import { DragEndEvent, DragOverEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
+import { set as lodashSet } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
 import { devtools } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -117,7 +118,8 @@ const useStoreBase = createWithEqualityFn(
       setActiveComponentPropValue: (name, value) => {
         set((state: StoreState) => {
           if (state.activeComponent) {
-            state.activeComponent.props[name] = value;
+            lodashSet(state.activeComponent.props, name, value);
+            // state.activeComponent.props[name] = value;
 
             const foundComponent = findComponentBy(
               state.renderedComponents,
@@ -125,7 +127,8 @@ const useStoreBase = createWithEqualityFn(
             );
 
             if (foundComponent) {
-              foundComponent.props[name] = value;
+              // foundComponent.props[name] = value;
+              lodashSet(foundComponent.props, name, value);
             }
           }
         });

@@ -1,12 +1,29 @@
-import { ButtonGroupProps, ButtonProps, DividerProps } from "@shopify/polaris";
+import {
+  AccountConnectionProps,
+  ButtonGroupProps,
+  ButtonProps,
+  DividerProps,
+} from "@shopify/polaris";
 
 import { ComponentName } from "./types";
 
 export const defaultProps: Partial<Record<ComponentName, any>> = {
-  Divider: {
-    borderColor: "border-magic",
-    borderWidth: "100",
-  } as DividerProps,
+  // Actions
+  AccountConnection: {
+    title: "title",
+    details: "details",
+    termsOfService: "termsOfService",
+    accountName: "accountName",
+    avatarUrl: "avatarUrl",
+    connected: false,
+    action: {
+      id: "id",
+      content: "content",
+      accessibilityLabel: "accessibilityLabel",
+      url: "url",
+      external: false,
+    },
+  } as AccountConnectionProps,
   Button: {
     children: "Button",
     size: "medium",
@@ -17,7 +34,6 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     icon: undefined,
     tone: "success",
     variant: "primary",
-
     id: "",
     url: "",
     external: false,
@@ -36,4 +52,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     noWrap: false,
     children: undefined,
   } as ButtonGroupProps,
+
+  Divider: {
+    borderColor: "border-magic",
+    borderWidth: "100",
+  } as DividerProps,
 };

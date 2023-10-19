@@ -35,7 +35,7 @@ const dividerBorderWidths: DividerBorderWidths[] = [
   "100",
 ];
 
-const dividerPropsItem: PropItem[] = [
+const dividerPropsItem: PropItem<keyof DividerProps>[] = [
   {
     prop: "borderColor",
     type: "Select",
