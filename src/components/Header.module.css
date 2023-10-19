@@ -5,4 +5,7 @@
 
   background: var(--p-color-bg-inverse);
   color: var(--p-color-text-success-on-bg-fill);
+
+  --p-color-text-link: rgb(101 168 255);
+  --p-color-text-link-hover: rgb(101 168 255);
 }

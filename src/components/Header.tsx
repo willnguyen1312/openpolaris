@@ -21,7 +21,7 @@ export function Header() {
     <div className={styles.wrapper}>
       <InlineStack align="space-between">
         <InlineStack gap="400" blockAlign="center">
-          <Text as="p" variant="headingLg">
+          <Text as="h1" variant="headingLg">
             Open Polaris
           </Text>
 
