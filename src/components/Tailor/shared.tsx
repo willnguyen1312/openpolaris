@@ -1,20 +1,23 @@
 import {
   Autocomplete,
   BlockStack,
+  Box,
   Checkbox as PolarisCheckbox,
   Icon as PolarisIcon,
   Select as PolarisSelect,
+  Text as PolarisText,
   TextField,
 } from "@shopify/polaris";
 import { SearchMinor } from "@shopify/polaris-icons";
 import iconMetadata from "@shopify/polaris-icons/metadata";
+import { get as lodashGet } from "lodash-es";
 import { useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
 import { getHumanReadableProp } from "../../utils/text";
 
-export type Tailor = "Text" | "Select" | "Checkbox" | "Icon";
+export type Tailor = "Text" | "Select" | "Checkbox" | "Icon" | "Complex";
 
 export type PropItem<PropType = string> = {
   type: Tailor;
@@ -22,7 +25,10 @@ export type PropItem<PropType = string> = {
   prop: PropType;
 };
 
-export const Text = ({ prop }: { prop: string }) => {
+export const Text: React.FunctionComponent<{
+  prop: string;
+  label?: string;
+}> = ({ prop, label }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -35,20 +41,17 @@ export const Text = ({ prop }: { prop: string }) => {
   return (
     <TextField
       onChange={handleChange}
-      label={getHumanReadableProp(prop)}
-      value={activeComponent.props[prop]}
+      label={label || getHumanReadableProp(prop)}
+      value={lodashGet(activeComponent.props, prop) || ""}
       autoComplete="off"
     />
   );
 };
 
-export const Select = ({
-  options,
-  prop,
-}: {
+export const Select: React.FunctionComponent<{
   options: string[];
   prop: string;
-}) => {
+}> = ({ options, prop }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -62,13 +65,16 @@ export const Select = ({
     <PolarisSelect
       label={getHumanReadableProp(prop)}
       options={options}
-      value={activeComponent.props[prop] || ""}
+      value={activeComponent.props[prop]}
       onChange={handleChange}
     />
   );
 };
 
-export const Checkbox = ({ prop }: { prop: string }) => {
+export const Checkbox: React.FunctionComponent<{
+  prop: string;
+  label?: string;
+}> = ({ prop, label }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -80,8 +86,8 @@ export const Checkbox = ({ prop }: { prop: string }) => {
 
   return (
     <PolarisCheckbox
-      label={getHumanReadableProp(prop)}
-      checked={activeComponent.props[prop]}
+      label={label ?? getHumanReadableProp(prop)}
+      checked={lodashGet(activeComponent.props, prop)}
       onChange={handleChange}
     />
   );
@@ -158,11 +164,48 @@ export const Icon = () => {
   );
 };
 
-const TailorMap = {
+const ComplexMap = {
+  number: Text,
+  string: Text,
+  boolean: Checkbox,
+};
+
+const Complex: React.FunctionComponent<{ prop: string }> = ({ prop }) => {
+  const activeComponent =
+    usePolarisStore.use.activeComponent() as RenderedComponent;
+
+  // @ts-ignore
+  const propObject = activeComponent.props[prop];
+  const keys = Object.keys(propObject);
+
+  return (
+    <>
+      <PolarisText as="p">{getHumanReadableProp(prop)}</PolarisText>
+      <Box paddingInlineStart="200">
+        {keys.map((key) => {
+          const value = propObject[key];
+          const type = typeof value;
+
+          // @ts-ignore
+          const Component = ComplexMap[type];
+
+          if (!Component) {
+            return null;
+          }
+
+          return <Component label={key} prop={`${prop}.${key}`} key={key} />;
+        })}
+      </Box>
+    </>
+  );
+};
+
+const TailorMap: Record<Tailor, React.FunctionComponent<any>> = {
   Text,
   Select,
   Checkbox,
   Icon,
+  Complex,
 };
 
 export function TailorList({ items }: { items: PropItem[] }) {
