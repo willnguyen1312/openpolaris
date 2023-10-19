@@ -2,7 +2,7 @@ import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
 
-import { ComponentName, RenderedComponent } from "../../types";
+import { RenderedComponent, parentComponentList } from "../../types";
 
 import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
@@ -10,12 +10,23 @@ import { CSS } from "@dnd-kit/utilities";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
-const canHaveChildComponents: ComponentName[] = ["ButtonGroup"];
+const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
+  const isSimpleComponent = !parentComponentList.includes(
+    component.componentName,
+  );
+
+  if (isSimpleComponent) {
+    return true;
+  }
+
+  const hasNoChildren = component.children.length === 0;
+  return hasNoChildren;
+};
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
   const { componentName } = component;
 
-  const isParentComponent = canHaveChildComponents.includes(componentName);
+  const isParentComponent = parentComponentList.includes(componentName);
 
   return isParentComponent ? (
     <ComponentWithContainer component={component} />
@@ -101,12 +112,18 @@ function ComponentWithContainer({
   );
 }
 
-function SortableItem(props: {
+function SortableItem({
+  component,
+  children,
+}: {
   component: RenderedComponent;
   children: React.ReactNode;
 }) {
   const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({ id: props.component.id });
+    useSortable({
+      id: component.id,
+      disabled: checkIfComponentCanBeDragged(component),
+    });
 
   const style = {
     transform: CSS.Transform.toString(transform),
@@ -115,7 +132,7 @@ function SortableItem(props: {
 
   return (
     <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-      {props.children}
+      {children}
     </div>
   );
 }

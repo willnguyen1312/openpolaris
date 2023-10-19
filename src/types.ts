@@ -477,3 +477,12 @@ export const listOfComponent: ComponentMenuItem[] = [
 ];
 
 export const rootComponentId = "root";
+export const parentComponentList: ComponentName[] = ["ButtonGroup"];
+
+export const acceptComponentsMap: Partial<
+  Record<ComponentName, ComponentName[]>
+> = {
+  Divider: [],
+  Button: [],
+  ButtonGroup: ["Button"],
+};

@@ -9,6 +9,7 @@ import { defaultProps } from "../defaultProps";
 import {
   ComponentName,
   RenderedComponent,
+  acceptComponentsMap,
   listOfComponent,
   rootComponentId,
 } from "../types";
@@ -156,6 +157,21 @@ const useStoreBase = createWithEqualityFn(
             },
           );
 
+          if (overContainer) {
+            const activeComponentName =
+              findComponentBy(
+                state.renderedComponents,
+                (component) => component.id === activeId,
+              )?.componentName || activeId;
+            const isAcceptable = acceptComponentsMap[
+              overContainer.componentName
+            ]!.includes(activeComponentName as ComponentName);
+
+            if (!isAcceptable) {
+              return;
+            }
+          }
+
           // If the overContainer is null, it means that the overId is from top level components
           if (!overContainer) {
             overContainer = state.renderedComponents.find(
@@ -237,6 +253,22 @@ const useStoreBase = createWithEqualityFn(
             overContainer = state.renderedComponents.find(
               (component) => component.id === overId,
             );
+          }
+
+          if (overContainer) {
+            const activeComponentName =
+              findComponentBy(
+                state.renderedComponents,
+                (component) => component.id === activeId,
+              )?.componentName || activeId;
+
+            const isAcceptable = acceptComponentsMap[
+              overContainer.componentName
+            ]!.includes(activeComponentName as ComponentName);
+
+            if (!isAcceptable) {
+              return;
+            }
           }
 
           // If the activeContainer is null, it means that the activeId is from top level components
