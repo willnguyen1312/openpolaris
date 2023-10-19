@@ -89,5 +89,9 @@ function OverlayComponent({ id }: { id: string }) {
     (component) => component.id === id,
   );
 
+  if (!component) {
+    return null;
+  }
+
   return <Preview component={component} />;
 }
