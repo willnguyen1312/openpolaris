@@ -177,12 +177,12 @@ const useStoreBase = createWithEqualityFn(
           const overId = over?.id;
           state.activeDraggableId = null;
 
-          if (activeId === overId) {
+          if (activeId === overId || !overId) {
             return;
           }
 
           const isOverRootComponent = overId === rootComponentId;
-          const isInListOfComponent = listOfComponent.some(
+          const isComponentFromMenu = listOfComponent.some(
             (component) => component.componentName === activeId,
           );
 
@@ -194,19 +194,25 @@ const useStoreBase = createWithEqualityFn(
             },
           );
 
-          let overContainer = isOverRootComponent
-            ? rootComponentId
-            : findComponentBy(state.renderedComponents, (component) => {
-                return component.children.some((child) => child.id === overId);
-              });
+          let overContainer = findComponentBy(
+            state.renderedComponents,
+            (component) => {
+              return component.children.some((child) => child.id === overId);
+            },
+          );
+
+          // If the overContainer is null, it means that the overId is from top level components
+          if (!overContainer) {
+            overContainer = state.renderedComponents.find(
+              (component) => component.id === overId,
+            );
+          }
 
           // Drag from the menu to the canvas
-          const isDragFromMenuToCanvas =
-            isInListOfComponent &&
-            activeContainer === null &&
-            isOverRootComponent;
+          const isDragFromMenuToRootComponent =
+            isComponentFromMenu && isOverRootComponent;
 
-          if (isDragFromMenuToCanvas) {
+          if (isDragFromMenuToRootComponent) {
             const component = {
               children: [],
               id: generateId(),
@@ -219,12 +225,7 @@ const useStoreBase = createWithEqualityFn(
           }
 
           // Drag from the menu to the parent component
-          const isComponentFromMenu = listOfComponent.some(
-            (component) => component.componentName === activeId,
-          );
-
-          const isOverContainerAmongTopParents = overContainer === null;
-          if (isComponentFromMenu && isOverContainerAmongTopParents) {
+          if (isComponentFromMenu && overContainer) {
             const component = {
               children: [],
               id: generateId(),
@@ -232,54 +233,39 @@ const useStoreBase = createWithEqualityFn(
               props: defaultProps[activeId as ComponentName],
             };
 
-            overContainer = state.renderedComponents.find((component) => {
-              return component.id === overId;
-            });
+            overContainer.children.push(component);
+            return;
+          }
 
-            overContainer && overContainer.children.push(component);
+          if (!activeContainer || !overContainer) {
             return;
           }
 
           // Drag inside the same parent
           const isDragInsideSameParent =
-            // @ts-ignore
-            !isOverRootComponent && activeContainer?.id === overContainer?.id;
+            !isOverRootComponent && activeContainer.id === overContainer.id;
 
           if (isDragInsideSameParent) {
-            const list = activeContainer?.children as RenderedComponent[];
+            const list = activeContainer.children;
             const oldIndex = list.findIndex((item) => item.id === activeId);
             const newIndex = list.findIndex((item) => item.id === overId);
 
-            if (activeContainer) {
-              activeContainer.children = arrayMove(list, oldIndex, newIndex);
-            }
-
+            activeContainer.children = arrayMove(list, oldIndex, newIndex);
             return;
           }
 
           // Drag from one parent to another parent
           const isDragFromOneParentToAnotherParent =
-            // @ts-ignore
-            !isOverRootComponent && activeContainer?.id !== overContainer?.id;
+            !isOverRootComponent && activeContainer.id !== overContainer.id;
 
-          if (
-            activeContainer &&
-            !overContainer &&
-            isDragFromOneParentToAnotherParent &&
-            isOverContainerAmongTopParents
-          ) {
+          if (isDragFromOneParentToAnotherParent) {
             const componentIndex = activeContainer.children.findIndex(
               (child) => child.id === activeId,
             );
             const component = activeContainer.children[componentIndex];
 
             activeContainer.children.splice(componentIndex, 1);
-
-            overContainer = state.renderedComponents.find(
-              (component) => component.id === overId,
-            );
             overContainer && overContainer.children.push(component);
-
             return;
           }
         }),
