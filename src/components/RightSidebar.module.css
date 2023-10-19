@@ -4,5 +4,6 @@
   overscroll-behavior: contain;
   overflow: scroll;
   padding: var(--p-space-400);
-  background-color: var(--p-color-bg-surface-info-active);
+  background-color: var(--p-color-bg-fill-brand);
+  color: var(--p-color-text-success-on-bg-fill);
 }

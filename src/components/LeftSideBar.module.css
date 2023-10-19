@@ -4,7 +4,8 @@
   overscroll-behavior: contain;
   padding: var(--p-space-400);
   overflow: auto;
-  background-color: var(--p-color-bg-surface-success);
+  background-color: var(--p-color-bg-fill-brand);
+  color: var(--p-color-text-success-on-bg-fill);
 
   display: flex;
   flex-direction: column;

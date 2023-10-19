@@ -1,4 +1,8 @@
 .wrapper {
   height: var(--header-height);
   overflow: hidden;
+  padding: var(--p-space-400);
+
+  background: var(--p-color-bg-inverse);
+  color: var(--p-color-text-success-on-bg-fill);
 }

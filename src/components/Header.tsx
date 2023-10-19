@@ -1,5 +1,4 @@
 import {
-  Box,
   Button,
   ButtonGroup,
   Checkbox,
@@ -20,43 +19,42 @@ export function Header() {
 
   return (
     <div className={styles.wrapper}>
-      <Box background="bg-surface-brand" padding="400">
-        <InlineStack align="space-between">
-          <InlineStack gap="400" blockAlign="center">
-            <Text as="p" variant="headingLg">
-              Open Polaris
-            </Text>
+      <InlineStack align="space-between">
+        <InlineStack gap="400" blockAlign="center">
+          <Text as="p" variant="headingLg">
+            Open Polaris
+          </Text>
 
-            <Checkbox
-              onChange={toggleIsShowCodePanel}
-              checked={isShowCodePanel}
-              label="Code panel"
-              value=""
-            />
+          <Checkbox
+            onChange={toggleIsShowCodePanel}
+            checked={isShowCodePanel}
+            label="Code panel"
+            value=""
+          />
 
-            <ButtonGroup>
-              <Button
-                onClick={reset}
-                variant="tertiary"
-                icon={MobileCancelMajor}
-              >
-                Clear
-              </Button>
-              <Button variant="tertiary" icon={ExportMinor}>
-                Playground
-              </Button>
-            </ButtonGroup>
-          </InlineStack>
-
-          <InlineStack gap="100" blockAlign="center">
-            <Text as="p">Made with 💞 by</Text>
-
-            <Link url="https://namnguyen.design/about" target="_blank">
-              Nam Nguyen
-            </Link>
-          </InlineStack>
+          <ButtonGroup>
+            <Button
+              onClick={reset}
+              tone="success"
+              variant="tertiary"
+              icon={MobileCancelMajor}
+            >
+              Clear
+            </Button>
+            <Button tone="success" variant="tertiary" icon={ExportMinor}>
+              Playground
+            </Button>
+          </ButtonGroup>
         </InlineStack>
-      </Box>
+
+        <InlineStack gap="100" blockAlign="center">
+          <Text as="p">Made with 💞 by</Text>
+
+          <Link url="https://namnguyen.design/about" target="_blank">
+            Nam Nguyen
+          </Link>
+        </InlineStack>
+      </InlineStack>
     </div>
   );
 }
