@@ -133,11 +133,7 @@ const useStoreBase = createWithEqualityFn(
       // DnD stuff
       handleDragOver: (event) =>
         set((state: StoreState) => {
-          const {
-            active,
-            over,
-            // draggingRect
-          } = event;
+          const { active, over } = event;
           const activeId = active.id;
           const overId = over?.id;
 
@@ -149,21 +145,51 @@ const useStoreBase = createWithEqualityFn(
             },
           );
 
-          const overContainer =
-            overId === rootComponentId
-              ? rootComponentId
-              : findComponentBy(state.renderedComponents, (component) => {
-                  return component.children.some(
-                    (child) => child.id === overId,
-                  );
-                });
+          let overContainer = findComponentBy(
+            state.renderedComponents,
+            (component) => {
+              return component.children.some((child) => child.id === overId);
+            },
+          );
 
-          // Drag from the menu to the canvas
-          const isDragFromMenuToCanvas =
-            activeContainer === null && overContainer === rootComponentId;
-          if (isDragFromMenuToCanvas) {
+          // If the overContainer is null, it means that the overId is from top level components
+          if (!overContainer) {
+            overContainer = state.renderedComponents.find(
+              (component) => component.id === overId,
+            );
+          }
+
+          const isOverRootComponent = overId === rootComponentId;
+
+          if (
+            isOverRootComponent ||
+            !activeContainer ||
+            !overContainer ||
+            overContainer.id === activeContainer.id
+          ) {
             return;
           }
+
+          let newIndex: number | undefined;
+
+          if (overId === overContainer.id) {
+            newIndex = overContainer.children.length;
+          } else {
+            newIndex = overContainer.children.findIndex(
+              (component) => component.id === overId,
+            );
+          }
+
+          const activeIndex = activeContainer.children.findIndex(
+            (component) => component.id === activeId,
+          );
+
+          overContainer.children.splice(
+            newIndex,
+            0,
+            activeContainer.children[activeIndex],
+          );
+          activeContainer.children.splice(activeIndex, 1);
         }),
 
       handleDragEnd: (event) =>
@@ -251,21 +277,6 @@ const useStoreBase = createWithEqualityFn(
             const newIndex = list.findIndex((item) => item.id === overId);
 
             activeContainer.children = arrayMove(list, oldIndex, newIndex);
-            return;
-          }
-
-          // Drag from one parent to another parent
-          const isDragFromOneParentToAnotherParent =
-            !isOverRootComponent && activeContainer.id !== overContainer.id;
-
-          if (isDragFromOneParentToAnotherParent) {
-            const componentIndex = activeContainer.children.findIndex(
-              (child) => child.id === activeId,
-            );
-            const component = activeContainer.children[componentIndex];
-
-            activeContainer.children.splice(componentIndex, 1);
-            overContainer && overContainer.children.push(component);
             return;
           }
         }),

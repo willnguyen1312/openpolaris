@@ -3,7 +3,7 @@
 }
 
 .emptyChild {
-  min-height: 50px;
+  min-height: var(--p-height-500);
   border: 1px dashed var(--p-color-border-focus);
 }
 
