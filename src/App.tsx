@@ -86,5 +86,9 @@ function OverlayComponent({ id }: { id: string }) {
     return null;
   }
 
-  return <Preview component={component} />;
+  return (
+    <div className={styles.overlayWrapper}>
+      <Preview component={component} />
+    </div>
+  );
 }

@@ -137,6 +137,10 @@ const useStoreBase = createWithEqualityFn(
           const activeId = active.id;
           const overId = over?.id;
 
+          if (activeId === overId || !overId) {
+            return;
+          }
+
           // Find the containers
           const activeContainer = findComponentBy(
             state.renderedComponents,
@@ -159,19 +163,20 @@ const useStoreBase = createWithEqualityFn(
             );
           }
 
-          const isOverRootComponent = overId === rootComponentId;
+          const isComponentFromMenu = listOfComponent.some(
+            (component) => component.componentName === activeId,
+          );
 
           if (
-            isOverRootComponent ||
-            !activeContainer ||
+            isComponentFromMenu ||
             !overContainer ||
-            overContainer.id === activeContainer.id
+            !activeContainer ||
+            overContainer.id === activeContainer?.id
           ) {
             return;
           }
 
           let newIndex: number | undefined;
-
           if (overId === overContainer.id) {
             newIndex = overContainer.children.length;
           } else {
@@ -213,7 +218,7 @@ const useStoreBase = createWithEqualityFn(
           );
 
           // Find the containers
-          const activeContainer = findComponentBy(
+          let activeContainer = findComponentBy(
             state.renderedComponents,
             (component) => {
               return component.children.some((child) => child.id === activeId);
@@ -231,6 +236,13 @@ const useStoreBase = createWithEqualityFn(
           if (!overContainer) {
             overContainer = state.renderedComponents.find(
               (component) => component.id === overId,
+            );
+          }
+
+          // If the activeContainer is null, it means that the activeId is from top level components
+          if (!activeContainer) {
+            activeContainer = state.renderedComponents.find(
+              (component) => component.id === activeId,
             );
           }
 
@@ -279,6 +291,20 @@ const useStoreBase = createWithEqualityFn(
             activeContainer.children = arrayMove(list, oldIndex, newIndex);
             return;
           }
+
+          // From the root component to itself
+          const oldIndex = state.renderedComponents.findIndex(
+            (item) => item.id === activeId,
+          );
+          const newIndex = state.renderedComponents.findIndex(
+            (item) => item.id === overId,
+          );
+
+          state.renderedComponents = arrayMove(
+            state.renderedComponents,
+            oldIndex,
+            newIndex,
+          );
         }),
     })),
     //   { name: "openPolaris" }

@@ -76,26 +76,28 @@ function ComponentWithContainer({
   const isDragging = activeDraggableId === component.id;
 
   return (
-    <SortableContext id={id} items={items}>
-      <div
-        ref={setNodeRef}
-        className={classNames(styles.pointer, {
-          [styles.emptyChild]: isEmptyChild,
-          [styles.selected]: isSelected && !isDragging,
-        })}
-        onPointerDown={() => {
-          setActiveComponentId(component);
-        }}
-      >
-        <SortableItem key={id} component={component}>
-          <Component {...component.props}>
-            {children.map((child) => (
-              <Preview key={child.id} component={child} />
-            ))}
-          </Component>
-        </SortableItem>
-      </div>
-    </SortableContext>
+    <SortableItem key={component.id} component={component}>
+      <SortableContext id={id} items={items}>
+        <div
+          ref={setNodeRef}
+          className={classNames(styles.pointer, {
+            [styles.emptyChild]: isEmptyChild,
+            [styles.selected]: isSelected && !isDragging,
+          })}
+          onPointerDown={() => {
+            setActiveComponentId(component);
+          }}
+        >
+          <SortableItem key={id} component={component}>
+            <Component {...component.props}>
+              {children.map((child) => (
+                <Preview key={child.id} component={child} />
+              ))}
+            </Component>
+          </SortableItem>
+        </div>
+      </SortableContext>
+    </SortableItem>
   );
 }
 
