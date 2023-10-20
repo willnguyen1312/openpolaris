@@ -62,7 +62,7 @@ export default function App() {
       >
         <Frame>
           <Header />
-          <Grid gap={{ lg: "0", xl: "0" }}>
+          <Grid gap={{ md: "0", lg: "0", xl: "0" }}>
             <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
               <LeftSideBar />
             </Grid.Cell>
