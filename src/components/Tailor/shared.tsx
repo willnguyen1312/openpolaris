@@ -210,7 +210,13 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
               return null;
             }
 
-            return <Component label={key} prop={`${prop}.${key}`} key={key} />;
+            return (
+              <Component
+                label={getHumanReadableProp(key)}
+                prop={`${prop}.${key}`}
+                key={key}
+              />
+            );
           })}
         </BlockStack>
       </Box>

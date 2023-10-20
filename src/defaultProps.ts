@@ -21,7 +21,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       id: "id",
       content: "content",
       accessibilityLabel: "accessibilityLabel",
-      url: "url",
+      url: "",
       external: false,
     },
   } as AccountConnectionProps,
@@ -61,7 +61,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       external: false,
       id: "id",
       accessibilityLabel: "accessibilityLabel",
-      url: "url",
+      url: "",
     },
     secondaryActions: [
       {
@@ -71,7 +71,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
         external: false,
         id: "id",
         accessibilityLabel: "accessibilityLabel",
-        url: "url",
+        url: "",
       },
     ],
   } as PageActionsProps,
