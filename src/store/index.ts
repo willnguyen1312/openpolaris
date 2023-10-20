@@ -150,6 +150,7 @@ const useStoreBase = createWithEqualityFn(
                   ),
               );
 
+              state.activeComponent = null;
               if (parentComponent) {
                 parentComponent.children = parentComponent.children.filter(
                   (child) => child.id !== activeComponentId,
