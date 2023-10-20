@@ -1,4 +1,4 @@
-.wrapper {
+.leftSideBarWrapper {
   height: calc(100vh - var(--header-height));
   max-width: var(--left-sidebar-max-width);
   overscroll-behavior: contain;
@@ -10,4 +10,8 @@
   display: flex;
   flex-direction: column;
   gap: var(--p-space-200);
+}
+
+.draggableWrapper {
+  cursor: pointer;
 }

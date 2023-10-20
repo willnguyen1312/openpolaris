@@ -30,7 +30,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     size: "medium",
     textAlign: "center",
     fullWidth: false,
-    disclosure: false,
+    disclosure: "" as any,
     dataPrimaryLink: false,
     icon: undefined,
     tone: "success",

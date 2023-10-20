@@ -22,7 +22,7 @@ export function LeftSideBar() {
   const handleClearButtonClick = useCallback(() => setTextFieldValue(""), []);
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.leftSideBarWrapper}>
       <TextField
         label="Search components"
         value={textFieldValue}
@@ -98,7 +98,7 @@ function DraggableItem({
       ref={setNodeRef}
       {...listeners}
       {...attributes}
-      style={{ cursor: "pointer" }}
+      className={styles.draggableWrapper}
     >
       {children}
     </div>

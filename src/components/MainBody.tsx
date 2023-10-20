@@ -14,8 +14,15 @@ export function MainBody() {
   });
 
   const renderedComponent = usePolarisStore.use.renderedComponents();
+  const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const isEmpty = renderedComponent.length === 0;
   const items = renderedComponent.map((component) => component.id);
+
+  const handleWrapperClick = (event: React.MouseEvent) => {
+    if (event.target === event.currentTarget) {
+      setActiveComponent(null);
+    }
+  };
 
   return (
     <SortableContext id={rootComponentId} items={items}>
@@ -24,6 +31,7 @@ export function MainBody() {
         className={classNames(styles.wrapper, {
           [styles.isOver]: isOver,
         })}
+        onClick={handleWrapperClick}
       >
         {isEmpty ? (
           <EmptyState
