@@ -263,11 +263,13 @@ const useStoreBase = createWithEqualityFn(
                 (component) => component.id === activeId,
               )?.componentName || activeId;
 
-            const isAcceptable = acceptComponentsMap[
+            const canHaveChildren = acceptComponentsMap[
               overContainer.componentName
-            ]!.includes(activeComponentName as ComponentName);
+            ]?.includes(activeComponentName as ComponentName);
+            const isChildOfRootComponent =
+              state.renderedComponents.includes(overContainer);
 
-            if (!isAcceptable) {
+            if (!canHaveChildren && !isChildOfRootComponent) {
               return;
             }
           }
