@@ -18,7 +18,7 @@ import { useShortcuts } from "./hooks/useShortcuts";
 import { findComponentBy, usePolarisStore } from "./store";
 import { listOfComponent } from "./types";
 
-export default function AppSettingsLayoutExample() {
+export default function App() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const handleDragOver = usePolarisStore.use.handleDragOver();
