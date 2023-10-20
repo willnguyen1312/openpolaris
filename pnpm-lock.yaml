@@ -20,6 +20,9 @@ dependencies:
   "@shopify/polaris-icons":
     specifier: ^7.9.0
     version: 7.9.0
+  "@shopify/polaris-tokens":
+    specifier: ^8.0.0
+    version: 8.0.0
   classnames:
     specifier: ^2.3.2
     version: 2.3.2

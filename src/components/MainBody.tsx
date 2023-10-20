@@ -5,6 +5,7 @@ import styles from "./MainBody.module.css";
 
 import { SortableContext } from "@dnd-kit/sortable";
 import { EmptyState } from "@shopify/polaris";
+import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
 import { usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
@@ -61,7 +62,7 @@ export function MainBody() {
       style={{ overflow: "auto", position: "relative" }}
       defaultSize="50%"
       resizerStyle={{
-        border: "4px solid rgba(26, 26, 26, 1)",
+        border: `4px solid ${themes.light.color["color-bg-fill-success"]}`,
         zIndex: 20,
         cursor: "row-resize",
       }}

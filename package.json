@@ -19,6 +19,7 @@
     "@dnd-kit/utilities": "^3.2.1",
     "@shopify/polaris": "^12.0.0",
     "@shopify/polaris-icons": "^7.9.0",
+    "@shopify/polaris-tokens": "^8.0.0",
     "classnames": "^2.3.2",
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
