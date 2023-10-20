@@ -1,3 +1,4 @@
+// TODO: lazy-load components?
 import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
