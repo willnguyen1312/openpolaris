@@ -15,20 +15,29 @@ import {
 import { usePolarisStore } from "../store";
 
 import { useState } from "react";
+import { encode } from "../utils/encoder";
 import styles from "./Header.module.css";
 
 export function Header() {
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
+  const renderedComponents = usePolarisStore.use.renderedComponents();
   const reset = usePolarisStore.use.reset();
   const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
   const [active, setActive] = useState(false);
-
-  const toggleActive = () => setActive((active) => !active);
+  const closeToast = () => setActive(false);
   const showToast = () => setActive(true);
 
+  const handleShareClick = () => {
+    showToast();
+    const code = encode(JSON.stringify(renderedComponents));
+    const href = `?code=${code}`;
+    window.history.replaceState("", "", href);
+    navigator.clipboard.writeText(window.location.origin + href);
+  };
+
   const toastMarkup = active ? (
-    <Toast content="Share link copied to clipboard" onDismiss={toggleActive} />
+    <Toast content="Share link copied to clipboard" onDismiss={closeToast} />
   ) : null;
 
   return (
@@ -61,7 +70,7 @@ export function Header() {
             </Button>
 
             <Button
-              onClick={showToast}
+              onClick={handleShareClick}
               tone="success"
               variant="tertiary"
               icon={ShareMinor}
