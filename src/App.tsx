@@ -9,6 +9,7 @@ import { AppProvider, Frame, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 import styles from "./App.module.css";
 
+import { useEffect } from "react";
 import { Header } from "./components/Header";
 import { LeftSideBar } from "./components/LeftSideBar";
 import { MainBody } from "./components/MainBody";
@@ -17,10 +18,12 @@ import { RightSideBar } from "./components/RightSideBar";
 import { useShortcuts } from "./hooks/useShortcuts";
 import { findComponentBy, usePolarisStore } from "./store";
 import { listOfComponent } from "./types";
+import { decode } from "./utils/encoder";
 
 export default function App() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
+  const setTree = usePolarisStore.use.setTree();
   const handleDragOver = usePolarisStore.use.handleDragOver();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
@@ -31,11 +34,23 @@ export default function App() {
     },
   });
 
+  const handleDragStart = (event: DragStartEvent) => {
+    setActiveDraggableId(event.active.id as string);
+  };
+
   useShortcuts();
 
-  function handleDragStart(event: DragStartEvent) {
-    setActiveDraggableId(event.active.id as string);
-  }
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const code = urlParams.get("code");
+
+    if (code) {
+      try {
+        const decodedCode = decode(code);
+        setTree(decodedCode);
+      } catch (_) {}
+    }
+  }, []);
 
   return (
     <AppProvider i18n={enTranslations}>

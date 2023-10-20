@@ -40,6 +40,7 @@ interface StoreState {
 }
 
 type StoreActions = {
+  setTree: (tree: RenderedComponent[]) => void;
   setIsShowCodePanel: (showCodePanel: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
   addComponentToParent: (arg: {
@@ -79,6 +80,10 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        setTree: (tree) =>
+          set((state: StoreState) => {
+            state.renderedComponents = tree;
+          }),
         reset: () => {
           set((state: StoreState) => {
             state.activeComponent = null;
