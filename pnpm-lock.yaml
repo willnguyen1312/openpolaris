@@ -35,6 +35,9 @@ dependencies:
   nanoid:
     specifier: ^5.0.2
     version: 5.0.2
+  prism-react-renderer:
+    specifier: ^2.1.0
+    version: 2.1.0(react@18.2.0)
   react:
     specifier: ^18.2.0
     version: 18.2.0
@@ -44,6 +47,9 @@ dependencies:
   react-hotkeys-hook:
     specifier: ^4.4.1
     version: 4.4.1(react-dom@18.2.0)(react@18.2.0)
+  react-split-pane:
+    specifier: ^0.1.92
+    version: 0.1.92(react-dom@18.2.0)(react@18.2.0)
   zundo:
     specifier: ^2.0.0
     version: 2.0.0(zustand@4.4.3)
@@ -621,6 +627,13 @@ packages:
       }
     dev: true
 
+  /@types/prismjs@1.26.2:
+    resolution:
+      {
+        integrity: sha512-/r7Cp7iUIk7gts26mHXD66geUC+2Fo26TZYjQK6Nr4LDfi6lmdRmMqM0oPwfiMhUwoBAOFe8GstKi2pf6hZvwA==,
+      }
+    dev: false
+
   /@types/prop-types@15.7.8:
     resolution:
       {
@@ -679,6 +692,14 @@ packages:
       {
         integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==,
       }
+    dev: false
+
+  /clsx@1.2.1:
+    resolution:
+      {
+        integrity: sha512-EcR6r5a8bj6pu3ycsa/E/cKVGuTgZJZdsyUYHOksG/UHIiKfjxzRxYJpyVBwYaQeOvghal9fcc4PidlgzugAQg==,
+      }
+    engines: { node: ">=6" }
     dev: false
 
   /csstype@3.1.2:
@@ -842,6 +863,19 @@ packages:
     hasBin: true
     dev: true
 
+  /prism-react-renderer@2.1.0(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-I5cvXHjA1PVGbGm1MsWCpvBCRrYyxEri0MC7/JbfIfYfcXAxHyO5PaUjs3A8H5GW6kJcLhTHxxMaOZZpRZD2iQ==,
+      }
+    peerDependencies:
+      react: ">=16.0.0"
+    dependencies:
+      "@types/prismjs": 1.26.2
+      clsx: 1.2.1
+      react: 18.2.0
+    dev: false
+
   /prop-types@15.8.1:
     resolution:
       {
@@ -891,6 +925,38 @@ packages:
       {
         integrity: sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==,
       }
+    dev: false
+
+  /react-lifecycles-compat@3.0.4:
+    resolution:
+      {
+        integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==,
+      }
+    dev: false
+
+  /react-split-pane@0.1.92(react-dom@18.2.0)(react@18.2.0):
+    resolution:
+      {
+        integrity: sha512-GfXP1xSzLMcLJI5BM36Vh7GgZBpy+U/X0no+VM3fxayv+p1Jly5HpMofZJraeaMl73b3hvlr+N9zJKvLB/uz9w==,
+      }
+    peerDependencies:
+      react: ^16.0.0-0
+      react-dom: ^16.0.0-0
+    dependencies:
+      prop-types: 15.8.1
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      react-lifecycles-compat: 3.0.4
+      react-style-proptype: 3.2.2
+    dev: false
+
+  /react-style-proptype@3.2.2:
+    resolution:
+      {
+        integrity: sha512-ywYLSjNkxKHiZOqNlso9PZByNEY+FTyh3C+7uuziK0xFXu9xzdyfHwg4S9iyiRRoPCR4k2LqaBBsWVmSBwCWYQ==,
+      }
+    dependencies:
+      prop-types: 15.8.1
     dev: false
 
   /react-transition-group@4.4.5(react-dom@18.2.0)(react@18.2.0):

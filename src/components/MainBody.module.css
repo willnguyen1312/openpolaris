@@ -1,7 +1,11 @@
-.wrapper {
-  height: calc(100vh - var(--header-height));
-  overflow: auto;
+.bodyWrapper {
+  width: 100%;
   padding: var(--p-space-400);
+  overflow: auto;
+}
+
+.bodyWrapperNoCodePanel {
+  height: calc(100vh - var(--header-height));
 }
 
 .isOver {

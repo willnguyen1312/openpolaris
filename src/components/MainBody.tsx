@@ -1,4 +1,5 @@
 import { useDroppable } from "@dnd-kit/core";
+import SplitPane from "react-split-pane";
 import { rootComponentId } from "../types";
 import styles from "./MainBody.module.css";
 
@@ -6,6 +7,7 @@ import { SortableContext } from "@dnd-kit/sortable";
 import { EmptyState } from "@shopify/polaris";
 import classNames from "classnames";
 import { usePolarisStore } from "../store";
+import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
 
 export function MainBody() {
@@ -15,6 +17,7 @@ export function MainBody() {
 
   const renderedComponent = usePolarisStore.use.renderedComponents();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
+  const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isEmpty = renderedComponent.length === 0;
   const items = renderedComponent.map((component) => component.id);
 
@@ -24,12 +27,13 @@ export function MainBody() {
     }
   };
 
-  return (
+  const body = (
     <SortableContext id={rootComponentId} items={items}>
       <div
         ref={setNodeRef}
-        className={classNames(styles.wrapper, {
+        className={classNames(styles.bodyWrapper, {
           [styles.isOver]: isOver,
+          [styles.bodyWrapperNoCodePanel]: !isShowCodePanel,
         })}
         onClick={handleWrapperClick}
       >
@@ -45,5 +49,26 @@ export function MainBody() {
         })}
       </div>
     </SortableContext>
+  );
+
+  if (!isShowCodePanel) {
+    return body;
+  }
+
+  return (
+    // @ts-ignore
+    <SplitPane
+      style={{ overflow: "auto", position: "relative" }}
+      defaultSize="50%"
+      resizerStyle={{
+        border: "4px solid rgba(26, 26, 26, 1)",
+        zIndex: 20,
+        cursor: "row-resize",
+      }}
+      split="horizontal"
+    >
+      {body}
+      <CodePanel />
+    </SplitPane>
   );
 }
