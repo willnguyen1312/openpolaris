@@ -16,7 +16,7 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   );
 
   if (isSimpleComponent) {
-    return true;
+    return false;
   }
 
   const hasNoChildren = component.children.length === 0;
