@@ -49,6 +49,7 @@ type StoreActions = {
   }) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
+  deleteActiveComponent: () => void;
   reset: () => void;
 
   // DnD stuff
@@ -131,6 +132,32 @@ const useStoreBase = createWithEqualityFn(
             }
           });
         },
+
+        deleteActiveComponent: () =>
+          set((state: StoreState) => {
+            const activeComponentId = state.activeComponent?.id;
+            if (activeComponentId) {
+              const parentComponent = findComponentBy(
+                state.renderedComponents,
+                (component) =>
+                  component.children.some(
+                    (child) => child.id === activeComponentId,
+                  ),
+              );
+
+              if (parentComponent) {
+                parentComponent.children = parentComponent.children.filter(
+                  (child) => child.id !== activeComponentId,
+                );
+                return;
+              }
+
+              // If the parentComponent is null, it means that the activeComponent is from top level components
+              state.renderedComponents = state.renderedComponents.filter(
+                (component) => component.id !== activeComponentId,
+              );
+            }
+          }),
 
         // DnD stuff
         handleDragOver: (event) =>
