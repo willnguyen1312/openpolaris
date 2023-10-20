@@ -5,10 +5,16 @@ import {
   InlineStack,
   Link,
   Text,
+  Toast,
 } from "@shopify/polaris";
-import { ExportMinor, MobileCancelMajor } from "@shopify/polaris-icons";
+import {
+  ExportMinor,
+  MobileCancelMajor,
+  ShareMinor,
+} from "@shopify/polaris-icons";
 import { usePolarisStore } from "../store";
 
+import { useState } from "react";
 import styles from "./Header.module.css";
 
 export function Header() {
@@ -16,6 +22,14 @@ export function Header() {
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const reset = usePolarisStore.use.reset();
   const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
+  const [active, setActive] = useState(false);
+
+  const toggleActive = () => setActive((active) => !active);
+  const showToast = () => setActive(true);
+
+  const toastMarkup = active ? (
+    <Toast content="Share link copied to clipboard" onDismiss={toggleActive} />
+  ) : null;
 
   return (
     <div className={styles.wrapper}>
@@ -41,8 +55,18 @@ export function Header() {
             >
               Clear
             </Button>
+
             <Button tone="success" variant="tertiary" icon={ExportMinor}>
               Playground
+            </Button>
+
+            <Button
+              onClick={showToast}
+              tone="success"
+              variant="tertiary"
+              icon={ShareMinor}
+            >
+              Share
             </Button>
           </ButtonGroup>
         </InlineStack>
@@ -54,6 +78,8 @@ export function Header() {
             Nam Nguyen
           </Link>
         </InlineStack>
+
+        {toastMarkup}
       </InlineStack>
     </div>
   );

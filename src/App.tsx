@@ -5,7 +5,7 @@ import {
   MouseSensor,
   useSensor,
 } from "@dnd-kit/core";
-import { AppProvider, Grid } from "@shopify/polaris";
+import { AppProvider, Frame, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 import styles from "./App.module.css";
 
@@ -45,20 +45,22 @@ export default function AppSettingsLayoutExample() {
         onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
-        <Header />
-        <Grid gap={{ lg: "0", xl: "0" }}>
-          <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
-            <LeftSideBar />
-          </Grid.Cell>
+        <Frame>
+          <Header />
+          <Grid gap={{ lg: "0", xl: "0" }}>
+            <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
+              <LeftSideBar />
+            </Grid.Cell>
 
-          <Grid.Cell columnSpan={{ md: 4, lg: 8, xl: 8 }}>
-            <MainBody />
-          </Grid.Cell>
+            <Grid.Cell columnSpan={{ md: 4, lg: 8, xl: 8 }}>
+              <MainBody />
+            </Grid.Cell>
 
-          <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
-            <RightSideBar />
-          </Grid.Cell>
-        </Grid>
+            <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
+              <RightSideBar />
+            </Grid.Cell>
+          </Grid>
+        </Frame>
 
         <DragOverlay dropAnimation={null}>
           {activeDraggableId ? (
