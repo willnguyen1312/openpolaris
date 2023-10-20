@@ -7,20 +7,18 @@ import {
 } from "@dnd-kit/core";
 import { AppProvider, Frame, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
-import styles from "./App.module.css";
 
 import { useEffect } from "react";
-import { Header } from "./components/Header";
-import { LeftSideBar } from "./components/LeftSideBar";
-import { MainBody } from "./components/MainBody";
-import { Preview } from "./components/Preview";
-import { RightSideBar } from "./components/RightSideBar";
-import { useShortcuts } from "./hooks/useShortcuts";
-import { findComponentBy, usePolarisStore } from "./store";
-import { listOfComponent } from "./types";
-import { decode } from "./utils/encoder";
+import { useShortcuts } from "../hooks/useShortcuts";
+import { usePolarisStore } from "../store";
+import { decode } from "../utils/encoder";
+import { Header } from "./Header";
+import { LeftSideBar } from "./LeftSideBar";
+import { MainBody } from "./MainBody";
+import { Overlay } from "./Overlay";
+import { RightSideBar } from "./RightSideBar";
 
-export default function App() {
+export function App() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const setTree = usePolarisStore.use.setTree();
@@ -78,34 +76,9 @@ export default function App() {
         </Frame>
 
         <DragOverlay dropAnimation={null}>
-          {activeDraggableId ? (
-            <OverlayComponent id={activeDraggableId} />
-          ) : null}
+          {activeDraggableId ? <Overlay id={activeDraggableId} /> : null}
         </DragOverlay>
       </DndContext>
     </AppProvider>
-  );
-}
-
-function OverlayComponent({ id }: { id: string }) {
-  const renderedComponent = usePolarisStore.use.renderedComponents();
-
-  if (listOfComponent.find((component) => component.componentName === id)) {
-    return <div className={styles.overlayWrapper}>{id}</div>;
-  }
-
-  const component = findComponentBy(
-    renderedComponent,
-    (component) => component.id === id,
-  );
-
-  if (!component) {
-    return null;
-  }
-
-  return (
-    <div className={styles.overlayWrapper}>
-      <Preview component={component} />
-    </div>
   );
 }

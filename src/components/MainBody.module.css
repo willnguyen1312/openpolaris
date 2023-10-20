@@ -4,7 +4,7 @@
   overflow: auto;
 }
 
-.bodyWrapperNoCodePanel {
+.bodyWrapperWithoutCodePanel {
   height: calc(100vh - var(--header-height));
 }
 

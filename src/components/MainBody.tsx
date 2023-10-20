@@ -33,7 +33,7 @@ export function MainBody() {
         ref={setNodeRef}
         className={classNames(styles.bodyWrapper, {
           [styles.isOver]: isOver,
-          [styles.bodyWrapperNoCodePanel]: !isShowCodePanel,
+          [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
         })}
         onClick={handleWrapperClick}
       >

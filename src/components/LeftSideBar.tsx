@@ -1,14 +1,14 @@
 import styles from "./LeftSideBar.module.css";
 
-import { useDraggable } from "@dnd-kit/core";
 import { Box, Text, TextField } from "@shopify/polaris";
-import React, { useCallback, useDeferredValue, useState } from "react";
+import { useCallback, useDeferredValue, useState } from "react";
 import {
   ComponentCategoryName,
   ComponentName,
   componentCategories,
   listOfComponent,
 } from "../types";
+import { DraggableItem } from "./DraggableItem";
 
 export function LeftSideBar() {
   const [textFieldValue, setTextFieldValue] = useState("");
@@ -22,7 +22,7 @@ export function LeftSideBar() {
   const handleClearButtonClick = useCallback(() => setTextFieldValue(""), []);
 
   return (
-    <div className={styles.leftSideBarWrapper}>
+    <div className={styles.wrapper}>
       <TextField
         label="Search components"
         value={textFieldValue}
@@ -80,27 +80,4 @@ function SearchResult({ query }: { query: string }) {
       </Box>
     );
   });
-}
-
-function DraggableItem({
-  children,
-  componentName,
-}: {
-  children: React.ReactNode;
-  componentName: string;
-}) {
-  const { attributes, listeners, setNodeRef } = useDraggable({
-    id: componentName,
-  });
-
-  return (
-    <div
-      ref={setNodeRef}
-      {...listeners}
-      {...attributes}
-      className={styles.draggableWrapper}
-    >
-      {children}
-    </div>
-  );
 }

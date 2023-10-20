@@ -1,4 +1,4 @@
-.overlayWrapper {
+.wrapper {
   cursor: move;
   background: var(--p-color-bg-surface-success-active);
   border-radius: var(--p-border-radius-200);
