@@ -84,7 +84,7 @@ export type ComponentName =
   | "DataTable"
   | "IndexTable"
   | "Text"
-  | "AppProvider"
+  // | "AppProvider"
   | "Collapsible"
   | "Frame"
   | "Scrollable";
@@ -417,10 +417,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Text",
     category: "Typography",
   },
-  {
-    componentName: "AppProvider",
-    category: "Utilities",
-  },
+  // {
+  //   componentName: "AppProvider",
+  //   category: "Utilities",
+  // },
   {
     componentName: "Collapsible",
     category: "Utilities",
