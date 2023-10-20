@@ -65,7 +65,13 @@ export function Header() {
               Clear
             </Button>
 
-            <Button tone="success" variant="tertiary" icon={ExportMinor}>
+            <Button
+              external
+              url="https://namnguyen.design"
+              tone="success"
+              variant="tertiary"
+              icon={ExportMinor}
+            >
               Playground
             </Button>
 
