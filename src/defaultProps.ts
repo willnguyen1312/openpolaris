@@ -77,7 +77,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   } as PageActionsProps,
 
   Divider: {
-    borderColor: "border-magic",
-    borderWidth: "100",
+    borderColor: "border-magic" as DividerProps["borderColor"],
+    borderWidth: "100" as DividerProps["borderWidth"],
   } as DividerProps,
 };

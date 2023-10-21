@@ -8,6 +8,7 @@ import { RenderedComponent, parentComponentList } from "../../types";
 import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { omitBy } from "lodash-es";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
@@ -22,6 +23,16 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
 
   const hasNoChildren = component.children.length === 0;
   return hasNoChildren;
+};
+
+const finalizeComponentProps = (component: RenderedComponent) => {
+  return omitBy(component.props, (value) => {
+    if (typeof value === "string" && value === "") {
+      return true;
+    }
+
+    return false;
+  });
 };
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {
@@ -46,6 +57,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
 
+  const finalComponentProps = finalizeComponentProps(component);
+
   return (
     <div
       onPointerDown={(event) => {
@@ -58,7 +71,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     >
       <SortableItem component={component}>
         <Component
-          {...component.props}
+          {...finalComponentProps}
           // @ts-ignore
           icon={icon ? PolarisIcon[icon] : undefined}
         />
@@ -86,6 +99,7 @@ function ComponentWithContainer({
   const isSelected = activeComponent?.id === component.id;
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
+  const finalComponentProps = finalizeComponentProps(component);
 
   return (
     <SortableItem key={component.id} component={component}>
@@ -101,7 +115,7 @@ function ComponentWithContainer({
           }}
         >
           <SortableItem key={id} component={component}>
-            <Component {...component.props}>
+            <Component {...finalComponentProps}>
               {children.map((child) => (
                 <Preview key={child.id} component={child} />
               ))}

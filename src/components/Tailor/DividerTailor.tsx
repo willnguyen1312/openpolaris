@@ -1,39 +1,53 @@
 import { DividerProps, Link } from "@shopify/polaris";
 import { PropItem, TailorList } from "./shared";
 
-type DividerBorderColors = NonNullable<DividerProps["borderColor"]>;
-const dividerBorderColors: DividerBorderColors[] = [
-  "border-brand",
-  "border-caution",
-  "border-critical-secondary",
-  "border-critical",
-  "border-disabled",
-  "border-emphasis-active",
-  "border-emphasis-hover",
-  "border-emphasis",
-  "border-focus",
-  "border-hover",
-  "border-info",
-  "border-inverse-active",
-  "border-inverse-hover",
-  "border-inverse",
-  "border-magic-secondary",
-  "border-magic",
-  "border-secondary",
-  "border-success",
-  "border-tertiary",
-  "border-warning",
-  "border",
-  "transparent",
-];
+type DividerBorderColors = NonNullable<DividerProps["borderColor"]> | "";
 
-type DividerBorderWidths = NonNullable<DividerProps["borderWidth"]>;
-const dividerBorderWidths: DividerBorderWidths[] = [
-  "0165",
-  "025",
-  "050",
-  "100",
-];
+// This is to work around type error when upgrading to new version of polaris
+export const dividerBorderColorRecord: Record<DividerBorderColors, true> = {
+  "border-brand": true,
+  "border-caution": true,
+  "border-critical-secondary": true,
+  "border-critical": true,
+  "border-disabled": true,
+  "border-emphasis-active": true,
+  "border-emphasis-hover": true,
+  "border-emphasis": true,
+  "border-focus": true,
+  "border-hover": true,
+  "border-info": true,
+  "border-inverse-active": true,
+  "border-inverse-hover": true,
+  "border-inverse": true,
+  "border-magic-secondary": true,
+  "border-magic": true,
+  "border-secondary": true,
+  "border-success": true,
+  "border-tertiary": true,
+  "border-warning": true,
+  border: true,
+  transparent: true,
+  "input-border": true,
+  "input-border-active": true,
+  "input-border-hover": true,
+  "": true,
+};
+
+const dividerBorderColors = Object.keys(
+  dividerBorderColorRecord,
+) as DividerBorderColors[];
+
+type DividerBorderWidths = NonNullable<DividerProps["borderWidth"]> | "";
+const dividerBorderWithRecord: Record<DividerBorderWidths, true> = {
+  "0165": true,
+  "025": true,
+  "050": true,
+  "100": true,
+  "": true,
+};
+const dividerBorderWidths = Object.keys(
+  dividerBorderWithRecord,
+) as DividerBorderWidths[];
 
 const dividerPropsItem: PropItem<keyof DividerProps>[] = [
   {
