@@ -22,7 +22,6 @@ export function App() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const setTree = usePolarisStore.use.setTree();
-  const handleDragOver = usePolarisStore.use.handleDragOver();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -55,7 +54,6 @@ export function App() {
       <DndContext
         sensors={[mouseSensor]}
         onDragStart={handleDragStart}
-        onDragOver={handleDragOver}
         onDragEnd={handleDragEnd}
       >
         <Frame>

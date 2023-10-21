@@ -1,4 +1,4 @@
-import { DragEndEvent, DragOverEvent, UniqueIdentifier } from "@dnd-kit/core";
+import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { set as lodashSet } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
@@ -50,7 +50,6 @@ type StoreActions = {
   reset: () => void;
 
   // DnD stuff
-  handleDragOver: (event: DragOverEvent) => void;
   handleDragEnd: (event: DragEndEvent) => void;
 };
 
@@ -70,42 +69,6 @@ export const findComponentBy = (
   }
 
   return null;
-};
-
-const checkValidContainer = ({
-  activeId,
-  renderedComponents,
-  overContainer,
-}: {
-  renderedComponents: RenderedComponent[];
-  activeId: UniqueIdentifier;
-  overContainer: RenderedComponent;
-}): boolean => {
-  const activeComponentName =
-    findComponentBy(
-      renderedComponents,
-      (component) => component.id === activeId,
-    )?.componentName || activeId;
-  const component = acceptComponentsMap[overContainer.componentName];
-
-  if (!component) {
-    return false;
-  }
-
-  const { type, childrenList = [] } = component;
-
-  if (type === ComponentAcceptType.Single) {
-    return false;
-  }
-
-  if (
-    type === ComponentAcceptType.ParentWithSpecificChildren &&
-    !childrenList.includes(activeComponentName as ComponentName)
-  ) {
-    return false;
-  }
-
-  return true;
 };
 
 const useStoreBase = createWithEqualityFn(
@@ -186,112 +149,6 @@ const useStoreBase = createWithEqualityFn(
           }),
 
         // DnD stuff
-        handleDragOver: (event) =>
-          set((state: StoreState) => {
-            const { active, over } = event;
-            const activeId = active.id;
-            const overId = over?.id;
-
-            if (activeId === overId || !overId) {
-              return;
-            }
-
-            // Find the containers
-            const activeContainer = findComponentBy(
-              state.renderedComponents,
-              (component) => {
-                return component.children.some(
-                  (child) => child.id === activeId,
-                );
-              },
-            );
-
-            let overContainer = findComponentBy(
-              state.renderedComponents,
-              (component) => {
-                return component.children.some((child) => child.id === overId);
-              },
-            );
-
-            if (overContainer) {
-              const activeComponentName =
-                findComponentBy(
-                  state.renderedComponents,
-                  (component) => component.id === activeId,
-                )?.componentName || activeId;
-              const component =
-                acceptComponentsMap[overContainer.componentName];
-
-              if (!component) {
-                return;
-              }
-
-              const { type, childrenList = [] } = component;
-
-              if (type === ComponentAcceptType.Single) {
-                return;
-              }
-
-              if (
-                type === ComponentAcceptType.ParentWithSpecificChildren &&
-                !childrenList.includes(activeComponentName as ComponentName)
-              ) {
-                return;
-              }
-            }
-
-            if (
-              overContainer &&
-              !checkValidContainer({
-                activeId,
-                renderedComponents: state.renderedComponents,
-                overContainer,
-              })
-            ) {
-              return;
-            }
-
-            // If the overContainer is null, it means that the overId is from top level components
-            if (!overContainer) {
-              overContainer = state.renderedComponents.find(
-                (component) => component.id === overId,
-              );
-            }
-
-            const isComponentFromMenu = listOfComponent.some(
-              (component) => component.componentName === activeId,
-            );
-
-            if (
-              isComponentFromMenu ||
-              !overContainer ||
-              !activeContainer ||
-              overContainer.id === activeContainer?.id
-            ) {
-              return;
-            }
-
-            let newIndex: number | undefined;
-            if (overId === overContainer.id) {
-              newIndex = overContainer.children.length;
-            } else {
-              newIndex = overContainer.children.findIndex(
-                (component) => component.id === overId,
-              );
-            }
-
-            const activeIndex = activeContainer.children.findIndex(
-              (component) => component.id === activeId,
-            );
-
-            overContainer.children.splice(
-              newIndex,
-              0,
-              activeContainer.children[activeIndex],
-            );
-            activeContainer.children.splice(activeIndex, 1);
-          }),
-
         handleDragEnd: (event) =>
           set((state: StoreState) => {
             const { active, over } = event;
@@ -325,22 +182,40 @@ const useStoreBase = createWithEqualityFn(
               },
             );
 
-            // If the overContainer is null, it means that the overId is from top level components
+            // If the overContainer is null, it means that the overId can be from top level components
             if (!overContainer) {
               overContainer = state.renderedComponents.find(
                 (component) => component.id === overId,
               );
             }
 
-            if (
-              overContainer &&
-              !checkValidContainer({
-                activeId,
-                renderedComponents: state.renderedComponents,
-                overContainer,
-              })
-            ) {
-              return;
+            // Check if the component can be dropped into the container
+            if (overContainer) {
+              const activeComponentName = isComponentFromMenu
+                ? activeId
+                : findComponentBy(
+                    state.renderedComponents,
+                    (component) => component.id === activeId,
+                  )?.componentName;
+              const component =
+                acceptComponentsMap[overContainer.componentName];
+
+              if (!component) {
+                return;
+              }
+
+              const { type, childrenList = [] } = component;
+
+              if (type === ComponentAcceptType.Single) {
+                return;
+              }
+
+              if (
+                type === ComponentAcceptType.ParentWithSpecificChildren &&
+                !childrenList.includes(activeComponentName as ComponentName)
+              ) {
+                return;
+              }
             }
 
             // If the activeContainer is null, it means that the activeId is from top level components
