@@ -274,6 +274,8 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
+            // TODO: Drag from one parent to another parent
+
             // From the root component to itself
             const oldIndex = state.renderedComponents.findIndex(
               (item) => item.id === activeId,
