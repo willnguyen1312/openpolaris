@@ -54,8 +54,8 @@ export const generateCode = async (tree: RenderedComponent[]) => {
           result += `${key}:${normalizePropValue(value[key])},`;
         }
       });
-
-      return result.slice(0, -1) + "}";
+      result = result.slice(0, -1) + "}";
+      return result.length > 2 ? result : "";
     }
   }
 
@@ -78,7 +78,10 @@ export const generateCode = async (tree: RenderedComponent[]) => {
           if (Array.isArray(value)) {
             result += `${key}={${normalizePropValue(value)}} `;
           } else {
-            result += `${key}={${normalizePropValue(value)}} `;
+            const normalizedPropValue = normalizePropValue(value);
+            if (normalizedPropValue) {
+              result += `${key}={${normalizedPropValue}} `;
+            }
           }
         }
       });
