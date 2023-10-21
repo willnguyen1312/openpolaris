@@ -3,6 +3,7 @@ import { ComponentType } from "react";
 import { usePolarisStore } from "../../store";
 import { ComponentName } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
+import { BleedTailor } from "./BleedTailor";
 import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { DividerTailor } from "./DividerTailor";
@@ -15,6 +16,8 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   ButtonGroup: ButtonGroupTailor,
   PageActions: PageActionsTailor,
 
+  // Layout and Structure
+  Bleed: BleedTailor,
   Divider: DividerTailor,
 };
 

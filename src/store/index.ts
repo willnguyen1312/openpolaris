@@ -1,4 +1,4 @@
-import { DragEndEvent, DragOverEvent } from "@dnd-kit/core";
+import { DragEndEvent, DragOverEvent, UniqueIdentifier } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { set as lodashSet } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
@@ -8,6 +8,7 @@ import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 import { defaultProps } from "../defaultProps";
 import {
+  ComponentAcceptType,
   ComponentName,
   RenderedComponent,
   acceptComponentsMap,
@@ -69,6 +70,46 @@ export const findComponentBy = (
   }
 
   return null;
+};
+
+const checkValidContainer = ({
+  activeId,
+  renderedComponents,
+  overContainer,
+}: {
+  renderedComponents: RenderedComponent[];
+  activeId: UniqueIdentifier;
+  overContainer?: RenderedComponent | null;
+}): boolean => {
+  if (!overContainer) {
+    return false;
+  }
+
+  const activeComponentName =
+    findComponentBy(
+      renderedComponents,
+      (component) => component.id === activeId,
+    )?.componentName || activeId;
+  const component = acceptComponentsMap[overContainer.componentName];
+
+  if (!component) {
+    return false;
+  }
+
+  const { type, childrenList = [] } = component;
+
+  if (type === ComponentAcceptType.Single) {
+    return false;
+  }
+
+  if (
+    type === ComponentAcceptType.ParentWithSpecificChildren &&
+    !childrenList.includes(activeComponentName as ComponentName)
+  ) {
+    return false;
+  }
+
+  return true;
 };
 
 const useStoreBase = createWithEqualityFn(
@@ -182,13 +223,35 @@ const useStoreBase = createWithEqualityFn(
                   state.renderedComponents,
                   (component) => component.id === activeId,
                 )?.componentName || activeId;
-              const isAcceptable = acceptComponentsMap[
-                overContainer.componentName
-              ]!.includes(activeComponentName as ComponentName);
+              const component =
+                acceptComponentsMap[overContainer.componentName];
 
-              if (!isAcceptable) {
+              if (!component) {
                 return;
               }
+
+              const { type, childrenList = [] } = component;
+
+              if (type === ComponentAcceptType.Single) {
+                return;
+              }
+
+              if (
+                type === ComponentAcceptType.ParentWithSpecificChildren &&
+                !childrenList.includes(activeComponentName as ComponentName)
+              ) {
+                return;
+              }
+            }
+
+            if (
+              !checkValidContainer({
+                activeId,
+                renderedComponents: state.renderedComponents,
+                overContainer,
+              })
+            ) {
+              return;
             }
 
             // If the overContainer is null, it means that the overId is from top level components
@@ -272,22 +335,14 @@ const useStoreBase = createWithEqualityFn(
               );
             }
 
-            if (overContainer) {
-              const activeComponentName =
-                findComponentBy(
-                  state.renderedComponents,
-                  (component) => component.id === activeId,
-                )?.componentName || activeId;
-
-              const canHaveChildren = acceptComponentsMap[
-                overContainer.componentName
-              ]?.includes(activeComponentName as ComponentName);
-              const isChildOfRootComponent =
-                state.renderedComponents.includes(overContainer);
-
-              if (!canHaveChildren && !isChildOfRootComponent) {
-                return;
-              }
+            if (
+              !checkValidContainer({
+                activeId,
+                renderedComponents: state.renderedComponents,
+                overContainer,
+              })
+            ) {
+              return;
             }
 
             // If the activeContainer is null, it means that the activeId is from top level components
