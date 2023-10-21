@@ -1,9 +1,9 @@
-.pointer {
+.containerWrapper {
   cursor: pointer;
 }
 
 .emptyChild {
-  min-height: var(--p-height-500);
+  min-height: var(--p-height-800);
   border: 1px dashed var(--p-color-border-focus);
 }
 

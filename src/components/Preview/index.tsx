@@ -92,7 +92,7 @@ function ComponentWithContainer({
       <SortableContext id={id} items={items}>
         <div
           ref={setNodeRef}
-          className={classNames(styles.pointer, {
+          className={classNames(styles.containerWrapper, {
             [styles.emptyChild]: isEmptyChild,
             [styles.selected]: isSelected && !isDragging,
           })}
