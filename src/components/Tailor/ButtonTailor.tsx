@@ -2,31 +2,61 @@ import { ButtonProps, Link } from "@shopify/polaris";
 
 import { PropItem, TailorList } from "./shared";
 
-type ButtonSizes = NonNullable<ButtonProps["size"]>;
-const buttonSizes: ButtonSizes[] = ["micro", "slim", "medium", "large"];
+// This is to work around type error when upgrading to new version of polaris
+type ButtonSizes = NonNullable<ButtonProps["size"]> | "";
+const buttonSizeRecord: Record<ButtonSizes, true> = {
+  micro: true,
+  slim: true,
+  medium: true,
+  large: true,
+  "": true,
+};
+const buttonSizes = Object.keys(buttonSizeRecord) as ButtonSizes[];
 
-type ButtonTextAligns = NonNullable<ButtonProps["textAlign"]>;
-const buttonTextAligns: ButtonTextAligns[] = [
-  "left",
-  "right",
-  "center",
-  "start",
-  "end",
-];
+type ButtonTextAligns = NonNullable<ButtonProps["textAlign"]> | "";
+const buttonTextAlignRecord: Record<ButtonTextAligns, true> = {
+  left: true,
+  right: true,
+  center: true,
+  start: true,
+  end: true,
+  "": true,
+};
 
-type ButtonTones = NonNullable<ButtonProps["tone"]>;
-const buttonTones: ButtonTones[] = ["critical", "success"];
+const buttonTextAligns = Object.keys(
+  buttonTextAlignRecord,
+) as ButtonTextAligns[];
 
-type ButtonVariants = NonNullable<ButtonProps["variant"]>;
-const buttonVariants: ButtonVariants[] = [
-  "plain",
-  "primary",
-  "tertiary",
-  "monochromePlain",
-];
+type ButtonTones = NonNullable<ButtonProps["tone"]> | "";
+const buttonToneRecord: Record<ButtonTones, true> = {
+  critical: true,
+  success: true,
+  "": true,
+};
+const buttonTones = Object.keys(buttonToneRecord) as ButtonTones[];
 
-type ButtonDisclosure = NonNullable<ButtonProps["disclosure"]> | "";
-const buttonDisclosure: ButtonDisclosure[] = ["down", "up", "select", ""];
+type ButtonVariants = NonNullable<ButtonProps["variant"]> | "";
+const buttonVariantRecord: Record<ButtonVariants, true> = {
+  plain: true,
+  primary: true,
+  tertiary: true,
+  monochromePlain: true,
+  "": true,
+};
+const buttonVariants = Object.keys(buttonVariantRecord) as ButtonVariants[];
+
+type ButtonDisclosure =
+  | NonNullable<Exclude<ButtonProps["disclosure"], boolean>>
+  | "";
+const buttonDisclosureRecord: Record<ButtonDisclosure, true> = {
+  down: true,
+  up: true,
+  select: true,
+  "": true,
+};
+const buttonDisclosure = Object.keys(
+  buttonDisclosureRecord,
+) as ButtonDisclosure[];
 
 const buttonPropItems: PropItem<keyof ButtonProps>[] = [
   { prop: "children", type: "Text" },

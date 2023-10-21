@@ -4,7 +4,7 @@ import { PropItem, TailorList } from "./shared";
 type DividerBorderColors = NonNullable<DividerProps["borderColor"]> | "";
 
 // This is to work around type error when upgrading to new version of polaris
-export const dividerBorderColorRecord: Record<DividerBorderColors, true> = {
+const dividerBorderColorRecord: Record<DividerBorderColors, true> = {
   "border-brand": true,
   "border-caution": true,
   "border-critical-secondary": true,
