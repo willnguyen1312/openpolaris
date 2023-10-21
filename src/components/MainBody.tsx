@@ -3,7 +3,6 @@ import SplitPane from "react-split-pane";
 import { rootComponentId } from "../types";
 import styles from "./MainBody.module.css";
 
-import { SortableContext } from "@dnd-kit/sortable";
 import { EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
@@ -20,7 +19,6 @@ export function MainBody() {
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isEmpty = renderedComponent.length === 0;
-  const items = renderedComponent.map((component) => component.id);
 
   const handleWrapperClick = (event: React.MouseEvent) => {
     if (event.target === event.currentTarget) {
@@ -29,27 +27,25 @@ export function MainBody() {
   };
 
   const body = (
-    <SortableContext id={rootComponentId} items={items}>
-      <div
-        ref={setNodeRef}
-        className={classNames(styles.bodyWrapper, {
-          [styles.isOver]: isOver,
-          [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
-        })}
-        onClick={handleWrapperClick}
-      >
-        {isEmpty ? (
-          <EmptyState
-            heading="Drag some component to start building your merchant app"
-            image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
-          />
-        ) : null}
+    <div
+      ref={setNodeRef}
+      className={classNames(styles.bodyWrapper, {
+        [styles.isOver]: isOver,
+        [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
+      })}
+      onClick={handleWrapperClick}
+    >
+      {isEmpty ? (
+        <EmptyState
+          heading="Drag some component to start building your merchant app"
+          image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+        />
+      ) : null}
 
-        {renderedComponent.map((component) => {
-          return <Preview key={component.id} component={component} />;
-        })}
-      </div>
-    </SortableContext>
+      {renderedComponent.map((component) => {
+        return <Preview key={component.id} component={component} />;
+      })}
+    </div>
   );
 
   if (!isShowCodePanel) {
