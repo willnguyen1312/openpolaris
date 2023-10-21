@@ -2,7 +2,11 @@ import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
 
-import { RenderedComponent, parentComponentList } from "../../types";
+import {
+  ComponentName,
+  RenderedComponent,
+  parentComponentList,
+} from "../../types";
 
 import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
@@ -10,6 +14,8 @@ import { CSS } from "@dnd-kit/utilities";
 import { omitBy } from "lodash-es";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
+
+const fitContentComponents: ComponentName[] = ["Button"];
 
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   const isSimpleComponent = !parentComponentList.includes(
@@ -66,6 +72,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
       }}
       className={classNames(styles.simpleWrapper, {
         [styles.selected]: isSelected && !isDragging,
+        [styles.fitContent]: fitContentComponents.includes(
+          component.componentName,
+        ),
       })}
     >
       <SortableItem component={component}>

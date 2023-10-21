@@ -442,7 +442,6 @@ export const parentComponentList: ComponentName[] = ["ButtonGroup", "Bleed"];
 
 // This is to work around type error when upgrading to new version of polaris
 const spacingScaleRecord: Record<SpaceScale | "", true> = {
-  "": true,
   "0": true,
   "025": true,
   "050": true,
@@ -461,6 +460,7 @@ const spacingScaleRecord: Record<SpaceScale | "", true> = {
   "2400": true,
   "2800": true,
   "3200": true,
+  "": true,
 };
 
 export const spacingScales = Object.keys(spacingScaleRecord) as SpaceScale[];

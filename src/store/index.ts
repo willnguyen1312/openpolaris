@@ -79,12 +79,8 @@ const checkValidContainer = ({
 }: {
   renderedComponents: RenderedComponent[];
   activeId: UniqueIdentifier;
-  overContainer?: RenderedComponent | null;
+  overContainer: RenderedComponent;
 }): boolean => {
-  if (!overContainer) {
-    return false;
-  }
-
   const activeComponentName =
     findComponentBy(
       renderedComponents,
@@ -245,6 +241,7 @@ const useStoreBase = createWithEqualityFn(
             }
 
             if (
+              overContainer &&
               !checkValidContainer({
                 activeId,
                 renderedComponents: state.renderedComponents,
@@ -336,6 +333,7 @@ const useStoreBase = createWithEqualityFn(
             }
 
             if (
+              overContainer &&
               !checkValidContainer({
                 activeId,
                 renderedComponents: state.renderedComponents,

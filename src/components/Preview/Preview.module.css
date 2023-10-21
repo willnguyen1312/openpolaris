@@ -1,5 +1,8 @@
 .simpleWrapper {
   cursor: pointer;
+}
+
+.fitContent {
   width: fit-content;
 }
 
