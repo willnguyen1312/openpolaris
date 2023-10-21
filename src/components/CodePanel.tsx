@@ -2,34 +2,38 @@ import { Button, Toast } from "@shopify/polaris";
 import { ClipboardMinor } from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { Highlight, themes } from "prism-react-renderer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { usePolarisStore } from "../store";
+import { generateCode } from "../utils/code";
 import styles from "./CodePanel.module.css";
 
-const codeBlock = `
-const GroceryItem: React.FC<GroceryItemProps> = ({ item }) => {
-  return (
-    <div>
-      <h2>{item.name}</h2>
-      <p>Price: {item.price}</p>
-      <p>Quantity: {item.quantity}</p>
-    </div>
-  );
-}
-`;
-
 export const CodePanel = () => {
+  const [code, setCode] = useState("");
+  const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
+  const renderedComponents = usePolarisStore.use.renderedComponents();
   const [active, setActive] = useState(false);
   const closeToast = () => setActive(false);
   const showToast = () => setActive(true);
 
+  useEffect(() => {
+    async function run() {
+      const result = await generateCode(renderedComponents);
+      setCode(result);
+    }
+
+    run();
+  }, [renderedComponents]);
+
   const handleCopyClick = () => {
     showToast();
-    navigator.clipboard.writeText(codeBlock);
+    navigator.clipboard.writeText(code);
   };
 
   const toastMarkup = active ? (
     <Toast content="Code copied to clipboard" onDismiss={closeToast} />
   ) : null;
+
+  if (!isShowCodePanel) return null;
 
   return (
     <div className={styles.wrapper}>
@@ -43,7 +47,7 @@ export const CodePanel = () => {
         />
       </div>
 
-      <Highlight theme={themes.nightOwl} code={codeBlock} language="tsx">
+      <Highlight theme={themes.nightOwl} code={code} language="tsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre
             className={classNames(className, styles.preWrapper)}
