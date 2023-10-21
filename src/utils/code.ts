@@ -68,10 +68,6 @@ export const generateCode = async (tree: RenderedComponent[]) => {
       keys.forEach((key) => {
         const value = props[key];
 
-        if (key === "children") {
-          return;
-        }
-
         if (typeof value === "string" && value) {
           result += `${key}=${normalizePropValue(value, key)} `;
         } else if (typeof value === "number") {
@@ -127,13 +123,9 @@ export const generateCode = async (tree: RenderedComponent[]) => {
         : ""
     }
     import "@shopify/polaris/build/esm/styles.css";
-    import React from "react";
-    import ReactDOM from "react-dom/client";
     import enTranslations from "@shopify/polaris/locales/en.json";
 
-
-
-    function App() {
+    export default function App() {
       return <AppProvider i18n={enTranslations}>${code}</AppProvider>;
     };
     `;
