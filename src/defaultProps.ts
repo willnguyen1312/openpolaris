@@ -1,5 +1,6 @@
 import {
   AccountConnectionProps,
+  BleedProps,
   ButtonGroupProps,
   ButtonProps,
   DividerProps,
@@ -75,6 +76,16 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       },
     ],
   } as PageActionsProps,
+
+  // Layout and structure
+  Bleed: {
+    marginInline: "" as BleedProps["marginInline"],
+    marginBlock: "" as BleedProps["marginBlock"],
+    marginBlockStart: "" as BleedProps["marginBlockStart"],
+    marginBlockEnd: "" as BleedProps["marginBlockEnd"],
+    marginInlineStart: "" as BleedProps["marginInlineStart"],
+    marginInlineEnd: "" as BleedProps["marginInlineEnd"],
+  } as BleedProps,
 
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],
