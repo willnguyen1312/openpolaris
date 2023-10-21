@@ -1,4 +1,9 @@
-.pointer {
+.simpleWrapper {
+  cursor: pointer;
+  width: fit-content;
+}
+
+.containerWrapper {
   cursor: pointer;
 }
 
