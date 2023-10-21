@@ -175,13 +175,6 @@ const useStoreBase = createWithEqualityFn(
               },
             );
 
-            // If the overContainer is null, it means that the overId can be from top level components
-            if (!activeContainer) {
-              activeContainer = state.renderedComponents.find(
-                (component) => component.id === overId,
-              );
-            }
-
             let overContainer = findComponentBy(
               state.renderedComponents,
               (component) => {
@@ -189,11 +182,63 @@ const useStoreBase = createWithEqualityFn(
               },
             );
 
-            // If the overContainer is null, it means that the overId can be from top level components
+            // If the overContainer is null, it means that the overId is from container itself
             if (!overContainer) {
               overContainer = state.renderedComponents.find(
                 (component) => component.id === overId,
               );
+            }
+
+            // Case 1: drag from the menu to the canvas
+            if (isComponentFromMenu && isOverRootComponent) {
+              console.log("drag from menu to canvas");
+
+              const component = {
+                children: [],
+                id: generateId(),
+                componentName: activeId as ComponentName,
+                props: defaultProps[activeId as ComponentName],
+              };
+
+              state.renderedComponents.push(component);
+              return;
+            }
+
+            // Case 2: drag from the menu to the parent component
+            if (isComponentFromMenu && overContainer) {
+              console.log("drag from menu to parent component");
+
+              const component = {
+                children: [],
+                id: generateId(),
+                componentName: activeId as ComponentName,
+                props: defaultProps[activeId as ComponentName],
+              };
+
+              const newIndex = overContainer.children.findIndex(
+                (component) => component.id === overId,
+              );
+              overContainer.children.splice(newIndex, 0, component);
+              return;
+            }
+
+            // Case 3: drag from the menu on top of some component
+            if (isComponentFromMenu && !overContainer) {
+              console.log("drag from menu on top of some component");
+
+              const component = {
+                children: [],
+                id: generateId(),
+                componentName: activeId as ComponentName,
+                props: defaultProps[activeId as ComponentName],
+              };
+
+              const index = state.renderedComponents.findIndex(
+                (item) => item.id === overId,
+              );
+
+              state.renderedComponents.splice(index, 0, component);
+              return;
             }
 
             if (
@@ -256,22 +301,6 @@ const useStoreBase = createWithEqualityFn(
               };
 
               state.renderedComponents.push(component);
-              return;
-            }
-
-            // Drag from the menu to the parent component
-            if (isComponentFromMenu && overContainer) {
-              const component = {
-                children: [],
-                id: generateId(),
-                componentName: activeId as ComponentName,
-                props: defaultProps[activeId as ComponentName],
-              };
-
-              const newIndex = overContainer.children.findIndex(
-                (component) => component.id === overId,
-              );
-              overContainer.children.splice(newIndex, 0, component);
               return;
             }
 

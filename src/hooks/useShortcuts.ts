@@ -24,5 +24,5 @@ export const useShortcuts = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, []);
+  }, [activeComponent]);
 };
