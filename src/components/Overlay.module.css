@@ -8,4 +8,5 @@
   align-items: center;
   justify-content: flex-start;
   width: max-content;
+  min-width: var(--p-width-2000);
 }
