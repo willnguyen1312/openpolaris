@@ -1,3 +1,5 @@
+import { SpaceScale } from "@shopify/polaris-tokens";
+
 export type ComponentName =
   | "AccountConnection"
   | "Button"
@@ -433,56 +435,57 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Scrollable",
     category: "Utilities",
   },
-
-  // TODO: Should I support deprecated components? 😗
-  // {
-  //   componentName: "Caption",
-  // },
-  // {
-  //   componentName: "DisplayText",
-  // },
-  // {
-  //   componentName: "Heading",
-  // },
-  // {
-  //   componentName: "LegacyCard",
-  // },
-  // {
-  //   componentName: "LegacyFilters",
-  // },
-  // {
-  //   componentName: "LegacyStack",
-  // },
-  // {
-  //   componentName: "LegacyTabs",
-  // },
-  // {
-  //   componentName: "SettingToggle",
-  // },
-  // {
-  //   componentName: "Sheet",
-  // },
-  // {
-  //   componentName: "Subheading",
-  // },
-  // {
-  //   componentName: "TextContainer",
-  // },
-  // {
-  //   componentName: "TextStyle",
-  // },
-  // {
-  //   componentName: "VisuallyHidden",
-  // },
 ];
 
 export const rootComponentId = "root";
-export const parentComponentList: ComponentName[] = ["ButtonGroup"];
+export const parentComponentList: ComponentName[] = ["ButtonGroup", "Bleed"];
+
+// This is to work around type error when upgrading to new version of polaris
+const spacingScaleRecord: Record<SpaceScale | "", true> = {
+  "": true,
+  "0": true,
+  "025": true,
+  "050": true,
+  "100": true,
+  "150": true,
+  "200": true,
+  "300": true,
+  "400": true,
+  "500": true,
+  "600": true,
+  "800": true,
+  "1000": true,
+  "1200": true,
+  "1600": true,
+  "2000": true,
+  "2400": true,
+  "2800": true,
+  "3200": true,
+};
+
+export const spacingScales = Object.keys(spacingScaleRecord) as SpaceScale[];
+
+export const enum ComponentAcceptType {
+  Single = "Single",
+  ParentWithSpecificChildren = "ParentWithSpecificChildren",
+  ParentWithAnyChildren = "ParentWithAnyChildren",
+}
 
 export const acceptComponentsMap: Partial<
-  Record<ComponentName, ComponentName[]>
+  Record<
+    ComponentName,
+    { type: ComponentAcceptType; childrenList?: ComponentName[] }
+  >
 > = {
-  Divider: [],
-  Button: [],
-  ButtonGroup: ["Button"],
+  Divider: { type: ComponentAcceptType.Single },
+  Button: { type: ComponentAcceptType.Single },
+  PageActions: { type: ComponentAcceptType.Single },
+  AccountConnection: { type: ComponentAcceptType.Single },
+  ButtonGroup: {
+    type: ComponentAcceptType.ParentWithSpecificChildren,
+    childrenList: ["Button"],
+  },
+  Bleed: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
