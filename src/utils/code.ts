@@ -137,6 +137,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     parser: "babel-ts",
     plugins: [parserBabel, prettierPluginEstree],
     semi: true,
+    trailingComma: "all",
   });
 
   return formattedResult;
