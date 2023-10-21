@@ -16,6 +16,7 @@ import { usePolarisStore } from "../store";
 
 import { useState } from "react";
 import { encode } from "../utils/encoder";
+import { openProject } from "../utils/playground";
 import styles from "./Header.module.css";
 
 export function Header() {
@@ -39,6 +40,10 @@ export function Header() {
   const toastMarkup = active ? (
     <Toast content="Share link copied to clipboard" onDismiss={closeToast} />
   ) : null;
+
+  const openPlayground = () => {
+    openProject(renderedComponents);
+  };
 
   return (
     <div className={styles.wrapper}>
@@ -66,11 +71,10 @@ export function Header() {
             </Button>
 
             <Button
-              external
-              url="https://namnguyen.design"
               tone="success"
               variant="tertiary"
               icon={ExportMinor}
+              onClick={openPlayground}
             >
               Playground
             </Button>
