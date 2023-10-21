@@ -274,7 +274,28 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
-            // TODO: Drag from one parent to another parent
+            if (activeContainer && overContainer) {
+              let newIndex: number | undefined;
+              if (overId === overContainer.id) {
+                newIndex = overContainer.children.length;
+              } else {
+                newIndex = overContainer.children.findIndex(
+                  (component) => component.id === overId,
+                );
+              }
+
+              const activeIndex = activeContainer.children.findIndex(
+                (component) => component.id === activeId,
+              );
+
+              overContainer.children.splice(
+                newIndex,
+                0,
+                activeContainer.children[activeIndex],
+              );
+              activeContainer.children.splice(activeIndex, 1);
+              return;
+            }
 
             // From the root component to itself
             const oldIndex = state.renderedComponents.findIndex(
