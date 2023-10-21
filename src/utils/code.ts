@@ -13,7 +13,7 @@ const traverse = (
 };
 
 export const generateCode = async (tree: RenderedComponent[]) => {
-  const importedComponents = new Set<string>();
+  const importedComponents = new Set<string>(["AppProvider", "Frame"]);
   const importedIcons = new Set<string>();
 
   tree.forEach((item) => {
@@ -116,7 +116,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
   }, "");
 
   const result = `
-    import {AppProvider,${[...importedComponents]
+    import {${[...importedComponents]
       .sort()
       .join(",")}} from '@shopify/polaris'; ${
       [...importedIcons].length
@@ -129,7 +129,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     import enTranslations from "@shopify/polaris/locales/en.json";
 
     export default function App() {
-      return <AppProvider i18n={enTranslations}>${code}</AppProvider>;
+      return <AppProvider i18n={enTranslations}><Frame>${code}</Frame></AppProvider>;
     };
     `;
 
