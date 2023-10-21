@@ -175,6 +175,13 @@ const useStoreBase = createWithEqualityFn(
               },
             );
 
+            // If the overContainer is null, it means that the overId can be from top level components
+            if (!activeContainer) {
+              activeContainer = state.renderedComponents.find(
+                (component) => component.id === overId,
+              );
+            }
+
             let overContainer = findComponentBy(
               state.renderedComponents,
               (component) => {
@@ -187,6 +194,24 @@ const useStoreBase = createWithEqualityFn(
               overContainer = state.renderedComponents.find(
                 (component) => component.id === overId,
               );
+            }
+
+            if (
+              !isComponentFromMenu &&
+              activeContainer &&
+              activeContainer === overContainer
+            ) {
+              state.renderedComponents = arrayMove(
+                state.renderedComponents,
+                state.renderedComponents.findIndex(
+                  (component) => component.id === activeId,
+                ),
+                state.renderedComponents.findIndex(
+                  (component) => component.id === overId,
+                ),
+              );
+
+              return;
             }
 
             // Check if the component can be dropped into the container
@@ -216,13 +241,6 @@ const useStoreBase = createWithEqualityFn(
               ) {
                 return;
               }
-            }
-
-            // If the activeContainer is null, it means that the activeId is from top level components
-            if (!activeContainer) {
-              activeContainer = state.renderedComponents.find(
-                (component) => component.id === activeId,
-              );
             }
 
             // Drag from the menu to the canvas
@@ -257,7 +275,41 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
-            if (!activeContainer || !overContainer) {
+            // Drag from parent to the canvas
+            if (activeContainer && isOverRootComponent) {
+              const list = activeContainer.children;
+              const oldIndex = list.findIndex((item) => item.id === activeId);
+
+              state.renderedComponents.push(list[oldIndex]);
+              list.splice(oldIndex, 1);
+              return;
+            }
+
+            // Drag from canvas to parent
+            if (!activeContainer && overContainer) {
+              // activeContainer is null, it means that the activeComponent is from the canvas
+              activeContainer = state.renderedComponents.find(
+                (component) => component.id === activeId,
+              );
+
+              const oldIndex = state.renderedComponents.findIndex(
+                (item) => item.id === activeId,
+              );
+
+              const newIndex = overContainer.children.findIndex(
+                (component) => component.id === overId,
+              );
+
+              overContainer.children.splice(
+                newIndex,
+                0,
+                state.renderedComponents[oldIndex],
+              );
+              state.renderedComponents.splice(oldIndex, 1);
+              return;
+            }
+
+            if (!overContainer || !activeContainer) {
               return;
             }
 

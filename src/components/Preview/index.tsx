@@ -8,9 +8,7 @@ import {
   parentComponentList,
 } from "../../types";
 
-import { useDroppable } from "@dnd-kit/core";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
+import { useDraggable, useDroppable } from "@dnd-kit/core";
 import { omitBy } from "lodash-es";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
@@ -77,13 +75,13 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         ),
       })}
     >
-      <SortableItem component={component}>
+      <DraggableItem component={component}>
         <Component
           {...finalComponentProps}
           // @ts-ignore
           icon={icon ? PolarisIcon[icon] : undefined}
         />
-      </SortableItem>
+      </DraggableItem>
     </div>
   );
 }
@@ -100,7 +98,6 @@ function ComponentWithContainer({
   });
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
-  const items = children.map((child) => child.id);
   // @ts-ignore
   const Component = Polaris[component.componentName];
   const isEmptyChild = !component.children.length;
@@ -110,52 +107,49 @@ function ComponentWithContainer({
   const finalComponentProps = finalizeComponentProps(component);
 
   return (
-    <SortableItem key={component.id} component={component}>
-      <SortableContext id={id} items={items}>
-        <div
-          ref={setNodeRef}
-          className={classNames(styles.containerWrapper, {
-            [styles.emptyChild]: isEmptyChild,
-            [styles.selected]: isSelected && !isDragging,
-          })}
-          onPointerDown={(event) => {
-            event.stopPropagation();
-            setActiveComponentId(component);
-          }}
-        >
-          <SortableItem key={id} component={component}>
-            <Component {...finalComponentProps}>
-              {children.map((child) => (
-                <Preview key={child.id} component={child} />
-              ))}
-            </Component>
-          </SortableItem>
-        </div>
-      </SortableContext>
-    </SortableItem>
+    <DraggableItem key={component.id} component={component}>
+      <div
+        ref={setNodeRef}
+        className={classNames(styles.containerWrapper, {
+          [styles.emptyChild]: isEmptyChild,
+          [styles.selected]: isSelected && !isDragging,
+        })}
+        onPointerDown={(event) => {
+          event.stopPropagation();
+          setActiveComponentId(component);
+        }}
+      >
+        <DraggableItem key={id} component={component}>
+          <Component {...finalComponentProps}>
+            {children.map((child) => (
+              <Preview key={child.id} component={child} />
+            ))}
+          </Component>
+        </DraggableItem>
+      </div>
+    </DraggableItem>
   );
 }
 
-function SortableItem({
+function DraggableItem({
   component,
   children,
 }: {
   component: RenderedComponent;
   children: React.ReactNode;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: component.id,
-      disabled: checkIfComponentCanBeDragged(component),
-    });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+  const { attributes, listeners, setNodeRef } = useDraggable({
+    id: component.id,
+    disabled: checkIfComponentCanBeDragged(component),
+  });
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      {...listeners}
+      {...attributes}
+      className={styles.wrapper}
+    >
       {children}
     </div>
   );
