@@ -36,10 +36,8 @@
     "react-dom": "^18.2.0",
     "react-hotkeys-hook": "^4.4.1",
     "react-split-pane": "^0.1.92",
-    "ts-toolbelt": "^9.6.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
-    "zundo": "^2.0.0",
     "zustand": "^4.4.3"
   }
 }
