@@ -43,11 +43,6 @@ type StoreActions = {
   setTree: (tree: RenderedComponent[]) => void;
   setIsShowCodePanel: (showCodePanel: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
-  addComponentToParent: (arg: {
-    childComponentId: string;
-    parentComponentId: string;
-    index?: number;
-  }) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -103,18 +98,6 @@ const useStoreBase = createWithEqualityFn(
           }),
 
         renderedComponents: [],
-        addComponentToParent: ({ childComponentId, parentComponentId }) => {
-          set((state: StoreState) => {
-            if (parentComponentId === rootComponentId) {
-              state.renderedComponents.push({
-                children: [],
-                id: generateId(),
-                componentName: childComponentId as ComponentName,
-                props: defaultProps[childComponentId as ComponentName],
-              });
-            }
-          });
-        },
 
         activeComponent: null,
         setActiveComponent: (component) =>
@@ -251,11 +234,7 @@ const useStoreBase = createWithEqualityFn(
 
         handleDragEnd: (event) =>
           set((state: StoreState) => {
-            const {
-              active,
-              over,
-              // draggingRect
-            } = event;
+            const { active, over } = event;
             const activeId = active.id;
             const overId = over?.id;
             state.activeDraggableId = null;
@@ -343,7 +322,10 @@ const useStoreBase = createWithEqualityFn(
                 props: defaultProps[activeId as ComponentName],
               };
 
-              overContainer.children.push(component);
+              const newIndex = overContainer.children.findIndex(
+                (component) => component.id === overId,
+              );
+              overContainer.children.splice(newIndex, 0, component);
               return;
             }
 
