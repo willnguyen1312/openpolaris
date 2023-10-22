@@ -2,7 +2,7 @@ import parserBabel from "prettier/plugins/babel";
 import * as prettierPluginEstree from "prettier/plugins/estree";
 import * as prettier from "prettier/standalone";
 
-import { RenderedComponent } from "../types";
+import { ComponentName, RenderedComponent } from "../types";
 
 const traverse = (
   node: RenderedComponent,
@@ -13,12 +13,17 @@ const traverse = (
 };
 
 export const generateCode = async (tree: RenderedComponent[]) => {
-  const importedComponents = new Set<string>(["AppProvider", "Frame"]);
+  const importedComponents = new Set<ComponentName>(["AppProvider"]);
   const importedIcons = new Set<string>();
 
   tree.forEach((item) => {
     traverse(item, (node) => {
       importedComponents.add(node.componentName);
+
+      // Toast component requires Frame component to be imported
+      if (node.componentName === "Toast") {
+        importedComponents.add("Frame");
+      }
 
       if (node.props.icon) {
         importedIcons.add(node.props.icon);
@@ -129,7 +134,9 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     import enTranslations from "@shopify/polaris/locales/en.json";
 
     export default function App() {
-      return <AppProvider i18n={enTranslations}><Frame>${code}</Frame></AppProvider>;
+      return <AppProvider i18n={enTranslations}>${
+        importedComponents.has("Toast") ? `<Frame>${code}</Frame>` : code
+      }</AppProvider>;
     };
     `;
 

@@ -9,6 +9,7 @@ import {
   PageActionsProps,
 } from "@shopify/polaris";
 
+import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
 import { ComponentName } from "./types";
 
 export const defaultProps: Partial<Record<ComponentName, any>> = {
@@ -148,4 +149,6 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     borderColor: "border-magic" as DividerProps["borderColor"],
     borderWidth: "100" as DividerProps["borderWidth"],
   } as DividerProps,
+
+  Toast: {} as ToastProps,
 };
