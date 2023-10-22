@@ -1,13 +1,12 @@
 import { findComponentBy, usePolarisStore } from "../store";
 import { listOfComponent } from "../types";
 import styles from "./Overlay.module.css";
-import { Preview } from "./Preview";
 
 export function Overlay({ id }: { id: string }) {
   const renderedComponent = usePolarisStore.use.renderedComponents();
 
   if (listOfComponent.find((component) => component.componentName === id)) {
-    return <div className={styles.wrapper}>{id}</div>;
+    return <div className={styles.wrapper}>{id} 🐻‍❄️</div>;
   }
 
   const component = findComponentBy(
@@ -19,9 +18,5 @@ export function Overlay({ id }: { id: string }) {
     return null;
   }
 
-  return (
-    <div className={styles.wrapper}>
-      <Preview component={component} />
-    </div>
-  );
+  return <div className={styles.wrapper}>Drop me, please 🐻‍❄️</div>;
 }

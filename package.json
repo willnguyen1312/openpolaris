@@ -35,6 +35,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-split-pane": "^0.1.92",
+    "react-use": "^17.4.0",
     "typescript": "^5.2.2",
     "vite": "^4.4.11",
     "zustand": "^4.4.3"

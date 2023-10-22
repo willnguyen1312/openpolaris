@@ -2,11 +2,12 @@
   cursor: move;
   background: var(--p-color-bg-surface-success-active);
   border-radius: var(--p-border-radius-200);
-  padding: var(--p-space-200);
+  padding: var(--p-space-200) var(--p-space-200) var(--p-space-200)
+    var(--p-space-500);
 
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   width: max-content;
   min-width: var(--p-width-2000);
 }

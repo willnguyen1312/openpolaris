@@ -8,7 +8,8 @@ import {
 import { AppProvider, Frame, Grid } from "@shopify/polaris";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { useMouse } from "react-use";
 import { useShortcuts } from "../hooks/useShortcuts";
 import { usePolarisStore } from "../store";
 import { decode } from "../utils/encoder";
@@ -19,6 +20,8 @@ import { Overlay } from "./Overlay";
 import { RightSideBar } from "./RightSideBar";
 
 export function App() {
+  const ref = useRef(document.body);
+  const { docX, docY } = useMouse(ref);
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const setTree = usePolarisStore.use.setTree();
@@ -73,7 +76,15 @@ export function App() {
           </Grid>
         </Frame>
 
-        <DragOverlay dropAnimation={null}>
+        <DragOverlay
+          style={{
+            position: "fixed",
+            top: docY,
+            left: docX,
+            transform: "translate(-10px, -10px)",
+          }}
+          dropAnimation={null}
+        >
           {activeDraggableId ? <Overlay id={activeDraggableId} /> : null}
         </DragOverlay>
       </DndContext>
