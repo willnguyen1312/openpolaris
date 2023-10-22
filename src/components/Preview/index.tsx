@@ -17,19 +17,6 @@ import styles from "./Preview.module.css";
 
 const fitContentComponents: ComponentName[] = ["Button"];
 
-const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
-  const isSimpleComponent = !parentComponentList.includes(
-    component.componentName,
-  );
-
-  if (isSimpleComponent) {
-    return false;
-  }
-
-  const hasNoChildren = component.children.length === 0;
-  return hasNoChildren;
-};
-
 const finalizeComponentProps = (component: RenderedComponent) => {
   return omitBy(component.props, (value) => {
     if (typeof value === "string" && value === "") {
@@ -146,7 +133,6 @@ function SortableItem({
   const { attributes, listeners, setNodeRef, transform, transition } =
     useSortable({
       id: component.id,
-      disabled: checkIfComponentCanBeDragged(component),
     });
 
   const style = {
