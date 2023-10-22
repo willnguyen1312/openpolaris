@@ -8,6 +8,7 @@ import {
   CalloutCardProps,
   CardProps,
   DividerProps,
+  EmptyStateProps,
   PageActionsProps,
 } from "@shopify/polaris";
 
@@ -170,11 +171,26 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     padding: "" as CardProps["padding"],
     roundedAbove: "" as CardProps["roundedAbove"],
   } as CardProps,
-
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],
     borderWidth: "100" as DividerProps["borderWidth"],
   } as DividerProps,
+  EmptyState: {
+    heading: "Manage your inventory transfers",
+    image:
+      "https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png",
+    largeImage: "",
+    imageContained: false,
+    fullWidth: false,
+    action: {
+      content: "Add transfer",
+    },
+    secondaryAction: {
+      content: "Learn more",
+      url: "https://help.shopify.com",
+    },
+    footerContent: "Learn more about transfers",
+  } as EmptyStateProps,
 
   Toast: {} as ToastProps,
 };

@@ -825,6 +825,9 @@ export const acceptComponentsMap: Partial<
   Card: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  EmptyState: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([

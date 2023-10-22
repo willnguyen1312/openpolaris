@@ -11,6 +11,7 @@ import { ButtonTailor } from "./ButtonTailor";
 import { CalloutCardTailor } from "./CalloutCardTailor";
 import { CardTailor } from "./CardTailor";
 import { DividerTailor } from "./DividerTailor";
+import { EmptyStateTailor } from "./EmptyStateTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
@@ -27,6 +28,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   CalloutCard: CalloutCardTailor,
   Card: CardTailor,
   Divider: DividerTailor,
+  EmptyState: EmptyStateTailor,
 };
 
 export const Tailor = () => {
