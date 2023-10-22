@@ -9,6 +9,7 @@ import { BoxTailor } from "./BoxTailor";
 import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { CalloutCardTailor } from "./CalloutCardTailor";
+import { CardTailor } from "./CardTailor";
 import { DividerTailor } from "./DividerTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 
@@ -24,6 +25,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   BlockStack: BlockStackTailor,
   Box: BoxTailor,
   CalloutCard: CalloutCardTailor,
+  Card: CardTailor,
   Divider: DividerTailor,
 };
 

@@ -6,6 +6,7 @@ import {
   ButtonGroupProps,
   ButtonProps,
   CalloutCardProps,
+  CardProps,
   DividerProps,
   PageActionsProps,
 } from "@shopify/polaris";
@@ -164,6 +165,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       external: false,
     },
   } as CalloutCardProps,
+  Card: {
+    background: "" as CardProps["background"],
+    padding: "" as CardProps["padding"],
+    roundedAbove: "" as CardProps["roundedAbove"],
+  } as CardProps,
 
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],

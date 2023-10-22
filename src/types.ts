@@ -1,6 +1,7 @@
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
+  BreakpointsAlias,
   ColorBackgroundAlias,
   ColorBorderAlias,
   ColorIconAlias,
@@ -777,6 +778,18 @@ export const shadowScales = Object.keys(
   shadowScaleRecord,
 ) as ShadowAliasOrScale[];
 
+const breakpointsAliasRecord: Record<BreakpointsAlias | "", 1> = {
+  xs: 1,
+  sm: 1,
+  md: 1,
+  lg: 1,
+  xl: 1,
+  "": 1,
+};
+export const breakpointsAliases = Object.keys(
+  breakpointsAliasRecord,
+) as BreakpointsAlias[];
+
 export const enum ComponentAcceptType {
   Single = "Single",
   ParentWithSpecificChildren = "ParentWithSpecificChildren",
@@ -807,6 +820,9 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
   CalloutCard: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
+  Card: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
 };
