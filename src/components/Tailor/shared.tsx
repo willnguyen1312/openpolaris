@@ -15,7 +15,7 @@ import { useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
-import { getHumanReadableProp } from "../../utils/text";
+import { getHumanReadableName } from "../../utils/text";
 
 import styles from "./shared.module.css";
 
@@ -49,7 +49,7 @@ export const Text: React.FunctionComponent<{
   return (
     <TextField
       onChange={handleChange}
-      label={label || getHumanReadableProp(prop)}
+      label={label || getHumanReadableName(prop)}
       value={lodashGet(activeComponent.props, prop) || ""}
       autoComplete="off"
     />
@@ -78,7 +78,7 @@ export const Number: React.FunctionComponent<{
     <TextField
       type="number"
       onChange={handleChange}
-      label={label || getHumanReadableProp(prop)}
+      label={label || getHumanReadableName(prop)}
       value={lodashGet(activeComponent.props, prop) || ""}
       autoComplete="off"
     />
@@ -101,7 +101,7 @@ export const Select: React.FunctionComponent<{
   return (
     <div className={styles.selectWrapper}>
       <PolarisSelect
-        label={getHumanReadableProp(prop)}
+        label={getHumanReadableName(prop)}
         options={options}
         value={activeComponent.props[prop]}
         onChange={handleChange}
@@ -125,7 +125,7 @@ export const Checkbox: React.FunctionComponent<{
 
   return (
     <PolarisCheckbox
-      label={label ?? getHumanReadableProp(prop)}
+      label={label ?? getHumanReadableName(prop)}
       checked={lodashGet(activeComponent.props, prop)}
       onChange={handleChange}
     />
@@ -224,7 +224,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
   return (
     <>
       {isTopLevel && (
-        <PolarisText as="p">{getHumanReadableProp(prop)}</PolarisText>
+        <PolarisText as="p">{getHumanReadableName(prop)}</PolarisText>
       )}
       <Box paddingInlineStart={isTopLevel ? "400" : "0"}>
         <BlockStack gap="050">
@@ -247,7 +247,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
 
             return (
               <Component
-                label={getHumanReadableProp(key)}
+                label={getHumanReadableName(key)}
                 prop={`${prop}.${key}`}
                 key={key}
               />

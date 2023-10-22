@@ -1,6 +1,7 @@
 import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
+import { get as lodashGet } from "lodash-es";
 
 import {
   ComponentName,
@@ -100,7 +101,7 @@ function ComponentWithContainer({
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
   // @ts-ignore
-  const Component = Polaris[component.componentName];
+  const Component = lodashGet(Polaris, component.componentName.split("."));
   const isEmptyChild = !component.children.length;
   const isSelected = activeComponent?.id === component.id;
   const activeDraggableId = usePolarisStore.use.activeDraggableId();

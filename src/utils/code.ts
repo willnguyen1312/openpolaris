@@ -18,8 +18,6 @@ export const generateCode = async (tree: RenderedComponent[]) => {
 
   tree.forEach((item) => {
     traverse(item, (node) => {
-      importedComponents.add(node.componentName);
-
       // Toast component requires Frame component to be imported
       if (node.componentName === "Toast") {
         importedComponents.add("Frame");
@@ -27,6 +25,14 @@ export const generateCode = async (tree: RenderedComponent[]) => {
 
       if (node.props.icon) {
         importedIcons.add(node.props.icon);
+      }
+
+      if (node.componentName.includes(".")) {
+        importedComponents.add(
+          node.componentName.split(".")[0] as ComponentName,
+        );
+      } else {
+        importedComponents.add(node.componentName);
       }
     });
   });

@@ -9,11 +9,12 @@ import {
   CardProps,
   DividerProps,
   EmptyStateProps,
+  FormLayoutProps,
   PageActionsProps,
 } from "@shopify/polaris";
 
 import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
-import { ComponentName } from "./types";
+import { ComponentName, FormLayoutGroupProps } from "./types";
 
 export const defaultProps: Partial<Record<ComponentName, any>> = {
   // Actions
@@ -191,6 +192,12 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     },
     footerContent: "Learn more about transfers",
   } as EmptyStateProps,
+  FormLayout: {} as FormLayoutProps,
+  "FormLayout.Group": {
+    condensed: false,
+    helpText: "",
+    title: "",
+  } as FormLayoutGroupProps,
 
   Toast: {} as ToastProps,
 };

@@ -8,6 +8,7 @@ import {
   componentCategories,
   listOfComponent,
 } from "../types";
+import { getHumanReadableName } from "../utils/text";
 import { DraggableItem } from "./DraggableItem";
 
 export function LeftSideBar() {
@@ -72,7 +73,7 @@ function SearchResult({ query }: { query: string }) {
           {components.map((componentName: ComponentName) => {
             return (
               <DraggableItem key={componentName} componentName={componentName}>
-                <Text as="p">{componentName}</Text>
+                <Text as="p">{getHumanReadableName(componentName)}</Text>
               </DraggableItem>
             );
           })}

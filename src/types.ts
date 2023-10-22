@@ -1,3 +1,4 @@
+import { FormLayout } from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -9,6 +10,7 @@ import {
   ShadowAliasOrScale,
   SpaceScale,
 } from "@shopify/polaris-tokens";
+import { ComponentPropsWithoutRef } from "react";
 
 export type ComponentName =
   | "AccountConnection"
@@ -53,6 +55,7 @@ export type ComponentName =
   | "Divider"
   | "EmptyState"
   | "FormLayout"
+  | "FormLayout.Group"
   | "Grid"
   | "InlineGrid"
   | "InlineStack"
@@ -255,6 +258,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "FormLayout",
+    category: "Layout and structure",
+  },
+  {
+    componentName: "FormLayout.Group",
     category: "Layout and structure",
   },
   {
@@ -828,7 +835,17 @@ export const acceptComponentsMap: Partial<
   EmptyState: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  FormLayout: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
+  "FormLayout.Group": {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
+
+export type FormLayoutGroupProps = ComponentPropsWithoutRef<
+  typeof FormLayout.Group
+>;
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.ParentWithSpecificChildren,
