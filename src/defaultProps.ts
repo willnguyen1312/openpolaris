@@ -1,6 +1,7 @@
 import {
   AccountConnectionProps,
   BleedProps,
+  BlockStackProps,
   ButtonGroupProps,
   ButtonProps,
   DividerProps,
@@ -86,6 +87,16 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     marginInlineStart: "" as BleedProps["marginInlineStart"],
     marginInlineEnd: "" as BleedProps["marginInlineEnd"],
   } as BleedProps,
+
+  BlockStack: {
+    as: "" as BlockStackProps["as"],
+    align: "" as BlockStackProps["align"],
+    inlineAlign: "" as BlockStackProps["inlineAlign"],
+    gap: "" as BlockStackProps["gap"],
+    id: "",
+    reverseOrder: false,
+    role: "" as BlockStackProps["role"],
+  } as BlockStackProps,
 
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],

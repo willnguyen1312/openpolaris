@@ -1,7 +1,7 @@
 import { AccountConnectionProps, Link } from "@shopify/polaris";
 import { PropItem, TailorList } from "./shared";
 
-const accountConnectionPropsItem: PropItem<keyof AccountConnectionProps>[] = [
+const accountConnectionPropsItems: PropItem<keyof AccountConnectionProps>[] = [
   {
     prop: "title",
     type: "Text",
@@ -42,7 +42,7 @@ export const AccountConnectionTailor = () => {
         Account connection
       </Link>
 
-      <TailorList items={accountConnectionPropsItem} />
+      <TailorList items={accountConnectionPropsItems} />
     </>
   );
 };

@@ -20,7 +20,7 @@ const buttonGroupVariants = Object.keys(
   buttonGroupVariantRecord,
 ) as ButtonGroupVariant[];
 
-const buttonGroupPropsItem: PropItem<keyof ButtonGroupProps>[] = [
+const buttonGroupPropsItems: PropItem<keyof ButtonGroupProps>[] = [
   {
     prop: "gap",
     type: "Select",
@@ -55,7 +55,7 @@ export const ButtonGroupTailor = () => {
         Button Group
       </Link>
 
-      <TailorList items={buttonGroupPropsItem} />
+      <TailorList items={buttonGroupPropsItems} />
     </>
   );
 };

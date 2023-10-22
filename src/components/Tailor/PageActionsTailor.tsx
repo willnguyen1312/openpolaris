@@ -1,7 +1,7 @@
 import { Link, PageActionsProps } from "@shopify/polaris";
 import { PropItem, TailorList } from "./shared";
 
-const pageActionsPropsItem: PropItem<keyof PageActionsProps>[] = [
+const pageActionsPropsItems: PropItem<keyof PageActionsProps>[] = [
   {
     prop: "primaryAction",
     type: "Complex",
@@ -22,7 +22,7 @@ export const PageActionsTailor = () => {
         Page actions
       </Link>
 
-      <TailorList items={pageActionsPropsItem} />
+      <TailorList items={pageActionsPropsItems} />
     </>
   );
 };

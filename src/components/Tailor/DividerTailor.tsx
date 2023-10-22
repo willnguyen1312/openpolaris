@@ -49,7 +49,7 @@ const dividerBorderWidths = Object.keys(
   dividerBorderWithRecord,
 ) as DividerBorderWidths[];
 
-const dividerPropsItem: PropItem<keyof DividerProps>[] = [
+const dividerPropsItems: PropItem<keyof DividerProps>[] = [
   {
     prop: "borderColor",
     type: "Select",
@@ -72,7 +72,7 @@ export const DividerTailor = () => {
         Divider
       </Link>
 
-      <TailorList items={dividerPropsItem} />
+      <TailorList items={dividerPropsItems} />
     </>
   );
 };

@@ -438,7 +438,6 @@ export const listOfComponent: ComponentMenuItem[] = [
 ];
 
 export const rootComponentId = "root";
-export const parentComponentList: ComponentName[] = ["ButtonGroup", "Bleed"];
 
 // This is to work around type error when upgrading to new version of polaris
 const spacingScaleRecord: Record<SpaceScale | "", true> = {
@@ -488,4 +487,29 @@ export const acceptComponentsMap: Partial<
   Bleed: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  BlockStack: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
+
+const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
+  ComponentAcceptType.ParentWithSpecificChildren,
+  ComponentAcceptType.ParentWithAnyChildren,
+]);
+
+export const parentComponentList: ComponentName[] = Object.keys(
+  acceptComponentsMap,
+)
+  .map((componentName) => {
+    if (
+      parentComponentAcceptTypeSet.has(
+        acceptComponentsMap[componentName as ComponentName]
+          ?.type as ComponentAcceptType,
+      )
+    ) {
+      return componentName;
+    }
+
+    return null;
+  })
+  .filter(Boolean) as ComponentName[];
