@@ -9,7 +9,7 @@ import {
 } from "../../types";
 
 import { useDroppable } from "@dnd-kit/core";
-import { SortableContext, useSortable } from "@dnd-kit/sortable";
+import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
@@ -76,13 +76,13 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         ),
       })}
     >
-      <SortableItem component={component}>
+      <DragAndDropItem component={component}>
         <Component
           {...finalComponentProps}
           // @ts-ignore
           icon={icon ? PolarisIcon[icon] : undefined}
         />
-      </SortableItem>
+      </DragAndDropItem>
     </div>
   );
 }
@@ -99,7 +99,6 @@ function ComponentWithContainer({
   });
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
-  const items = children.map((child) => child.id);
   // @ts-ignore
   const Component = Polaris[component.componentName];
   const isEmptyChild = !component.children.length;
@@ -109,33 +108,31 @@ function ComponentWithContainer({
   const finalComponentProps = finalizeComponentProps(component);
 
   return (
-    <SortableItem key={component.id} component={component}>
-      <SortableContext id={id} items={items}>
-        <div
-          ref={setNodeRef}
-          className={classNames(styles.containerWrapper, {
-            [styles.emptyChild]: isEmptyChild,
-            [styles.selected]: isSelected && !isDragging,
-          })}
-          onPointerDown={(event) => {
-            event.stopPropagation();
-            setActiveComponentId(component);
-          }}
-        >
-          <SortableItem key={id} component={component}>
-            <Component {...finalComponentProps}>
-              {children.map((child) => (
-                <Preview key={child.id} component={child} />
-              ))}
-            </Component>
-          </SortableItem>
-        </div>
-      </SortableContext>
-    </SortableItem>
+    <DragAndDropItem key={component.id} component={component}>
+      <div
+        ref={setNodeRef}
+        className={classNames(styles.containerWrapper, {
+          [styles.emptyChild]: isEmptyChild,
+          [styles.selected]: isSelected && !isDragging,
+        })}
+        onPointerDown={(event) => {
+          event.stopPropagation();
+          setActiveComponentId(component);
+        }}
+      >
+        <DragAndDropItem key={id} component={component}>
+          <Component {...finalComponentProps}>
+            {children.map((child) => (
+              <Preview key={child.id} component={child} />
+            ))}
+          </Component>
+        </DragAndDropItem>
+      </div>
+    </DragAndDropItem>
   );
 }
 
-function SortableItem({
+function DragAndDropItem({
   component,
   children,
 }: {
