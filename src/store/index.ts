@@ -160,9 +160,16 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
-            const isOverRootComponent = overId === rootComponentId;
+            const isOverCanvas = overId === rootComponentId;
             const isComponentFromMenu = listOfComponent.some(
               (component) => component.componentName === activeId,
+            );
+            const isOverRootComponents = state.renderedComponents.some(
+              (component) => component.id === overId,
+            );
+            const activeComponent = findComponentBy(
+              state.renderedComponents,
+              (component) => component.id === activeId,
             );
 
             // Find the containers
@@ -189,9 +196,16 @@ const useStoreBase = createWithEqualityFn(
               );
             }
 
-            // Case 1: drag from the menu to the canvas
-            if (isComponentFromMenu && isOverRootComponent) {
-              console.log("drag from menu to canvas");
+            const overContainerCannotHaveChildren =
+              !!overContainer &&
+              acceptComponentsMap[overContainer.componentName]?.type ===
+                ComponentAcceptType.Single;
+
+            // Case : drag from the menu to the canvas, not on top of any component
+            if (isComponentFromMenu && isOverCanvas) {
+              console.log(
+                "drag from menu to canvas, not on top of any component",
+              );
 
               const component = {
                 children: [],
@@ -204,7 +218,31 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
-            // Case 2: drag from the menu to the parent component
+            // Case : drag from the menu to the canvas, on top of the root components
+            if (
+              isComponentFromMenu &&
+              isOverRootComponents &&
+              overContainerCannotHaveChildren
+            ) {
+              console.log(
+                "drag from canvas to menu, on top of root components",
+              );
+              const component = {
+                children: [],
+                id: generateId(),
+                componentName: activeId as ComponentName,
+                props: defaultProps[activeId as ComponentName],
+              };
+
+              const index = state.renderedComponents.findIndex(
+                (item) => item.id === overId,
+              );
+
+              state.renderedComponents.splice(index, 0, component);
+              return;
+            }
+
+            // Case : drag from the menu to the parent component
             if (isComponentFromMenu && overContainer) {
               console.log("drag from menu to parent component");
 
@@ -222,30 +260,17 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
 
-            // Case 3: drag from the menu on top of some component
-            if (isComponentFromMenu && !overContainer) {
-              console.log("drag from menu on top of some component");
-
-              const component = {
-                children: [],
-                id: generateId(),
-                componentName: activeId as ComponentName,
-                props: defaultProps[activeId as ComponentName],
-              };
-
-              const index = state.renderedComponents.findIndex(
-                (item) => item.id === overId,
-              );
-
-              state.renderedComponents.splice(index, 0, component);
-              return;
-            }
-
+            // Case : drag from the canvas to the canvas
             if (
-              !isComponentFromMenu &&
-              activeContainer &&
-              activeContainer === overContainer
+              state.renderedComponents.some(
+                (component) => component.id === activeId,
+              ) &&
+              state.renderedComponents.some(
+                (component) => component.id === overId,
+              )
             ) {
+              console.log("drag from canvas to canvas");
+
               state.renderedComponents = arrayMove(
                 state.renderedComponents,
                 state.renderedComponents.findIndex(
@@ -258,6 +283,43 @@ const useStoreBase = createWithEqualityFn(
 
               return;
             }
+
+            // Case : drag from the canvas to the component
+            if (
+              state.renderedComponents.some(
+                (component) => component.id === activeId,
+              ) &&
+              overContainer &&
+              activeComponent
+            ) {
+              console.log("drag from canvas to component");
+              const canHaveSpecificChildren =
+                acceptComponentsMap[overContainer.componentName]?.type ===
+                ComponentAcceptType.ParentWithSpecificChildren;
+              const childrenList =
+                acceptComponentsMap[overContainer.componentName]
+                  ?.childrenList || [];
+
+              if (
+                canHaveSpecificChildren &&
+                !childrenList.includes(activeComponent.componentName)
+              ) {
+                return;
+              }
+
+              const index = overContainer.children.findIndex(
+                (component) => component.id === overId,
+              );
+              overContainer.children.splice(index, 0, activeComponent);
+              state.renderedComponents = state.renderedComponents.filter(
+                (component) => component.id !== activeId,
+              );
+
+              return;
+            }
+
+            // ====================
+            // TODO: Add more cases
 
             // Check if the component can be dropped into the container
             if (overContainer) {
@@ -290,7 +352,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Drag from the menu to the canvas
             const isDragFromMenuToRootComponent =
-              isComponentFromMenu && isOverRootComponent;
+              isComponentFromMenu && isOverCanvas;
 
             if (isDragFromMenuToRootComponent) {
               const component = {
@@ -305,7 +367,7 @@ const useStoreBase = createWithEqualityFn(
             }
 
             // Drag from parent to the canvas
-            if (activeContainer && isOverRootComponent) {
+            if (activeContainer && isOverCanvas) {
               const list = activeContainer.children;
               const oldIndex = list.findIndex((item) => item.id === activeId);
 
@@ -344,7 +406,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Drag inside the same parent
             const isDragInsideSameParent =
-              !isOverRootComponent && activeContainer.id === overContainer.id;
+              !isOverCanvas && activeContainer.id === overContainer.id;
 
             if (isDragInsideSameParent) {
               const list = activeContainer.children;
