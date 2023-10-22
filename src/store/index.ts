@@ -414,7 +414,7 @@ const useStoreBase = createWithEqualityFn(
             }
 
             // ====================
-            // TODO: Add more cases
+            // TODO: Add more cases as needed
 
             console.info("No case matched");
           }),
