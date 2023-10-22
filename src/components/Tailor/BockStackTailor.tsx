@@ -90,9 +90,9 @@ export const BlockStackTailor = () => {
     <>
       <Link
         target="_blank"
-        url="https://polaris.shopify.com/components/layout-and-structure/divider"
+        url="https://polaris.shopify.com/components/layout-and-structure/block-stack"
       >
-        Divider
+        Block stack
       </Link>
 
       <TailorList items={blockStackPropsItems} />
