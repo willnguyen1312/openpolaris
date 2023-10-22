@@ -13,7 +13,7 @@ const traverse = (
 };
 
 export const generateCode = async (tree: RenderedComponent[]) => {
-  const importedComponents = new Set<ComponentName>(["AppProvider"]);
+  const importedComponents = new Set<ComponentName>([]);
   const importedIcons = new Set<string>();
 
   tree.forEach((item) => {
@@ -121,7 +121,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
   }, "");
 
   const result = `
-    import {${[...importedComponents]
+    import {${[...importedComponents, "AppProvider"]
       .sort()
       .join(",")}} from '@shopify/polaris'; ${
       [...importedIcons].length
