@@ -57,7 +57,13 @@ export function Header() {
             onChange={toggleIsShowCodePanel}
             checked={isShowCodePanel}
             label="Code panel"
-            value=""
+          />
+
+          {/* TODO: Complete builder mode */}
+          <Checkbox
+            onChange={toggleIsShowCodePanel}
+            checked={isShowCodePanel}
+            label="Builder mode"
           />
 
           <ButtonGroup>
