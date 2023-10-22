@@ -10,12 +10,24 @@ import {
 
 import { useDroppable } from "@dnd-kit/core";
 import { SortableContext, useSortable } from "@dnd-kit/sortable";
-import { CSS } from "@dnd-kit/utilities";
 import { omitBy } from "lodash-es";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
 const fitContentComponents: ComponentName[] = ["Button"];
+
+const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
+  const isSimpleComponent = !parentComponentList.includes(
+    component.componentName,
+  );
+
+  if (isSimpleComponent) {
+    return false;
+  }
+
+  const hasNoChildren = component.children.length === 0;
+  return hasNoChildren;
+};
 
 const finalizeComponentProps = (component: RenderedComponent) => {
   return omitBy(component.props, (value) => {
@@ -130,18 +142,13 @@ function SortableItem({
   component: RenderedComponent;
   children: React.ReactNode;
 }) {
-  const { attributes, listeners, setNodeRef, transform, transition } =
-    useSortable({
-      id: component.id,
-    });
-
-  const style = {
-    transform: CSS.Transform.toString(transform),
-    transition,
-  };
+  const { attributes, listeners, setNodeRef } = useSortable({
+    id: component.id,
+    disabled: checkIfComponentCanBeDragged(component),
+  });
 
   return (
-    <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
+    <div ref={setNodeRef} {...attributes} {...listeners}>
       {children}
     </div>
   );
