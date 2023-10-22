@@ -6,6 +6,7 @@ import {
   useSensor,
 } from "@dnd-kit/core";
 import { AppProvider, Frame, Grid } from "@shopify/polaris";
+import { themes } from "@shopify/polaris-tokens";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
 import { useEffect, useRef } from "react";
@@ -81,7 +82,7 @@ export function App() {
             position: "fixed",
             top: docY,
             left: docX,
-            transform: "translate(-10px, -10px)",
+            transform: `translate(-${themes.light.width["width-300"]}, -${themes.light.width["width-300"]})`,
           }}
           dropAnimation={null}
         >
