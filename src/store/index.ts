@@ -286,9 +286,10 @@ const useStoreBase = createWithEqualityFn(
                 canHaveSpecificChildren &&
                 childrenList.includes(activeComponent.componentName)
               ) {
-                const index = overContainer.children.findIndex(
+                let index = overContainer.children.findIndex(
                   (component) => component.id === overId,
                 );
+                index = index === -1 ? overContainer.children.length : index;
                 overContainer.children.splice(index, 0, activeComponent);
                 state.renderedComponents = state.renderedComponents.filter(
                   (component) => component.id !== activeId,
