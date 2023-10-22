@@ -70,7 +70,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
 
         if (typeof value === "string" && value) {
           result += `${key}=${normalizePropValue(value, key)} `;
-        } else if (typeof value === "number") {
+        } else if (typeof value === "number" && !Number.isNaN(value)) {
           result += `${key}=${normalizePropValue(value)} `;
         } else if (typeof value === "boolean" && value) {
           result += `${key} `;

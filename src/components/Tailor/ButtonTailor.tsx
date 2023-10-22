@@ -4,23 +4,23 @@ import { PropItem, TailorList } from "./shared";
 
 // This is to work around type error when upgrading to new version of polaris
 type ButtonSizes = NonNullable<ButtonProps["size"]> | "";
-const buttonSizeRecord: Record<ButtonSizes, true> = {
-  micro: true,
-  slim: true,
-  medium: true,
-  large: true,
-  "": true,
+const buttonSizeRecord: Record<ButtonSizes, 1> = {
+  micro: 1,
+  slim: 1,
+  medium: 1,
+  large: 1,
+  "": 1,
 };
 const buttonSizes = Object.keys(buttonSizeRecord) as ButtonSizes[];
 
 type ButtonTextAligns = NonNullable<ButtonProps["textAlign"]> | "";
-const buttonTextAlignRecord: Record<ButtonTextAligns, true> = {
-  left: true,
-  right: true,
-  center: true,
-  start: true,
-  end: true,
-  "": true,
+const buttonTextAlignRecord: Record<ButtonTextAligns, 1> = {
+  left: 1,
+  right: 1,
+  center: 1,
+  start: 1,
+  end: 1,
+  "": 1,
 };
 
 const buttonTextAligns = Object.keys(
@@ -28,31 +28,31 @@ const buttonTextAligns = Object.keys(
 ) as ButtonTextAligns[];
 
 type ButtonTones = NonNullable<ButtonProps["tone"]> | "";
-const buttonToneRecord: Record<ButtonTones, true> = {
-  critical: true,
-  success: true,
-  "": true,
+const buttonToneRecord: Record<ButtonTones, 1> = {
+  critical: 1,
+  success: 1,
+  "": 1,
 };
 const buttonTones = Object.keys(buttonToneRecord) as ButtonTones[];
 
 type ButtonVariants = NonNullable<ButtonProps["variant"]> | "";
-const buttonVariantRecord: Record<ButtonVariants, true> = {
-  plain: true,
-  primary: true,
-  tertiary: true,
-  monochromePlain: true,
-  "": true,
+const buttonVariantRecord: Record<ButtonVariants, 1> = {
+  plain: 1,
+  primary: 1,
+  tertiary: 1,
+  monochromePlain: 1,
+  "": 1,
 };
 const buttonVariants = Object.keys(buttonVariantRecord) as ButtonVariants[];
 
 type ButtonDisclosure =
   | NonNullable<Exclude<ButtonProps["disclosure"], boolean>>
   | "";
-const buttonDisclosureRecord: Record<ButtonDisclosure, true> = {
-  down: true,
-  up: true,
-  select: true,
-  "": true,
+const buttonDisclosureRecord: Record<ButtonDisclosure, 1> = {
+  down: 1,
+  up: 1,
+  select: 1,
+  "": 1,
 };
 const buttonDisclosure = Object.keys(
   buttonDisclosureRecord,

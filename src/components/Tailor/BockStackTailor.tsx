@@ -3,50 +3,50 @@ import { spacingScales } from "../../types";
 import { PropItem, TailorList } from "./shared";
 
 type BlockStackAs = NonNullable<BlockStackProps["as"]> | "";
-const blockStackAsRecord: Record<NonNullable<BlockStackAs>, true> = {
-  div: true,
-  ul: true,
-  ol: true,
-  fieldset: true,
-  "": true,
+const blockStackAsRecord: Record<NonNullable<BlockStackAs>, 1> = {
+  div: 1,
+  ul: 1,
+  ol: 1,
+  fieldset: 1,
+  "": 1,
 };
 const blockStackAsOptions = Object.keys(blockStackAsRecord) as BlockStackAs[];
 
 type BlockStackAlign = NonNullable<BlockStackProps["align"]> | "";
-const blockStackAlignRecord: Record<BlockStackAlign, true> = {
-  start: true,
-  center: true,
-  end: true,
-  "space-around": true,
-  "space-between": true,
-  "space-evenly": true,
-  "": true,
+const blockStackAlignRecord: Record<BlockStackAlign, 1> = {
+  start: 1,
+  center: 1,
+  end: 1,
+  "space-around": 1,
+  "space-between": 1,
+  "space-evenly": 1,
+  "": 1,
 };
 const blockStackAlignOptions = Object.keys(
   blockStackAlignRecord,
 ) as BlockStackAlign[];
 
 type BlockStackInlineAlign = NonNullable<BlockStackProps["inlineAlign"]> | "";
-const blockStackInlineAlignRecord: Record<BlockStackInlineAlign, true> = {
-  start: true,
-  center: true,
-  end: true,
-  baseline: true,
-  stretch: true,
-  "": true,
+const blockStackInlineAlignRecord: Record<BlockStackInlineAlign, 1> = {
+  start: 1,
+  center: 1,
+  end: 1,
+  baseline: 1,
+  stretch: 1,
+  "": 1,
 };
 const blockStackInlineAlignOptions = Object.keys(
   blockStackInlineAlignRecord,
 ) as BlockStackInlineAlign[];
 
 type BlockStackRole = NonNullable<BlockStackProps["role"]> | "";
-const blockStackRoleRecord: Record<BlockStackRole, true> = {
-  status: true,
-  presentation: true,
-  menu: true,
-  listbox: true,
-  combobox: true,
-  "": true,
+const blockStackRoleRecord: Record<BlockStackRole, 1> = {
+  status: 1,
+  presentation: 1,
+  menu: 1,
+  listbox: 1,
+  combobox: 1,
+  "": 1,
 };
 const blockStackRoleOptions = Object.keys(
   blockStackRoleRecord,

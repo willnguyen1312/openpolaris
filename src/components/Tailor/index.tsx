@@ -5,6 +5,7 @@ import { ComponentName } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { BleedTailor } from "./BleedTailor";
 import { BlockStackTailor } from "./BockStackTailor";
+import { BoxTailor } from "./BoxTailor";
 import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { DividerTailor } from "./DividerTailor";
@@ -20,6 +21,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Layout and Structure
   Bleed: BleedTailor,
   BlockStack: BlockStackTailor,
+  Box: BoxTailor,
   Divider: DividerTailor,
 };
 

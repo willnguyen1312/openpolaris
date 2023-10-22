@@ -19,7 +19,13 @@ import { getHumanReadableProp } from "../../utils/text";
 
 import styles from "./shared.module.css";
 
-export type Tailor = "Text" | "Select" | "Checkbox" | "Icon" | "Complex";
+export type Tailor =
+  | "Text"
+  | "Number"
+  | "Select"
+  | "Checkbox"
+  | "Icon"
+  | "Complex";
 
 export type PropItem<PropType = string> = {
   type: Tailor;
@@ -42,6 +48,35 @@ export const Text: React.FunctionComponent<{
 
   return (
     <TextField
+      onChange={handleChange}
+      label={label || getHumanReadableProp(prop)}
+      value={lodashGet(activeComponent.props, prop) || ""}
+      autoComplete="off"
+    />
+  );
+};
+
+export const Number: React.FunctionComponent<{
+  prop: string;
+  label?: string;
+}> = ({ prop, label }) => {
+  const activeComponent =
+    usePolarisStore.use.activeComponent() as RenderedComponent;
+  const setActiveComponentPropValue =
+    usePolarisStore.use.setActiveComponentPropValue();
+
+  const handleChange = (value: string) => {
+    if (value) {
+      setActiveComponentPropValue(prop, +value);
+      return;
+    }
+
+    setActiveComponentPropValue(prop, value);
+  };
+
+  return (
+    <TextField
+      type="number"
       onChange={handleChange}
       label={label || getHumanReadableProp(prop)}
       value={lodashGet(activeComponent.props, prop) || ""}
@@ -226,6 +261,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
 
 const TailorMap: Record<Tailor, React.FunctionComponent<any>> = {
   Text,
+  Number,
   Select,
   Checkbox,
   Icon,
