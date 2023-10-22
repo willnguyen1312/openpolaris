@@ -5,6 +5,7 @@ import {
   BoxProps,
   ButtonGroupProps,
   ButtonProps,
+  CalloutCardProps,
   DividerProps,
   PageActionsProps,
 } from "@shopify/polaris";
@@ -144,6 +145,25 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     visuallyHidden: false,
     zIndex: "",
   } as BoxProps,
+  CalloutCard: {
+    title: "Customize the style of your checkout",
+    illustration:
+      "https://cdn.shopify.com/s/assets/admin/checkout/settings-customizecart-705f57c725ac05be5a34ec20c05b94298cb8afd10aac7bd9c7ad02030f48cfa0.svg",
+    primaryAction: {
+      id: "",
+      content: "Customize checkout",
+      accessibilityLabel: "",
+      url: "",
+      external: false,
+    },
+    secondaryAction: {
+      id: "",
+      content: "Learn more about customizing checkout",
+      accessibilityLabel: "",
+      url: "",
+      external: false,
+    },
+  } as CalloutCardProps,
 
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],

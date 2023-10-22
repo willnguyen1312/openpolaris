@@ -806,6 +806,9 @@ export const acceptComponentsMap: Partial<
   Box: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  CalloutCard: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
