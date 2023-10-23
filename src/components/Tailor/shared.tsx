@@ -241,11 +241,15 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
               );
             }
 
-            // @ts-ignore
-            let Component = ComplexMap[type];
-
-            if (!Component && key === "icon") {
+            let Component: any;
+            // special case for icon
+            if (key === "icon") {
               Component = Icon;
+            }
+
+            if (!Component) {
+              // @ts-ignore
+              Component = ComplexMap[type];
             }
 
             if (!Component) {
