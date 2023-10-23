@@ -38,6 +38,10 @@ const mediaCardPropsItems: PropItem<keyof MediaCardProps>[] = [
     type: "Select",
     options: mediaCardSizeOptions,
   },
+  {
+    prop: "popoverActions",
+    type: "Complex",
+  },
 ];
 
 export const MediaCardTailor = () => {

@@ -70,7 +70,16 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
 
     if (Array.isArray(value)) {
-      return value.length ? JSON.stringify(value) : "";
+      const result = value.length ? JSON.stringify(value) : "";
+      const regex = /"icon":("[A-z]+")/gi;
+
+      const finalResult = result.replace(regex, (match) => {
+        const iconName = match.split(":")[1].replace(/"/g, "");
+        importedIcons.add(iconName);
+        return `"icon":${iconName}`;
+      });
+
+      return finalResult;
     }
 
     if (typeof value === "object") {

@@ -225,7 +225,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
   const isTopLevel = level === 0;
 
   return (
-    <>
+    <div>
       {isTopLevel && (
         <PolarisText as="p">{getHumanReadableName(prop)}</PolarisText>
       )}
@@ -262,7 +262,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
           })}
         </BlockStack>
       </Box>
-    </>
+    </div>
   );
 };
 

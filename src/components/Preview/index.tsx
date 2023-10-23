@@ -13,6 +13,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
 import React from "react";
 import { findComponentBy, usePolarisStore } from "../../store";
+import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
 const fitContentComponents: ComponentName[] = ["Button"];
@@ -30,21 +31,6 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   return hasNoChildren;
 };
 
-// Write a util function to collect all paths lead to a specific key
-function searchPaths(obj: any, key: string, currentPath: string[] = []): any {
-  if (typeof obj !== "object" || obj === null) {
-    return [];
-  }
-
-  if (obj[key]) {
-    return [currentPath];
-  }
-
-  return Object.entries(obj).flatMap(([k, v]) =>
-    searchPaths(v, key, [...currentPath, k]),
-  );
-}
-
 const finalizeComponentProps = (component: RenderedComponent) => {
   const result = structuredClone(
     omitBy(component.props, (value) => {
@@ -53,7 +39,11 @@ const finalizeComponentProps = (component: RenderedComponent) => {
       }
 
       // Special case for action prop
-      if (typeof value === "object" && !value.content) {
+      if (
+        typeof value === "object" &&
+        !Array.isArray(value) &&
+        !value.content
+      ) {
         return true;
       }
 
@@ -61,7 +51,7 @@ const finalizeComponentProps = (component: RenderedComponent) => {
     }),
   );
 
-  const paths = searchPaths(result, "icon").map(
+  const paths = collectPathsHasKey(result, "icon").map(
     (path: string[]) => path.join(".") + ".icon",
   );
 
