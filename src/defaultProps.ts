@@ -12,6 +12,7 @@ import {
   FormLayoutProps,
   GridCellProps,
   GridProps,
+  InlineGridProps,
   PageActionsProps,
 } from "@shopify/polaris";
 
@@ -225,6 +226,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       xl: 6,
     },
   } as GridCellProps,
+  InlineGrid: {
+    columns: "" as InlineGridProps["columns"],
+    gap: "" as InlineGridProps["gap"],
+    alignItems: "" as InlineGridProps["alignItems"],
+  } as InlineGridProps,
 
   Toast: {} as ToastProps,
 };

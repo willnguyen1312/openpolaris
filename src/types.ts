@@ -852,6 +852,9 @@ export const acceptComponentsMap: Partial<
   "Grid.Cell": {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  InlineGrid: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
