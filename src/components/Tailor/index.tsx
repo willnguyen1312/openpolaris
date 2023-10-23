@@ -19,6 +19,7 @@ import { InlineGridTailor } from "./InlineGridTailor";
 import { InlineStackTailor } from "./InlineStackTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
+import { MediaCardTailor } from "./MediaCardTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
@@ -43,6 +44,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   InlineStack: InlineStackTailor,
   Layout: LayoutTailor,
   "Layout.Section": LayoutSectionTailor,
+  MediaCard: MediaCardTailor,
 };
 
 export const Tailor = () => {

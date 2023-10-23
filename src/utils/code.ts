@@ -55,7 +55,8 @@ export const generateCode = async (tree: RenderedComponent[]) => {
   }) {
     if (typeof value === "string") {
       if (key === "icon") {
-        return `{${value}}`;
+        importedIcons.add(value);
+        return isParentObject ? value : `{${value}}`;
       }
       return `"${value}"`;
     }

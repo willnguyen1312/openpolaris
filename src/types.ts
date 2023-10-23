@@ -1,4 +1,4 @@
-import { FormLayout, Layout } from "@shopify/polaris";
+import { FormLayout, Layout, MediaCard } from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -869,6 +869,9 @@ export const acceptComponentsMap: Partial<
   "Layout.Section": {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  MediaCard: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
@@ -878,6 +881,8 @@ export type FormLayoutGroupProps = ComponentPropsWithoutRef<
 export type LayoutSectionProps = ComponentPropsWithoutRef<
   typeof Layout.Section
 >;
+
+export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.ParentWithSpecificChildren,

@@ -1,7 +1,7 @@
 import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
-import { get as lodashGet } from "lodash-es";
+import { get as lodashGet, set as lodashSet } from "lodash-es";
 
 import {
   ComponentName,
@@ -30,14 +30,52 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   return hasNoChildren;
 };
 
-const finalizeComponentProps = (component: RenderedComponent) => {
-  return omitBy(component.props, (value) => {
-    if (typeof value === "string" && value === "") {
-      return true;
-    }
+// Write a util function to collect all paths lead to a specific key
+function searchPaths(obj: any, key: string, currentPath: string[] = []): any {
+  if (typeof obj !== "object" || obj === null) {
+    return [];
+  }
 
-    return false;
+  if (obj[key]) {
+    return [currentPath];
+  }
+
+  return Object.entries(obj).flatMap(([k, v]) =>
+    searchPaths(v, key, [...currentPath, k]),
+  );
+}
+
+const finalizeComponentProps = (component: RenderedComponent) => {
+  const result = structuredClone(
+    omitBy(component.props, (value) => {
+      if (typeof value === "string" && value === "") {
+        return true;
+      }
+
+      // Special case for action prop
+      if (typeof value === "object" && !value.content) {
+        return true;
+      }
+
+      return false;
+    }),
+  );
+
+  const paths = searchPaths(result, "icon").map(
+    (path: string[]) => path.join(".") + ".icon",
+  );
+
+  paths.forEach((path: string) => {
+    const icon = lodashGet(result, path);
+
+    // @ts-ignore
+    const Icon = PolarisIcon[icon];
+    if (Icon) {
+      lodashSet(result, path, Icon);
+    }
   });
+
+  return result;
 };
 
 export const Preview = ({ component }: { component: RenderedComponent }) => {

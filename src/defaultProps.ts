@@ -23,6 +23,7 @@ import {
   ComponentName,
   FormLayoutGroupProps,
   LayoutSectionProps,
+  MediaCardProps,
 } from "./types";
 
 export const defaultProps: Partial<Record<ComponentName, any>> = {
@@ -40,6 +41,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       accessibilityLabel: "accessibilityLabel",
       url: "",
       external: false,
+      target: "" as any,
     },
   } as AccountConnectionProps,
   Button: {
@@ -79,6 +81,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       id: "",
       accessibilityLabel: "",
       url: "",
+      target: "" as any,
     },
     secondaryActions: [
       {
@@ -167,6 +170,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       accessibilityLabel: "",
       url: "",
       external: false,
+      target: "" as any,
     },
     secondaryAction: {
       id: "",
@@ -174,6 +178,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       accessibilityLabel: "",
       url: "",
       external: false,
+      target: "" as any,
     },
   } as CalloutCardProps,
   Card: {
@@ -194,10 +199,31 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     fullWidth: false,
     action: {
       content: "Add transfer",
+      accessibilityLabel: "",
+      destructive: false,
+      external: false,
+      disabled: false,
+      icon: undefined,
+      id: "",
+      outline: false,
+      plain: false,
+      loading: false,
+      url: "",
+      target: "" as any,
     },
     secondaryAction: {
       content: "Learn more",
       url: "https://help.shopify.com",
+      accessibilityLabel: "",
+      destructive: false,
+      external: false,
+      disabled: false,
+      icon: undefined,
+      id: "",
+      outline: false,
+      plain: false,
+      loading: false,
+      target: "" as any,
     },
     footerContent: "Learn more about transfers",
   } as EmptyStateProps,
@@ -249,6 +275,43 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   "Layout.Section": {
     variant: "" as LayoutSectionProps["variant"],
   } as LayoutSectionProps,
+  MediaCard: {
+    title: "Getting Started",
+    description:
+      "Discover how Shopify can power up your entrepreneurial journey.",
+    primaryAction: {
+      content: "Learn about getting started",
+      accessibilityLabel: "",
+      destructive: false,
+      external: false,
+      disabled: false,
+      id: "",
+      outline: false,
+      plain: false,
+      loading: false,
+      url: "",
+      target: "" as any,
+      icon: undefined,
+    },
+    secondaryAction: {
+      content: "",
+      accessibilityLabel: "",
+      destructive: false,
+      external: false,
+      disabled: false,
+      id: "",
+      outline: false,
+      plain: false,
+      loading: false,
+      url: "",
+      target: "" as any,
+      icon: undefined,
+    },
+    // TODO: How to support this sophisticated one? 😅
+    // popoverActions: [],
+    portrait: false,
+    size: "" as MediaCardProps["size"],
+  } as MediaCardProps,
 
   Toast: {} as ToastProps,
 };

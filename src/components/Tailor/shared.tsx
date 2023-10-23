@@ -139,7 +139,10 @@ const iconList = Object.keys(iconMetadata)
     label: icon,
   }));
 
-export const Icon = () => {
+export const Icon: React.FunctionComponent<{
+  prop: string;
+  label?: string;
+}> = ({ prop, label }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -173,7 +176,7 @@ export const Icon = () => {
       return matchedOption && matchedOption.label;
     });
 
-    setActiveComponentPropValue("icon", selectedValue[0] ?? "");
+    setActiveComponentPropValue(prop, selectedValue[0] ?? "");
     setInputValue(selectedValue[0] ?? "");
   };
 
@@ -185,7 +188,7 @@ export const Icon = () => {
     <Autocomplete.TextField
       onBlur={syncWithIconInStore}
       onChange={updateText}
-      label="Icon"
+      label={label || getHumanReadableName(prop)}
       value={inputValue}
       prefix={<PolarisIcon source={SearchMinor} tone="base" />}
       placeholder="Search"
@@ -239,7 +242,11 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
             }
 
             // @ts-ignore
-            const Component = ComplexMap[type];
+            let Component = ComplexMap[type];
+
+            if (!Component && key === "icon") {
+              Component = Icon;
+            }
 
             if (!Component) {
               return null;
