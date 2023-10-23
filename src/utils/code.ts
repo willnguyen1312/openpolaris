@@ -37,7 +37,16 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     });
   });
 
-  function normalizePropValue(value: any, key = "") {
+  // function normalizePropValue(value: any, key = "", isParentObject = false) {
+  function normalizePropValue({
+    value,
+    key = "",
+    isParentObject = false,
+  }: {
+    value: any;
+    key?: string;
+    isParentObject?: boolean;
+  }) {
     if (typeof value === "string") {
       if (key === "icon") {
         return `{${value}}`;
@@ -46,7 +55,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
 
     if (typeof value === "number") {
-      return `{${value}}`;
+      return isParentObject ? `${value}` : `"${value}"`;
     }
 
     if (typeof value === "boolean") {
@@ -62,7 +71,11 @@ export const generateCode = async (tree: RenderedComponent[]) => {
 
       Object.keys(value).forEach((key) => {
         if (value[key]) {
-          result += `${key}:${normalizePropValue(value[key])},`;
+          result += `${key}:${normalizePropValue({
+            value: value[key],
+            key,
+            isParentObject: true,
+          })},`;
         }
       });
       result = result.slice(0, -1) + "}";
@@ -80,16 +93,19 @@ export const generateCode = async (tree: RenderedComponent[]) => {
         const value = props[key];
 
         if (typeof value === "string" && value) {
-          result += `${key}=${normalizePropValue(value, key)} `;
+          result += `${key}=${normalizePropValue({
+            value,
+            key,
+          })} `;
         } else if (typeof value === "number" && !Number.isNaN(value)) {
-          result += `${key}=${normalizePropValue(value)} `;
+          result += `${key}=${normalizePropValue({ value })} `;
         } else if (typeof value === "boolean" && value) {
           result += `${key} `;
         } else if (typeof value === "object" && Object.keys(value).length) {
           if (Array.isArray(value)) {
-            result += `${key}={${normalizePropValue(value)}} `;
+            result += `${key}={${normalizePropValue({ value })}} `;
           } else {
-            const normalizedPropValue = normalizePropValue(value);
+            const normalizedPropValue = normalizePropValue({ value });
             if (normalizedPropValue) {
               result += `${key}={${normalizedPropValue}} `;
             }

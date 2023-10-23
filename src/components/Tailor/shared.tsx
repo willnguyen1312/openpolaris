@@ -204,7 +204,7 @@ export const Icon = () => {
 };
 
 const ComplexMap = {
-  number: Text,
+  number: Number,
   string: Text,
   boolean: Checkbox,
 };

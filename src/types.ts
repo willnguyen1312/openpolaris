@@ -841,6 +841,9 @@ export const acceptComponentsMap: Partial<
   "FormLayout.Group": {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  Grid: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
