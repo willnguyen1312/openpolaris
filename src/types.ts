@@ -61,6 +61,7 @@ export type ComponentName =
   | "InlineGrid"
   | "InlineStack"
   | "Layout"
+  | "Layout.Section"
   | "MediaCard"
   | "Page"
   | "ActionList"
@@ -283,6 +284,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "Layout",
+    category: "Layout and structure",
+  },
+  {
+    componentName: "Layout.Section",
     category: "Layout and structure",
   },
   {
@@ -861,13 +866,18 @@ export const acceptComponentsMap: Partial<
   Layout: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  "Layout.Section": {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
   typeof FormLayout.Group
 >;
 
-export type SectionProps = ComponentPropsWithoutRef<typeof Layout.Section>;
+export type LayoutSectionProps = ComponentPropsWithoutRef<
+  typeof Layout.Section
+>;
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.ParentWithSpecificChildren,

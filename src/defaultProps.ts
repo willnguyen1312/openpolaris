@@ -19,7 +19,11 @@ import {
 } from "@shopify/polaris";
 
 import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
-import { ComponentName, FormLayoutGroupProps } from "./types";
+import {
+  ComponentName,
+  FormLayoutGroupProps,
+  LayoutSectionProps,
+} from "./types";
 
 export const defaultProps: Partial<Record<ComponentName, any>> = {
   // Actions
@@ -242,6 +246,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   Layout: {
     sectioned: false,
   } as LayoutProps,
+  "Layout.Section": {
+    variant: "" as LayoutSectionProps["variant"],
+  } as LayoutSectionProps,
 
   Toast: {} as ToastProps,
 };
