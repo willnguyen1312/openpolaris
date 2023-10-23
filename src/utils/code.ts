@@ -4,6 +4,12 @@ import * as prettier from "prettier/standalone";
 
 import { ComponentName, RenderedComponent } from "../types";
 
+const specialComponentWithDefaultTrueProps: Partial<
+  Record<ComponentName, any>
+> = {
+  InlineStack: ["wrap"],
+};
+
 const traverse = (
   node: RenderedComponent,
   visit: (node: RenderedComponent) => void,
@@ -83,7 +89,8 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
   }
 
-  function buildComponentProps(props: RenderedComponent["props"]) {
+  function buildComponentProps(component: RenderedComponent) {
+    const { props } = component;
     let result = "";
 
     if (props) {
@@ -99,7 +106,21 @@ export const generateCode = async (tree: RenderedComponent[]) => {
           })} `;
         } else if (typeof value === "number" && !Number.isNaN(value)) {
           result += `${key}=${normalizePropValue({ value })} `;
-        } else if (typeof value === "boolean" && value) {
+        } else if (typeof value === "boolean") {
+          const isNotSkip =
+            specialComponentWithDefaultTrueProps[
+              component.componentName as ComponentName
+            ]?.includes(key);
+
+          if (!value && isNotSkip) {
+            result += `${key}={${value}}`;
+            return;
+          }
+
+          if (!value) {
+            return;
+          }
+
           result += `${key} `;
         } else if (typeof value === "object" && Object.keys(value).length) {
           if (Array.isArray(value)) {
@@ -121,7 +142,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     let result = `<${node.componentName} `;
 
     if (node.props) {
-      result += buildComponentProps(node.props);
+      result += buildComponentProps(node);
     }
 
     if (node.children.length === 0) {

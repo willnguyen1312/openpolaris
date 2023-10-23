@@ -855,6 +855,9 @@ export const acceptComponentsMap: Partial<
   InlineGrid: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  InlineStack: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

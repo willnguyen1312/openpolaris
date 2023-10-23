@@ -16,6 +16,7 @@ import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
 import { InlineGridTailor } from "./InlineGridTailor";
+import { InlineStackTailor } from "./InlineStackTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
@@ -37,6 +38,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   Grid: GridTailor,
   "Grid.Cell": GridCellTailor,
   InlineGrid: InlineGridTailor,
+  InlineStack: InlineStackTailor,
 };
 
 export const Tailor = () => {
