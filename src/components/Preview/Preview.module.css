@@ -12,7 +12,13 @@
 
 .emptyChild {
   min-height: var(--p-height-800);
+}
+
+.builderMode {
+  background: var(--p-color-bg-surface-success);
   border: 1px dashed var(--p-color-border-focus);
+  padding: var(--p-space-400);
+  margin: var(--p-space-200) 0;
 }
 
 .selected {

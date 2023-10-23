@@ -9,9 +9,9 @@ import {
   parentComponentList,
 } from "../../types";
 
-import { useDroppable } from "@dnd-kit/core";
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
+import React from "react";
 import { usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
@@ -61,7 +61,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const isSelected = activeComponent?.id === component.id;
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
-
   const finalComponentProps = finalizeComponentProps(component);
 
   return (
@@ -94,12 +93,9 @@ function ComponentWithContainer({
   component: RenderedComponent;
 }) {
   const { id, children } = component;
-
-  const { setNodeRef } = useDroppable({
-    id,
-  });
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
+  const isBuilderMode = usePolarisStore.use.isBuilderMode();
   // @ts-ignore
   const Component = lodashGet(Polaris, component.componentName.split("."));
   const isEmptyChild = !component.children.length;
@@ -109,26 +105,26 @@ function ComponentWithContainer({
   const finalComponentProps = finalizeComponentProps(component);
 
   return (
-    <DragAndDropItem key={component.id} component={component}>
-      <div
-        ref={setNodeRef}
-        className={classNames(styles.containerWrapper, {
-          [styles.emptyChild]: isEmptyChild,
-          [styles.selected]: isSelected && !isDragging,
-        })}
-        onPointerDown={(event) => {
-          event.stopPropagation();
-          setActiveComponentId(component);
-        }}
-      >
-        <DragAndDropItem key={id} component={component}>
-          <Component {...finalComponentProps}>
-            {children.map((child) => (
-              <Preview key={child.id} component={child} />
-            ))}
-          </Component>
-        </DragAndDropItem>
-      </div>
+    <DragAndDropItem
+      key={component.id}
+      component={component}
+      className={classNames(styles.containerWrapper, {
+        [styles.emptyChild]: isEmptyChild,
+        [styles.selected]: isSelected && !isDragging,
+        [styles.builderMode]: isBuilderMode,
+      })}
+      onPointerDown={(event) => {
+        event.stopPropagation();
+        setActiveComponentId(component);
+      }}
+    >
+      <DragAndDropItem key={id} component={component}>
+        <Component {...finalComponentProps}>
+          {children.map((child) => (
+            <Preview key={child.id} component={child} />
+          ))}
+        </Component>
+      </DragAndDropItem>
     </DragAndDropItem>
   );
 }
@@ -136,17 +132,26 @@ function ComponentWithContainer({
 function DragAndDropItem({
   component,
   children,
+  ...props
 }: {
   component: RenderedComponent;
   children: React.ReactNode;
-}) {
-  const { attributes, listeners, setNodeRef } = useSortable({
+} & React.PropsWithRef<JSX.IntrinsicElements["div"]>) {
+  const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
     disabled: checkIfComponentCanBeDragged(component),
   });
 
+  const style: React.CSSProperties = isOver ? {} : {};
+
   return (
-    <div ref={setNodeRef} {...attributes} {...listeners}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      {...props}
+      {...attributes}
+      {...listeners}
+    >
       {children}
     </div>
   );
