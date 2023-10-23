@@ -184,6 +184,16 @@ const useStoreBase = createWithEqualityFn(
               (component) => component.id === overId,
             );
 
+            const overComponentInsideActiveComponent = findComponentBy(
+              activeComponent?.children || [],
+              (component) => component.id === overId,
+            );
+
+            if (overComponentInsideActiveComponent) {
+              console.info("You cannot drag a component inside itself");
+              return;
+            }
+
             // Find the containers
             let activeContainer = findComponentBy(
               state.renderedComponents,
