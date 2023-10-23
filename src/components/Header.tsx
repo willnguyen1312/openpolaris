@@ -22,12 +22,16 @@ import styles from "./Header.module.css";
 export function Header() {
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
+  const isBuilderMode = usePolarisStore.use.isBuilderMode();
+  const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const reset = usePolarisStore.use.reset();
-  const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
   const [active, setActive] = useState(false);
   const closeToast = () => setActive(false);
   const showToast = () => setActive(true);
+
+  const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
+  const toggleIsBuilderMode = () => setIsBuilderMode(!isBuilderMode);
 
   const handleShareClick = () => {
     showToast();
@@ -59,10 +63,9 @@ export function Header() {
             label="Code panel"
           />
 
-          {/* TODO: Complete builder mode */}
           <Checkbox
-            onChange={toggleIsShowCodePanel}
-            checked={isShowCodePanel}
+            onChange={toggleIsBuilderMode}
+            checked={isBuilderMode}
             label="Builder mode"
           />
 

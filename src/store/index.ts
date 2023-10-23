@@ -36,14 +36,16 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 interface StoreState {
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
+  isBuilderMode: boolean;
   activeDraggableId: string | null;
   renderedComponents: RenderedComponent[];
 }
 
 type StoreActions = {
   setTree: (tree: RenderedComponent[]) => void;
-  setIsShowCodePanel: (showCodePanel: boolean) => void;
+  setIsShowCodePanel: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
+  setIsBuilderMode: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -86,9 +88,15 @@ const useStoreBase = createWithEqualityFn(
           });
         },
         isShowCodePanel: false,
-        setIsShowCodePanel: (showCodePanel: boolean) =>
+        setIsShowCodePanel: (value: boolean) =>
           set((state: StoreState) => {
-            state.isShowCodePanel = showCodePanel;
+            state.isShowCodePanel = value;
+          }),
+
+        isBuilderMode: false,
+        setIsBuilderMode: (value: boolean) =>
+          set((state: StoreState) => {
+            state.isBuilderMode = value;
           }),
 
         activeDraggableId: null,
