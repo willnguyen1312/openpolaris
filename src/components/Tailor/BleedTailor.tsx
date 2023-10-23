@@ -2,7 +2,7 @@ import { BleedProps, Link } from "@shopify/polaris";
 import { spacingScales } from "../../types";
 import { PropItem, TailorList } from "./shared";
 
-const bleedPropsItem: PropItem<keyof BleedProps>[] = [
+const bleedPropsItems: PropItem<keyof BleedProps>[] = [
   {
     prop: "marginInline",
     type: "Select",
@@ -45,7 +45,7 @@ export const BleedTailor = () => {
         Bleed
       </Link>
 
-      <TailorList items={bleedPropsItem} />
+      <TailorList items={bleedPropsItems} />
     </>
   );
 };

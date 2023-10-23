@@ -1,4 +1,4 @@
-import { FormLayout } from "@shopify/polaris";
+import { FormLayout, Layout } from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -858,11 +858,16 @@ export const acceptComponentsMap: Partial<
   InlineStack: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  Layout: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
   typeof FormLayout.Group
 >;
+
+export type SectionProps = ComponentPropsWithoutRef<typeof Layout.Section>;
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.ParentWithSpecificChildren,
