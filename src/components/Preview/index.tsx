@@ -132,7 +132,8 @@ function ComponentWithContainer({
 
   return (
     <DragAndDropItem
-      key={component.id}
+      id={id}
+      key={id}
       component={component}
       className={classNames(styles.containerWrapper, extraClasses, {
         [styles.emptyChild]: isEmptyChild,
@@ -144,13 +145,11 @@ function ComponentWithContainer({
         setActiveComponentId(component);
       }}
     >
-      <DragAndDropItem key={id} id={id} component={component}>
-        <Component {...finalComponentProps}>
-          {children.map((child) => (
-            <Preview key={child.id} component={child} />
-          ))}
-        </Component>
-      </DragAndDropItem>
+      <Component {...finalComponentProps}>
+        {children.map((child) => (
+          <Preview key={child.id} component={child} />
+        ))}
+      </Component>
     </DragAndDropItem>
   );
 }
