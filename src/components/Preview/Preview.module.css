@@ -18,7 +18,7 @@
   background: var(--p-color-bg-surface-success);
   border: 1px dashed var(--p-color-border-focus);
   padding: var(--p-space-400);
-  margin: var(--p-space-200) 0;
+  margin: var(--p-space-200) var(--p-space-100);
 }
 
 .selected {

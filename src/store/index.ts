@@ -179,6 +179,10 @@ const useStoreBase = createWithEqualityFn(
               state.renderedComponents,
               (component) => component.id === activeId,
             );
+            const overComponent = findComponentBy(
+              state.renderedComponents,
+              (component) => component.id === overId,
+            );
 
             // Find the containers
             let activeContainer = findComponentBy(
@@ -196,6 +200,14 @@ const useStoreBase = createWithEqualityFn(
                 return component.children.some((child) => child.id === overId);
               },
             );
+
+            const canOverComponentHaveChildren =
+              acceptComponentsMap[overComponent?.componentName as ComponentName]
+                ?.type === ComponentAcceptType.ParentWithAnyChildren;
+
+            if (canOverComponentHaveChildren) {
+              overContainer = overComponent;
+            }
 
             // If the overContainer is null, it means that the overId is from container itself
             if (!overContainer) {

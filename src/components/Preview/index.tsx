@@ -12,7 +12,7 @@ import {
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
 import React from "react";
-import { usePolarisStore } from "../../store";
+import { findComponentBy, usePolarisStore } from "../../store";
 import styles from "./Preview.module.css";
 
 const fitContentComponents: ComponentName[] = ["Button"];
@@ -94,6 +94,7 @@ function ComponentWithContainer({
 }) {
   const { id, children } = component;
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
   // @ts-ignore
@@ -104,11 +105,36 @@ function ComponentWithContainer({
   const isDragging = activeDraggableId === component.id;
   const finalComponentProps = finalizeComponentProps(component);
 
+  const [extraClasses, setExtraClasses] = React.useState("");
+
+  React.useEffect(() => {
+    const parentComponent = findComponentBy(renderedComponents, (component) =>
+      component.children.some((child) => child.id === id),
+    );
+
+    const isCompoundComponent =
+      component.componentName.includes(".") &&
+      component.componentName.includes(
+        parentComponent?.componentName as string,
+      );
+
+    if (!isCompoundComponent) {
+      return;
+    }
+
+    const wrapperComponent = document.getElementById(id);
+    const targetComponent = wrapperComponent?.firstChild as HTMLElement;
+    if (targetComponent) {
+      const classes = targetComponent.className;
+      setExtraClasses(classes);
+    }
+  }, [renderedComponents]);
+
   return (
     <DragAndDropItem
       key={component.id}
       component={component}
-      className={classNames(styles.containerWrapper, {
+      className={classNames(styles.containerWrapper, extraClasses, {
         [styles.emptyChild]: isEmptyChild,
         [styles.selected]: isSelected && !isDragging,
         [styles.builderMode]: isBuilderMode,
@@ -118,7 +144,7 @@ function ComponentWithContainer({
         setActiveComponentId(component);
       }}
     >
-      <DragAndDropItem key={id} component={component}>
+      <DragAndDropItem key={id} id={id} component={component}>
         <Component {...finalComponentProps}>
           {children.map((child) => (
             <Preview key={child.id} component={child} />

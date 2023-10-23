@@ -13,6 +13,7 @@ import { CardTailor } from "./CardTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
+import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 
@@ -33,6 +34,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   EmptyState: EmptyStateTailor,
   "FormLayout.Group": FormLayoutGroupTailor,
   Grid: GridTailor,
+  "Grid.Cell": GridCellTailor,
 };
 
 export const Tailor = () => {

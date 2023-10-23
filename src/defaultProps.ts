@@ -10,6 +10,7 @@ import {
   DividerProps,
   EmptyStateProps,
   FormLayoutProps,
+  GridCellProps,
   GridProps,
   PageActionsProps,
 } from "@shopify/polaris";
@@ -201,11 +202,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   } as FormLayoutGroupProps,
   Grid: {
     columns: {
-      xs: 2,
-      sm: 4,
-      md: 8,
+      xs: 12,
+      sm: 12,
+      md: 12,
       lg: 12,
-      xl: 16,
+      xl: 12,
     },
     gap: {
       xs: "",
@@ -215,6 +216,15 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       xl: "",
     },
   } as GridProps,
+  "Grid.Cell": {
+    columnSpan: {
+      xs: 6,
+      sm: 6,
+      md: 6,
+      lg: 4,
+      xl: 6,
+    },
+  } as GridCellProps,
 
   Toast: {} as ToastProps,
 };

@@ -57,6 +57,7 @@ export type ComponentName =
   | "FormLayout"
   | "FormLayout.Group"
   | "Grid"
+  | "Grid.Cell"
   | "InlineGrid"
   | "InlineStack"
   | "Layout"
@@ -266,6 +267,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "Grid",
+    category: "Layout and structure",
+  },
+  {
+    componentName: "Grid.Cell",
     category: "Layout and structure",
   },
   {
@@ -814,7 +819,7 @@ export const acceptComponentsMap: Partial<
   PageActions: { type: ComponentAcceptType.Single },
   AccountConnection: { type: ComponentAcceptType.Single },
   ButtonGroup: {
-    type: ComponentAcceptType.ParentWithSpecificChildren,
+    type: ComponentAcceptType.ParentWithAnyChildren,
     childrenList: ["Button"],
   },
   Bleed: {
@@ -842,6 +847,9 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
   Grid: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
+  "Grid.Cell": {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
 };
