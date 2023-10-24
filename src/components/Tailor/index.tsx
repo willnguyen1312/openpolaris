@@ -3,6 +3,7 @@ import { ComponentType } from "react";
 import { usePolarisStore } from "../../store";
 import { ComponentName } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
+import { AvatarTailor } from "./AvatarTailor";
 import { BleedTailor } from "./BleedTailor";
 import { BlockStackTailor } from "./BockStackTailor";
 import { BoxTailor } from "./BoxTailor";
@@ -51,6 +52,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Typography
   Text: TextTailor,
+
+  // Images and Icons
+  Avatar: AvatarTailor,
 };
 
 export const Tailor = () => {

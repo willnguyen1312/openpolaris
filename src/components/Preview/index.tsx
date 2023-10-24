@@ -16,7 +16,7 @@ import { findComponentBy, usePolarisStore } from "../../store";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
-const fitContentComponents: ComponentName[] = ["Button"];
+const fitContentComponents: ComponentName[] = ["Button", "Avatar"];
 
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   const isSimpleComponent = !parentComponentList.includes(

@@ -875,6 +875,9 @@ export const acceptComponentsMap: Partial<
   Text: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  Avatar: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

@@ -1,5 +1,6 @@
 import {
   AccountConnectionProps,
+  AvatarProps,
   BleedProps,
   BlockStackProps,
   BoxProps,
@@ -407,6 +408,16 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   } as PageProps,
 
   Toast: {} as ToastProps,
+
+  // Images and icons
+  Avatar: {
+    size: "" as AvatarProps["size"],
+    name: "",
+    initials: "",
+    customer: false,
+    source: "",
+    accessibilityLabel: "",
+  } as AvatarProps,
 
   // Typography
   Text: {
