@@ -19,6 +19,7 @@ import { GridTailor } from "./GridTailor";
 import { IconTailor } from "./IconTailor";
 import { InlineGridTailor } from "./InlineGridTailor";
 import { InlineStackTailor } from "./InlineStackTailor";
+import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
@@ -57,6 +58,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Images and Icons
   Avatar: AvatarTailor,
   Icon: IconTailor,
+  KeyboardKey: KeyboardKeyTailor,
 };
 
 export const Tailor = () => {

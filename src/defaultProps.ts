@@ -16,6 +16,7 @@ import {
   IconProps,
   InlineGridProps,
   InlineStackProps,
+  KeyboardKeyProps,
   LayoutProps,
   PageActionsProps,
   PageProps,
@@ -424,6 +425,10 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     tone: "" as IconProps["tone"],
     accessibilityLabel: "",
   } as IconProps,
+  KeyboardKey: {
+    children: "Polaris",
+    size: "" as KeyboardKeyProps["size"],
+  } as KeyboardKeyProps,
 
   // Typography
   Text: {
