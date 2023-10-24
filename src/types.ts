@@ -882,6 +882,9 @@ export const acceptComponentsMap: Partial<
   Thumbnail: {
     type: ComponentAcceptType.Single,
   },
+  VideoThumbnail: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

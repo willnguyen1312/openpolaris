@@ -24,6 +24,7 @@ import {
   ThumbnailProps,
 } from "@shopify/polaris";
 
+import { VideoThumbnailProps } from "@shopify/polaris/build/ts/src/components/VideoThumbnail";
 import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
 import {
   ComponentName,
@@ -437,6 +438,14 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     alt: "Black choker necklace",
     transparent: false,
   } as ThumbnailProps,
+  VideoThumbnail: {
+    thumbnailUrl:
+      "https://burst.shopifycdn.com/photos/business-woman-smiling-in-office.jpg?width=1850",
+    videoLength: 80,
+    videoProgress: 45,
+    showVideoProgress: true,
+    accessibilityLabel: "Play video of length 1:20",
+  } as VideoThumbnailProps,
 
   // Typography
   Text: {

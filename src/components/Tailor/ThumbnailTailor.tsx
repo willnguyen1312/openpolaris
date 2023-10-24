@@ -38,7 +38,7 @@ export const ThumbnailTailor = () => {
         target="_blank"
         url="https://polaris.shopify.com/components/images-and-icons/thumbnail"
       >
-        Keyboard key
+        Thumbnail
       </Link>
 
       <TailorList items={thumbnailPropsItems} />
