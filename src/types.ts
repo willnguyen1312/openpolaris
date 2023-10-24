@@ -809,71 +809,66 @@ export const breakpointsAliases = Object.keys(
 
 export const enum ComponentAcceptType {
   Single = "Single",
-  ParentWithSpecificChildren = "ParentWithSpecificChildren",
-  ParentWithAnyChildren = "ParentWithAnyChildren",
+  Parent = "Parent",
 }
 
 export const acceptComponentsMap: Partial<
-  Record<
-    ComponentName,
-    { type: ComponentAcceptType; childrenList?: ComponentName[] }
-  >
+  Record<ComponentName, { type: ComponentAcceptType }>
 > = {
   Divider: { type: ComponentAcceptType.Single },
   Button: { type: ComponentAcceptType.Single },
   PageActions: { type: ComponentAcceptType.Single },
   AccountConnection: { type: ComponentAcceptType.Single },
   ButtonGroup: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
-    childrenList: ["Button"],
+    type: ComponentAcceptType.Parent,
   },
   Bleed: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   BlockStack: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Box: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   CalloutCard: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Card: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   EmptyState: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   FormLayout: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   "FormLayout.Group": {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Grid: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   "Grid.Cell": {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   InlineGrid: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   InlineStack: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Layout: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   "Layout.Section": {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   MediaCard: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Text: {
-    type: ComponentAcceptType.ParentWithAnyChildren,
+    type: ComponentAcceptType.Parent,
   },
   Avatar: {
     type: ComponentAcceptType.Single,
@@ -894,8 +889,7 @@ export type LayoutSectionProps = ComponentPropsWithoutRef<
 export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
-  ComponentAcceptType.ParentWithSpecificChildren,
-  ComponentAcceptType.ParentWithAnyChildren,
+  ComponentAcceptType.Parent,
 ]);
 
 export const parentComponentList: ComponentName[] = Object.keys(

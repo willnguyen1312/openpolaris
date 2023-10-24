@@ -213,7 +213,7 @@ const useStoreBase = createWithEqualityFn(
 
             const canOverComponentHaveChildren =
               acceptComponentsMap[overComponent?.componentName as ComponentName]
-                ?.type === ComponentAcceptType.ParentWithAnyChildren;
+                ?.type === ComponentAcceptType.Parent;
 
             if (canOverComponentHaveChildren) {
               overContainer = overComponent;
@@ -305,31 +305,10 @@ const useStoreBase = createWithEqualityFn(
               activeComponent
             ) {
               console.info("drag from canvas to component");
-              const canHaveSpecificChildren =
-                acceptComponentsMap[overContainer.componentName]?.type ===
-                ComponentAcceptType.ParentWithSpecificChildren;
-              const childrenList =
-                acceptComponentsMap[overContainer.componentName]
-                  ?.childrenList || [];
-
-              if (
-                canHaveSpecificChildren &&
-                childrenList.includes(activeComponent.componentName)
-              ) {
-                let index = overContainer.children.findIndex(
-                  (component) => component.id === overId,
-                );
-                index = index === -1 ? overContainer.children.length : index;
-                overContainer.children.splice(index, 0, activeComponent);
-                state.renderedComponents = state.renderedComponents.filter(
-                  (component) => component.id !== activeId,
-                );
-                return;
-              }
 
               const canHaveAnyChildren =
                 acceptComponentsMap[overContainer.componentName]?.type ===
-                ComponentAcceptType.ParentWithAnyChildren;
+                ComponentAcceptType.Parent;
 
               if (canHaveAnyChildren) {
                 let index = overContainer.children.findIndex(
