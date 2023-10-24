@@ -38,7 +38,7 @@ const finalizeComponentProps = (component: RenderedComponent) => {
     // Special case for action prop
     if (
       typeof value === "object" &&
-      key.includes("action") &&
+      /action/i.test(key) &&
       !Array.isArray(value) &&
       !value.content
     ) {
