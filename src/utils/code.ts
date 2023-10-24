@@ -62,7 +62,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
 
     if (typeof value === "number") {
-      return isParentObject ? `${value}` : `"${value}"`;
+      return isParentObject ? `${value}` : `{${value}}`;
     }
 
     if (typeof value === "boolean") {
@@ -70,16 +70,19 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
 
     if (Array.isArray(value)) {
-      const result = value.length ? JSON.stringify(value) : "";
-      const regex = /"icon":("[A-z]+")/gi;
+      let result = value.length ? JSON.stringify(value) : "";
+      const iconRegex = /"icon":("[A-z]+")/gi;
 
-      const finalResult = result.replace(regex, (match) => {
+      result = result.replace(iconRegex, (match) => {
         const iconName = match.split(":")[1].replace(/"/g, "");
         importedIcons.add(iconName);
         return `"icon":${iconName}`;
       });
 
-      return finalResult;
+      const emptyRegex = /"[A-z]+":"",?/gi;
+      result = result.replace(emptyRegex, "");
+
+      return result;
     }
 
     if (typeof value === "object") {
