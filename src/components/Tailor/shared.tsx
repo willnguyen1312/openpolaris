@@ -11,7 +11,7 @@ import {
 import { SearchMinor } from "@shopify/polaris-icons";
 import iconMetadata from "@shopify/polaris-icons/metadata";
 import { get as lodashGet } from "lodash-es";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
@@ -164,6 +164,10 @@ export const Icon: React.FunctionComponent<{
     activeComponent.props[prop] ?? "",
   );
   const [options, setOptions] = useState(iconList);
+
+  useEffect(() => {
+    setInputValue(activeComponent.props[prop] ?? "");
+  }, [activeComponent]);
 
   const updateText = (value: string) => {
     setInputValue(value);
