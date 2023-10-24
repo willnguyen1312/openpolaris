@@ -37,13 +37,18 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
 };
 
 const finalizeComponentProps = (component: RenderedComponent) => {
-  const result = omitBy(component.props, (value) => {
+  const result = omitBy(component.props, (value, key) => {
     if (typeof value === "string" && value === "") {
       return true;
     }
 
     // Special case for action prop
-    if (typeof value === "object" && !Array.isArray(value) && !value.content) {
+    if (
+      typeof value === "object" &&
+      key.includes("action") &&
+      !Array.isArray(value) &&
+      !value.content
+    ) {
       return true;
     }
 
