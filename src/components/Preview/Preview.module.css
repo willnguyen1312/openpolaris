@@ -2,10 +2,6 @@
   cursor: pointer;
 }
 
-.fitContent {
-  width: fit-content;
-}
-
 .containerWrapper {
   cursor: pointer;
 }
@@ -21,10 +17,14 @@
   margin: var(--p-space-100) var(--p-space-050);
 }
 
-.selected {
+.isOver {
+  background: var(--p-color-bg-fill-magic);
+}
+
+.containerWrapperSelected {
   border: 0.5px solid var(--p-color-border-focus);
 }
 
-.isOver {
-  background: var(--p-color-bg-fill-magic);
+.simpleWrapperSelected > *:first-child {
+  border: 0.5px solid var(--p-color-border-focus);
 }

@@ -16,13 +16,6 @@ import { findComponentBy, usePolarisStore } from "../../store";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
-const fitContentComponents = new Set<ComponentName>([
-  "Button",
-  "Avatar",
-  "Icon",
-  "Thumbnail",
-]);
-
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   const isSimpleComponent = !parentComponentList.includes(
     component.componentName,
@@ -138,8 +131,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         setActiveComponentId(component);
       }}
       className={classNames(styles.simpleWrapper, extraClasses, {
-        [styles.selected]: isSelected && !isDragging,
-        [styles.fitContent]: fitContentComponents.has(component.componentName),
+        [styles.simpleWrapperSelected]: isSelected && !isDragging,
       })}
     >
       <Component {...finalComponentProps} {...extraProps} />
@@ -206,7 +198,7 @@ function ComponentWithContainer({
       component={component}
       className={classNames(styles.containerWrapper, extraClasses, {
         [styles.emptyChild]: isEmptyChild,
-        [styles.selected]: isSelected && !isDragging,
+        [styles.containerWrapperSelected]: isSelected && !isDragging,
         [styles.builderMode]: isBuilderMode,
       })}
       onPointerDown={(event) => {
