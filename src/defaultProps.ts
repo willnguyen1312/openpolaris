@@ -21,6 +21,7 @@ import {
   PageActionsProps,
   PageProps,
   TextProps,
+  ThumbnailProps,
 } from "@shopify/polaris";
 
 import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
@@ -429,6 +430,13 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     children: "Polaris",
     size: "" as KeyboardKeyProps["size"],
   } as KeyboardKeyProps,
+  Thumbnail: {
+    size: "" as ThumbnailProps["size"],
+    source:
+      "https://burst.shopifycdn.com/photos/black-leather-choker-necklace_373x@2x.jpg",
+    alt: "Black choker necklace",
+    transparent: false,
+  } as ThumbnailProps,
 
   // Typography
   Text: {

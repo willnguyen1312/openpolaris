@@ -876,6 +876,12 @@ export const acceptComponentsMap: Partial<
   Icon: {
     type: ComponentAcceptType.Single,
   },
+  KeyboardKey: {
+    type: ComponentAcceptType.Single,
+  },
+  Thumbnail: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

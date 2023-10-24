@@ -20,6 +20,7 @@ const fitContentComponents = new Set<ComponentName>([
   "Button",
   "Avatar",
   "Icon",
+  "Thumbnail",
 ]);
 
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
@@ -109,6 +110,20 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     }
   }, [renderedComponents]);
 
+  const extraProps = {};
+
+  // @ts-ignore
+  if (icon && PolarisIcon[icon]) {
+    // @ts-ignore
+    extraProps["icon"] = PolarisIcon[icon];
+  }
+
+  // @ts-ignore
+  if (source && PolarisIcon[source]) {
+    // @ts-ignore
+    extraProps["source"] = PolarisIcon[source];
+  }
+
   return (
     <DragAndDropItem
       id={id}
@@ -122,13 +137,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
         [styles.fitContent]: fitContentComponents.has(component.componentName),
       })}
     >
-      <Component
-        {...finalComponentProps}
-        // @ts-ignore
-        icon={icon ? PolarisIcon[icon] : undefined}
-        // @ts-ignore
-        source={source ? PolarisIcon[source] : undefined}
-      />
+      <Component {...finalComponentProps} {...extraProps} />
     </DragAndDropItem>
   );
 }
