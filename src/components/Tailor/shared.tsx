@@ -17,6 +17,7 @@ import { usePolarisStore } from "../../store";
 import { RenderedComponent } from "../../types";
 import { getHumanReadableName } from "../../utils/text";
 
+import { Target } from "@shopify/polaris/build/ts/src/types";
 import styles from "./shared.module.css";
 
 export type Tailor =
@@ -56,6 +57,16 @@ export const Text: React.FunctionComponent<{
   );
 };
 
+// export type Target = '_blank' | '_self' | '_parent' | '_top';
+const targetRecord: Record<Target | "", 1> = {
+  _blank: 1,
+  _self: 1,
+  _parent: 1,
+  _top: 1,
+  "": 1,
+};
+const targetOptions = Object.keys(targetRecord);
+
 export const Number: React.FunctionComponent<{
   prop: string;
   label?: string;
@@ -86,9 +97,9 @@ export const Number: React.FunctionComponent<{
 };
 
 export const Select: React.FunctionComponent<{
-  options: string[];
+  label?: string;
   prop: string;
-}> = ({ options, prop }) => {
+}> = ({ prop, label }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -101,9 +112,9 @@ export const Select: React.FunctionComponent<{
   return (
     <div className={styles.selectWrapper}>
       <PolarisSelect
-        label={getHumanReadableName(prop)}
-        options={options}
-        value={activeComponent.props[prop]}
+        options={targetOptions}
+        value={lodashGet(activeComponent.props, prop) || ""}
+        label={label || getHumanReadableName(prop)}
         onChange={handleChange}
       />
     </div>
@@ -244,9 +255,15 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
             }
 
             let Component: any;
+            let extraProps: any = {};
             // special case for icon
             if (key === "icon") {
               Component = Icon;
+            }
+
+            if (key === "target") {
+              Component = Select;
+              extraProps.options = targetOptions;
             }
 
             if (!Component) {
@@ -263,6 +280,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
                 label={getHumanReadableName(key)}
                 prop={`${prop}.${key}`}
                 key={key}
+                {...extraProps}
               />
             );
           })}
