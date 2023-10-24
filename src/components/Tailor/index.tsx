@@ -22,6 +22,7 @@ import { LayoutTailor } from "./LayoutTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
+import { TextTailor } from "./TextTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Actions
@@ -47,6 +48,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   "Layout.Section": LayoutSectionTailor,
   MediaCard: MediaCardTailor,
   Page: PageTailor,
+
+  // Typography
+  Text: TextTailor,
 };
 
 export const Tailor = () => {

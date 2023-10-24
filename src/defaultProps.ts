@@ -17,6 +17,7 @@ import {
   LayoutProps,
   PageActionsProps,
   PageProps,
+  TextProps,
 } from "@shopify/polaris";
 
 import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
@@ -406,4 +407,20 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   } as PageProps,
 
   Toast: {} as ToastProps,
+
+  // Typography
+  Text: {
+    alignment: "" as TextProps["alignment"],
+    as: "p" as TextProps["as"],
+    breakWord: false,
+    children: "Text",
+    tone: "" as TextProps["tone"],
+    fontWeight: "" as TextProps["fontWeight"],
+    id: "",
+    numeric: false,
+    truncate: false,
+    variant: "" as TextProps["variant"],
+    visuallyHidden: false,
+    textDecorationLine: "" as TextProps["textDecorationLine"],
+  } as TextProps,
 };

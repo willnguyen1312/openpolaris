@@ -872,6 +872,9 @@ export const acceptComponentsMap: Partial<
   MediaCard: {
     type: ComponentAcceptType.ParentWithAnyChildren,
   },
+  Text: {
+    type: ComponentAcceptType.ParentWithAnyChildren,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

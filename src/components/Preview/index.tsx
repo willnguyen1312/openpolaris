@@ -158,6 +158,16 @@ function ComponentWithContainer({
     }
   }, [renderedComponents]);
 
+  const componentMarkup = children.length ? (
+    <Component {...finalComponentProps}>
+      {children.map((child) => (
+        <Preview key={child.id} component={child} />
+      ))}
+    </Component>
+  ) : (
+    <Component {...finalComponentProps} />
+  );
+
   return (
     <DragAndDropItem
       id={id}
@@ -173,11 +183,7 @@ function ComponentWithContainer({
         setActiveComponentId(component);
       }}
     >
-      <Component {...finalComponentProps}>
-        {children.map((child) => (
-          <Preview key={child.id} component={child} />
-        ))}
-      </Component>
+      {componentMarkup}
     </DragAndDropItem>
   );
 }
