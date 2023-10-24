@@ -16,7 +16,11 @@ import { findComponentBy, usePolarisStore } from "../../store";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
-const fitContentComponents: ComponentName[] = ["Button", "Avatar", "Icon"];
+const fitContentComponents = new Set<ComponentName>([
+  "Button",
+  "Avatar",
+  "Icon",
+]);
 
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   const isSimpleComponent = !parentComponentList.includes(
@@ -74,10 +78,14 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
   );
 };
 
+// Ad-hoc skipping components for extra classes
+const extraClassesSimpleComponents = new Set<ComponentName>(["Icon"]);
+
 function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
   const Component = Polaris[component.componentName];
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
   const { icon, source } = component.props;
   const isSelected = activeComponent?.id === component.id;
@@ -85,29 +93,43 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const isDragging = activeDraggableId === component.id;
   const finalComponentProps = finalizeComponentProps(component);
 
+  const { id } = component;
+  const [extraClasses, setExtraClasses] = React.useState("");
+
+  React.useEffect(() => {
+    if (!extraClassesSimpleComponents.has(component.componentName)) {
+      return;
+    }
+
+    const wrapperComponent = document.getElementById(id);
+    const targetComponent = wrapperComponent?.firstChild as HTMLElement;
+    if (targetComponent) {
+      const classes = targetComponent.className;
+      setExtraClasses(classes);
+    }
+  }, [renderedComponents]);
+
   return (
-    <div
+    <DragAndDropItem
+      id={id}
+      component={component}
       onPointerDown={(event) => {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
-      className={classNames(styles.simpleWrapper, {
+      className={classNames(styles.simpleWrapper, extraClasses, {
         [styles.selected]: isSelected && !isDragging,
-        [styles.fitContent]: fitContentComponents.includes(
-          component.componentName,
-        ),
+        [styles.fitContent]: fitContentComponents.has(component.componentName),
       })}
     >
-      <DragAndDropItem component={component}>
-        <Component
-          {...finalComponentProps}
-          // @ts-ignore
-          icon={icon ? PolarisIcon[icon] : undefined}
-          // @ts-ignore
-          source={source ? PolarisIcon[source] : undefined}
-        />
-      </DragAndDropItem>
-    </div>
+      <Component
+        {...finalComponentProps}
+        // @ts-ignore
+        icon={icon ? PolarisIcon[icon] : undefined}
+        // @ts-ignore
+        source={source ? PolarisIcon[source] : undefined}
+      />
+    </DragAndDropItem>
   );
 }
 
@@ -167,7 +189,6 @@ function ComponentWithContainer({
   return (
     <DragAndDropItem
       id={id}
-      key={id}
       component={component}
       className={classNames(styles.containerWrapper, extraClasses, {
         [styles.emptyChild]: isEmptyChild,
@@ -197,15 +218,21 @@ function DragAndDropItem({
     disabled: checkIfComponentCanBeDragged(component),
   });
 
-  const style: React.CSSProperties = isOver ? {} : {};
+  const { className = "", ...rest } = props;
+  const isParentComponent = parentComponentList.includes(
+    component.componentName,
+  );
+  const finalClassName = classNames(className, {
+    [styles.isOver]: isOver && isParentComponent,
+  });
 
   return (
     <div
       ref={setNodeRef}
-      style={style}
-      {...props}
+      {...rest}
       {...attributes}
       {...listeners}
+      className={finalClassName}
     >
       {children}
     </div>

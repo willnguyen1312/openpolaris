@@ -23,5 +23,8 @@
 
 .selected {
   border: 0.5px solid var(--p-color-border-focus);
-  padding: var(--p-space-050);
+}
+
+.isOver {
+  background: var(--p-color-bg-fill-magic);
 }
