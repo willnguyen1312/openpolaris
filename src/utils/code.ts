@@ -100,7 +100,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
   }
 
   function buildComponentProps(component: RenderedComponent) {
-    const { props } = component;
+    const { props, componentName } = component;
     let result = "";
 
     if (props) {
@@ -108,6 +108,13 @@ export const generateCode = async (tree: RenderedComponent[]) => {
 
       keys.forEach((key) => {
         const value = props[key];
+
+        // Ad-hoc for Icon component
+        if (key === "source" && componentName === "Icon") {
+          importedIcons.add(value);
+          result += `${key}={${value}} `;
+          return;
+        }
 
         if (typeof value === "string" && value) {
           result += `${key}=${normalizePropValue({

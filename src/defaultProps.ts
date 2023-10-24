@@ -13,6 +13,7 @@ import {
   FormLayoutProps,
   GridCellProps,
   GridProps,
+  IconProps,
   InlineGridProps,
   InlineStackProps,
   LayoutProps,
@@ -418,6 +419,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     source: "",
     accessibilityLabel: "",
   } as AvatarProps,
+  Icon: {
+    source: "CirclePlusMinor",
+    tone: "" as IconProps["tone"],
+    accessibilityLabel: "",
+  } as IconProps,
 
   // Typography
   Text: {

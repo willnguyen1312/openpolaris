@@ -16,7 +16,7 @@ import { findComponentBy, usePolarisStore } from "../../store";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
-const fitContentComponents: ComponentName[] = ["Button", "Avatar"];
+const fitContentComponents: ComponentName[] = ["Button", "Avatar", "Icon"];
 
 const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
   const isSimpleComponent = !parentComponentList.includes(
@@ -32,24 +32,18 @@ const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
 };
 
 const finalizeComponentProps = (component: RenderedComponent) => {
-  const result = structuredClone(
-    omitBy(component.props, (value) => {
-      if (typeof value === "string" && value === "") {
-        return true;
-      }
+  const result = omitBy(component.props, (value) => {
+    if (typeof value === "string" && value === "") {
+      return true;
+    }
 
-      // Special case for action prop
-      if (
-        typeof value === "object" &&
-        !Array.isArray(value) &&
-        !value.content
-      ) {
-        return true;
-      }
+    // Special case for action prop
+    if (typeof value === "object" && !Array.isArray(value) && !value.content) {
+      return true;
+    }
 
-      return false;
-    }),
-  );
+    return false;
+  });
 
   const paths = collectPathsHasKey(result, "icon").map(
     (path: string[]) => path.join(".") + ".icon",
@@ -85,7 +79,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const Component = Polaris[component.componentName];
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
-  const icon = component.props.icon;
+  const { icon, source } = component.props;
   const isSelected = activeComponent?.id === component.id;
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
@@ -109,6 +103,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
           {...finalComponentProps}
           // @ts-ignore
           icon={icon ? PolarisIcon[icon] : undefined}
+          // @ts-ignore
+          source={source ? PolarisIcon[source] : undefined}
         />
       </DragAndDropItem>
     </div>

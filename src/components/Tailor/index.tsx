@@ -16,6 +16,7 @@ import { EmptyStateTailor } from "./EmptyStateTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
+import { IconTailor } from "./IconTailor";
 import { InlineGridTailor } from "./InlineGridTailor";
 import { InlineStackTailor } from "./InlineStackTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
@@ -55,6 +56,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Images and Icons
   Avatar: AvatarTailor,
+  Icon: IconTailor,
 };
 
 export const Tailor = () => {

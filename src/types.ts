@@ -878,6 +878,9 @@ export const acceptComponentsMap: Partial<
   Avatar: {
     type: ComponentAcceptType.Single,
   },
+  Icon: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

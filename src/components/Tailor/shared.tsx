@@ -99,7 +99,8 @@ export const Number: React.FunctionComponent<{
 export const Select: React.FunctionComponent<{
   label?: string;
   prop: string;
-}> = ({ prop, label }) => {
+  options: string[];
+}> = ({ prop, label, options = [] }) => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
   const setActiveComponentPropValue =
@@ -112,7 +113,7 @@ export const Select: React.FunctionComponent<{
   return (
     <div className={styles.selectWrapper}>
       <PolarisSelect
-        options={targetOptions}
+        options={options}
         value={lodashGet(activeComponent.props, prop) || ""}
         label={label || getHumanReadableName(prop)}
         onChange={handleChange}
@@ -160,7 +161,7 @@ export const Icon: React.FunctionComponent<{
     usePolarisStore.use.setActiveComponentPropValue();
 
   const [inputValue, setInputValue] = useState(
-    activeComponent.props.icon ?? "",
+    activeComponent.props[prop] ?? "",
   );
   const [options, setOptions] = useState(iconList);
 
@@ -192,7 +193,7 @@ export const Icon: React.FunctionComponent<{
   };
 
   const syncWithIconInStore = () => {
-    setInputValue(activeComponent.props.icon ?? "");
+    setInputValue(activeComponent.props[prop] ?? "");
   };
 
   const textField = (
@@ -210,7 +211,7 @@ export const Icon: React.FunctionComponent<{
   return (
     <Autocomplete
       options={options}
-      selected={activeComponent.props.icon ?? ""}
+      selected={activeComponent.props[prop] ?? ""}
       onSelect={updateSelection}
       textField={textField}
     />
