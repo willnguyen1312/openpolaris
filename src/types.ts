@@ -10,6 +10,7 @@ import {
   ShadowAliasOrScale,
   SpaceScale,
 } from "@shopify/polaris-tokens";
+import { Target } from "@shopify/polaris/build/ts/src/types";
 import { ComponentPropsWithoutRef } from "react";
 
 export type ComponentName =
@@ -893,6 +894,15 @@ export const acceptComponentsMap: Partial<
   Pagination: {
     type: ComponentAcceptType.Single,
   },
+  Link: {
+    type: ComponentAcceptType.Single,
+  },
+  FullscreenBar: {
+    type: ComponentAcceptType.Single,
+  },
+  FooterHelp: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
@@ -904,6 +914,15 @@ export type LayoutSectionProps = ComponentPropsWithoutRef<
 >;
 
 export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
+
+const targetRecord: Record<Target | "", 1> = {
+  _blank: 1,
+  _self: 1,
+  _parent: 1,
+  _top: 1,
+  "": 1,
+};
+export const targetOptions = Object.keys(targetRecord);
 
 const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.Parent,

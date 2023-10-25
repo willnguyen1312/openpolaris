@@ -18,6 +18,7 @@ import {
   InlineStackProps,
   KeyboardKeyProps,
   LayoutProps,
+  LinkProps,
   ModalProps,
   PageActionsProps,
   PageProps,
@@ -565,4 +566,14 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     label: "",
     type: "" as PaginationProps["type"],
   } as PaginationProps,
+  Link: {
+    children: "Customer support",
+    id: "",
+    url: "",
+    target: "" as LinkProps["target"],
+    monochrome: false,
+    removeUnderline: false,
+    accessibilityLabel: "",
+    dataPrimaryLink: false,
+  } as LinkProps,
 };

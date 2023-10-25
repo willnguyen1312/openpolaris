@@ -22,6 +22,7 @@ import { InlineStackTailor } from "./InlineStackTailor";
 import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
+import { LinkTailor } from "./LinkTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
 import { ModalTailor } from "./ModalTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
@@ -75,6 +76,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Navigation
   Pagination: PaginationTailor,
+  Link: LinkTailor,
 };
 
 export const Tailor = () => {

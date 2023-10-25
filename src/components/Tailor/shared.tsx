@@ -14,10 +14,9 @@ import { get as lodashGet } from "lodash-es";
 import { useEffect, useState } from "react";
 
 import { usePolarisStore } from "../../store";
-import { RenderedComponent } from "../../types";
+import { RenderedComponent, targetOptions } from "../../types";
 import { getHumanReadableName } from "../../utils/text";
 
-import { Target } from "@shopify/polaris/build/ts/src/types";
 import styles from "./shared.module.css";
 
 export type Tailor =
@@ -56,16 +55,6 @@ export const Text: React.FunctionComponent<{
     />
   );
 };
-
-// export type Target = '_blank' | '_self' | '_parent' | '_top';
-const targetRecord: Record<Target | "", 1> = {
-  _blank: 1,
-  _self: 1,
-  _parent: 1,
-  _top: 1,
-  "": 1,
-};
-const targetOptions = Object.keys(targetRecord);
 
 export const Number: React.FunctionComponent<{
   prop: string;
