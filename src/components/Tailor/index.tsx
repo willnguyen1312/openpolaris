@@ -28,7 +28,7 @@ import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
-import { TooltipTailor } from "./TooltipTailor_";
+import { TooltipTailor } from "./TooltipTailor";
 import { VideoThumbnailTailor } from "./VideoThumbnailTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
