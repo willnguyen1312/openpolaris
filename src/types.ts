@@ -20,10 +20,6 @@ export type ComponentName =
   | "Caption"
   | "DisplayText"
   | "Heading"
-  | "LegacyCard"
-  | "LegacyFilters"
-  | "LegacyStack"
-  | "LegacyTabs"
   | "SettingToggle"
   | "Sheet"
   | "Subheading"
@@ -74,10 +70,10 @@ export type ComponentName =
   | "FooterHelp"
   | "FullscreenBar"
   | "Link"
-  | "Navigation"
+  // | "Navigation"
   | "Pagination"
-  | "Tabs"
-  | "TopBar"
+  // | "Tabs"
+  // | "TopBar"
   | "Modal"
   // | "Popover"
   | "Tooltip"
@@ -338,22 +334,22 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Link",
     category: "Navigation",
   },
-  {
-    componentName: "Navigation",
-    category: "Navigation",
-  },
+  // {
+  //   componentName: "Navigation",
+  //   category: "Navigation",
+  // },
   {
     componentName: "Pagination",
     category: "Navigation",
   },
-  {
-    componentName: "Tabs",
-    category: "Navigation",
-  },
-  {
-    componentName: "TopBar",
-    category: "Navigation",
-  },
+  // {
+  //   componentName: "Tabs",
+  //   category: "Navigation",
+  // },
+  // {
+  //   componentName: "TopBar",
+  //   category: "Navigation",
+  // },
   {
     componentName: "Modal",
     category: "Overlays",
