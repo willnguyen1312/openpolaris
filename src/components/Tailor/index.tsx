@@ -67,6 +67,8 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Overlays
   Tooltip: ToolTipTailor,
+  // Popover is not supported yet
+  // Popover: PopoverTailor,
 };
 
 export const Tailor = () => {

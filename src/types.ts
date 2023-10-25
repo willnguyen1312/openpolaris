@@ -79,7 +79,7 @@ export type ComponentName =
   | "Tabs"
   | "TopBar"
   | "Modal"
-  | "Popover"
+  // | "Popover"
   | "Tooltip"
   | "Autocomplete"
   | "Checkbox"
@@ -358,10 +358,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Modal",
     category: "Overlays",
   },
-  {
-    componentName: "Popover",
-    category: "Overlays",
-  },
+  // {
+  //   componentName: "Popover",
+  //   category: "Overlays",
+  // },
   {
     componentName: "Tooltip",
     category: "Overlays",
@@ -888,6 +888,9 @@ export const acceptComponentsMap: Partial<
   Tooltip: {
     type: ComponentAcceptType.Parent,
   },
+  // Popover: {
+  //   type: ComponentAcceptType.Parent,
+  // },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
