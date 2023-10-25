@@ -16,19 +16,6 @@ import { findComponentBy, usePolarisStore } from "../../store";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
-const checkIfComponentCanBeDragged = (component: RenderedComponent) => {
-  const isSimpleComponent = !parentComponentList.includes(
-    component.componentName,
-  );
-
-  if (isSimpleComponent) {
-    return false;
-  }
-
-  const hasNoChildren = component.children.length === 0;
-  return hasNoChildren;
-};
-
 const finalizeComponentProps = (component: RenderedComponent) => {
   const result = omitBy(component.props, (value, key) => {
     if (typeof value === "string" && value === "") {
@@ -247,7 +234,6 @@ function DragAndDropItem({
 } & React.PropsWithRef<JSX.IntrinsicElements["div"]>) {
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
-    disabled: checkIfComponentCanBeDragged(component),
   });
 
   const { className = "", ...rest } = props;
