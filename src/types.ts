@@ -100,11 +100,11 @@ export type ComponentName =
   | "TextField"
   | "DataTable"
   | "IndexTable"
-  | "Text"
-  // | "AppProvider"
-  | "Collapsible"
-  | "Frame"
-  | "Scrollable";
+  | "Text";
+// | "AppProvider"
+// | "Collapsible"
+// | "Frame"
+// | "Scrollable";
 
 export type ComponentMenuItem = {
   componentName: ComponentName;
@@ -450,18 +450,18 @@ export const listOfComponent: ComponentMenuItem[] = [
   //   componentName: "AppProvider",
   //   category: "Utilities",
   // },
-  {
-    componentName: "Collapsible",
-    category: "Utilities",
-  },
-  {
-    componentName: "Frame",
-    category: "Utilities",
-  },
-  {
-    componentName: "Scrollable",
-    category: "Utilities",
-  },
+  // {
+  //   componentName: "Collapsible",
+  //   category: "Utilities",
+  // },
+  // {
+  //   componentName: "Frame",
+  //   category: "Utilities",
+  // },
+  // {
+  //   componentName: "Scrollable",
+  //   category: "Utilities",
+  // },
 ];
 
 export const rootComponentId = "root";
