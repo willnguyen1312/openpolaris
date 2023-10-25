@@ -891,6 +891,9 @@ export const acceptComponentsMap: Partial<
   // Popover: {
   //   type: ComponentAcceptType.Parent,
   // },
+  Modal: {
+    type: ComponentAcceptType.Parent,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

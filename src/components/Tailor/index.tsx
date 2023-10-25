@@ -23,11 +23,12 @@ import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
+import { ModalTailor } from "./ModalTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
-import { ToolTipTailor } from "./ToolTipTailor";
+import { TooltipTailor } from "./TooltipTailor_";
 import { VideoThumbnailTailor } from "./VideoThumbnailTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
@@ -66,9 +67,10 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   VideoThumbnail: VideoThumbnailTailor,
 
   // Overlays
-  Tooltip: ToolTipTailor,
+  Tooltip: TooltipTailor,
   // Popover is not supported yet
   // Popover: PopoverTailor,
+  Modal: ModalTailor,
 };
 
 export const Tailor = () => {

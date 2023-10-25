@@ -100,7 +100,7 @@ const tooltipPropsItems: PropItem<keyof TooltipProps>[] = [
   },
 ];
 
-export const ToolTipTailor = () => {
+export const TooltipTailor = () => {
   return (
     <>
       <Link
