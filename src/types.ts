@@ -901,7 +901,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Parent,
   },
   FooterHelp: {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
 };
 

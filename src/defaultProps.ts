@@ -10,6 +10,7 @@ import {
   CardProps,
   DividerProps,
   EmptyStateProps,
+  FooterHelpProps,
   FormLayoutProps,
   FullscreenBarProps,
   GridCellProps,
@@ -578,4 +579,7 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     dataPrimaryLink: false,
   } as LinkProps,
   FullscreenBar: {} as FullscreenBarProps,
+  FooterHelp: {
+    children: "Learn more about Shopify 🐻‍❄️",
+  } as FooterHelpProps,
 };

@@ -13,6 +13,7 @@ import { CalloutCardTailor } from "./CalloutCardTailor";
 import { CardTailor } from "./CardTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
+import { FooterHelpTailor } from "./FooterHelpTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
@@ -77,6 +78,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Navigation
   Pagination: PaginationTailor,
   Link: LinkTailor,
+  FooterHelp: FooterHelpTailor,
 };
 
 export const Tailor = () => {
