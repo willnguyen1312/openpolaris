@@ -27,6 +27,7 @@ import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
+import { ToolTipTailor } from "./ToolTipTailor";
 import { VideoThumbnailTailor } from "./VideoThumbnailTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
@@ -63,6 +64,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   KeyboardKey: KeyboardKeyTailor,
   Thumbnail: ThumbnailTailor,
   VideoThumbnail: VideoThumbnailTailor,
+
+  // Overlays
+  Tooltip: ToolTipTailor,
 };
 
 export const Tailor = () => {

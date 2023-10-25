@@ -22,6 +22,7 @@ import {
   PageProps,
   TextProps,
   ThumbnailProps,
+  TooltipProps,
 } from "@shopify/polaris";
 
 import { VideoThumbnailProps } from "@shopify/polaris/build/ts/src/components/VideoThumbnail";
@@ -462,4 +463,21 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     visuallyHidden: false,
     textDecorationLine: "" as TextProps["textDecorationLine"],
   } as TextProps,
+
+  // Overlays
+  Tooltip: {
+    content: "Tooltip content",
+    active: false,
+    hoverDelay: 250,
+    dismissOnMouseOut: false,
+    preferredPosition: "" as TooltipProps["preferredPosition"],
+    activatorWrapper: "",
+    accessibilityLabel: "",
+    width: "" as TooltipProps["width"],
+    padding: "" as TooltipProps["padding"],
+    borderRadius: "" as TooltipProps["borderRadius"],
+    zIndexOverride: 400 as TooltipProps["zIndexOverride"],
+    hasUnderline: false,
+    persistOnClick: false,
+  } as TooltipProps,
 };
