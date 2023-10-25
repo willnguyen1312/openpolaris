@@ -21,6 +21,7 @@ import {
   ModalProps,
   PageActionsProps,
   PageProps,
+  PaginationProps,
   TextProps,
   ThumbnailProps,
   TooltipProps,
@@ -547,4 +548,21 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       },
     ],
   } as ModalProps,
+
+  // Navigation
+  Pagination: {
+    nextTooltip: "Next",
+    previousTooltip: "Previous",
+    nextURL: "",
+    previousURL: "",
+    hasNext: true,
+    hasPrevious: true,
+    accessibilityLabel: "",
+    accessibilityLabels: {
+      next: "Next",
+      previous: "Previous",
+    },
+    label: "",
+    type: "" as PaginationProps["type"],
+  } as PaginationProps,
 };

@@ -894,6 +894,9 @@ export const acceptComponentsMap: Partial<
   Modal: {
     type: ComponentAcceptType.Parent,
   },
+  Pagination: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

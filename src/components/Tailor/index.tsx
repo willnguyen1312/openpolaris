@@ -26,6 +26,7 @@ import { MediaCardTailor } from "./MediaCardTailor";
 import { ModalTailor } from "./ModalTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
+import { PaginationTailor } from "./PaginationTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
 import { TooltipTailor } from "./TooltipTailor";
@@ -71,6 +72,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Popover is not supported yet
   // Popover: PopoverTailor,
   Modal: ModalTailor,
+
+  // Navigation
+  Pagination: PaginationTailor,
 };
 
 export const Tailor = () => {
