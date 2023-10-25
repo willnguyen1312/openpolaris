@@ -34,6 +34,7 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
 };
 
 interface StoreState {
+  searchComponentInput: string;
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
   isBuilderMode: boolean;
@@ -42,6 +43,7 @@ interface StoreState {
 }
 
 type StoreActions = {
+  setSearchComponentInput: (value: string) => void;
   setTree: (tree: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
@@ -77,6 +79,12 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        searchComponentInput: "",
+        setSearchComponentInput: (value) =>
+          set((state: StoreState) => {
+            state.searchComponentInput = value;
+          }),
+
         setTree: (tree) =>
           set((state: StoreState) => {
             state.renderedComponents = tree;

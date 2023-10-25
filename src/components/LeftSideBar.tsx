@@ -1,7 +1,8 @@
 import styles from "./LeftSideBar.module.css";
 
 import { Box, Text, TextField } from "@shopify/polaris";
-import { useCallback, useDeferredValue, useState } from "react";
+import { useCallback, useDeferredValue } from "react";
+import { usePolarisStore } from "../store";
 import {
   ComponentCategoryName,
   ComponentName,
@@ -12,21 +13,25 @@ import { getHumanReadableName } from "../utils/text";
 import { DraggableItem } from "./DraggableItem";
 
 export function LeftSideBar() {
-  const [textFieldValue, setTextFieldValue] = useState("");
-  const deferredTextFieldValue = useDeferredValue(textFieldValue);
+  const searchComponentInput = usePolarisStore.use.searchComponentInput();
+  const setSearchComponentInput = usePolarisStore.use.setSearchComponentInput();
+  const deferredTextFieldValue = useDeferredValue(searchComponentInput);
 
   const handleTextFieldChange = useCallback(
-    (value: string) => setTextFieldValue(value),
+    (value: string) => setSearchComponentInput(value),
     [],
   );
 
-  const handleClearButtonClick = useCallback(() => setTextFieldValue(""), []);
+  const handleClearButtonClick = useCallback(
+    () => setSearchComponentInput(""),
+    [],
+  );
 
   return (
     <div className={styles.wrapper}>
       <TextField
         label="Search components"
-        value={textFieldValue}
+        value={searchComponentInput}
         onChange={handleTextFieldChange}
         clearButton
         onClearButtonClick={handleClearButtonClick}

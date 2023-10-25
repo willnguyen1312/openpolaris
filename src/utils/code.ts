@@ -26,7 +26,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     traverse(item, (node) => {
       // Toast component requires Frame component to be imported
       if (node.componentName === "Toast") {
-        importedComponents.add("Frame");
+        importedComponents.add("Frame" as ComponentName);
       }
 
       if (node.props.icon) {
