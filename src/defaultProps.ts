@@ -11,6 +11,7 @@ import {
   DividerProps,
   EmptyStateProps,
   FormLayoutProps,
+  FullscreenBarProps,
   GridCellProps,
   GridProps,
   IconProps,
@@ -576,4 +577,5 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     accessibilityLabel: "",
     dataPrimaryLink: false,
   } as LinkProps,
+  FullscreenBar: {} as FullscreenBarProps,
 };

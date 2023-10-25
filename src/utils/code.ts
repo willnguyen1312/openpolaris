@@ -29,7 +29,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
         importedComponents.add("Frame" as ComponentName);
       }
 
-      if (node.props.icon) {
+      if (node.props?.icon) {
         importedIcons.add(node.props.icon);
       }
 

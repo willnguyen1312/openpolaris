@@ -898,7 +898,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Single,
   },
   FullscreenBar: {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   FooterHelp: {
     type: ComponentAcceptType.Single,
