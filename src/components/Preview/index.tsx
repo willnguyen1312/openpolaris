@@ -148,6 +148,8 @@ function ComponentWithContainer({
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
+  const setActiveComponentPropValue =
+    usePolarisStore.use.setActiveComponentPropValue();
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
   // @ts-ignore
   const Component = lodashGet(Polaris, component.componentName.split("."));
@@ -156,6 +158,8 @@ function ComponentWithContainer({
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
   const finalComponentProps = finalizeComponentProps(component);
+  // Special case for overlay stuff
+  // const [open, setOpen] = React.useState(false);
 
   const [extraClasses, setExtraClasses] = React.useState("");
 
@@ -181,6 +185,28 @@ function ComponentWithContainer({
       setExtraClasses(classes);
     }
   }, [renderedComponents]);
+
+  // Special handling for Modal component
+  React.useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      const isEscape = event.key === "Escape";
+
+      if (!isEscape) {
+        return;
+      }
+
+      event.stopPropagation();
+      setActiveComponentPropValue("open", false);
+    };
+
+    if (activeComponent?.componentName === "Modal") {
+      document.addEventListener("keydown", handleKeyDown);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [activeComponent]);
 
   const componentMarkup = children.length ? (
     <Component {...finalComponentProps}>

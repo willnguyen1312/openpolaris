@@ -501,6 +501,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   //   captureOverscroll: false,
   // } as PopoverProps,
   Modal: {
+    onClose() {
+      console.log("Modal closed");
+    },
     open: false,
     src: "",
     iFrameName: "",
