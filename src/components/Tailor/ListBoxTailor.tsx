@@ -1,5 +1,6 @@
 import { Link, ListboxProps } from "@shopify/polaris";
 import {
+  ListBoxActionProps,
   ListBoxHeaderProps,
   ListBoxLoadingProps,
   ListBoxOptionProps,
@@ -181,6 +182,48 @@ export const ListBoxSectionTailor = () => {
       </Link>
 
       <TailorList items={listBoxSectionPropsItems} />
+    </>
+  );
+};
+
+const listboxActionPropsItems: PropItem<keyof ListBoxActionProps>[] = [
+  {
+    prop: "value",
+    type: "Text",
+  },
+  {
+    prop: "accessibilityLabel",
+    type: "Text",
+  },
+  {
+    prop: "disabled",
+    type: "Checkbox",
+  },
+  {
+    prop: "divider",
+    type: "Checkbox",
+  },
+  {
+    prop: "icon",
+    type: "Icon",
+  },
+  {
+    prop: "selected",
+    type: "Checkbox",
+  },
+];
+
+export const ListBoxActionTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box action
+      </Link>
+
+      <TailorList items={listboxActionPropsItems} />
     </>
   );
 };
