@@ -1,5 +1,6 @@
 import {
   AccountConnectionProps,
+  ActionListProps,
   AvatarProps,
   BleedProps,
   BlockStackProps,
@@ -551,6 +552,48 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       },
     ],
   } as ModalProps,
+
+  // Lists
+  ActionList: {
+    items: [
+      {
+        content: "Import file",
+        accessibilityLabel: "",
+        active: false,
+        destructive: false,
+        disabled: false,
+        external: false,
+        helpText: "",
+        id: "",
+        prefix: "",
+        suffix: "",
+        role: "",
+        target: "" as any,
+        url: "",
+        truncate: false,
+        variant: "" as any,
+      },
+      {
+        content: "Export file",
+        accessibilityLabel: "",
+        active: false,
+        destructive: false,
+        disabled: false,
+        external: false,
+        helpText: "",
+        id: "",
+        prefix: "",
+        suffix: "",
+        role: "",
+        target: "" as any,
+        url: "",
+        truncate: false,
+        variant: "" as any,
+      },
+    ],
+    actionRole: "",
+    allowFiltering: false,
+  } as ActionListProps,
 
   // Navigation
   Pagination: {

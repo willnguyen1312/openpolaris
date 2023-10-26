@@ -3,6 +3,7 @@ import { ComponentType } from "react";
 import { usePolarisStore } from "../../store";
 import { ComponentName } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
+import { ActionListTailor } from "./ActionListTailor";
 import { AvatarTailor } from "./AvatarTailor";
 import { BleedTailor } from "./BleedTailor";
 import { BlockStackTailor } from "./BockStackTailor";
@@ -74,6 +75,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Popover is not supported yet
   // Popover: PopoverTailor,
   Modal: ModalTailor,
+
+  // Lists
+  ActionList: ActionListTailor,
 
   // Navigation
   Pagination: PaginationTailor,
