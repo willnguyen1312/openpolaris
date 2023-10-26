@@ -903,6 +903,10 @@ export const acceptComponentsMap: Partial<
   FooterHelp: {
     type: ComponentAcceptType.Parent,
   },
+
+  ActionList: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

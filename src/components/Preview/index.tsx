@@ -17,7 +17,10 @@ import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
 const finalizeComponentProps = (component: RenderedComponent) => {
-  const result = omitBy(component.props, (value, key) => {
+  // Since component.props are immutable, we need to clone it first
+  // to avoid mutation on ready-only properties
+  const cloned = structuredClone(component.props);
+  const result = omitBy(cloned, (value, key) => {
     if (typeof value === "string" && value === "") {
       return true;
     }

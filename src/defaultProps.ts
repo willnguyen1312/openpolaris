@@ -593,6 +593,22 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     ],
     actionRole: "",
     allowFiltering: false,
+    sections: [
+      {
+        title: "File options",
+        items: [
+          { content: "Import file", icon: "ImportMinor" },
+          { content: "Export file", icon: "ExportMinor" },
+        ],
+      },
+      {
+        title: "Bulk actions",
+        items: [
+          { content: "Edit", icon: "EditMinor" },
+          { content: "Delete", icon: "DeleteMinor" },
+        ],
+      },
+    ],
   } as ActionListProps,
 
   // Navigation

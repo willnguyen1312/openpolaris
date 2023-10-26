@@ -14,6 +14,10 @@ const actionListPropsItems: PropItem<keyof ActionListProps>[] = [
     prop: "allowFiltering",
     type: "Checkbox",
   },
+  {
+    prop: "sections",
+    type: "Complex",
+  },
 ];
 
 export const ActionListTailor = () => {
