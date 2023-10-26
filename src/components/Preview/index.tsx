@@ -43,12 +43,13 @@ const finalizeComponentProps = (component: RenderedComponent) => {
   );
 
   paths.forEach((path: string) => {
-    const icon = lodashGet(result, path);
+    const normalizedPath = path.startsWith(".") ? path.slice(1) : path;
+    const icon = lodashGet(result, normalizedPath);
 
     // @ts-ignore
     const Icon = PolarisIcon[icon];
     if (Icon) {
-      lodashSet(result, path, Icon);
+      lodashSet(result, normalizedPath, Icon);
     }
   });
 

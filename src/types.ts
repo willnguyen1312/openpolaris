@@ -962,14 +962,14 @@ export const acceptComponentsMap: Partial<
   "Listbox.Loading": {
     type: ComponentAcceptType.Single,
   },
-  "Listbox.Section": {
-    type: ComponentAcceptType.Parent,
-  },
   "Listbox.Header": {
     type: ComponentAcceptType.Single,
   },
+  "Listbox.Section": {
+    type: ComponentAcceptType.Parent,
+  },
   "Listbox.Action": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
 };
 

@@ -27,6 +27,7 @@ import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
 import { LinkTailor } from "./LinkTailor";
 import {
+  ListBoxActionTailor,
   ListBoxHeaderTailor,
   ListBoxLoadingTailor,
   ListBoxOptionTailor,
@@ -98,6 +99,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   "Listbox.Header": ListBoxHeaderTailor,
   "Listbox.Loading": ListBoxLoadingTailor,
   "Listbox.Section": ListBoxSectionTailor,
+  "Listbox.Action": ListBoxActionTailor,
 
   // Navigation
   Pagination: PaginationTailor,

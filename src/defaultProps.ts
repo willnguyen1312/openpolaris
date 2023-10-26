@@ -41,6 +41,7 @@ import {
   ComponentName,
   FormLayoutGroupProps,
   LayoutSectionProps,
+  ListBoxActionProps,
   ListBoxHeaderProps,
   ListBoxLoadingProps,
   ListBoxOptionProps,
@@ -660,7 +661,6 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     selected: false,
   } as ListBoxOptionProps,
   "Listbox.TextOption": {
-    value: "value",
     disabled: false,
     selected: false,
     children: "TextOption",
@@ -669,12 +669,20 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     children: "Header",
   } as ListBoxHeaderProps,
   "Listbox.Loading": {
-    accessibilityLabel: "",
+    accessibilityLabel: "accessibilityLabel",
   } as ListBoxLoadingProps,
   "Listbox.Section": {
     title: "Section",
     divider: false,
   } as ListBoxSectionProps,
+  "Listbox.Action": {
+    value: "value",
+    accessibilityLabel: "accessibilityLabel",
+    disabled: false,
+    divider: false,
+    icon: "AccessibilityMajor",
+    selected: false,
+  } as ListBoxActionProps,
 
   OptionList: {
     id: "",
