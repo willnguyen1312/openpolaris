@@ -1,6 +1,7 @@
 import { Link, ListboxProps } from "@shopify/polaris";
 import {
   ListBoxHeaderProps,
+  ListBoxLoadingProps,
   ListBoxOptionProps,
   ListBoxTextOptionProps,
 } from "../../types";
@@ -137,6 +138,25 @@ export const ListBoxHeaderTailor = () => {
       </Link>
 
       <TailorList items={listBoxHeaderPropsItems} />
+    </>
+  );
+};
+
+const listBoxLoadingPropsItems: PropItem<keyof ListBoxLoadingProps>[] = [
+  { prop: "accessibilityLabel", type: "Text" },
+];
+
+export const ListBoxLoadingTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box loading
+      </Link>
+
+      <TailorList items={listBoxLoadingPropsItems} />
     </>
   );
 };

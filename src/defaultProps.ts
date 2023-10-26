@@ -42,6 +42,7 @@ import {
   FormLayoutGroupProps,
   LayoutSectionProps,
   ListBoxHeaderProps,
+  ListBoxLoadingProps,
   ListBoxOptionProps,
   ListBoxTextOptionProps,
   ListItemProps,
@@ -666,6 +667,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   "Listbox.Header": {
     children: "Header",
   } as ListBoxHeaderProps,
+  "Listbox.Loading": {
+    accessibilityLabel: "",
+  } as ListBoxLoadingProps,
 
   OptionList: {
     id: "",
