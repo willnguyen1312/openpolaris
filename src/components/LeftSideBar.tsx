@@ -55,7 +55,10 @@ function SearchResult({ query }: { query: string }) {
   );
 
   for (const { componentName, category } of listOfComponent) {
-    if (componentName.toLowerCase().includes(normalizedQuery)) {
+    if (
+      componentName.toLowerCase().includes(normalizedQuery) ||
+      category.toLowerCase().includes(normalizedQuery)
+    ) {
       componentsByCategory.set(category, [
         ...componentsByCategory.get(category)!,
         componentName,
