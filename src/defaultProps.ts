@@ -41,6 +41,7 @@ import {
   ComponentName,
   FormLayoutGroupProps,
   LayoutSectionProps,
+  ListBoxHeaderProps,
   ListBoxOptionProps,
   ListBoxTextOptionProps,
   ListItemProps,
@@ -662,6 +663,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     selected: false,
     children: "TextOption",
   } as ListBoxTextOptionProps,
+  "Listbox.Header": {
+    children: "Header",
+  } as ListBoxHeaderProps,
 
   OptionList: {
     id: "",

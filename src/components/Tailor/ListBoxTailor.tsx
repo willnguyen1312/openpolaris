@@ -1,5 +1,9 @@
 import { Link, ListboxProps } from "@shopify/polaris";
-import { ListBoxOptionProps, ListBoxTextOptionProps } from "../../types";
+import {
+  ListBoxHeaderProps,
+  ListBoxOptionProps,
+  ListBoxTextOptionProps,
+} from "../../types";
 import { PropItem, TailorList } from "./shared";
 
 const listBoxAutoSelectionRecord: Record<
@@ -111,6 +115,28 @@ export const ListBoxTextOptionTailor = () => {
       </Link>
 
       <TailorList items={listBoxTextOptionPropsItems} />
+    </>
+  );
+};
+
+const listBoxHeaderPropsItems: PropItem<keyof ListBoxHeaderProps>[] = [
+  {
+    prop: "children",
+    type: "Text",
+  },
+];
+
+export const ListBoxHeaderTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box text option
+      </Link>
+
+      <TailorList items={listBoxHeaderPropsItems} />
     </>
   );
 };
