@@ -41,6 +41,7 @@ import {
   ComponentName,
   FormLayoutGroupProps,
   LayoutSectionProps,
+  ListBoxOptionProps,
   ListItemProps,
   MediaCardProps,
 } from "./types";
@@ -646,6 +647,14 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     accessibilityLabel: "",
     customListId: "",
   } as ListboxProps,
+  "Listbox.Option": {
+    children: "Option",
+    value: "value",
+    accessibilityLabel: "",
+    disabled: false,
+    divider: false,
+    selected: false,
+  } as ListBoxOptionProps,
 
   OptionList: {
     id: "",

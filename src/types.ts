@@ -1,4 +1,4 @@
-import { FormLayout, Layout, List, MediaCard } from "@shopify/polaris";
+import { FormLayout, Layout, List, Listbox, MediaCard } from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -66,6 +66,12 @@ export type ComponentName =
   | "List"
   | "List.Item"
   | "Listbox"
+  | "Listbox.Option"
+  | "Listbox.TextOption"
+  | "Listbox.Loading"
+  | "Listbox.Section"
+  | "Listbox.Header"
+  | "Listbox.Action"
   | "OptionList"
   | "ResourceItem"
   | "ResourceList"
@@ -314,6 +320,30 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "Listbox",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.Option",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.TextOption",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.Loading",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.Section",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.Header",
+    category: "List",
+  },
+  {
+    componentName: "Listbox.Action",
     category: "List",
   },
   {
@@ -923,6 +953,24 @@ export const acceptComponentsMap: Partial<
   Listbox: {
     type: ComponentAcceptType.Parent,
   },
+  "Listbox.Option": {
+    type: ComponentAcceptType.Single,
+  },
+  "Listbox.TextOption": {
+    type: ComponentAcceptType.Single,
+  },
+  "Listbox.Loading": {
+    type: ComponentAcceptType.Single,
+  },
+  "Listbox.Section": {
+    type: ComponentAcceptType.Single,
+  },
+  "Listbox.Header": {
+    type: ComponentAcceptType.Single,
+  },
+  "Listbox.Action": {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
@@ -936,6 +984,30 @@ export type LayoutSectionProps = ComponentPropsWithoutRef<
 export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
 
 export type ListItemProps = ComponentPropsWithoutRef<typeof List.Item>;
+
+export type ListBoxOptionProps = ComponentPropsWithoutRef<
+  typeof Listbox.Option
+>;
+
+export type ListBoxTextOptionProps = ComponentPropsWithoutRef<
+  typeof Listbox.TextOption
+>;
+
+export type ListBoxLoadingProps = ComponentPropsWithoutRef<
+  typeof Listbox.Loading
+>;
+
+export type ListBoxSectionProps = ComponentPropsWithoutRef<
+  typeof Listbox.Section
+>;
+
+export type ListBoxHeaderProps = ComponentPropsWithoutRef<
+  typeof Listbox.Header
+>;
+
+export type ListBoxActionProps = ComponentPropsWithoutRef<
+  typeof Listbox.Action
+>;
 
 const targetRecord: Record<Target | "", 1> = {
   _blank: 1,

@@ -72,7 +72,7 @@ const extraClassesSimpleComponents = new Set<ComponentName>(["Icon"]);
 
 function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
-  const Component = Polaris[component.componentName];
+  const Component = lodashGet(Polaris, component.componentName.split("."));
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
@@ -148,9 +148,8 @@ function ComponentWithContainer({
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
   const finalComponentProps = finalizeComponentProps(component);
-  // Special case for overlay stuff
-  // const [open, setOpen] = React.useState(false);
 
+  // Add extra classes to the wrapper component for compound components
   const [extraClasses, setExtraClasses] = React.useState("");
 
   React.useEffect(() => {

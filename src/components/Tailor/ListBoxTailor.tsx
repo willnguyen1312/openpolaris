@@ -1,4 +1,5 @@
 import { Link, ListboxProps } from "@shopify/polaris";
+import { ListBoxOptionProps } from "../../types";
 import { PropItem, TailorList } from "./shared";
 
 const listBoxAutoSelectionRecord: Record<
@@ -42,6 +43,44 @@ export const ListBoxTailor = () => {
       </Link>
 
       <TailorList items={listBoxPropsItems} />
+    </>
+  );
+};
+
+const listBoxOptionPropsItems: PropItem<keyof ListBoxOptionProps>[] = [
+  {
+    prop: "value",
+    type: "Text",
+  },
+  {
+    prop: "accessibilityLabel",
+    type: "Text",
+  },
+  {
+    prop: "disabled",
+    type: "Checkbox",
+  },
+  {
+    prop: "divider",
+    type: "Checkbox",
+  },
+  {
+    prop: "selected",
+    type: "Checkbox",
+  },
+];
+
+export const ListBoxOptionTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box option
+      </Link>
+
+      <TailorList items={listBoxOptionPropsItems} />
     </>
   );
 };
