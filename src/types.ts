@@ -920,6 +920,9 @@ export const acceptComponentsMap: Partial<
   "List.Item": {
     type: ComponentAcceptType.Parent,
   },
+  Listbox: {
+    type: ComponentAcceptType.Parent,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

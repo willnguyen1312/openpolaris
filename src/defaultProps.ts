@@ -24,6 +24,7 @@ import {
   LayoutProps,
   LinkProps,
   ListProps,
+  ListboxProps,
   ModalProps,
   OptionListProps,
   PageActionsProps,
@@ -639,6 +640,12 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     type: "" as ListProps["type"],
   } as ListProps,
   "List.Item": {} as ListItemProps,
+  Listbox: {
+    autoSelection: "" as ListboxProps["autoSelection"],
+    enableKeyboardControl: false,
+    accessibilityLabel: "",
+    customListId: "",
+  } as ListboxProps,
 
   OptionList: {
     id: "",
