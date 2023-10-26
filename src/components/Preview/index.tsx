@@ -95,6 +95,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
       const classes = targetComponent.className;
+      // Hack to make component fill the space
+      targetComponent.style.flexGrow = "1";
       setExtraClasses(classes);
     }
   }, [renderedComponents]);
@@ -172,6 +174,8 @@ function ComponentWithContainer({
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
       const classes = targetComponent.className;
+      // Hack to make component fill the space
+      targetComponent.style.flexGrow = "1";
       setExtraClasses(classes);
     }
   }, [renderedComponents]);
