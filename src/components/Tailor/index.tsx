@@ -12,6 +12,7 @@ import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { CalloutCardTailor } from "./CalloutCardTailor";
 import { CardTailor } from "./CardTailor";
+import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
 import { FooterHelpTailor } from "./FooterHelpTailor";
@@ -78,6 +79,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Lists
   ActionList: ActionListTailor,
+  DescriptionList: DescriptionListTailor,
 
   // Navigation
   Pagination: PaginationTailor,

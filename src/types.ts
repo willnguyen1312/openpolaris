@@ -903,8 +903,10 @@ export const acceptComponentsMap: Partial<
   FooterHelp: {
     type: ComponentAcceptType.Parent,
   },
-
   ActionList: {
+    type: ComponentAcceptType.Single,
+  },
+  DescriptionList: {
     type: ComponentAcceptType.Single,
   },
 };
