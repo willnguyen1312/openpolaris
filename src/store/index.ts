@@ -1,6 +1,6 @@
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { set as lodashSet } from "lodash-es";
+import { cloneDeep, set as lodashSet } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
 import { devtools, persist } from "zustand/middleware";
 import { immer } from "zustand/middleware/immer";
@@ -51,6 +51,7 @@ type StoreActions = {
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
+  duplicateActiveComponent: () => void;
   reset: () => void;
 
   // DnD stuff
@@ -162,6 +163,31 @@ const useStoreBase = createWithEqualityFn(
                 (component) => component.id !== activeComponentId,
               );
             }
+          }),
+
+        duplicateActiveComponent: () =>
+          set((state: StoreState) => {
+            if (!state.activeComponent) {
+              return;
+            }
+            const clonedComponent = cloneDeep(state.activeComponent);
+            clonedComponent.id = generateId();
+
+            const containerComponent = findComponentBy(
+              state.renderedComponents,
+              (component) =>
+                component.children.some(
+                  (child) => child.id === state.activeComponent?.id,
+                ),
+            );
+
+            if (containerComponent) {
+              containerComponent.children.push(clonedComponent);
+              return;
+            }
+
+            // If the containerComponent is null, it means that the activeComponent is from top level components
+            state.renderedComponents.push(clonedComponent);
           }),
 
         // DnD stuff

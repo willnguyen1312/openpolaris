@@ -5,17 +5,23 @@ export const useShortcuts = () => {
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
   const deleteActiveComponent = usePolarisStore.use.deleteActiveComponent();
+  const duplicateActiveComponent =
+    usePolarisStore.use.duplicateActiveComponent();
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      const { code, shiftKey } = e;
+
       if (
-        (e.code === "Backspace" || e.code === "Delete") &&
+        (code === "Backspace" || code === "Delete") &&
         activeComponent &&
         document.activeElement?.tagName !== "INPUT"
       ) {
         deleteActiveComponent();
-      } else if (e.code === "Escape") {
+      } else if (code === "Escape") {
         setActiveComponent(null);
+      } else if (code === "KeyD" && shiftKey && activeComponent) {
+        duplicateActiveComponent();
       }
     };
 

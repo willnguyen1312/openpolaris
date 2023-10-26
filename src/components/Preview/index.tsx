@@ -1,7 +1,7 @@
 import * as Polaris from "@shopify/polaris";
 import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
-import { get as lodashGet, set as lodashSet } from "lodash-es";
+import { cloneDeep, get as lodashGet, set as lodashSet } from "lodash-es";
 
 import {
   ComponentName,
@@ -19,7 +19,7 @@ import styles from "./Preview.module.css";
 const finalizeComponentProps = (component: RenderedComponent) => {
   // Since component.props are immutable, we need to clone it first
   // to avoid mutation on ready-only properties
-  const cloned = structuredClone(component.props);
+  const cloned = cloneDeep(component.props);
   const result = omitBy(cloned, (value, key) => {
     if (typeof value === "string" && value === "") {
       return true;
