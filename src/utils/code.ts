@@ -82,6 +82,9 @@ export const generateCode = async (tree: RenderedComponent[]) => {
       const emptyRegex = /"[A-z]+":"",?/gi;
       result = result.replace(emptyRegex, "");
 
+      const falsyRegex = /"[A-z]+":false,?/gi;
+      result = result.replace(falsyRegex, "");
+
       return result;
     }
 
