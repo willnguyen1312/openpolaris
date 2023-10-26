@@ -29,6 +29,7 @@ import { LinkTailor } from "./LinkTailor";
 import { ListTailor } from "./ListTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
 import { ModalTailor } from "./ModalTailor";
+import { OptionListTailor } from "./OptionListTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { PaginationTailor } from "./PaginationTailor";
@@ -82,6 +83,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   ActionList: ActionListTailor,
   DescriptionList: DescriptionListTailor,
   List: ListTailor,
+  OptionList: OptionListTailor,
 
   // Navigation
   Pagination: PaginationTailor,

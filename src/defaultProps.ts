@@ -25,6 +25,7 @@ import {
   LinkProps,
   ListProps,
   ModalProps,
+  OptionListProps,
   PageActionsProps,
   PageProps,
   PaginationProps,
@@ -638,6 +639,38 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     type: "" as ListProps["type"],
   } as ListProps,
   "List.Item": {} as ListItemProps,
+
+  OptionList: {
+    id: "",
+    title: "Inventory Location",
+    options: [
+      { value: "byward_market", label: "Byward Market" },
+      { value: "centretown", label: "Centretown" },
+      { value: "hintonburg", label: "Hintonburg" },
+      { value: "westboro", label: "Westboro" },
+      { value: "downtown", label: "Downtown" },
+    ],
+    role: "",
+    selected: ["byward_market"],
+    allowMultiple: false,
+    verticalAlign: "" as OptionListProps["verticalAlign"],
+    sections: [
+      {
+        options: [
+          { value: "type", label: "Sale item type" },
+          { value: "kind", label: "Sale kind" },
+        ],
+      },
+      {
+        title: "Traffic",
+        options: [
+          { value: "source", label: "Traffic referrer source" },
+          { value: "host", label: "Traffic referrer host" },
+          { value: "path", label: "Traffic referrer path" },
+        ],
+      },
+    ],
+  } as OptionListProps,
 
   // Navigation
   Pagination: {
