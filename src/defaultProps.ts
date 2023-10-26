@@ -648,7 +648,6 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       { value: "centretown", label: "Centretown" },
       { value: "hintonburg", label: "Hintonburg" },
       { value: "westboro", label: "Westboro" },
-      { value: "downtown", label: "Downtown" },
     ],
     role: "",
     selected: ["byward_market"],

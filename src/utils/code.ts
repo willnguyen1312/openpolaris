@@ -70,7 +70,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     }
 
     if (Array.isArray(value)) {
-      let result = value.length ? JSON.stringify(value) : "";
+      let result = value.length ? JSON.stringify(value.filter(Boolean)) : "";
       const iconRegex = /"icon":("[A-z]+")/gi;
 
       result = result.replace(iconRegex, (match) => {
@@ -85,7 +85,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
       const falsyRegex = /"[A-z]+":false,?/gi;
       result = result.replace(falsyRegex, "");
 
-      return result;
+      return result.length > 2 ? result : "";
     }
 
     if (typeof value === "object") {
@@ -147,7 +147,10 @@ export const generateCode = async (tree: RenderedComponent[]) => {
           result += `${key} `;
         } else if (typeof value === "object" && Object.keys(value).length) {
           if (Array.isArray(value)) {
-            result += `${key}={${normalizePropValue({ value })}} `;
+            const normalizedPropValue = normalizePropValue({ value });
+            if (normalizedPropValue) {
+              result += `${key}={${normalizedPropValue}} `;
+            }
           } else {
             const normalizedPropValue = normalizePropValue({ value });
             if (normalizedPropValue) {
