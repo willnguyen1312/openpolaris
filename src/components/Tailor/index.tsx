@@ -26,7 +26,11 @@ import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
 import { LinkTailor } from "./LinkTailor";
-import { ListBoxOptionTailor, ListBoxTailor } from "./ListBoxTailor";
+import {
+  ListBoxOptionTailor,
+  ListBoxTailor,
+  ListBoxTextOptionTailor,
+} from "./ListBoxTailor";
 import { ListTailor } from "./ListTailor";
 import { MediaCardTailor } from "./MediaCardTailor";
 import { ModalTailor } from "./ModalTailor";
@@ -87,6 +91,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   OptionList: OptionListTailor,
   Listbox: ListBoxTailor,
   "Listbox.Option": ListBoxOptionTailor,
+  "Listbox.TextOption": ListBoxTextOptionTailor,
 
   // Navigation
   Pagination: PaginationTailor,

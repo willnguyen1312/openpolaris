@@ -78,13 +78,20 @@ function SearchResult({ query }: { query: string }) {
         </Text>
 
         <Box paddingInlineStart="400" paddingBlockStart="100">
-          {components.map((componentName: ComponentName) => {
-            return (
-              <DraggableItem key={componentName} componentName={componentName}>
-                <Text as="p">{getHumanReadableName(componentName)}</Text>
-              </DraggableItem>
-            );
-          })}
+          {components
+            .sort((first, second) => {
+              return first.localeCompare(second);
+            })
+            .map((componentName: ComponentName) => {
+              return (
+                <DraggableItem
+                  key={componentName}
+                  componentName={componentName}
+                >
+                  <Text as="p">{getHumanReadableName(componentName)}</Text>
+                </DraggableItem>
+              );
+            })}
         </Box>
       </Box>
     );

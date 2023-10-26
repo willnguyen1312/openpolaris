@@ -1,5 +1,5 @@
 import { Link, ListboxProps } from "@shopify/polaris";
-import { ListBoxOptionProps } from "../../types";
+import { ListBoxOptionProps, ListBoxTextOptionProps } from "../../types";
 import { PropItem, TailorList } from "./shared";
 
 const listBoxAutoSelectionRecord: Record<
@@ -81,6 +81,36 @@ export const ListBoxOptionTailor = () => {
       </Link>
 
       <TailorList items={listBoxOptionPropsItems} />
+    </>
+  );
+};
+
+const listBoxTextOptionPropsItems: PropItem<keyof ListBoxTextOptionProps>[] = [
+  {
+    prop: "children",
+    type: "Text",
+  },
+  {
+    prop: "disabled",
+    type: "Checkbox",
+  },
+  {
+    prop: "selected",
+    type: "Checkbox",
+  },
+];
+
+export const ListBoxTextOptionTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box text option
+      </Link>
+
+      <TailorList items={listBoxTextOptionPropsItems} />
     </>
   );
 };

@@ -42,6 +42,7 @@ import {
   FormLayoutGroupProps,
   LayoutSectionProps,
   ListBoxOptionProps,
+  ListBoxTextOptionProps,
   ListItemProps,
   MediaCardProps,
 } from "./types";
@@ -655,6 +656,12 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     divider: false,
     selected: false,
   } as ListBoxOptionProps,
+  "Listbox.TextOption": {
+    value: "value",
+    disabled: false,
+    selected: false,
+    children: "TextOption",
+  } as ListBoxTextOptionProps,
 
   OptionList: {
     id: "",
