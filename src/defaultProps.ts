@@ -23,6 +23,7 @@ import {
   KeyboardKeyProps,
   LayoutProps,
   LinkProps,
+  ListProps,
   ModalProps,
   PageActionsProps,
   PageProps,
@@ -38,6 +39,7 @@ import {
   ComponentName,
   FormLayoutGroupProps,
   LayoutSectionProps,
+  ListItemProps,
   MediaCardProps,
 } from "./types";
 
@@ -631,6 +633,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     ],
     gap: "" as DescriptionListProps["gap"],
   } as DescriptionListProps,
+  List: {
+    gap: "" as ListProps["gap"],
+    type: "" as ListProps["type"],
+  } as ListProps,
+  "List.Item": {} as ListItemProps,
 
   // Navigation
   Pagination: {

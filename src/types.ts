@@ -1,4 +1,4 @@
-import { FormLayout, Layout, MediaCard } from "@shopify/polaris";
+import { FormLayout, Layout, List, MediaCard } from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -64,6 +64,7 @@ export type ComponentName =
   | "ActionList"
   | "DescriptionList"
   | "List"
+  | "List.Item"
   | "Listbox"
   | "OptionList"
   | "ResourceItem"
@@ -305,6 +306,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "List",
+    category: "List",
+  },
+  {
+    componentName: "List.Item",
     category: "List",
   },
   {
@@ -909,6 +914,12 @@ export const acceptComponentsMap: Partial<
   DescriptionList: {
     type: ComponentAcceptType.Single,
   },
+  List: {
+    type: ComponentAcceptType.Parent,
+  },
+  "List.Item": {
+    type: ComponentAcceptType.Parent,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
@@ -920,6 +931,8 @@ export type LayoutSectionProps = ComponentPropsWithoutRef<
 >;
 
 export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
+
+export type ListItemProps = ComponentPropsWithoutRef<typeof List.Item>;
 
 const targetRecord: Record<Target | "", 1> = {
   _blank: 1,
