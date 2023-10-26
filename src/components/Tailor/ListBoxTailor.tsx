@@ -3,6 +3,7 @@ import {
   ListBoxHeaderProps,
   ListBoxLoadingProps,
   ListBoxOptionProps,
+  ListBoxSectionProps,
   ListBoxTextOptionProps,
 } from "../../types";
 import { PropItem, TailorList } from "./shared";
@@ -157,6 +158,29 @@ export const ListBoxLoadingTailor = () => {
       </Link>
 
       <TailorList items={listBoxLoadingPropsItems} />
+    </>
+  );
+};
+
+const listBoxSectionPropsItems: PropItem<keyof ListBoxSectionProps>[] = [
+  { prop: "title", type: "Text" },
+  {
+    prop: "divider",
+    type: "Checkbox",
+  },
+];
+
+export const ListBoxSectionTailor = () => {
+  return (
+    <>
+      <Link
+        target="_blank"
+        url="https://polaris.shopify.com/components/lists/listbox"
+      >
+        List box section
+      </Link>
+
+      <TailorList items={listBoxSectionPropsItems} />
     </>
   );
 };

@@ -30,6 +30,7 @@ import {
   ListBoxHeaderTailor,
   ListBoxLoadingTailor,
   ListBoxOptionTailor,
+  ListBoxSectionTailor,
   ListBoxTailor,
   ListBoxTextOptionTailor,
 } from "./ListBoxTailor";
@@ -96,6 +97,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   "Listbox.TextOption": ListBoxTextOptionTailor,
   "Listbox.Header": ListBoxHeaderTailor,
   "Listbox.Loading": ListBoxLoadingTailor,
+  "Listbox.Section": ListBoxSectionTailor,
 
   // Navigation
   Pagination: PaginationTailor,

@@ -44,6 +44,7 @@ import {
   ListBoxHeaderProps,
   ListBoxLoadingProps,
   ListBoxOptionProps,
+  ListBoxSectionProps,
   ListBoxTextOptionProps,
   ListItemProps,
   MediaCardProps,
@@ -670,6 +671,10 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   "Listbox.Loading": {
     accessibilityLabel: "",
   } as ListBoxLoadingProps,
+  "Listbox.Section": {
+    title: "Section",
+    divider: false,
+  } as ListBoxSectionProps,
 
   OptionList: {
     id: "",

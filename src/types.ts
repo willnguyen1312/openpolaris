@@ -963,7 +963,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Single,
   },
   "Listbox.Section": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   "Listbox.Header": {
     type: ComponentAcceptType.Single,
