@@ -789,7 +789,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     hasFocusableParent: false,
     size: "" as SpinnerProps["size"],
   } as SpinnerProps,
-  SkeletonBodyText: {} as SkeletonBodyTextProps,
+  SkeletonBodyText: {
+    lines: 3,
+  } as SkeletonBodyTextProps,
   SkeletonDisplayText: {} as SkeletonDisplayTextProps,
   SkeletonPage: {} as SkeletonPageProps,
   SkeletonTabs: {} as SkeletonTabsProps,

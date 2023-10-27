@@ -46,6 +46,7 @@ import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { PaginationTailor } from "./PaginationTailor";
 import { ProgressBarTailor } from "./PgrogressBarTailor";
+import { SkeletonBodyTextTailor } from "./SkeletonBodyTextTailor";
 import { SpinnerTailor } from "./SpinnerTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
@@ -112,6 +113,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   ExceptionList: ExceptionListTailor,
   ProgressBar: ProgressBarTailor,
   Spinner: SpinnerTailor,
+  SkeletonBodyText: SkeletonBodyTextTailor,
 
   // Navigation
   Pagination: PaginationTailor,
