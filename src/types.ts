@@ -499,21 +499,6 @@ export const listOfComponent: ComponentMenuItem[] = [
 
 export const rootComponentId = "root";
 
-type A =
-  | "info"
-  | "success"
-  | "warning"
-  | "critical"
-  | "attention"
-  | "new"
-  | "info-strong-experimental"
-  | "success-strong-experimental"
-  | "warning-strong-experimental"
-  | "critical-strong-experimental"
-  | "attention-strong-experimental"
-  | "read-only-experimental"
-  | "enabled-experimental";
-
 const toneRecord: Record<Tone | "", 1> = {
   info: 1,
   success: 1,
