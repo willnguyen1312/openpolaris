@@ -31,7 +31,7 @@ export type ComponentName =
   | "Badge"
   | "Banner"
   | "ExceptionList"
-  | "Loading"
+  // | "Loading"
   | "ProgressBar"
   | "SkeletonBodyText"
   | "SkeletonDisplayText"
@@ -179,10 +179,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "ExceptionList",
     category: "Feedback indicators",
   },
-  {
-    componentName: "Loading",
-    category: "Feedback indicators",
-  },
+  // {
+  //   componentName: "Loading",
+  //   category: "Feedback indicators",
+  // },
   {
     componentName: "ProgressBar",
     category: "Feedback indicators",
@@ -1015,9 +1015,9 @@ export const acceptComponentsMap: Partial<
   ExceptionList: {
     type: ComponentAcceptType.Single,
   },
-  Loading: {
-    type: ComponentAcceptType.Parent,
-  },
+  // Loading: {
+  //   type: ComponentAcceptType.Single,
+  // },
   ProgressBar: {
     type: ComponentAcceptType.Parent,
   },
