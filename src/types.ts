@@ -38,7 +38,7 @@ export type ComponentName =
   | "SkeletonTabs"
   | "SkeletonThumbnail"
   | "Spinner"
-  | "Toast"
+  // | "Toast"
   | "Avatar"
   | "Icon"
   | "KeyboardKey"
@@ -210,10 +210,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Spinner",
     category: "Feedback indicators",
   },
-  {
-    componentName: "Toast",
-    category: "Feedback indicators",
-  },
+  // {
+  //   componentName: "Toast",
+  //   category: "Feedback indicators",
+  // },
   {
     componentName: "Avatar",
     category: "Images and icons",
@@ -969,6 +969,36 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Parent,
   },
   "Listbox.Action": {
+    type: ComponentAcceptType.Parent,
+  },
+  Badge: {
+    type: ComponentAcceptType.Parent,
+  },
+  Banner: {
+    type: ComponentAcceptType.Parent,
+  },
+  ExceptionList: {
+    type: ComponentAcceptType.Parent,
+  },
+  Loading: {
+    type: ComponentAcceptType.Parent,
+  },
+  ProgressBar: {
+    type: ComponentAcceptType.Parent,
+  },
+  SkeletonBodyText: {
+    type: ComponentAcceptType.Parent,
+  },
+  SkeletonDisplayText: {
+    type: ComponentAcceptType.Parent,
+  },
+  SkeletonPage: {
+    type: ComponentAcceptType.Parent,
+  },
+  SkeletonTabs: {
+    type: ComponentAcceptType.Parent,
+  },
+  SkeletonThumbnail: {
     type: ComponentAcceptType.Parent,
   },
 };
