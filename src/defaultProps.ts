@@ -34,6 +34,11 @@ import {
   PageProps,
   PaginationProps,
   ProgressBarProps,
+  SkeletonBodyTextProps,
+  SkeletonDisplayTextProps,
+  SkeletonPageProps,
+  SkeletonTabsProps,
+  SkeletonThumbnailProps,
   SpinnerProps,
   TextProps,
   ThumbnailProps,
@@ -784,6 +789,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     hasFocusableParent: false,
     size: "" as SpinnerProps["size"],
   } as SpinnerProps,
+  SkeletonBodyText: {} as SkeletonBodyTextProps,
+  SkeletonDisplayText: {} as SkeletonDisplayTextProps,
+  SkeletonPage: {} as SkeletonPageProps,
+  SkeletonTabs: {} as SkeletonTabsProps,
+  SkeletonThumbnail: {} as SkeletonThumbnailProps,
 
   // Navigation
   Pagination: {
