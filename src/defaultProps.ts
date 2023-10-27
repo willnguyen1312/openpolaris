@@ -795,7 +795,13 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   SkeletonDisplayText: {
     size: "" as SkeletonDisplayTextProps["size"],
   } as SkeletonDisplayTextProps,
-  SkeletonPage: {} as SkeletonPageProps,
+  SkeletonPage: {
+    title: "SkeletonPage",
+    fullWidth: false,
+    narrowWidth: false,
+    primaryAction: false,
+    backAction: false,
+  } as SkeletonPageProps,
   SkeletonTabs: {} as SkeletonTabsProps,
   SkeletonThumbnail: {} as SkeletonThumbnailProps,
 
