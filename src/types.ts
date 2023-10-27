@@ -1031,7 +1031,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Parent,
   },
   SkeletonTabs: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   SkeletonThumbnail: {
     type: ComponentAcceptType.Parent,

@@ -802,7 +802,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     primaryAction: false,
     backAction: false,
   } as SkeletonPageProps,
-  SkeletonTabs: {} as SkeletonTabsProps,
+  SkeletonTabs: {
+    count: 3,
+  } as SkeletonTabsProps,
   SkeletonThumbnail: {} as SkeletonThumbnailProps,
 
   // Navigation
