@@ -50,6 +50,7 @@ import { SkeletonBodyTextTailor } from "./SkeletonBodyTextTailor";
 import { SkeletonDisplayTextTailor } from "./SkeletonDisplayTextTailor";
 import { SkeletonPageTailor } from "./SkeletonPageTailor";
 import { SkeletonTabsTailor } from "./SkeletonTabsTailor";
+import { SkeletonThumbnailTailor } from "./SkeletonThumnailTailor";
 import { SpinnerTailor } from "./SpinnerTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
@@ -120,6 +121,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   SkeletonDisplayText: SkeletonDisplayTextTailor,
   SkeletonPage: SkeletonPageTailor,
   SkeletonTabs: SkeletonTabsTailor,
+  SkeletonThumbnail: SkeletonThumbnailTailor,
 
   // Navigation
   Pagination: PaginationTailor,

@@ -1034,7 +1034,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Single,
   },
   SkeletonThumbnail: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   Spinner: {
     type: ComponentAcceptType.Single,

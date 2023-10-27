@@ -805,7 +805,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   SkeletonTabs: {
     count: 3,
   } as SkeletonTabsProps,
-  SkeletonThumbnail: {} as SkeletonThumbnailProps,
+  SkeletonThumbnail: {
+    size: "" as SkeletonThumbnailProps["size"],
+  } as SkeletonThumbnailProps,
 
   // Navigation
   Pagination: {
