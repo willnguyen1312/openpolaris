@@ -792,7 +792,9 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   SkeletonBodyText: {
     lines: 3,
   } as SkeletonBodyTextProps,
-  SkeletonDisplayText: {} as SkeletonDisplayTextProps,
+  SkeletonDisplayText: {
+    size: "" as SkeletonDisplayTextProps["size"],
+  } as SkeletonDisplayTextProps,
   SkeletonPage: {} as SkeletonPageProps,
   SkeletonTabs: {} as SkeletonTabsProps,
   SkeletonThumbnail: {} as SkeletonThumbnailProps,

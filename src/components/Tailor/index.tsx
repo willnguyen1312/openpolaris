@@ -47,6 +47,7 @@ import { PageTailor } from "./PageTailor";
 import { PaginationTailor } from "./PaginationTailor";
 import { ProgressBarTailor } from "./PgrogressBarTailor";
 import { SkeletonBodyTextTailor } from "./SkeletonBodyTextTailor";
+import { SkeletonDisplayTextTailor } from "./SkeletonDisplayTextTailor";
 import { SpinnerTailor } from "./SpinnerTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
@@ -114,6 +115,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   ProgressBar: ProgressBarTailor,
   Spinner: SpinnerTailor,
   SkeletonBodyText: SkeletonBodyTextTailor,
+  SkeletonDisplayText: SkeletonDisplayTextTailor,
 
   // Navigation
   Pagination: PaginationTailor,

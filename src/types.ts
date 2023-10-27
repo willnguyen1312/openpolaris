@@ -1022,10 +1022,10 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Single,
   },
   SkeletonBodyText: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   SkeletonDisplayText: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   SkeletonPage: {
     type: ComponentAcceptType.Parent,
