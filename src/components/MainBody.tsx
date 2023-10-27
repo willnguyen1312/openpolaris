@@ -1,9 +1,10 @@
 import { useDroppable } from "@dnd-kit/core";
+import { ErrorBoundary } from "react-error-boundary";
 import SplitPane from "react-split-pane";
 import { rootComponentId } from "../types";
 import styles from "./MainBody.module.css";
 
-import { EmptyState } from "@shopify/polaris";
+import { Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
 import { usePolarisStore } from "../store";
@@ -17,6 +18,7 @@ export function MainBody() {
 
   const renderedComponent = usePolarisStore.use.renderedComponents();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
+  const reset = usePolarisStore.use.reset();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isEmpty = renderedComponent.length === 0;
 
@@ -27,25 +29,40 @@ export function MainBody() {
   };
 
   const body = (
-    <div
-      ref={setNodeRef}
-      className={classNames(styles.bodyWrapper, {
-        [styles.isOver]: isOver,
-        [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
-      })}
-      onClick={handleWrapperClick}
+    <ErrorBoundary
+      fallbackRender={({ resetErrorBoundary }) => {
+        return (
+          <Box padding="400">
+            <Banner
+              title="Something went wrong 🥲, the app state will be reset on dismiss "
+              tone="critical"
+              onDismiss={resetErrorBoundary}
+            />
+          </Box>
+        );
+      }}
+      onReset={reset}
     >
-      {isEmpty ? (
-        <EmptyState
-          heading="Drag some component to start building your merchant app"
-          image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
-        />
-      ) : null}
+      <div
+        ref={setNodeRef}
+        className={classNames(styles.bodyWrapper, {
+          [styles.isOver]: isOver,
+          [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
+        })}
+        onClick={handleWrapperClick}
+      >
+        {isEmpty ? (
+          <EmptyState
+            heading="Drag some component to start building your merchant app"
+            image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+          />
+        ) : null}
 
-      {renderedComponent.map((component) => {
-        return <Preview key={component.id} component={component} />;
-      })}
-    </div>
+        {renderedComponent.map((component) => {
+          return <Preview key={component.id} component={component} />;
+        })}
+      </div>
+    </ErrorBoundary>
   );
 
   if (!isShowCodePanel) {
