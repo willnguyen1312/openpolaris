@@ -5,6 +5,7 @@ import { ComponentName } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { ActionListTailor } from "./ActionListTailor";
 import { AvatarTailor } from "./AvatarTailor";
+import { BadgeTailor } from "./BadgeTailor";
 import { BleedTailor } from "./BleedTailor";
 import { BlockStackTailor } from "./BockStackTailor";
 import { BoxTailor } from "./BoxTailor";
@@ -100,6 +101,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   "Listbox.Loading": ListBoxLoadingTailor,
   "Listbox.Section": ListBoxSectionTailor,
   "Listbox.Action": ListBoxActionTailor,
+
+  // Feedback indicators
+  Badge: BadgeTailor,
 
   // Navigation
   Pagination: PaginationTailor,

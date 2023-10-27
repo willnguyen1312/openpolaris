@@ -2,6 +2,7 @@ import {
   AccountConnectionProps,
   ActionListProps,
   AvatarProps,
+  BadgeProps,
   BleedProps,
   BlockStackProps,
   BoxProps,
@@ -36,7 +37,6 @@ import {
 } from "@shopify/polaris";
 
 import { VideoThumbnailProps } from "@shopify/polaris/build/ts/src/components/VideoThumbnail";
-import { ToastProps } from "@shopify/polaris/build/ts/src/utilities/frame";
 import {
   ComponentName,
   FormLayoutGroupProps,
@@ -429,8 +429,6 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     ] as PageProps["actionGroups"],
   } as PageProps,
 
-  Toast: {} as ToastProps,
-
   // Images and icons
   Avatar: {
     size: "" as AvatarProps["size"],
@@ -714,6 +712,16 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       },
     ],
   } as OptionListProps,
+
+  // Feedback indicators
+  Badge: {
+    children: "Badge",
+    icon: undefined,
+    progress: "" as BadgeProps["progress"],
+    size: "" as BadgeProps["size"],
+    tone: "" as BadgeProps["tone"],
+    toneAndProgressLabelOverride: "",
+  } as BadgeProps,
 
   // Navigation
   Pagination: {

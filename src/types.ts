@@ -10,6 +10,7 @@ import {
   ShadowAliasOrScale,
   SpaceScale,
 } from "@shopify/polaris-tokens";
+import { Tone } from "@shopify/polaris/build/ts/src/components/Badge";
 import { Target } from "@shopify/polaris/build/ts/src/types";
 import { ComponentPropsWithoutRef } from "react";
 
@@ -497,6 +498,40 @@ export const listOfComponent: ComponentMenuItem[] = [
 ];
 
 export const rootComponentId = "root";
+
+type A =
+  | "info"
+  | "success"
+  | "warning"
+  | "critical"
+  | "attention"
+  | "new"
+  | "info-strong-experimental"
+  | "success-strong-experimental"
+  | "warning-strong-experimental"
+  | "critical-strong-experimental"
+  | "attention-strong-experimental"
+  | "read-only-experimental"
+  | "enabled-experimental";
+
+const toneRecord: Record<Tone | "", 1> = {
+  info: 1,
+  success: 1,
+  warning: 1,
+  critical: 1,
+  attention: 1,
+  new: 1,
+  "info-strong-experimental": 1,
+  "success-strong-experimental": 1,
+  "warning-strong-experimental": 1,
+  "critical-strong-experimental": 1,
+  "attention-strong-experimental": 1,
+  "read-only-experimental": 1,
+  "enabled-experimental": 1,
+  "": 1,
+};
+
+export const tones = Object.keys(toneRecord) as Tone[];
 
 // This is to work around type error when upgrading to new version of polaris
 const spacingScaleRecord: Record<SpaceScale | "", 1> = {
