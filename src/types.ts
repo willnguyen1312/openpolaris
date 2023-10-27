@@ -1036,6 +1036,9 @@ export const acceptComponentsMap: Partial<
   SkeletonThumbnail: {
     type: ComponentAcceptType.Parent,
   },
+  Spinner: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

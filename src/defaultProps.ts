@@ -34,6 +34,7 @@ import {
   PageProps,
   PaginationProps,
   ProgressBarProps,
+  SpinnerProps,
   TextProps,
   ThumbnailProps,
   TooltipProps,
@@ -778,6 +779,11 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     size: "" as ProgressBarProps["size"],
     tone: "" as ProgressBarProps["tone"],
   } as ProgressBarProps,
+  Spinner: {
+    accessibilityLabel: "",
+    hasFocusableParent: false,
+    size: "" as SpinnerProps["size"],
+  } as SpinnerProps,
 
   // Navigation
   Pagination: {
