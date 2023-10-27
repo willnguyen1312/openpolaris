@@ -90,13 +90,13 @@ export type ComponentName =
   | "Checkbox"
   | "ChoiceList"
   | "ColorPicker"
-  | "Combobox"
+  // | "Combobox"
   | "ContextualSaveBar"
   | "DatePicker"
   | "DropZone"
-  | "Filters"
+  // | "Filters"
   | "Form"
-  | "IndexFilters"
+  // | "IndexFilters"
   | "InlineError"
   | "RadioButton"
   | "RangeSlider"
@@ -415,10 +415,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "ColorPicker",
     category: "Selection and input",
   },
-  {
-    componentName: "Combobox",
-    category: "Selection and input",
-  },
+  // {
+  //   componentName: "Combobox",
+  //   category: "Selection and input",
+  // },
   {
     componentName: "ContextualSaveBar",
     category: "Selection and input",
@@ -431,18 +431,18 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "DropZone",
     category: "Selection and input",
   },
-  {
-    componentName: "Filters",
-    category: "Selection and input",
-  },
+  // {
+  //   componentName: "Filters",
+  //   category: "Selection and input",
+  // },
   {
     componentName: "Form",
     category: "Selection and input",
   },
-  {
-    componentName: "IndexFilters",
-    category: "Selection and input",
-  },
+  // {
+  //   componentName: "IndexFilters",
+  //   category: "Selection and input",
+  // },
   {
     componentName: "InlineError",
     category: "Selection and input",
