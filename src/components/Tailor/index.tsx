@@ -17,6 +17,7 @@ import { CardTailor } from "./CardTailor";
 import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
+import { ExceptionListTailor } from "./ExceptionListTailor";
 import { FooterHelpTailor } from "./FooterHelpTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
 import { GridCellTailor } from "./GridCellTailor";
@@ -106,6 +107,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Feedback indicators
   Badge: BadgeTailor,
   Banner: BannerTailor,
+  ExceptionList: ExceptionListTailor,
 
   // Navigation
   Pagination: PaginationTailor,

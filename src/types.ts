@@ -1013,7 +1013,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Parent,
   },
   ExceptionList: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   Loading: {
     type: ComponentAcceptType.Parent,

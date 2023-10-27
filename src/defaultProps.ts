@@ -14,6 +14,7 @@ import {
   DescriptionListProps,
   DividerProps,
   EmptyStateProps,
+  ExceptionListProps,
   FooterHelpProps,
   FormLayoutProps,
   FullscreenBarProps,
@@ -750,6 +751,25 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       url: "",
     },
   } as BannerProps,
+  ExceptionList: {
+    items: [
+      {
+        status: "" as ExceptionListProps["items"][0]["status"],
+        icon: undefined,
+        title: "Awesome",
+        description:
+          "This customer is awesome. Make sure to treat them awesome!",
+        truncate: false,
+      },
+      {
+        status: "" as ExceptionListProps["items"][0]["status"],
+        icon: undefined,
+        title: "Great",
+        description: "This customer is great. Make sure to treat them great!",
+        truncate: false,
+      },
+    ],
+  } as ExceptionListProps,
 
   // Navigation
   Pagination: {
