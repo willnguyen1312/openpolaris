@@ -6,6 +6,7 @@ import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { ActionListTailor } from "./ActionListTailor";
 import { AvatarTailor } from "./AvatarTailor";
 import { BadgeTailor } from "./BadgeTailor";
+import { BannerTailor } from "./BannerTailor";
 import { BleedTailor } from "./BleedTailor";
 import { BlockStackTailor } from "./BockStackTailor";
 import { BoxTailor } from "./BoxTailor";
@@ -104,6 +105,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Feedback indicators
   Badge: BadgeTailor,
+  Banner: BannerTailor,
 
   // Navigation
   Pagination: PaginationTailor,

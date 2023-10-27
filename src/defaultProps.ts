@@ -3,6 +3,7 @@ import {
   ActionListProps,
   AvatarProps,
   BadgeProps,
+  BannerProps,
   BleedProps,
   BlockStackProps,
   BoxProps,
@@ -722,6 +723,33 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     tone: "" as BadgeProps["tone"],
     toneAndProgressLabelOverride: "",
   } as BadgeProps,
+  Banner: {
+    title: "Order archived",
+    icon: undefined,
+    hideIcon: false,
+    tone: "" as BannerProps["tone"],
+    stopAnnouncements: false,
+    secondaryAction: {
+      accessibilityLabel: "",
+      content: "",
+      disabled: false,
+      external: false,
+      id: "",
+      loading: false,
+      target: "" as any,
+      url: "",
+    },
+    action: {
+      accessibilityLabel: "",
+      content: "Dismiss",
+      disabled: false,
+      external: false,
+      id: "",
+      loading: false,
+      target: "" as any,
+      url: "",
+    },
+  } as BannerProps,
 
   // Navigation
   Pagination: {

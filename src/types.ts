@@ -1007,7 +1007,7 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Parent,
   },
   Badge: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   Banner: {
     type: ComponentAcceptType.Parent,
