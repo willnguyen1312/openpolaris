@@ -45,6 +45,7 @@ import { OptionListTailor } from "./OptionListTailor";
 import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { PaginationTailor } from "./PaginationTailor";
+import { ProgressBarTailor } from "./PgrogressBarTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
 import { TooltipTailor } from "./TooltipTailor";
@@ -108,6 +109,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   Badge: BadgeTailor,
   Banner: BannerTailor,
   ExceptionList: ExceptionListTailor,
+  ProgressBar: ProgressBarTailor,
 
   // Navigation
   Pagination: PaginationTailor,

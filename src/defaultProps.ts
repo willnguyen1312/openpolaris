@@ -33,6 +33,7 @@ import {
   PageActionsProps,
   PageProps,
   PaginationProps,
+  ProgressBarProps,
   TextProps,
   ThumbnailProps,
   TooltipProps,
@@ -770,6 +771,13 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
       },
     ],
   } as ExceptionListProps,
+  ProgressBar: {
+    animated: false,
+    ariaLabelledBy: "",
+    progress: 41,
+    size: "" as ProgressBarProps["size"],
+    tone: "" as ProgressBarProps["tone"],
+  } as ProgressBarProps,
 
   // Navigation
   Pagination: {

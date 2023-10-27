@@ -1019,7 +1019,7 @@ export const acceptComponentsMap: Partial<
   //   type: ComponentAcceptType.Single,
   // },
   ProgressBar: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   SkeletonBodyText: {
     type: ComponentAcceptType.Parent,

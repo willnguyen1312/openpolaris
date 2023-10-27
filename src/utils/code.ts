@@ -8,6 +8,7 @@ const specialComponentWithDefaultTrueProps: Partial<
   Record<ComponentName, any>
 > = {
   InlineStack: ["wrap"],
+  ProgressBar: ["animated"],
 };
 
 const traverse = (
@@ -25,9 +26,9 @@ export const generateCode = async (tree: RenderedComponent[]) => {
   tree.forEach((item) => {
     traverse(item, (node) => {
       // Toast component requires Frame component to be imported
-      if (node.componentName === "Toast") {
-        importedComponents.add("Frame" as ComponentName);
-      }
+      // if (node.componentName === "Toast") {
+      //   importedComponents.add("Frame" as ComponentName);
+      // }
 
       if (node.props?.icon) {
         importedIcons.add(node.props.icon);
@@ -203,9 +204,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     import enTranslations from "@shopify/polaris/locales/en.json";
 
     export default function App() {
-      return <AppProvider i18n={enTranslations}>${
-        importedComponents.has("Toast") ? `<Frame>${code}</Frame>` : code
-      }</AppProvider>;
+      return <AppProvider i18n={enTranslations}>${code}</AppProvider>;
     };
     `;
 
