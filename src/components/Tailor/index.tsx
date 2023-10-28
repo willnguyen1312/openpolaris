@@ -25,7 +25,7 @@ import { EmptyStateTailor } from "./EmptyStateTailor";
 import { ExceptionListTailor } from "./ExceptionListTailor";
 import { FooterHelpTailor } from "./FooterHelpTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
-import { FormTailor } from "./Formtailor";
+import { FormTailor } from "./FormTailor_";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
 import { IconTailor } from "./IconTailor";
