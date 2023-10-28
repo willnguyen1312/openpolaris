@@ -1024,6 +1024,15 @@ export const acceptComponentsMap: Partial<
   Spinner: {
     type: ComponentAcceptType.Single,
   },
+  Checkbox: {
+    type: ComponentAcceptType.Single,
+  },
+  ChoiceList: {
+    type: ComponentAcceptType.Single,
+  },
+  ColorPicker: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

@@ -14,6 +14,7 @@ import {
   CheckboxProps,
   ChoiceListProps,
   ColorPickerProps,
+  DatePickerProps,
   DescriptionListProps,
   DividerProps,
   EmptyStateProps,
@@ -906,4 +907,13 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   //     discardConfirmationModal: false,
   //   },
   // } as ContextualSaveBarProps,
+  DatePicker: {
+    id: "",
+    month: 0,
+    year: 2023,
+    allowRange: false,
+    multiMonth: false,
+    weekStartsOn: 0,
+    dayAccessibilityLabelPrefix: "",
+  } as DatePickerProps,
 };
