@@ -9,6 +9,7 @@ const specialComponentWithDefaultTrueProps: Partial<
 > = {
   InlineStack: ["wrap"],
   ProgressBar: ["animated"],
+  Form: ["implicitSubmit"],
 };
 
 const traverse = (

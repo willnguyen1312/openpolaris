@@ -1054,6 +1054,9 @@ export const acceptComponentsMap: Partial<
   "DropZone.FileUpload": {
     type: ComponentAcceptType.Single,
   },
+  Form: {
+    type: ComponentAcceptType.Parent,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

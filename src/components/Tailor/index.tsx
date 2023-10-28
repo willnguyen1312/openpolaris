@@ -25,6 +25,7 @@ import { EmptyStateTailor } from "./EmptyStateTailor";
 import { ExceptionListTailor } from "./ExceptionListTailor";
 import { FooterHelpTailor } from "./FooterHelpTailor";
 import { FormLayoutGroupTailor } from "./FormLayoutGroupTailor";
+import { FormTailor } from "./Formtailor";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
 import { IconTailor } from "./IconTailor";
@@ -140,6 +141,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   DatePicker: DatePickerTailor,
   DropZone: DropZoneTailor,
   "DropZone.FileUpload": DropZoneFileUploadTailor,
+  Form: FormTailor,
 };
 
 export const Tailor = () => {
