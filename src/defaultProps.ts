@@ -49,6 +49,7 @@ import {
 } from "@shopify/polaris";
 
 import { VideoThumbnailProps } from "@shopify/polaris/build/ts/src/components/VideoThumbnail";
+import { ContextualSaveBarProps } from "@shopify/polaris/build/ts/src/utilities/frame";
 import {
   ComponentName,
   FormLayoutGroupProps,
@@ -888,4 +889,22 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     allowAlpha: false,
     fullWidth: false,
   } as ColorPickerProps,
+  ContextualSaveBar: {
+    alignContentFlush: false,
+    message: "Unsaved changes",
+    fullWidth: false,
+    saveAction: {
+      content: "Save",
+      disabled: false,
+      loading: false,
+      url: "#",
+    },
+    discardAction: {
+      content: "Discard",
+      disabled: false,
+      loading: false,
+      url: "#",
+      discardConfirmationModal: false,
+    },
+  } as ContextualSaveBarProps,
 };
