@@ -13,6 +13,7 @@ import {
   CardProps,
   CheckboxProps,
   ChoiceListProps,
+  ColorPickerProps,
   DescriptionListProps,
   DividerProps,
   EmptyStateProps,
@@ -877,4 +878,14 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     error: "",
     disabled: false,
   } as ChoiceListProps,
+  ColorPicker: {
+    id: "",
+    color: {
+      hue: 120,
+      brightness: 1,
+      saturation: 1,
+    },
+    allowAlpha: false,
+    fullWidth: false,
+  } as ColorPickerProps,
 };
