@@ -1033,6 +1033,12 @@ export const acceptComponentsMap: Partial<
   ColorPicker: {
     type: ComponentAcceptType.Single,
   },
+  DatePicker: {
+    type: ComponentAcceptType.Single,
+  },
+  DropZone: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

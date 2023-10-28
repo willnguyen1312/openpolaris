@@ -37,9 +37,9 @@ export const DatePickerTailor = () => {
     <>
       <Link
         target="_blank"
-        url="https://polaris.shopify.com/components/feedback-indicators/skeleton-thumbnail"
+        url="https://polaris.shopify.com/components/selection-and-input/date-picker"
       >
-        Skeleton thumbnail
+        Date picker
       </Link>
 
       <TailorList items={datePickerTailorPropsItems} />
