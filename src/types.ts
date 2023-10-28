@@ -91,7 +91,7 @@ export type ComponentName =
   | "ChoiceList"
   | "ColorPicker"
   // | "Combobox"
-  | "ContextualSaveBar"
+  // | "ContextualSaveBar"
   | "DatePicker"
   | "DropZone"
   // | "Filters"
@@ -419,10 +419,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   //   componentName: "Combobox",
   //   category: "Selection and input",
   // },
-  {
-    componentName: "ContextualSaveBar",
-    category: "Selection and input",
-  },
+  // {
+  //   componentName: "ContextualSaveBar",
+  //   category: "Selection and input",
+  // },
   {
     componentName: "DatePicker",
     category: "Selection and input",

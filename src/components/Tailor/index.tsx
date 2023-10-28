@@ -17,7 +17,6 @@ import { CardTailor } from "./CardTailor";
 import { CheckboxTailor } from "./CheckboxTailor";
 import { ChoiceListTailor } from "./ChoiceListTailor";
 import { ColorPickerTailor } from "./ColorPickerTailor";
-import { ContextualSaveBarTailor } from "./ContextualSaveBarTailor";
 import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
@@ -136,7 +135,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   Checkbox: CheckboxTailor,
   ChoiceList: ChoiceListTailor,
   ColorPicker: ColorPickerTailor,
-  ContextualSaveBar: ContextualSaveBarTailor,
+  // ContextualSaveBar: ContextualSaveBarTailor,
 };
 
 export const Tailor = () => {
