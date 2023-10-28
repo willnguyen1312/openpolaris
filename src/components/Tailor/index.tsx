@@ -20,6 +20,7 @@ import { ColorPickerTailor } from "./ColorPickerTailor";
 import { DatePickerTailor } from "./DatePickerTailor";
 import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
+import { DropZoneFileUploadTailor, DropZoneTailor } from "./DropZoneTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
 import { ExceptionListTailor } from "./ExceptionListTailor";
 import { FooterHelpTailor } from "./FooterHelpTailor";
@@ -137,6 +138,8 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   ChoiceList: ChoiceListTailor,
   ColorPicker: ColorPickerTailor,
   DatePicker: DatePickerTailor,
+  DropZone: DropZoneTailor,
+  "DropZone.FileUpload": DropZoneFileUploadTailor,
 };
 
 export const Tailor = () => {

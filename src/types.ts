@@ -1,4 +1,11 @@
-import { FormLayout, Layout, List, Listbox, MediaCard } from "@shopify/polaris";
+import {
+  DropZone,
+  FormLayout,
+  Layout,
+  List,
+  Listbox,
+  MediaCard,
+} from "@shopify/polaris";
 import {
   BorderRadiusAliasOrScale,
   BorderWidthScale,
@@ -94,6 +101,7 @@ export type ComponentName =
   // | "ContextualSaveBar"
   | "DatePicker"
   | "DropZone"
+  | "DropZone.FileUpload"
   // | "Filters"
   | "Form"
   // | "IndexFilters"
@@ -429,6 +437,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "DropZone",
+    category: "Selection and input",
+  },
+  {
+    componentName: "DropZone.FileUpload",
     category: "Selection and input",
   },
   // {
@@ -1037,6 +1049,9 @@ export const acceptComponentsMap: Partial<
     type: ComponentAcceptType.Single,
   },
   DropZone: {
+    type: ComponentAcceptType.Parent,
+  },
+  "DropZone.FileUpload": {
     type: ComponentAcceptType.Single,
   },
 };
@@ -1047,6 +1062,10 @@ export type FormLayoutGroupProps = ComponentPropsWithoutRef<
 
 export type LayoutSectionProps = ComponentPropsWithoutRef<
   typeof Layout.Section
+>;
+
+export type DropZoneFileUploadProps = ComponentPropsWithoutRef<
+  typeof DropZone.FileUpload
 >;
 
 export type MediaCardProps = ComponentPropsWithoutRef<typeof MediaCard>;
