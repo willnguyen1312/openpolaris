@@ -12,6 +12,7 @@ import {
   CalloutCardProps,
   CardProps,
   CheckboxProps,
+  ChoiceListProps,
   DescriptionListProps,
   DividerProps,
   EmptyStateProps,
@@ -862,4 +863,18 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     bleedInlineStart: "" as CheckboxProps["bleedInlineStart"],
     bleedInlineEnd: "" as CheckboxProps["bleedInlineEnd"],
   } as CheckboxProps,
+  ChoiceList: {
+    title: "Company name",
+    choices: [
+      { label: "Hidden", value: "hidden" },
+      { label: "Optional", value: "optional" },
+      { label: "Required", value: "required" },
+    ],
+    selected: ["hidden"],
+    name: "",
+    allowMultiple: false,
+    titleHidden: false,
+    error: "",
+    disabled: false,
+  } as ChoiceListProps,
 };

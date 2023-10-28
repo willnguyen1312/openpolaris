@@ -15,6 +15,7 @@ import { ButtonTailor } from "./ButtonTailor";
 import { CalloutCardTailor } from "./CalloutCardTailor";
 import { CardTailor } from "./CardTailor";
 import { CheckboxTailor } from "./CheckboxTailor";
+import { ChoiceListTailor } from "./ChoiceListTailor";
 import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
@@ -131,6 +132,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
 
   // Selection and input
   Checkbox: CheckboxTailor,
+  ChoiceList: ChoiceListTailor,
 };
 
 export const Tailor = () => {
