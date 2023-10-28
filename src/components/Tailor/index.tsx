@@ -14,6 +14,7 @@ import { ButtonGroupTailor } from "./ButtonGroupTailor";
 import { ButtonTailor } from "./ButtonTailor";
 import { CalloutCardTailor } from "./CalloutCardTailor";
 import { CardTailor } from "./CardTailor";
+import { CheckboxTailor } from "./CheckboxTailor";
 import { DescriptionListTailor } from "./DescriptionListTailor";
 import { DividerTailor } from "./DividerTailor";
 import { EmptyStateTailor } from "./EmptyStateTailor";
@@ -127,6 +128,9 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   Pagination: PaginationTailor,
   Link: LinkTailor,
   FooterHelp: FooterHelpTailor,
+
+  // Selection and input
+  Checkbox: CheckboxTailor,
 };
 
 export const Tailor = () => {

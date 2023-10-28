@@ -86,7 +86,7 @@ export type ComponentName =
   | "Modal"
   // | "Popover"
   | "Tooltip"
-  | "Autocomplete"
+  // | "Autocomplete"
   | "Checkbox"
   | "ChoiceList"
   | "ColorPicker"
@@ -399,10 +399,10 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "Tooltip",
     category: "Overlays",
   },
-  {
-    componentName: "Autocomplete",
-    category: "Selection and input",
-  },
+  // {
+  //   componentName: "Autocomplete",
+  //   category: "Selection and input",
+  // },
   {
     componentName: "Checkbox",
     category: "Selection and input",

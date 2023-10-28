@@ -11,6 +11,7 @@ import {
   ButtonProps,
   CalloutCardProps,
   CardProps,
+  CheckboxProps,
   DescriptionListProps,
   DividerProps,
   EmptyStateProps,
@@ -839,4 +840,26 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   FooterHelp: {
     children: "Learn more about Shopify 🐻‍❄️",
   } as FooterHelpProps,
+
+  // Selection and input
+  Checkbox: {
+    label: "Checkbox",
+    labelHidden: false,
+    checked: false,
+    disabled: false,
+    id: "",
+    name: "",
+    value: "",
+    labelClassName: "",
+    fill: false,
+    helpText: "",
+    error: false,
+    ariaControls: "",
+    ariaDescribedBy: "",
+    bleed: "" as CheckboxProps["bleed"],
+    bleedBlockStart: "" as CheckboxProps["bleedBlockStart"],
+    bleedBlockEnd: "" as CheckboxProps["bleedBlockEnd"],
+    bleedInlineStart: "" as CheckboxProps["bleedInlineStart"],
+    bleedInlineEnd: "" as CheckboxProps["bleedInlineEnd"],
+  } as CheckboxProps,
 };
