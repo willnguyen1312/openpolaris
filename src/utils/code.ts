@@ -20,11 +20,11 @@ const traverse = (
   node.children.forEach((child) => traverse(child, visit));
 };
 
-export const generateCode = async (tree: RenderedComponent[]) => {
+export const generateCode = async (value: RenderedComponent[]) => {
   const importedComponents = new Set<ComponentName>([]);
   const importedIcons = new Set<string>();
 
-  tree.forEach((item) => {
+  value.forEach((item) => {
     traverse(item, (node) => {
       // Toast component requires Frame component to be imported
       // if (node.componentName === "Toast") {
@@ -186,7 +186,7 @@ export const generateCode = async (tree: RenderedComponent[]) => {
     return result + `</${node.componentName}>`;
   }
 
-  const code = tree.reduce((acc, item) => {
+  const code = value.reduce((acc, item) => {
     acc += buildComponentToJsx(item);
     return acc;
   }, "");

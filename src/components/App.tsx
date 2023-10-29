@@ -25,7 +25,9 @@ export function App() {
   const { docX, docY } = useMouse(ref);
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
-  const setTree = usePolarisStore.use.setTree();
+  const setRenderedComponents = usePolarisStore.use.setRenderedComponents();
+  const setLastRenderedComponents =
+    usePolarisStore.use.setLastRenderedComponents();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -47,8 +49,10 @@ export function App() {
 
     if (code) {
       try {
-        const decodedCode = decode(code);
-        setTree(decodedCode);
+        const { renderedComponents = [], lastRenderedComponents = [] } =
+          decode(code);
+        setRenderedComponents(renderedComponents);
+        setLastRenderedComponents(lastRenderedComponents);
       } catch (_) {}
     }
   }, []);

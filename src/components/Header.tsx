@@ -25,6 +25,7 @@ export function Header() {
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
   const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
+  const lastRenderedComponents = usePolarisStore.use.lastRenderedComponents();
   const reset = usePolarisStore.use.reset();
   const [active, setActive] = useState(false);
   const closeToast = () => setActive(false);
@@ -35,7 +36,9 @@ export function Header() {
 
   const handleShareClick = () => {
     showToast();
-    const code = encode(JSON.stringify(renderedComponents));
+    const code = encode(
+      JSON.stringify({ renderedComponents, lastRenderedComponents }),
+    );
     const href = `?code=${code}`;
     window.history.replaceState("", "", href);
     navigator.clipboard.writeText(window.location.origin + href);

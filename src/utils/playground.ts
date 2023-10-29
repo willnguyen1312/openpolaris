@@ -3,8 +3,8 @@ import { RenderedComponent } from "../types";
 import { generateCode } from "./code";
 
 // Reference - https://developer.stackblitz.com/guides/integration/create-with-sdk
-export const openProject = async (tree: RenderedComponent[]) => {
-  const code = await generateCode(tree);
+export const openProject = async (value: RenderedComponent[]) => {
+  const code = await generateCode(value);
   sdk.openProject(
     {
       files: {

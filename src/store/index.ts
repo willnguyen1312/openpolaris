@@ -45,7 +45,8 @@ interface StoreState {
 
 type StoreActions = {
   setSearchComponentInput: (value: string) => void;
-  setTree: (tree: RenderedComponent[]) => void;
+  setRenderedComponents: (value: RenderedComponent[]) => void;
+  setLastRenderedComponents: (value: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
@@ -60,10 +61,10 @@ type StoreActions = {
 };
 
 export const findComponentBy = (
-  tree: RenderedComponent[],
+  value: RenderedComponent[],
   predicate: (component: RenderedComponent) => boolean,
 ): undefined | null | RenderedComponent => {
-  for (const component of tree) {
+  for (const component of value) {
     if (predicate(component)) {
       return component;
     } else {
@@ -87,9 +88,13 @@ const useStoreBase = createWithEqualityFn(
             state.searchComponentInput = value;
           }),
 
-        setTree: (tree) =>
+        setRenderedComponents: (value) =>
           set((state: StoreState) => {
-            state.renderedComponents = tree;
+            state.renderedComponents = value;
+          }),
+        setLastRenderedComponents: (value) =>
+          set((state: StoreState) => {
+            state.lastRenderedComponents = value;
           }),
         reset: () => {
           set((state: StoreState) => {
