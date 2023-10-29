@@ -29,6 +29,7 @@ import { FormTailor } from "./FormTailor";
 import { GridCellTailor } from "./GridCellTailor";
 import { GridTailor } from "./GridTailor";
 import { IconTailor } from "./IconTailor";
+import { InlineErrorTailor } from "./InlineErrorTailor";
 import { InlineGridTailor } from "./InlineGridTailor";
 import { InlineStackTailor } from "./InlineStackTailor";
 import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
@@ -142,6 +143,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   DropZone: DropZoneTailor,
   "DropZone.FileUpload": DropZoneFileUploadTailor,
   Form: FormTailor,
+  InlineError: InlineErrorTailor,
 };
 
 export const Tailor = () => {

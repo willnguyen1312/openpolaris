@@ -27,6 +27,7 @@ import {
   GridCellProps,
   GridProps,
   IconProps,
+  InlineErrorProps,
   InlineGridProps,
   InlineStackProps,
   KeyboardKeyProps,
@@ -961,4 +962,8 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     preventDefault: false,
     target: "" as FormProps["target"],
   } as FormProps,
+  InlineError: {
+    fieldID: "myFieldID",
+    message: "Store name is required",
+  } as InlineErrorProps,
 };
