@@ -26,15 +26,15 @@ export type ComponentName =
   | "Button"
   | "ButtonGroup"
   | "PageActions"
-  | "Caption"
-  | "DisplayText"
-  | "Heading"
-  | "SettingToggle"
-  | "Sheet"
-  | "Subheading"
-  | "TextContainer"
-  | "TextStyle"
-  | "VisuallyHidden"
+  // | "Caption"
+  // | "DisplayText"
+  // | "Heading"
+  // | "SettingToggle"
+  // | "Sheet"
+  // | "Subheading"
+  // | "TextContainer"
+  // | "TextStyle"
+  // | "VisuallyHidden"
   | "Badge"
   | "Banner"
   | "ExceptionList"
@@ -81,8 +81,8 @@ export type ComponentName =
   | "Listbox.Header"
   | "Listbox.Action"
   | "OptionList"
-  | "ResourceItem"
-  | "ResourceList"
+  // | "ResourceItem"
+  // | "ResourceList"
   | "FooterHelp"
   | "FullscreenBar"
   | "Link"
@@ -111,8 +111,8 @@ export type ComponentName =
   | "Select"
   | "Tag"
   | "TextField"
-  | "DataTable"
-  | "IndexTable"
+  // | "DataTable"
+  // | "IndexTable"
   | "Text";
 // | "AppProvider"
 // | "Collapsible"
@@ -359,14 +359,14 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "OptionList",
     category: "List",
   },
-  {
-    componentName: "ResourceItem",
-    category: "List",
-  },
-  {
-    componentName: "ResourceList",
-    category: "List",
-  },
+  // {
+  //   componentName: "ResourceItem",
+  //   category: "List",
+  // },
+  // {
+  //   componentName: "ResourceList",
+  //   category: "List",
+  // },
   {
     componentName: "FooterHelp",
     category: "Navigation",
@@ -479,14 +479,14 @@ export const listOfComponent: ComponentMenuItem[] = [
     componentName: "TextField",
     category: "Selection and input",
   },
-  {
-    componentName: "DataTable",
-    category: "Table",
-  },
-  {
-    componentName: "IndexTable",
-    category: "Table",
-  },
+  // {
+  //   componentName: "DataTable",
+  //   category: "Table",
+  // },
+  // {
+  //   componentName: "IndexTable",
+  //   category: "Table",
+  // },
   {
     componentName: "Text",
     category: "Typography",
@@ -876,8 +876,9 @@ export const enum ComponentAcceptType {
   Parent = "Parent",
 }
 
-export const acceptComponentsMap: Partial<
-  Record<ComponentName, { type: ComponentAcceptType }>
+export const acceptComponentsMap: Record<
+  ComponentName,
+  { type: ComponentAcceptType }
 > = {
   Divider: { type: ComponentAcceptType.Single },
   Button: { type: ComponentAcceptType.Single },
@@ -1068,6 +1069,18 @@ export const acceptComponentsMap: Partial<
   },
   Select: {
     type: ComponentAcceptType.Single,
+  },
+  Tag: {
+    type: ComponentAcceptType.Single,
+  },
+  TextField: {
+    type: ComponentAcceptType.Single,
+  },
+  OptionList: {
+    type: ComponentAcceptType.Single,
+  },
+  Page: {
+    type: ComponentAcceptType.Parent,
   },
 };
 
