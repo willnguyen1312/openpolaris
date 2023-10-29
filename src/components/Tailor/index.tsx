@@ -55,6 +55,7 @@ import { PaginationTailor } from "./PaginationTailor";
 import { ProgressBarTailor } from "./PgrogressBarTailor";
 import { RadioButtonTailor } from "./RadioButtonTailor";
 import { RangeSliderTailor } from "./RangeSliderTailor";
+import { SelectTailor } from "./SelectTailor";
 import { SkeletonBodyTextTailor } from "./SkeletonBodyTextTailor";
 import { SkeletonDisplayTextTailor } from "./SkeletonDisplayTextTailor";
 import { SkeletonPageTailor } from "./SkeletonPageTailor";
@@ -148,6 +149,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   InlineError: InlineErrorTailor,
   RadioButton: RadioButtonTailor,
   RangeSlider: RangeSliderTailor,
+  Select: SelectTailor,
 };
 
 export const Tailor = () => {

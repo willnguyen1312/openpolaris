@@ -1063,6 +1063,12 @@ export const acceptComponentsMap: Partial<
   RadioButton: {
     type: ComponentAcceptType.Single,
   },
+  RangeSlider: {
+    type: ComponentAcceptType.Single,
+  },
+  Select: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<
