@@ -39,6 +39,7 @@ interface StoreState {
   isShowCodePanel: boolean;
   isBuilderMode: boolean;
   activeDraggableId: string | null;
+  lastRenderedComponents: RenderedComponent[];
   renderedComponents: RenderedComponent[];
 }
 
@@ -93,7 +94,7 @@ const useStoreBase = createWithEqualityFn(
         reset: () => {
           set((state: StoreState) => {
             state.activeComponent = null;
-            state.renderedComponents = [];
+            state.renderedComponents = cloneDeep(state.lastRenderedComponents);
           });
         },
         isShowCodePanel: false,
@@ -115,6 +116,7 @@ const useStoreBase = createWithEqualityFn(
           }),
 
         renderedComponents: [],
+        lastRenderedComponents: [],
 
         activeComponent: null,
         setActiveComponent: (component) =>
@@ -197,6 +199,7 @@ const useStoreBase = createWithEqualityFn(
             const activeId = active.id;
             const overId = over?.id;
             state.activeDraggableId = null;
+            state.lastRenderedComponents = cloneDeep(state.renderedComponents);
 
             if (activeId === overId || !overId) {
               return;

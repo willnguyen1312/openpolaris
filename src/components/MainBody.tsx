@@ -30,11 +30,12 @@ export function MainBody() {
 
   const body = (
     <ErrorBoundary
-      fallbackRender={({ resetErrorBoundary }) => {
+      fallbackRender={({ resetErrorBoundary, error }) => {
+        const title = `Error: ${error.message}, the app state will be recovered on dismiss`;
         return (
           <Box padding="400">
             <Banner
-              title="Something went wrong 🥲, the app state will be reset on dismiss "
+              title={title}
               tone="critical"
               onDismiss={resetErrorBoundary}
             />
