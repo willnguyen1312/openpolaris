@@ -17,9 +17,9 @@ export const InlineErrorTailor = () => {
     <>
       <Link
         target="_blank"
-        url="https://polaris.shopify.com/components/feedback-indicators/skeleton-display-text"
+        url="https://polaris.shopify.com/components/selection-and-input/inline-error"
       >
-        Skeleton display text
+        Inline Error
       </Link>
 
       <TailorList items={inlineErrorPropsItems} />

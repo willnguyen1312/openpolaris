@@ -1057,6 +1057,12 @@ export const acceptComponentsMap: Partial<
   Form: {
     type: ComponentAcceptType.Parent,
   },
+  InlineError: {
+    type: ComponentAcceptType.Single,
+  },
+  RadioButton: {
+    type: ComponentAcceptType.Single,
+  },
 };
 
 export type FormLayoutGroupProps = ComponentPropsWithoutRef<

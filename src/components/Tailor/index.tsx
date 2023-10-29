@@ -53,6 +53,7 @@ import { PageActionsTailor } from "./PageActionsTailor";
 import { PageTailor } from "./PageTailor";
 import { PaginationTailor } from "./PaginationTailor";
 import { ProgressBarTailor } from "./PgrogressBarTailor";
+import { RadioButtonTailor } from "./RadioButtonTailor";
 import { SkeletonBodyTextTailor } from "./SkeletonBodyTextTailor";
 import { SkeletonDisplayTextTailor } from "./SkeletonDisplayTextTailor";
 import { SkeletonPageTailor } from "./SkeletonPageTailor";
@@ -144,6 +145,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   "DropZone.FileUpload": DropZoneFileUploadTailor,
   Form: FormTailor,
   InlineError: InlineErrorTailor,
+  RadioButton: RadioButtonTailor,
 };
 
 export const Tailor = () => {
