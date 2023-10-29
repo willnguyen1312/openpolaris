@@ -50,7 +50,7 @@ import {
   SkeletonTabsProps,
   SkeletonThumbnailProps,
   SpinnerProps,
-  TabProps,
+  TagProps,
   TextFieldProps,
   TextProps,
   ThumbnailProps,
@@ -1037,7 +1037,12 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
     error: "",
     requiredIndicator: false,
   } as SelectProps,
-  Tag: {} as TabProps,
+  Tag: {
+    children: "Wholesale",
+    accessibilityLabel: "",
+    disabled: false,
+    url: "",
+  } as TagProps,
   TextField: {
     label: "Store name",
     name: "",

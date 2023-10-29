@@ -62,6 +62,7 @@ import { SkeletonPageTailor } from "./SkeletonPageTailor";
 import { SkeletonTabsTailor } from "./SkeletonTabsTailor";
 import { SkeletonThumbnailTailor } from "./SkeletonThumnailTailor";
 import { SpinnerTailor } from "./SpinnerTailor";
+import { TagTailor } from "./TagTailor";
 import { TextFieldTailor } from "./TextFieldTailor";
 import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
@@ -151,6 +152,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   RadioButton: RadioButtonTailor,
   RangeSlider: RangeSliderTailor,
   Select: SelectTailor,
+  Tag: TagTailor,
   TextField: TextFieldTailor,
 };
 
