@@ -38,6 +38,7 @@ interface StoreState {
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
   isBuilderMode: boolean;
+  hasError: boolean;
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
   renderedComponents: RenderedComponent[];
@@ -50,6 +51,7 @@ type StoreActions = {
   setIsShowCodePanel: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
+  setHasError: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -83,6 +85,11 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        hasError: false,
+        setHasError: (value) =>
+          set((state: StoreState) => {
+            state.hasError = value;
+          }),
         searchComponentInput: "",
         setSearchComponentInput: (value) =>
           set((state: StoreState) => {
@@ -108,6 +115,7 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.activeComponent = null;
             state.renderedComponents = cloneDeep(state.lastRenderedComponents);
+            state.hasError = false;
           });
         },
         isShowCodePanel: false,
@@ -214,7 +222,7 @@ const useStoreBase = createWithEqualityFn(
             state.activeDraggableId = null;
             state.lastRenderedComponents = cloneDeep(state.renderedComponents);
 
-            if (activeId === overId || !overId) {
+            if (activeId === overId || !overId || state.hasError) {
               return;
             }
 

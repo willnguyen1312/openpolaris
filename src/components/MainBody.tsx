@@ -20,6 +20,7 @@ export function MainBody() {
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const reCover = usePolarisStore.use.reCover();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
+  const setHasError = usePolarisStore.use.setHasError();
   const isEmpty = renderedComponent.length === 0;
 
   const handleWrapperClick = (event: React.MouseEvent) => {
@@ -43,6 +44,9 @@ export function MainBody() {
         );
       }}
       onReset={reCover}
+      onError={() => {
+        setHasError(true);
+      }}
     >
       <div
         ref={setNodeRef}
