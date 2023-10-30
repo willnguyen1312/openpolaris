@@ -219,12 +219,13 @@ const useStoreBase = createWithEqualityFn(
             const { active, over } = event;
             const activeId = active.id;
             const overId = over?.id;
-            state.activeDraggableId = null;
-            state.lastRenderedComponents = cloneDeep(state.renderedComponents);
 
             if (activeId === overId || !overId || state.hasError) {
               return;
             }
+
+            state.activeDraggableId = null;
+            state.lastRenderedComponents = cloneDeep(state.renderedComponents);
 
             const isOverCanvas = overId === rootComponentId;
             const isComponentFromMenu = listOfComponent.some(
