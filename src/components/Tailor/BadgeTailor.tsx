@@ -1,6 +1,6 @@
-import { BadgeProps, Link } from "@shopify/polaris";
+import { BadgeProps } from "@shopify/polaris";
 import { tones } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const badgeProgressRecord: Record<NonNullable<BadgeProps["progress"]> | "", 1> =
   {
@@ -50,12 +50,12 @@ const badgePropsItems: PropItem<keyof BadgeProps>[] = [
 export const BadgeTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/feedback-indicators/badge"
       >
         Badge
-      </Link>
+      </DocLink>
 
       <TailorList items={badgePropsItems} />
     </>

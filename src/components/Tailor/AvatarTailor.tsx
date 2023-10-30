@@ -1,5 +1,5 @@
-import { AvatarProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { AvatarProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const avatarSizeRecord: Record<NonNullable<AvatarProps["size"] | "">, 1> = {
   xs: 1,
@@ -42,12 +42,12 @@ const avatarPropsItems: PropItem<keyof AvatarProps>[] = [
 export const AvatarTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/images-and-icons/avatar"
       >
         Avatar
-      </Link>
+      </DocLink>
 
       <TailorList items={avatarPropsItems} />
     </>

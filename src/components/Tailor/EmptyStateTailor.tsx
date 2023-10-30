@@ -1,5 +1,5 @@
-import { EmptyStateProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { EmptyStateProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const emptyStatePropsItems: PropItem<keyof EmptyStateProps>[] = [
   {
@@ -39,12 +39,12 @@ const emptyStatePropsItems: PropItem<keyof EmptyStateProps>[] = [
 export const EmptyStateTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/empty-state"
       >
         Empty state
-      </Link>
+      </DocLink>
 
       <TailorList items={emptyStatePropsItems} />
     </>

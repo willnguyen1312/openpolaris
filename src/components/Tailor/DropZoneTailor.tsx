@@ -1,6 +1,6 @@
-import { DropZoneProps, Link } from "@shopify/polaris";
+import { DropZoneProps } from "@shopify/polaris";
 import { DropZoneFileUploadProps } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const dropZoneTypeRecord: Record<NonNullable<DropZoneProps["type"]> | "", 1> = {
   file: 1,
@@ -84,12 +84,12 @@ const dropZoneTailorPropsItems: PropItem<keyof DropZoneProps>[] = [
 export const DropZoneTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/drop-zone"
       >
         Drop zone
-      </Link>
+      </DocLink>
 
       <TailorList items={dropZoneTailorPropsItems} />
     </>
@@ -106,12 +106,12 @@ const dropZoneFileUploadTailorPropsItems: PropItem<
 export const DropZoneFileUploadTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/drop-zone"
       >
         Drop zone file upload
-      </Link>
+      </DocLink>
 
       <TailorList items={dropZoneFileUploadTailorPropsItems} />
     </>

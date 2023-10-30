@@ -1,4 +1,4 @@
-import { BoxProps, Link } from "@shopify/polaris";
+import { BoxProps } from "@shopify/polaris";
 import {
   borderRadiusAliasOrScales,
   borderWidthScales,
@@ -9,7 +9,7 @@ import {
   shadowScales,
   spacingScales,
 } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 // type Element = 'div' | 'span' | 'section' | 'legend' | 'ul' | 'li';
 const boxAsRecord: Record<NonNullable<BoxProps["as"]> | "", 1> = {
@@ -257,12 +257,12 @@ export const BoxTailor = () => {
   // https://polaris.shopify.com/components/layout-and-structure/box
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/box"
       >
         Box
-      </Link>
+      </DocLink>
 
       <TailorList items={boxPropsItems} />
     </>

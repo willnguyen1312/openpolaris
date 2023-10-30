@@ -1,5 +1,5 @@
-import { BannerProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { BannerProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const bannerToneRecord: Record<NonNullable<BannerProps["tone"] | "">, 1> = {
   critical: 1,
@@ -44,12 +44,12 @@ const bannerPropsItems: PropItem<keyof BannerProps>[] = [
 export const BannerTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/feedback-indicators/banner"
       >
         Banner
-      </Link>
+      </DocLink>
 
       <TailorList items={bannerPropsItems} />
     </>

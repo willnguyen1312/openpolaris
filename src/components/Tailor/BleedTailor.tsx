@@ -1,6 +1,6 @@
-import { BleedProps, Link } from "@shopify/polaris";
+import { BleedProps } from "@shopify/polaris";
 import { spacingScales } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const bleedPropsItems: PropItem<keyof BleedProps>[] = [
   {
@@ -38,12 +38,12 @@ const bleedPropsItems: PropItem<keyof BleedProps>[] = [
 export const BleedTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/bleed"
       >
         Bleed
-      </Link>
+      </DocLink>
 
       <TailorList items={bleedPropsItems} />
     </>

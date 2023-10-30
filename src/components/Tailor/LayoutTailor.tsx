@@ -1,5 +1,5 @@
-import { LayoutProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { LayoutProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const layoutPropsItems: PropItem<keyof LayoutProps>[] = [
   {
@@ -11,12 +11,12 @@ const layoutPropsItems: PropItem<keyof LayoutProps>[] = [
 export const LayoutTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/layout"
       >
         Layout
-      </Link>
+      </DocLink>
 
       <TailorList items={layoutPropsItems} />
     </>

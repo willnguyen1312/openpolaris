@@ -2,6 +2,8 @@ import {
   Autocomplete,
   BlockStack,
   Box,
+  Link,
+  LinkProps,
   Checkbox as PolarisCheckbox,
   Icon as PolarisIcon,
   Select as PolarisSelect,
@@ -309,5 +311,15 @@ export function TailorList({ items }: { items: PropItem[] }) {
         );
       })}
     </BlockStack>
+  );
+}
+
+export function DocLink(props: LinkProps) {
+  return (
+    <Link {...props}>
+      <PolarisText as="h2" variant="headingMd">
+        {props.children}
+      </PolarisText>
+    </Link>
   );
 }

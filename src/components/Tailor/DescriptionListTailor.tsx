@@ -1,5 +1,5 @@
-import { DescriptionListProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { DescriptionListProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const descriptionListGapRecord: Record<
   NonNullable<DescriptionListProps["gap"] | "">,
@@ -25,12 +25,12 @@ const descriptionListPropsItems: PropItem<keyof DescriptionListProps>[] = [
 export const DescriptionListTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/lists/description-list"
       >
         Description list
-      </Link>
+      </DocLink>
 
       <TailorList items={descriptionListPropsItems} />
     </>

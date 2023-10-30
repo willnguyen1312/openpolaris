@@ -1,5 +1,5 @@
-import { DatePickerProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { DatePickerProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const datePickerTailorPropsItems: PropItem<keyof DatePickerProps>[] = [
   {
@@ -35,12 +35,12 @@ const datePickerTailorPropsItems: PropItem<keyof DatePickerProps>[] = [
 export const DatePickerTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/date-picker"
       >
         Date picker
-      </Link>
+      </DocLink>
 
       <TailorList items={datePickerTailorPropsItems} />
     </>

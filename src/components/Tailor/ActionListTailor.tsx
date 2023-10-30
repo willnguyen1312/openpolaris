@@ -1,5 +1,5 @@
-import { ActionListProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { ActionListProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const actionListPropsItems: PropItem<keyof ActionListProps>[] = [
   {
@@ -23,12 +23,12 @@ const actionListPropsItems: PropItem<keyof ActionListProps>[] = [
 export const ActionListTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/lists/action-list"
       >
         Action list
-      </Link>
+      </DocLink>
 
       <TailorList items={actionListPropsItems} />
     </>

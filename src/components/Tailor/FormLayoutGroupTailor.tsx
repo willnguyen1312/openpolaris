@@ -1,6 +1,6 @@
-import { Link } from "@shopify/polaris";
+import {} from "@shopify/polaris";
 import { FormLayoutGroupProps } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const formLayoutGroupPropsItems: PropItem<keyof FormLayoutGroupProps>[] = [
   {
@@ -20,12 +20,12 @@ const formLayoutGroupPropsItems: PropItem<keyof FormLayoutGroupProps>[] = [
 export const FormLayoutGroupTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/form-layout"
       >
         Form layout
-      </Link>
+      </DocLink>
 
       <TailorList items={formLayoutGroupPropsItems} />
     </>

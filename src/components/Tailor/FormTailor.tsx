@@ -1,6 +1,6 @@
-import { FormProps, Link } from "@shopify/polaris";
+import { FormProps } from "@shopify/polaris";
 import { targetOptions } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const formEncTypeRecord: Record<NonNullable<FormProps["encType"]> | "", 1> = {
   "application/x-www-form-urlencoded": 1,
@@ -65,12 +65,12 @@ const formPropsItems: PropItem<keyof FormProps>[] = [
 export const FormTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/form"
       >
         Form
-      </Link>
+      </DocLink>
 
       <TailorList items={formPropsItems} />
     </>

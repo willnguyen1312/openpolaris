@@ -1,6 +1,6 @@
-import { Link } from "@shopify/polaris";
+import {} from "@shopify/polaris";
 import { VideoThumbnailProps } from "@shopify/polaris/build/ts/src/components/VideoThumbnail";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const videoThumbnailPropsItems: PropItem<keyof VideoThumbnailProps>[] = [
   {
@@ -28,12 +28,12 @@ const videoThumbnailPropsItems: PropItem<keyof VideoThumbnailProps>[] = [
 export const VideoThumbnailTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/images-and-icons/video-thumbnail"
       >
         Video thumbnail
-      </Link>
+      </DocLink>
 
       <TailorList items={videoThumbnailPropsItems} />
     </>

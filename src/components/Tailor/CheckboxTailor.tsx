@@ -1,5 +1,5 @@
-import { CheckboxProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { CheckboxProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const checkboxPropsItems: PropItem<keyof CheckboxProps>[] = [
   {
@@ -59,12 +59,12 @@ const checkboxPropsItems: PropItem<keyof CheckboxProps>[] = [
 export const CheckboxTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/checkbox"
       >
         Checkbox
-      </Link>
+      </DocLink>
 
       <TailorList items={checkboxPropsItems} />
     </>

@@ -1,5 +1,5 @@
-import { GridCellProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { GridCellProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const gridCellPropsItems: PropItem<keyof GridCellProps>[] = [
   {
@@ -11,12 +11,12 @@ const gridCellPropsItems: PropItem<keyof GridCellProps>[] = [
 export const GridCellTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/grid"
       >
         Grid cell
-      </Link>
+      </DocLink>
 
       <TailorList items={gridCellPropsItems} />
     </>

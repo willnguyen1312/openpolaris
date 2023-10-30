@@ -1,5 +1,5 @@
-import { KeyboardKeyProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { KeyboardKeyProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const keyboardKeySizeRecord: Record<
   NonNullable<KeyboardKeyProps["size"]> | "",
@@ -25,12 +25,12 @@ const keyboardKeyPropsItems: PropItem<keyof KeyboardKeyProps>[] = [
 export const KeyboardKeyTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/images-and-icons/keyboard-key"
       >
         Keyboard key
-      </Link>
+      </DocLink>
 
       <TailorList items={keyboardKeyPropsItems} />
     </>

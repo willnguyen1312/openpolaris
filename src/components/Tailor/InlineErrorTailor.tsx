@@ -1,5 +1,5 @@
-import { InlineErrorProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { InlineErrorProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const inlineErrorPropsItems: PropItem<keyof InlineErrorProps>[] = [
   {
@@ -15,12 +15,12 @@ const inlineErrorPropsItems: PropItem<keyof InlineErrorProps>[] = [
 export const InlineErrorTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/inline-error"
       >
         Inline Error
-      </Link>
+      </DocLink>
 
       <TailorList items={inlineErrorPropsItems} />
     </>

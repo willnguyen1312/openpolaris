@@ -1,5 +1,5 @@
-import { GridProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { GridProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const gridPropsItems: PropItem<keyof GridProps>[] = [
   {
@@ -11,12 +11,12 @@ const gridPropsItems: PropItem<keyof GridProps>[] = [
 export const GridTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/grid"
       >
         Grid
-      </Link>
+      </DocLink>
 
       <TailorList items={gridPropsItems} />
     </>

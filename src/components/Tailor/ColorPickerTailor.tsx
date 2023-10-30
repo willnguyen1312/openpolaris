@@ -1,5 +1,5 @@
-import { ColorPickerProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { ColorPickerProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const colorPickerPropsItems: PropItem<keyof ColorPickerProps>[] = [
   {
@@ -23,12 +23,12 @@ const colorPickerPropsItems: PropItem<keyof ColorPickerProps>[] = [
 export const ColorPickerTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/color-picker"
       >
         Color picker
-      </Link>
+      </DocLink>
 
       <TailorList items={colorPickerPropsItems} />
     </>

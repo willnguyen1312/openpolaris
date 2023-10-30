@@ -1,5 +1,5 @@
-import { ContextualSaveBarProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { ContextualSaveBarProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const contextualSaveBarPropsItems: PropItem<keyof ContextualSaveBarProps>[] = [
   {
@@ -27,12 +27,12 @@ const contextualSaveBarPropsItems: PropItem<keyof ContextualSaveBarProps>[] = [
 export const ContextualSaveBarTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/selection-and-input/contextual-save-bar"
       >
         Contextual save bar
-      </Link>
+      </DocLink>
 
       <TailorList items={contextualSaveBarPropsItems} />
     </>

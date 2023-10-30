@@ -1,6 +1,6 @@
-import { InlineGridProps, Link } from "@shopify/polaris";
+import { InlineGridProps } from "@shopify/polaris";
 import { spacingScales } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const gridAlignItemRecord: Record<
   NonNullable<InlineGridProps["alignItems"] | "">,
@@ -36,12 +36,12 @@ const inlineGridPropsItems: PropItem<keyof InlineGridProps>[] = [
 export const InlineGridTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/inline-grid"
       >
         Inline grid
-      </Link>
+      </DocLink>
 
       <TailorList items={inlineGridPropsItems} />
     </>

@@ -1,5 +1,5 @@
-import { AccountConnectionProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { AccountConnectionProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const accountConnectionPropsItems: PropItem<keyof AccountConnectionProps>[] = [
   {
@@ -35,12 +35,12 @@ const accountConnectionPropsItems: PropItem<keyof AccountConnectionProps>[] = [
 export const AccountConnectionTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/actions/account-connection"
       >
         Account connection
-      </Link>
+      </DocLink>
 
       <TailorList items={accountConnectionPropsItems} />
     </>

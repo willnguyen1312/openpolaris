@@ -1,6 +1,6 @@
-import { Link } from "@shopify/polaris";
+import {} from "@shopify/polaris";
 import { LayoutSectionProps } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const layoutSectionVariantRecord: Record<
   NonNullable<LayoutSectionProps["variant"] | "">,
@@ -27,12 +27,12 @@ const layoutSectionPropsItems: PropItem<keyof LayoutSectionProps>[] = [
 export const LayoutSectionTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/layout"
       >
         Layout
-      </Link>
+      </DocLink>
 
       <TailorList items={layoutSectionPropsItems} />
     </>

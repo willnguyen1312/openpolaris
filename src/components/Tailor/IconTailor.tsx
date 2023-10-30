@@ -1,5 +1,5 @@
-import { IconProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { IconProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const iconToneRecord: Record<NonNullable<IconProps["tone"] | "">, 1> = {
   base: 1,
@@ -43,12 +43,12 @@ const iconPropsItems: PropItem<keyof IconProps>[] = [
 export const IconTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/images-and-icons/icon"
       >
         Icon
-      </Link>
+      </DocLink>
 
       <TailorList items={iconPropsItems} />
     </>

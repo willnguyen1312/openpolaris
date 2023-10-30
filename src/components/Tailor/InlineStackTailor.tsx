@@ -1,6 +1,6 @@
-import { InlineStackProps, Link } from "@shopify/polaris";
+import { InlineStackProps } from "@shopify/polaris";
 import { spacingScales } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const inlineStackAlignRecord: Record<
   NonNullable<InlineStackProps["align"] | "">,
@@ -59,12 +59,12 @@ const inlineStackPropsItems: PropItem<keyof InlineStackProps>[] = [
 export const InlineStackTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/inline-stack"
       >
         Inline stack
-      </Link>
+      </DocLink>
 
       <TailorList items={inlineStackPropsItems} />
     </>

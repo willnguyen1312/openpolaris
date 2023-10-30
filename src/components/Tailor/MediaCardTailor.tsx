@@ -1,6 +1,6 @@
-import { Link } from "@shopify/polaris";
+import {} from "@shopify/polaris";
 import { MediaCardProps } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const mediaCardSizeRecord: Record<
   NonNullable<MediaCardProps["size"] | "">,
@@ -47,12 +47,12 @@ const mediaCardPropsItems: PropItem<keyof MediaCardProps>[] = [
 export const MediaCardTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/media-card"
       >
         Media card
-      </Link>
+      </DocLink>
 
       <TailorList items={mediaCardPropsItems} />
     </>

@@ -1,5 +1,5 @@
-import { ButtonGroupProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { ButtonGroupProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 // This is to work around type error when upgrading to new version of polaris
 type ButtonGroupGap = NonNullable<ButtonGroupProps["gap"]> | "";
@@ -48,12 +48,12 @@ const buttonGroupPropsItems: PropItem<keyof ButtonGroupProps>[] = [
 export const ButtonGroupTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/actions/button-group"
       >
         Button Group
-      </Link>
+      </DocLink>
 
       <TailorList items={buttonGroupPropsItems} />
     </>

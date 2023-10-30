@@ -1,6 +1,6 @@
-import { BlockStackProps, Link } from "@shopify/polaris";
+import { BlockStackProps } from "@shopify/polaris";
 import { spacingScales } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 type BlockStackAs = NonNullable<BlockStackProps["as"]> | "";
 const blockStackAsRecord: Record<NonNullable<BlockStackAs>, 1> = {
@@ -88,12 +88,12 @@ const blockStackPropsItems: PropItem<keyof BlockStackProps>[] = [
 export const BlockStackTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/block-stack"
       >
         Block stack
-      </Link>
+      </DocLink>
 
       <TailorList items={blockStackPropsItems} />
     </>

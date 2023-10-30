@@ -1,6 +1,6 @@
-import { DividerProps, Link } from "@shopify/polaris";
+import { DividerProps } from "@shopify/polaris";
 import { colorBorderAliasesWithTransparent } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 // This is to work around type error when upgrading to new version of polaris
 type DividerBorderWidths = NonNullable<DividerProps["borderWidth"]> | "";
@@ -31,12 +31,12 @@ const dividerPropsItems: PropItem<keyof DividerProps>[] = [
 export const DividerTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/divider"
       >
         Divider
-      </Link>
+      </DocLink>
 
       <TailorList items={dividerPropsItems} />
     </>

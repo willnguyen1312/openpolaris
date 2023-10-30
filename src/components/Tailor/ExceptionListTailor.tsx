@@ -1,5 +1,5 @@
-import { ExceptionListProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { ExceptionListProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const exceptionListPropsItems: PropItem<keyof ExceptionListProps>[] = [
   {
@@ -11,12 +11,12 @@ const exceptionListPropsItems: PropItem<keyof ExceptionListProps>[] = [
 export const ExceptionListTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/feedback-indicators/exception-list"
       >
         Exception list
-      </Link>
+      </DocLink>
 
       <TailorList items={exceptionListPropsItems} />
     </>

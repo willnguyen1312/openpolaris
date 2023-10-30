@@ -1,6 +1,6 @@
-import { ButtonProps, Link } from "@shopify/polaris";
+import { ButtonProps } from "@shopify/polaris";
 
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 // This is to work around type error when upgrading to new version of polaris
 type ButtonSizes = NonNullable<ButtonProps["size"]> | "";
@@ -97,12 +97,12 @@ const buttonPropItems: PropItem<keyof ButtonProps>[] = [
 export const ButtonTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/actions/button"
       >
         Button
-      </Link>
+      </DocLink>
 
       <TailorList items={buttonPropItems} />
     </>

@@ -1,5 +1,5 @@
-import { CalloutCardProps, Link } from "@shopify/polaris";
-import { PropItem, TailorList } from "./shared";
+import { CalloutCardProps } from "@shopify/polaris";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const calloutCardPropsItems: PropItem<keyof CalloutCardProps>[] = [
   {
@@ -23,12 +23,12 @@ const calloutCardPropsItems: PropItem<keyof CalloutCardProps>[] = [
 export const CalloutCardTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/callout-card"
       >
         Callout card
-      </Link>
+      </DocLink>
 
       <TailorList items={calloutCardPropsItems} />
     </>

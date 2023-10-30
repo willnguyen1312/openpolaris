@@ -1,10 +1,10 @@
-import { CardProps, Link } from "@shopify/polaris";
+import { CardProps } from "@shopify/polaris";
 import {
   breakpointsAliases,
   colorBackgroundAliases,
   spacingScales,
 } from "../../types";
-import { PropItem, TailorList } from "./shared";
+import { DocLink, PropItem, TailorList } from "./shared";
 
 const cardPropsItems: PropItem<keyof CardProps>[] = [
   {
@@ -27,12 +27,12 @@ const cardPropsItems: PropItem<keyof CardProps>[] = [
 export const CardTailor = () => {
   return (
     <>
-      <Link
+      <DocLink
         target="_blank"
         url="https://polaris.shopify.com/components/layout-and-structure/card"
       >
         Card
-      </Link>
+      </DocLink>
 
       <TailorList items={cardPropsItems} />
     </>
