@@ -18,7 +18,7 @@ export function MainBody() {
 
   const renderedComponent = usePolarisStore.use.renderedComponents();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
-  const reset = usePolarisStore.use.reset();
+  const reCover = usePolarisStore.use.reCover();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isEmpty = renderedComponent.length === 0;
 
@@ -42,7 +42,7 @@ export function MainBody() {
           </Box>
         );
       }}
-      onReset={reset}
+      onReset={reCover}
     >
       <div
         ref={setNodeRef}
