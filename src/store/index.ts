@@ -304,6 +304,7 @@ const useStoreBase = createWithEqualityFn(
               };
 
               state.renderedComponents.push(component);
+              state.activeComponent = component;
               return;
             }
 
@@ -328,6 +329,7 @@ const useStoreBase = createWithEqualityFn(
               );
 
               state.renderedComponents.splice(index, 0, component);
+              state.activeComponent = component;
               return;
             }
 
@@ -352,6 +354,7 @@ const useStoreBase = createWithEqualityFn(
                 newIndex === -1 ? overContainer.children.length : newIndex;
 
               overContainer.children.splice(newIndex, 0, component);
+              state.activeComponent = component;
               return;
             }
 
