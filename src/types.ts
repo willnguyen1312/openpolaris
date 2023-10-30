@@ -963,7 +963,7 @@ export const acceptComponentsMap: Record<
     type: ComponentAcceptType.Single,
   },
   Link: {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   FullscreenBar: {
     type: ComponentAcceptType.Parent,
