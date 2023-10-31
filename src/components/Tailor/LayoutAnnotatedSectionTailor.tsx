@@ -6,11 +6,11 @@ const layoutAnnotatedSectionPropsItems: PropItem<
   keyof LayoutAnnotatedSectionProps
 >[] = [
   {
-    prop: "description",
+    prop: "title",
     type: "Text",
   },
   {
-    prop: "title",
+    prop: "description",
     type: "Text",
   },
   {

@@ -14,7 +14,6 @@
   background: var(--p-color-bg-surface-success);
   border: 0.5px dashed var(--p-color-border-focus);
   padding: var(--p-space-400);
-  margin: var(--p-space-100) var(--p-space-050);
 }
 
 .isOver {

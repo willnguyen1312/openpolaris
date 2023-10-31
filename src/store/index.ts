@@ -33,6 +33,19 @@ const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(
   return store;
 };
 
+function traverse(
+  node: RenderedComponent,
+  callback: (node: RenderedComponent) => void,
+) {
+  callback(node);
+
+  if (node.children?.length) {
+    node.children.forEach((child) => {
+      traverse(child, callback);
+    });
+  }
+}
+
 interface StoreState {
   searchComponentInput: string;
   activeComponent: RenderedComponent | null;
@@ -194,7 +207,10 @@ const useStoreBase = createWithEqualityFn(
               return;
             }
             const clonedComponent = cloneDeep(state.activeComponent);
-            clonedComponent.id = generateId();
+
+            traverse(clonedComponent, (node) => {
+              node.id = generateId();
+            });
 
             const containerComponent = findComponentBy(
               state.renderedComponents,
