@@ -387,17 +387,17 @@ export const defaultProps: Record<ComponentName, any> = {
     size: "" as MediaCardProps["size"],
   } as MediaCardProps,
   Page: {
-    title: "3/4 inch Leather pet collar",
-    subtitle: "Perfect for any pet",
-    titleMetadata: "Cool",
-    additionalMetadata: "Polaris 🐻‍❄️",
+    title: "Page title",
+    subtitle: "",
+    titleMetadata: "",
+    additionalMetadata: "",
     compactTitle: false,
     fullWidth: false,
     narrowWidth: false,
     titleHidden: false,
     filterActions: false,
     primaryAction: {
-      content: "Save",
+      content: "",
       accessibilityLabel: "",
       destructive: false,
       external: false,
@@ -414,7 +414,7 @@ export const defaultProps: Record<ComponentName, any> = {
     },
     secondaryActions: [
       {
-        content: "First secondary",
+        content: "",
         loading: false,
         disabled: false,
         external: false,
@@ -427,7 +427,7 @@ export const defaultProps: Record<ComponentName, any> = {
         index: undefined,
       },
       {
-        content: "Second secondary",
+        content: "",
         loading: false,
         disabled: false,
         external: false,
@@ -443,17 +443,17 @@ export const defaultProps: Record<ComponentName, any> = {
     backAction: {
       url: "",
       accessibilityLabel: "",
-      content: "Products",
+      content: "",
       id: "",
     } as PageProps["backAction"],
     pagination: {
-      hasPrevious: true,
-      hasNext: true,
+      hasPrevious: false,
+      hasNext: false,
     } as PageProps["pagination"],
     actionGroups: [
       {
-        title: "Copy",
-        actions: [{ content: "Copy to clipboard" }],
+        title: "",
+        actions: [{ content: "" }],
         disabled: false,
       },
     ] as PageProps["actionGroups"],
