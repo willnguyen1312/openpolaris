@@ -14,12 +14,13 @@ export const useShortcuts = () => {
     const result: RenderedComponent[] = [];
     // DFS
     function dfs(node: RenderedComponent) {
+      result.push(node);
+
       if (node.children) {
         node.children.forEach((child) => {
           dfs(child);
         });
       }
-      result.push(node);
     }
 
     renderedComponents.forEach((component) => {
