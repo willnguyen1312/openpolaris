@@ -7,7 +7,13 @@ import { RenderedComponent, parentComponentList } from "../../types";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
-import React from "react";
+import {
+  PointerEvent,
+  PropsWithRef,
+  ReactNode,
+  useEffect,
+  useState,
+} from "react";
 import { findComponentBy, usePolarisStore } from "../../store";
 import { normalizePropValue } from "../../utils/code";
 import { collectPathsHasKey } from "../../utils/object";
@@ -83,9 +89,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const finalComponentProps = finalizeComponentProps(component);
 
   const { id } = component;
-  const [extraClasses, setExtraClasses] = React.useState("");
+  const [extraClasses, setExtraClasses] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const wrapperComponent = document.getElementById(id);
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
@@ -114,7 +120,7 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     <DragAndDropItem
       id={id}
       component={component}
-      onPointerDown={(event) => {
+      onPointerDown={(event: PointerEvent) => {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
@@ -148,9 +154,9 @@ function ComponentWithContainer({
   const finalComponentProps = finalizeComponentProps(component);
 
   // Add extra classes to the wrapper component for compound components
-  const [extraClasses, setExtraClasses] = React.useState("");
+  const [extraClasses, setExtraClasses] = useState("");
 
-  React.useEffect(() => {
+  useEffect(() => {
     const parentComponent = findComponentBy(renderedComponents, (component) =>
       component.children.some((child) => child.id === id),
     );
@@ -176,7 +182,7 @@ function ComponentWithContainer({
   }, [renderedComponents]);
 
   // Special handling for Modal component
-  React.useEffect(() => {
+  useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const isEscape = event.key === "Escape";
 
@@ -216,7 +222,7 @@ function ComponentWithContainer({
         [styles.containerWrapperSelected]: isSelected && !isDragging,
         [styles.builderMode]: isBuilderMode,
       })}
-      onPointerDown={(event) => {
+      onPointerDown={(event: PointerEvent) => {
         event.stopPropagation();
         setActiveComponentId(component);
       }}
@@ -232,8 +238,8 @@ function DragAndDropItem({
   ...props
 }: {
   component: RenderedComponent;
-  children: React.ReactNode;
-} & React.PropsWithRef<JSX.IntrinsicElements["div"]>) {
+  children: ReactNode;
+} & PropsWithRef<JSX.IntrinsicElements["div"]>) {
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
   });

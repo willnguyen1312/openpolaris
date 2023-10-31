@@ -529,7 +529,6 @@ export const defaultProps: Record<ComponentName, any> = {
   //   preferredPosition: "" as PopoverProps["preferredPosition"],
   //   preferredAlignment: "" as PopoverProps["preferredAlignment"],
   //   active: false,
-  //   // Need to fix this type - activator: React.ReactElement,
   //   preferInputActivator: false,
   //   activatorWrapper: "",
   //   zIndexOverride: 400 as PopoverProps["zIndexOverride"],

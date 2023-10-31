@@ -13,7 +13,7 @@ import {
 import { SearchMinor } from "@shopify/polaris-icons";
 import iconMetadata from "@shopify/polaris-icons/metadata";
 import { get as lodashGet } from "lodash-es";
-import { useEffect, useState } from "react";
+import { FunctionComponent, useEffect, useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { RenderedComponent, targetOptions } from "../../types";
@@ -35,7 +35,7 @@ export type PropItem<PropType = string> = {
   prop: PropType;
 };
 
-export const Text: React.FunctionComponent<{
+export const Text: FunctionComponent<{
   prop: string;
   label?: string;
 }> = ({ prop, label }) => {
@@ -58,7 +58,7 @@ export const Text: React.FunctionComponent<{
   );
 };
 
-export const Number: React.FunctionComponent<{
+export const Number: FunctionComponent<{
   prop: string;
   label?: string;
 }> = ({ prop, label }) => {
@@ -87,7 +87,7 @@ export const Number: React.FunctionComponent<{
   );
 };
 
-export const Select: React.FunctionComponent<{
+export const Select: FunctionComponent<{
   label?: string;
   prop: string;
   options: string[];
@@ -113,7 +113,7 @@ export const Select: React.FunctionComponent<{
   );
 };
 
-export const Checkbox: React.FunctionComponent<{
+export const Checkbox: FunctionComponent<{
   prop: string;
   label?: string;
 }> = ({ prop, label }) => {
@@ -142,7 +142,7 @@ const iconList = Object.keys(iconMetadata)
     label: icon,
   }));
 
-export const Icon: React.FunctionComponent<{
+export const Icon: FunctionComponent<{
   prop: string;
   label?: string;
 }> = ({ prop, label }) => {
@@ -219,7 +219,7 @@ const ComplexMap = {
   boolean: Checkbox,
 };
 
-const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
+const Complex: FunctionComponent<{ prop: string; level?: number }> = ({
   prop,
   level = 0,
 }) => {
@@ -286,7 +286,7 @@ const Complex: React.FunctionComponent<{ prop: string; level?: number }> = ({
   );
 };
 
-const TailorMap: Record<Tailor, React.FunctionComponent<any>> = {
+const TailorMap: Record<Tailor, FunctionComponent<any>> = {
   Text,
   Number,
   Select,

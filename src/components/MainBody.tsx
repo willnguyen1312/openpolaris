@@ -7,6 +7,7 @@ import styles from "./MainBody.module.css";
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
+import { MouseEvent } from "react";
 import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
@@ -24,7 +25,7 @@ export function MainBody() {
   const setHasError = usePolarisStore.use.setHasError();
   const isEmpty = renderedComponent.length === 0;
 
-  const handleWrapperClick = (event: React.MouseEvent) => {
+  const handleWrapperClick = (event: MouseEvent) => {
     if (event.target === event.currentTarget) {
       setActiveComponent(null);
     }

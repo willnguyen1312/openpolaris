@@ -1,11 +1,12 @@
 import { useDraggable } from "@dnd-kit/core";
+import { ReactNode } from "react";
 import styles from "./DraggableItem.module.css";
 
 export function DraggableItem({
   children,
   componentName,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   componentName: string;
 }) {
   const { attributes, listeners, setNodeRef } = useDraggable({
