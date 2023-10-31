@@ -67,6 +67,7 @@ export type ComponentName =
   | "InlineStack"
   | "Layout"
   | "Layout.Section"
+  | "Layout.AnnotatedSection"
   | "MediaCard"
   | "Page"
   | "ActionList"
@@ -301,6 +302,10 @@ export const listOfComponent: ComponentMenuItem[] = [
   },
   {
     componentName: "Layout.Section",
+    category: "Layout and structure",
+  },
+  {
+    componentName: "Layout.AnnotatedSection",
     category: "Layout and structure",
   },
   {
@@ -929,6 +934,9 @@ export const acceptComponentsMap: Record<
   "Layout.Section": {
     type: ComponentAcceptType.Parent,
   },
+  "Layout.AnnotatedSection": {
+    type: ComponentAcceptType.Parent,
+  },
   MediaCard: {
     type: ComponentAcceptType.Parent,
   },
@@ -1090,6 +1098,10 @@ export type FormLayoutGroupProps = ComponentPropsWithoutRef<
 
 export type LayoutSectionProps = ComponentPropsWithoutRef<
   typeof Layout.Section
+>;
+
+export type LayoutAnnotatedSectionProps = ComponentPropsWithoutRef<
+  typeof Layout.AnnotatedSection
 >;
 
 export type DropZoneFileUploadProps = ComponentPropsWithoutRef<

@@ -91,6 +91,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   InlineStack: InlineStackTailor,
   Layout: LayoutTailor,
   "Layout.Section": LayoutSectionTailor,
+  "Layout.AnnotatedSection": LayoutSectionTailor,
   MediaCard: MediaCardTailor,
   Page: PageTailor,
 

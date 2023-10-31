@@ -62,6 +62,7 @@ import {
   ComponentName,
   DropZoneFileUploadProps,
   FormLayoutGroupProps,
+  LayoutAnnotatedSectionProps,
   LayoutSectionProps,
   ListBoxActionProps,
   ListBoxHeaderProps,
@@ -73,7 +74,7 @@ import {
   MediaCardProps,
 } from "./types";
 
-export const defaultProps: Partial<Record<ComponentName, any>> = {
+export const defaultProps: Record<ComponentName, any> = {
   // Actions
   AccountConnection: {
     title: "title",
@@ -323,6 +324,13 @@ export const defaultProps: Partial<Record<ComponentName, any>> = {
   "Layout.Section": {
     variant: "" as LayoutSectionProps["variant"],
   } as LayoutSectionProps,
+  "Layout.AnnotatedSection": {
+    description:
+      "Shopify and your customers will use this information to contact you.",
+    title: "Store details",
+    id: "storeDetails",
+  } as LayoutAnnotatedSectionProps,
+
   MediaCard: {
     title: "Getting Started",
     description:
