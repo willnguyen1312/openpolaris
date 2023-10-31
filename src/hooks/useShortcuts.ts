@@ -40,7 +40,6 @@ export const useShortcuts = () => {
         return;
       }
 
-      e.preventDefault();
       if ((code === "Backspace" || code === "Delete") && activeComponent) {
         deleteActiveComponent();
       } else if (code === "Escape") {
@@ -48,6 +47,7 @@ export const useShortcuts = () => {
       } else if (code === "KeyD" && shiftKey && activeComponent) {
         duplicateActiveComponent();
       } else if (code === "ArrowUp" && activeComponent) {
+        e.preventDefault();
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
@@ -56,6 +56,7 @@ export const useShortcuts = () => {
           componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
       } else if (code === "ArrowDown" && activeComponent) {
+        e.preventDefault();
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
