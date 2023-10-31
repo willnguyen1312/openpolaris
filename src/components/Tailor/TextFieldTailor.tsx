@@ -60,6 +60,10 @@ const textFieldPropsItems: PropItem<keyof TextFieldProps>[] = [
     type: "Text",
   },
   {
+    prop: "helpText",
+    type: "Text",
+  },
+  {
     prop: "name",
     type: "Text",
   },
@@ -121,10 +125,6 @@ const textFieldPropsItems: PropItem<keyof TextFieldProps>[] = [
   {
     prop: "focused",
     type: "Checkbox",
-  },
-  {
-    prop: "helpText",
-    type: "Text",
   },
   {
     prop: "inputMode",
