@@ -1,0 +1,471 @@
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [],
+                "id": "SRx_A5WD-L0MVLGmOiAbe",
+                "componentName": "AccountConnection",
+                "props": {
+                  "title": "Open Polaris",
+                  "details": "No account connected",
+                  "termsOfService": "By clicking Connect, you agree to accept terms and conditions. You’ll pay a commission rate of 15% on sales made.",
+                  "accountName": "",
+                  "avatarUrl": "",
+                  "connected": false,
+                  "action": {
+                    "id": "",
+                    "content": "Connect",
+                    "accessibilityLabel": "",
+                    "url": "",
+                    "external": false,
+                    "target": ""
+                  }
+                }
+              }
+            ],
+            "id": "eqF_hTxhTyrxsaKqmbXNx",
+            "componentName": "Layout.AnnotatedSection",
+            "props": {
+              "description": "Shopify and your customers will use this information to contact you.",
+              "title": "Store details",
+              "id": ""
+            }
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "id": "BeeX8qz4d0Tn8x9-rAhiJ",
+                        "componentName": "Text",
+                        "props": {
+                          "alignment": "",
+                          "as": "h2",
+                          "breakWord": false,
+                          "children": "Shipping",
+                          "tone": "",
+                          "fontWeight": "",
+                          "id": "",
+                          "numeric": false,
+                          "truncate": false,
+                          "variant": "headingMd",
+                          "visuallyHidden": false,
+                          "textDecorationLine": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "t5j68BtUZ0yPJXkFPk7zE",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Email customers when orders are fulfilled",
+                          "labelHidden": false,
+                          "checked": true,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      }
+                    ],
+                    "id": "P2lYvsNEDoWdYKqCqup_d",
+                    "componentName": "Card",
+                    "props": {
+                      "background": "",
+                      "padding": "",
+                      "roundedAbove": ""
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "id": "hM7qHXGqdv7E57TokHUAI",
+                        "componentName": "Text",
+                        "props": {
+                          "alignment": "",
+                          "as": "h2",
+                          "breakWord": false,
+                          "children": "Products",
+                          "tone": "",
+                          "fontWeight": "",
+                          "id": "",
+                          "numeric": false,
+                          "truncate": false,
+                          "variant": "headingMd",
+                          "visuallyHidden": false,
+                          "textDecorationLine": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "LPcOWFOb9zcZTXpHERRdp",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Automatically publish new products",
+                          "labelHidden": false,
+                          "checked": true,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "New products added will immediately be published to all Shopify sales channels.",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "IzAM-qm5WmwgKaHGahMaE",
+                        "componentName": "TextField",
+                        "props": {
+                          "label": "Custom shipment tracking URL",
+                          "name": "",
+                          "id": "",
+                          "variant": "",
+                          "value": "",
+                          "type": "",
+                          "autoComplete": "off",
+                          "align": "",
+                          "role": "",
+                          "autoFocus": false,
+                          "connectedRight": "",
+                          "connectedLeft": "",
+                          "clearButton": false,
+                          "disabled": false,
+                          "error": "",
+                          "focused": false,
+                          "helpText": "Override the normal shipping tracking link emailed to your customer.",
+                          "inputMode": "",
+                          "labelAction": {
+                            "id": "",
+                            "content": "",
+                            "accessibilityLabel": "",
+                            "url": "",
+                            "external": false,
+                            "target": ""
+                          },
+                          "labelHidden": false,
+                          "largeStep": "",
+                          "minLength": "",
+                          "maxLength": "",
+                          "min": "",
+                          "max": "",
+                          "step": "",
+                          "monospaced": false,
+                          "multiline": false,
+                          "pattern": "",
+                          "placeholder": "",
+                          "prefix": "",
+                          "suffix": "",
+                          "suggestion": "",
+                          "maxHeight": "",
+                          "readOnly": false,
+                          "requiredIndicator": false,
+                          "selectTextOnFocus": false,
+                          "showCharacterCount": false,
+                          "spellCheck": false,
+                          "verticalContent": "",
+                          "ariaOwns": "",
+                          "ariaActiveDescendant": "",
+                          "ariaAutocomplete": "",
+                          "ariaControls": "",
+                          "ariaExpanded": false
+                        }
+                      }
+                    ],
+                    "id": "bURnZSuSoo8kvdS3lpzL1",
+                    "componentName": "Card",
+                    "props": {
+                      "background": "",
+                      "padding": "",
+                      "roundedAbove": ""
+                    }
+                  }
+                ],
+                "id": "e--M7__6noX-tZQiEprCH",
+                "componentName": "BlockStack",
+                "props": {
+                  "as": "",
+                  "align": "",
+                  "inlineAlign": "",
+                  "gap": "",
+                  "id": "",
+                  "reverseOrder": false,
+                  "role": ""
+                }
+              }
+            ],
+            "id": "f2gsHWUJSyQq4bBuZ3qgR",
+            "componentName": "Layout.AnnotatedSection",
+            "props": {
+              "description": "Manage products, pricing, shipping and customer notifications.",
+              "title": "Selling and shipping",
+              "id": ""
+            }
+          },
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "id": "PgmjYMSMJc2Xeo_FG-t2R",
+                    "componentName": "Text",
+                    "props": {
+                      "alignment": "",
+                      "as": "h2",
+                      "breakWord": false,
+                      "children": "Receive reports via email:",
+                      "tone": "",
+                      "fontWeight": "",
+                      "id": "",
+                      "numeric": false,
+                      "truncate": false,
+                      "variant": "headingMd",
+                      "visuallyHidden": false,
+                      "textDecorationLine": ""
+                    }
+                  },
+                  {
+                    "children": [
+                      {
+                        "children": [],
+                        "id": "n2wEvXYCk4NxF8hJlcoBn",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Never",
+                          "labelHidden": false,
+                          "checked": false,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "E68qftmZr2e7prwG9lrs2",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Daily",
+                          "labelHidden": false,
+                          "checked": false,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "TwvRiaH1xfnWcS-f6o_Z7",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Weekly",
+                          "labelHidden": false,
+                          "checked": false,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      },
+                      {
+                        "children": [],
+                        "id": "l7jch63RGK2eDYddGro7o",
+                        "componentName": "Checkbox",
+                        "props": {
+                          "label": "Monthly",
+                          "labelHidden": false,
+                          "checked": false,
+                          "disabled": false,
+                          "id": "",
+                          "name": "",
+                          "value": "",
+                          "labelClassName": "",
+                          "fill": false,
+                          "helpText": "",
+                          "error": false,
+                          "ariaControls": "",
+                          "ariaDescribedBy": "",
+                          "bleed": "",
+                          "bleedBlockStart": "",
+                          "bleedBlockEnd": "",
+                          "bleedInlineStart": "",
+                          "bleedInlineEnd": ""
+                        }
+                      }
+                    ],
+                    "id": "zTsvFKIRSbVfNFZBQcwyO",
+                    "componentName": "BlockStack",
+                    "props": {
+                      "as": "",
+                      "align": "",
+                      "inlineAlign": "",
+                      "gap": "",
+                      "id": "",
+                      "reverseOrder": false,
+                      "role": ""
+                    }
+                  }
+                ],
+                "id": "EA-gQxam0ooVaf-FsXfK3",
+                "componentName": "Card",
+                "props": {
+                  "background": "",
+                  "padding": "",
+                  "roundedAbove": ""
+                }
+              }
+            ],
+            "id": "ZV79z-M040j7H3EyYRJyT",
+            "componentName": "Layout.AnnotatedSection",
+            "props": {
+              "description": "Manage how you track success",
+              "title": "Reporting",
+              "id": ""
+            }
+          }
+        ],
+        "id": "W1MLZSdwi4u5GFaMcvHw3",
+        "componentName": "Layout",
+        "props": {
+          "sectioned": false
+        }
+      }
+    ],
+    "id": "D5OdxM5XmjNF4ffqoUJGR",
+    "componentName": "Page",
+    "props": {
+      "title": "Settings",
+      "subtitle": "",
+      "titleMetadata": "",
+      "additionalMetadata": "",
+      "compactTitle": false,
+      "fullWidth": false,
+      "narrowWidth": false,
+      "titleHidden": false,
+      "filterActions": false,
+      "primaryAction": {
+        "content": "",
+        "accessibilityLabel": "",
+        "destructive": false,
+        "external": false,
+        "disabled": false,
+        "id": "",
+        "outline": false,
+        "plain": false,
+        "loading": false,
+        "url": "",
+        "target": "",
+        "primary": false,
+        "helpText": ""
+      },
+      "secondaryActions": [
+        {
+          "content": "",
+          "loading": false,
+          "disabled": false,
+          "external": false,
+          "id": "",
+          "accessibilityLabel": "",
+          "url": "",
+          "destructive": false,
+          "helpText": ""
+        },
+        {
+          "content": "",
+          "loading": false,
+          "disabled": false,
+          "external": false,
+          "id": "",
+          "accessibilityLabel": "",
+          "url": "",
+          "destructive": false,
+          "helpText": ""
+        }
+      ],
+      "backAction": {
+        "url": "",
+        "accessibilityLabel": "",
+        "content": "",
+        "id": ""
+      },
+      "pagination": {
+        "hasPrevious": false,
+        "hasNext": false
+      },
+      "actionGroups": [
+        {
+          "title": "",
+          "actions": [
+            {
+              "content": ""
+            }
+          ],
+          "disabled": false
+        }
+      ]
+    }
+  }
+]

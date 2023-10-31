@@ -4,10 +4,10 @@ import SplitPane from "react-split-pane";
 import { rootComponentId } from "../types";
 import styles from "./MainBody.module.css";
 
-import { Banner, Box, EmptyState } from "@shopify/polaris";
+import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
-import { usePolarisStore } from "../store";
+import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
 
@@ -17,6 +17,7 @@ export function MainBody() {
   });
 
   const renderedComponent = usePolarisStore.use.renderedComponents();
+  const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const reCover = usePolarisStore.use.reCover();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
@@ -57,10 +58,24 @@ export function MainBody() {
         onClick={handleWrapperClick}
       >
         {isEmpty ? (
-          <EmptyState
-            heading="Drag some component to start building your merchant app"
-            image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
-          />
+          <>
+            <EmptyState
+              heading="Drag some component or choose from pre-built templates below to start building your merchant app"
+              image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+            />
+
+            <ActionList
+              items={[
+                {
+                  content: "Setting page",
+                  helpText: "A page to manage your app settings",
+                  onAction: () => {
+                    loadFromTemplate(TemplateType.settingsPage);
+                  },
+                },
+              ]}
+            />
+          </>
         ) : null}
 
         {renderedComponent.map((component) => {

@@ -3,11 +3,7 @@ import * as PolarisIcon from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { cloneDeep, get as lodashGet, set as lodashSet } from "lodash-es";
 
-import {
-  ComponentName,
-  RenderedComponent,
-  parentComponentList,
-} from "../../types";
+import { RenderedComponent, parentComponentList } from "../../types";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
@@ -74,9 +70,6 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
   );
 };
 
-// Ad-hoc skipping components for extra classes
-const extraClassesSimpleComponents = new Set<ComponentName>(["Icon"]);
-
 function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
   const Component = lodashGet(Polaris, component.componentName.split("."));
@@ -93,10 +86,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
   const [extraClasses, setExtraClasses] = React.useState("");
 
   React.useEffect(() => {
-    if (!extraClassesSimpleComponents.has(component.componentName)) {
-      return;
-    }
-
     const wrapperComponent = document.getElementById(id);
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {

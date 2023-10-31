@@ -21,7 +21,7 @@ Open Polaris is a drag and drop UI playground for [Polaris Design System](https:
 - [x] Increase the size of the docs link text
 - [x] Auto select any new component that was just dragged into the art board
 - [x] Let the user cycle through the components using their up / down arrows
-- [ ] Add simple prebuilt templates for the most commonly built component layouts for apps
+- [x] Add prebuilt templates for the most commonly built component layouts for apps
 
 ## Credits
 

@@ -7,6 +7,7 @@ import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 import { defaultProps } from "../defaultProps";
+import settingsPageJson from "../templates/settingsPage.json" assert { type: "json" };
 import {
   ComponentAcceptType,
   ComponentName,
@@ -16,6 +17,14 @@ import {
   rootComponentId,
 } from "../types";
 import { generateId } from "../utils/generateId";
+
+export const enum TemplateType {
+  settingsPage = "settingsPage",
+}
+
+const templateMap = {
+  [TemplateType.settingsPage]: settingsPageJson,
+};
 
 type WithSelectors<S> = S extends { getState: () => infer T }
   ? S & { use: { [K in keyof T]: () => T[K] } }
@@ -58,6 +67,7 @@ interface StoreState {
 }
 
 type StoreActions = {
+  loadFromTemplate: (template: TemplateType) => void;
   setSearchComponentInput: (value: string) => void;
   setRenderedComponents: (value: RenderedComponent[]) => void;
   setLastRenderedComponents: (value: RenderedComponent[]) => void;
@@ -98,6 +108,18 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        loadFromTemplate: (template) =>
+          set((state: StoreState) => {
+            const loadedTemplate = templateMap[template];
+
+            if (loadedTemplate) {
+              state.lastRenderedComponents = cloneDeep(
+                state.renderedComponents,
+              );
+              // @ts-ignore
+              state.renderedComponents = loadedTemplate;
+            }
+          }),
         hasError: false,
         setHasError: (value) =>
           set((state: StoreState) => {
