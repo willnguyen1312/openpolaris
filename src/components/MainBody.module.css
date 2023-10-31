@@ -11,3 +11,7 @@
 .isOver {
   background-color: var(--p-surface-highlight);
 }
+
+.splitPanel {
+  height: calc(100vh - var(--header-height)) !important;
+}

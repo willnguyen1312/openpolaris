@@ -85,6 +85,7 @@ export function MainBody() {
         cursor: "row-resize",
       }}
       split="horizontal"
+      className={styles.splitPanel}
     >
       {body}
       <CodePanel />
