@@ -513,7 +513,7 @@ export const defaultProps: Record<ComponentName, any> = {
   Tooltip: {
     content: "Tooltip content",
     active: false,
-    hoverDelay: 250,
+    hoverDelay: "" as unknown as TooltipProps["hoverDelay"],
     dismissOnMouseOut: false,
     preferredPosition: "" as TooltipProps["preferredPosition"],
     activatorWrapper: "",
@@ -521,7 +521,7 @@ export const defaultProps: Record<ComponentName, any> = {
     width: "" as TooltipProps["width"],
     padding: "" as TooltipProps["padding"],
     borderRadius: "" as TooltipProps["borderRadius"],
-    zIndexOverride: 400 as TooltipProps["zIndexOverride"],
+    zIndexOverride: "" as unknown as TooltipProps["zIndexOverride"],
     hasUnderline: false,
     persistOnClick: false,
   } as TooltipProps,
@@ -544,9 +544,6 @@ export const defaultProps: Record<ComponentName, any> = {
   //   captureOverscroll: false,
   // } as PopoverProps,
   Modal: {
-    onClose() {
-      console.log("Modal closed");
-    },
     open: false,
     src: "",
     iFrameName: "",
@@ -757,9 +754,9 @@ export const defaultProps: Record<ComponentName, any> = {
     hideIcon: false,
     tone: "" as BannerProps["tone"],
     stopAnnouncements: false,
-    secondaryAction: {
+    action: {
       accessibilityLabel: "",
-      content: "",
+      content: "Dismiss",
       disabled: false,
       external: false,
       id: "",
@@ -767,9 +764,9 @@ export const defaultProps: Record<ComponentName, any> = {
       target: "" as any,
       url: "",
     },
-    action: {
+    secondaryAction: {
       accessibilityLabel: "",
-      content: "Dismiss",
+      content: "",
       disabled: false,
       external: false,
       id: "",
@@ -940,7 +937,7 @@ export const defaultProps: Record<ComponentName, any> = {
       external: false,
       id: "",
       target: "" as any,
-      url: "#",
+      url: "",
     },
     labelHidden: false,
     id: "",
@@ -1007,10 +1004,10 @@ export const defaultProps: Record<ComponentName, any> = {
     },
     labelHidden: false,
     id: "",
-    value: 41,
-    min: 0,
-    max: 100,
-    step: 1,
+    value: "" as unknown as RangeSliderProps["value"],
+    min: "" as unknown as RangeSliderProps["min"],
+    max: "" as unknown as RangeSliderProps["max"],
+    step: "" as unknown as RangeSliderProps["step"],
     output: false,
     helpText: "",
     error: "",
