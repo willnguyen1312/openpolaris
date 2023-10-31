@@ -84,9 +84,9 @@ export const defaultProps: Record<ComponentName, any> = {
     avatarUrl: "avatarUrl",
     connected: false,
     action: {
-      id: "id",
+      id: "",
       content: "content",
-      accessibilityLabel: "accessibilityLabel",
+      accessibilityLabel: "",
       url: "",
       external: false,
       target: "" as any,
@@ -328,7 +328,7 @@ export const defaultProps: Record<ComponentName, any> = {
     description:
       "Shopify and your customers will use this information to contact you.",
     title: "Store details",
-    id: "storeDetails",
+    id: "",
   } as LayoutAnnotatedSectionProps,
 
   MediaCard: {
@@ -490,7 +490,7 @@ export const defaultProps: Record<ComponentName, any> = {
     videoLength: 80,
     videoProgress: 45,
     showVideoProgress: true,
-    accessibilityLabel: "Play video of length 1:20",
+    accessibilityLabel: "",
   } as VideoThumbnailProps,
 
   // Typography
@@ -697,7 +697,7 @@ export const defaultProps: Record<ComponentName, any> = {
     children: "Header",
   } as ListBoxHeaderProps,
   "Listbox.Loading": {
-    accessibilityLabel: "accessibilityLabel",
+    accessibilityLabel: "",
   } as ListBoxLoadingProps,
   "Listbox.Section": {
     title: "Section",
@@ -705,7 +705,7 @@ export const defaultProps: Record<ComponentName, any> = {
   } as ListBoxSectionProps,
   "Listbox.Action": {
     value: "value",
-    accessibilityLabel: "accessibilityLabel",
+    accessibilityLabel: "",
     disabled: false,
     divider: false,
     icon: "AccessibilityMajor",
@@ -990,7 +990,7 @@ export const defaultProps: Record<ComponentName, any> = {
     labelHidden: false,
     checked: false,
     disabled: false,
-    id: "disabled",
+    id: "",
     name: "accounts",
     fill: false,
     helpText: "Customers will only be able to check out as guests.",
