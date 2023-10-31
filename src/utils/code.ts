@@ -72,21 +72,33 @@ export const generateCode = async (value: RenderedComponent[]) => {
     }
 
     if (Array.isArray(value)) {
-      let result = value.length ? JSON.stringify(value.filter(Boolean)) : "";
-      const iconRegex = /"icon":("[A-z]+")/gi;
+      let result = "[";
 
-      result = result.replace(iconRegex, (match) => {
-        const iconName = match.split(":")[1].replace(/"/g, "");
-        importedIcons.add(iconName);
-        return `"icon":${iconName}`;
-      });
+      for (let index = 0; index < value.length; index++) {
+        const element = value[index];
+        if (element == null) {
+          continue;
+        }
 
-      const emptyRegex = /"[A-z]+":"",?/gi;
-      result = result.replace(emptyRegex, "");
+        if (typeof element === "object") {
+          const computedValue = normalizePropValue({
+            value: element,
+            key,
+          });
 
-      const falsyRegex = /"[A-z]+":false,?/gi;
-      result = result.replace(falsyRegex, "");
+          if (computedValue && /\w/i.test(computedValue)) {
+            result += `${key}:${computedValue},`;
+          }
+          continue;
+        }
 
+        result += `${normalizePropValue({
+          value: element,
+          key,
+          isParentObject: true,
+        })},`;
+      }
+      result = result.slice(0, -1) + "]";
       return result.length > 2 ? result : "";
     }
 
@@ -95,11 +107,14 @@ export const generateCode = async (value: RenderedComponent[]) => {
 
       Object.keys(value).forEach((key) => {
         if (value[key]) {
-          result += `${key}:${normalizePropValue({
+          const computedValue = normalizePropValue({
             value: value[key],
             key,
             isParentObject: true,
-          })},`;
+          });
+          if (computedValue && /\w/i.test(computedValue)) {
+            result += `${key}:${computedValue},`;
+          }
         }
       });
       result = result.slice(0, -1) + "}";
