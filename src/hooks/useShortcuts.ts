@@ -40,6 +40,7 @@ export const useShortcuts = () => {
         return;
       }
 
+      e.preventDefault();
       if ((code === "Backspace" || code === "Delete") && activeComponent) {
         deleteActiveComponent();
       } else if (code === "Escape") {
