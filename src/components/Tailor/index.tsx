@@ -33,6 +33,7 @@ import { InlineErrorTailor } from "./InlineErrorTailor";
 import { InlineGridTailor } from "./InlineGridTailor";
 import { InlineStackTailor } from "./InlineStackTailor";
 import { KeyboardKeyTailor } from "./KeyboardKeyTailor";
+import { LayoutAnnotatedSectionTailor } from "./LayoutAnnotatedSectionTailor";
 import { LayoutSectionTailor } from "./LayoutSectionTailor";
 import { LayoutTailor } from "./LayoutTailor";
 import { LinkTailor } from "./LinkTailor";
@@ -91,7 +92,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   InlineStack: InlineStackTailor,
   Layout: LayoutTailor,
   "Layout.Section": LayoutSectionTailor,
-  "Layout.AnnotatedSection": LayoutSectionTailor,
+  "Layout.AnnotatedSection": LayoutAnnotatedSectionTailor,
   MediaCard: MediaCardTailor,
   Page: PageTailor,
 
