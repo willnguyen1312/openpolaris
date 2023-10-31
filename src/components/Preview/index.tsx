@@ -13,6 +13,7 @@ import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
 import React from "react";
 import { findComponentBy, usePolarisStore } from "../../store";
+import { normalizePropValue } from "../../utils/code";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
 
@@ -33,6 +34,11 @@ const finalizeComponentProps = (component: RenderedComponent) => {
       !value.content
     ) {
       return true;
+    }
+
+    if (typeof value === "object") {
+      const computedValue = normalizePropValue({ value });
+      return computedValue ? false : true;
     }
 
     return false;
