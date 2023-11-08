@@ -91,7 +91,7 @@ export const defaultProps: Record<ComponentName, any> = {
       external: false,
       target: "" as any,
     },
-  } as AccountConnectionProps,
+  } satisfies AccountConnectionProps,
   Button: {
     children: "Button",
     size: "" as ButtonProps["size"],
@@ -111,7 +111,7 @@ export const defaultProps: Record<ComponentName, any> = {
     disabled: false,
     loading: false,
     pressed: false,
-  } as ButtonProps,
+  } satisfies ButtonProps,
   ButtonGroup: {
     gap: "" as ButtonGroupProps["gap"],
     variant: undefined,
@@ -119,7 +119,7 @@ export const defaultProps: Record<ComponentName, any> = {
     connectedTop: false,
     noWrap: false,
     children: undefined,
-  } as ButtonGroupProps,
+  } satisfies ButtonGroupProps,
   PageActions: {
     primaryAction: {
       content: "Save",
@@ -143,7 +143,7 @@ export const defaultProps: Record<ComponentName, any> = {
         icon: undefined,
       },
     ],
-  } as PageActionsProps,
+  } satisfies PageActionsProps,
 
   // Layout and structure
   Bleed: {
@@ -153,7 +153,7 @@ export const defaultProps: Record<ComponentName, any> = {
     marginBlockEnd: "" as BleedProps["marginBlockEnd"],
     marginInlineStart: "" as BleedProps["marginInlineStart"],
     marginInlineEnd: "" as BleedProps["marginInlineEnd"],
-  } as BleedProps,
+  } satisfies BleedProps,
 
   BlockStack: {
     as: "" as BlockStackProps["as"],
@@ -163,7 +163,7 @@ export const defaultProps: Record<ComponentName, any> = {
     id: "",
     reverseOrder: false,
     role: "" as BlockStackProps["role"],
-  } as BlockStackProps,
+  } satisfies BlockStackProps,
 
   Box: {
     as: "" as BoxProps["as"],
@@ -208,7 +208,7 @@ export const defaultProps: Record<ComponentName, any> = {
     printHidden: false,
     visuallyHidden: false,
     zIndex: "",
-  } as BoxProps,
+  } satisfies BoxProps,
   CalloutCard: {
     title: "Customize the style of your checkout",
     illustration:
@@ -229,16 +229,16 @@ export const defaultProps: Record<ComponentName, any> = {
       external: false,
       target: "" as any,
     },
-  } as CalloutCardProps,
+  } satisfies CalloutCardProps,
   Card: {
     background: "" as CardProps["background"],
     padding: "" as CardProps["padding"],
     roundedAbove: "" as CardProps["roundedAbove"],
-  } as CardProps,
+  } satisfies CardProps,
   Divider: {
     borderColor: "border-magic" as DividerProps["borderColor"],
     borderWidth: "100" as DividerProps["borderWidth"],
-  } as DividerProps,
+  } satisfies DividerProps,
   EmptyState: {
     heading: "Manage your inventory transfers",
     image:
@@ -275,13 +275,13 @@ export const defaultProps: Record<ComponentName, any> = {
       target: "" as any,
     },
     footerContent: "Learn more about transfers",
-  } as EmptyStateProps,
-  FormLayout: {} as FormLayoutProps,
+  } satisfies EmptyStateProps,
+  FormLayout: {} satisfies FormLayoutProps,
   "FormLayout.Group": {
     condensed: false,
     helpText: "",
     title: "",
-  } as FormLayoutGroupProps,
+  } satisfies FormLayoutGroupProps,
   Grid: {
     columns: {
       xs: 12,
@@ -297,7 +297,7 @@ export const defaultProps: Record<ComponentName, any> = {
       lg: "",
       xl: "",
     },
-  } as GridProps,
+  } satisfies GridProps,
   "Grid.Cell": {
     columnSpan: {
       xs: 6,
@@ -306,30 +306,30 @@ export const defaultProps: Record<ComponentName, any> = {
       lg: 4,
       xl: 6,
     },
-  } as GridCellProps,
+  } satisfies GridCellProps,
   InlineGrid: {
     columns: "" as InlineGridProps["columns"],
     gap: "" as InlineGridProps["gap"],
     alignItems: "" as InlineGridProps["alignItems"],
-  } as InlineGridProps,
+  } satisfies InlineGridProps,
   InlineStack: {
     align: "" as InlineStackProps["align"],
     blockAlign: "" as InlineStackProps["blockAlign"],
     gap: "" as InlineStackProps["gap"],
     wrap: true,
-  } as InlineStackProps,
+  } satisfies InlineStackProps,
   Layout: {
     sectioned: false,
-  } as LayoutProps,
+  } satisfies LayoutProps,
   "Layout.Section": {
     variant: "" as LayoutSectionProps["variant"],
-  } as LayoutSectionProps,
+  } satisfies LayoutSectionProps,
   "Layout.AnnotatedSection": {
     description:
       "Shopify and your customers will use this information to contact you.",
     title: "Store details",
     id: "",
-  } as LayoutAnnotatedSectionProps,
+  } satisfies LayoutAnnotatedSectionProps,
 
   MediaCard: {
     title: "Getting Started",
@@ -467,23 +467,23 @@ export const defaultProps: Record<ComponentName, any> = {
     customer: false,
     source: "",
     accessibilityLabel: "",
-  } as AvatarProps,
+  } satisfies AvatarProps,
   Icon: {
     source: "CirclePlusMinor",
     tone: "" as IconProps["tone"],
     accessibilityLabel: "",
-  } as IconProps,
+  } satisfies IconProps,
   KeyboardKey: {
     children: "Polaris",
     size: "" as KeyboardKeyProps["size"],
-  } as KeyboardKeyProps,
+  } satisfies KeyboardKeyProps,
   Thumbnail: {
     size: "" as ThumbnailProps["size"],
     source:
       "https://burst.shopifycdn.com/photos/black-leather-choker-necklace_373x@2x.jpg",
     alt: "Black choker necklace",
     transparent: false,
-  } as ThumbnailProps,
+  } satisfies ThumbnailProps,
   VideoThumbnail: {
     thumbnailUrl:
       "https://burst.shopifycdn.com/photos/business-woman-smiling-in-office.jpg?width=1850",
@@ -507,7 +507,7 @@ export const defaultProps: Record<ComponentName, any> = {
     variant: "" as TextProps["variant"],
     visuallyHidden: false,
     textDecorationLine: "" as TextProps["textDecorationLine"],
-  } as TextProps,
+  } satisfies TextProps,
 
   // Overlays
   Tooltip: {
@@ -524,7 +524,7 @@ export const defaultProps: Record<ComponentName, any> = {
     zIndexOverride: "" as unknown as TooltipProps["zIndexOverride"],
     hasUnderline: false,
     persistOnClick: false,
-  } as TooltipProps,
+  } satisfies TooltipProps,
   // Popover: {
   //   preferredPosition: "" as PopoverProps["preferredPosition"],
   //   preferredAlignment: "" as PopoverProps["preferredAlignment"],
@@ -644,7 +644,7 @@ export const defaultProps: Record<ComponentName, any> = {
         ],
       },
     ],
-  } as ActionListProps,
+  } satisfies ActionListProps,
   DescriptionList: {
     items: [
       {
@@ -664,12 +664,12 @@ export const defaultProps: Record<ComponentName, any> = {
       },
     ],
     gap: "" as DescriptionListProps["gap"],
-  } as DescriptionListProps,
+  } satisfies DescriptionListProps,
   List: {
     gap: "" as ListProps["gap"],
     type: "" as ListProps["type"],
-  } as ListProps,
-  "List.Item": {} as ListItemProps,
+  } satisfies ListProps,
+  "List.Item": {} satisfies ListItemProps,
   Listbox: {
     autoSelection: "" as ListboxProps["autoSelection"],
     enableKeyboardControl: false,
@@ -683,22 +683,22 @@ export const defaultProps: Record<ComponentName, any> = {
     disabled: false,
     divider: false,
     selected: false,
-  } as ListBoxOptionProps,
+  } satisfies ListBoxOptionProps,
   "Listbox.TextOption": {
     disabled: false,
     selected: false,
     children: "TextOption",
-  } as ListBoxTextOptionProps,
+  } satisfies ListBoxTextOptionProps,
   "Listbox.Header": {
     children: "Header",
-  } as ListBoxHeaderProps,
+  } satisfies ListBoxHeaderProps,
   "Listbox.Loading": {
     accessibilityLabel: "",
-  } as ListBoxLoadingProps,
+  } satisfies ListBoxLoadingProps,
   "Listbox.Section": {
     title: "Section",
     divider: false,
-  } as ListBoxSectionProps,
+  } satisfies ListBoxSectionProps,
   "Listbox.Action": {
     value: "value",
     accessibilityLabel: "",
@@ -706,7 +706,7 @@ export const defaultProps: Record<ComponentName, any> = {
     divider: false,
     icon: "AccessibilityMajor",
     selected: false,
-  } as ListBoxActionProps,
+  } satisfies ListBoxActionProps,
 
   OptionList: {
     id: "",
@@ -747,7 +747,7 @@ export const defaultProps: Record<ComponentName, any> = {
     size: "" as BadgeProps["size"],
     tone: "" as BadgeProps["tone"],
     toneAndProgressLabelOverride: "",
-  } as BadgeProps,
+  } satisfies BadgeProps,
   Banner: {
     title: "Order archived",
     icon: undefined,
@@ -793,38 +793,38 @@ export const defaultProps: Record<ComponentName, any> = {
         truncate: false,
       },
     ],
-  } as ExceptionListProps,
+  } satisfies ExceptionListProps,
   ProgressBar: {
     animated: false,
     ariaLabelledBy: "",
     progress: 41,
     size: "" as ProgressBarProps["size"],
     tone: "" as ProgressBarProps["tone"],
-  } as ProgressBarProps,
+  } satisfies ProgressBarProps,
   Spinner: {
     accessibilityLabel: "",
     hasFocusableParent: false,
     size: "" as SpinnerProps["size"],
-  } as SpinnerProps,
+  } satisfies SpinnerProps,
   SkeletonBodyText: {
     lines: 3,
-  } as SkeletonBodyTextProps,
+  } satisfies SkeletonBodyTextProps,
   SkeletonDisplayText: {
     size: "" as SkeletonDisplayTextProps["size"],
-  } as SkeletonDisplayTextProps,
+  } satisfies SkeletonDisplayTextProps,
   SkeletonPage: {
     title: "SkeletonPage",
     fullWidth: false,
     narrowWidth: false,
     primaryAction: false,
     backAction: false,
-  } as SkeletonPageProps,
+  } satisfies SkeletonPageProps,
   SkeletonTabs: {
     count: 3,
-  } as SkeletonTabsProps,
+  } satisfies SkeletonTabsProps,
   SkeletonThumbnail: {
     size: "" as SkeletonThumbnailProps["size"],
-  } as SkeletonThumbnailProps,
+  } satisfies SkeletonThumbnailProps,
 
   // Navigation
   Pagination: {
@@ -841,7 +841,7 @@ export const defaultProps: Record<ComponentName, any> = {
     },
     label: "",
     type: "" as PaginationProps["type"],
-  } as PaginationProps,
+  } satisfies PaginationProps,
   Link: {
     children: "Customer support",
     id: "",
@@ -851,11 +851,11 @@ export const defaultProps: Record<ComponentName, any> = {
     removeUnderline: false,
     accessibilityLabel: "",
     dataPrimaryLink: false,
-  } as LinkProps,
+  } satisfies LinkProps,
   FullscreenBar: {} as FullscreenBarProps,
   FooterHelp: {
     children: "Learn more about Shopify 🐻‍❄️",
-  } as FooterHelpProps,
+  } satisfies FooterHelpProps,
 
   // Selection and input
   Checkbox: {
@@ -877,7 +877,7 @@ export const defaultProps: Record<ComponentName, any> = {
     bleedBlockEnd: "" as CheckboxProps["bleedBlockEnd"],
     bleedInlineStart: "" as CheckboxProps["bleedInlineStart"],
     bleedInlineEnd: "" as CheckboxProps["bleedInlineEnd"],
-  } as CheckboxProps,
+  } satisfies CheckboxProps,
   ChoiceList: {
     title: "Company name",
     choices: [
@@ -891,7 +891,7 @@ export const defaultProps: Record<ComponentName, any> = {
     titleHidden: false,
     error: "",
     disabled: false,
-  } as ChoiceListProps,
+  } satisfies ChoiceListProps,
   ColorPicker: {
     id: "",
     color: {
@@ -928,7 +928,7 @@ export const defaultProps: Record<ComponentName, any> = {
     multiMonth: false,
     weekStartsOn: 0,
     dayAccessibilityLabelPrefix: "",
-  } as DatePickerProps,
+  } satisfies DatePickerProps,
   DropZone: {
     label: "DropZone",
     labelAction: {
@@ -954,11 +954,11 @@ export const defaultProps: Record<ComponentName, any> = {
     dropOnPage: false,
     openFileDialog: false,
     variableHeight: false,
-  } as DropZoneProps,
+  } satisfies DropZoneProps,
   "DropZone.FileUpload": {
     actionHint: "",
     actionTitle: "",
-  } as DropZoneFileUploadProps,
+  } satisfies DropZoneFileUploadProps,
   Form: {
     acceptCharset: "",
     action: "",
@@ -974,7 +974,7 @@ export const defaultProps: Record<ComponentName, any> = {
   InlineError: {
     fieldID: "myFieldID",
     message: "Store name is required",
-  } as InlineErrorProps,
+  } satisfies InlineErrorProps,
   RadioButton: {
     bleed: "" as RadioButtonProps["bleed"],
     bleedBlockStart: "" as RadioButtonProps["bleedBlockStart"],
@@ -991,7 +991,7 @@ export const defaultProps: Record<ComponentName, any> = {
     fill: false,
     helpText: "",
     value: "disabled",
-  } as RadioButtonProps,
+  } satisfies RadioButtonProps,
   RangeSlider: {
     label: "Opacity percentage",
     labelAction: {
@@ -1040,13 +1040,13 @@ export const defaultProps: Record<ComponentName, any> = {
     value: "",
     error: "",
     requiredIndicator: false,
-  } as SelectProps,
+  } satisfies SelectProps,
   Tag: {
     children: "Wholesale",
     accessibilityLabel: "",
     disabled: false,
     url: "",
-  } as TagProps,
+  } satisfies TagProps,
   TextField: {
     label: "Store name",
     name: "",
@@ -1100,5 +1100,5 @@ export const defaultProps: Record<ComponentName, any> = {
     ariaAutocomplete: "",
     ariaControls: "",
     ariaExpanded: false,
-  } as TextFieldProps,
+  } satisfies TextFieldProps,
 };
