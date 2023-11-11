@@ -32,7 +32,6 @@ const inlineGridPropsItems: PropItem<keyof InlineGridProps>[] = [
   },
 ];
 
-// TODO: Add more support for InlineGrid's columns prop
 export const InlineGridTailor = () => {
   return (
     <>

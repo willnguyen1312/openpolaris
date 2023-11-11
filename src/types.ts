@@ -516,6 +516,7 @@ export const listOfComponent: ComponentMenuItem[] = [
 
 export const rootComponentId = "root";
 
+// TODO: Update this to use the latest type from polaris
 const toneRecord: Record<Tone | "", 1> = {
   info: 1,
   success: 1,
