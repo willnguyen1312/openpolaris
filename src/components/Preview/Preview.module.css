@@ -17,7 +17,7 @@
 }
 
 .isOver {
-  background: var(--p-color-bg-fill-magic);
+  background: var(--p-color-bg-fill-info);
 }
 
 .containerWrapperSelected {
