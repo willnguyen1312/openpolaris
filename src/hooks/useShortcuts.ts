@@ -12,7 +12,6 @@ export const useShortcuts = () => {
 
   const componentListForCycle = useMemo(() => {
     const result: RenderedComponent[] = [];
-    // DFS
     function dfs(node: RenderedComponent) {
       result.push(node);
 

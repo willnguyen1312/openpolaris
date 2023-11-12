@@ -1,4 +1,3 @@
-// Util function to collect all paths lead to a specific key
 export function collectPathsHasKey(
   obj: any,
   key: string,

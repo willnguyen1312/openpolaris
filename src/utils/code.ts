@@ -189,11 +189,6 @@ export const generateCode = async (value: RenderedComponent[]) => {
 
   value.forEach((item) => {
     traverse(item, (node) => {
-      // Toast component requires Frame component to be imported
-      // if (node.componentName === "Toast") {
-      //   importedComponents.add("Frame" as ComponentName);
-      // }
-
       if (node.props?.icon) {
         importedIcons.add(node.props.icon);
       }

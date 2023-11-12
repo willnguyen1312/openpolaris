@@ -2,7 +2,6 @@ import { DividerProps } from "@shopify/polaris";
 import { colorBorderAliasesWithTransparent } from "../../types";
 import { DocLink, PropItem, TailorList } from "./shared";
 
-// This is to work around type error when upgrading to new version of polaris
 type DividerBorderWidths = NonNullable<DividerProps["borderWidth"]> | "";
 const dividerBorderWithRecord: Record<DividerBorderWidths, 1> = {
   "0165": 1,

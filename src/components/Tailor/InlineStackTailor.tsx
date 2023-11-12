@@ -18,7 +18,6 @@ const inlineStackAligns = Object.keys(inlineStackAlignRecord) as NonNullable<
   InlineStackProps["align"]
 >[];
 
-// 'start' | 'center' | 'end' | 'baseline' | 'stretch'
 const inlineStackBlockAlignRecord: Record<
   NonNullable<InlineStackProps["blockAlign"] | "">,
   1

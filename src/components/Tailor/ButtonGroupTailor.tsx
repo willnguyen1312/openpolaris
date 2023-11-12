@@ -1,7 +1,6 @@
 import { ButtonGroupProps } from "@shopify/polaris";
 import { DocLink, PropItem, TailorList } from "./shared";
 
-// This is to work around type error when upgrading to new version of polaris
 type ButtonGroupGap = NonNullable<ButtonGroupProps["gap"]> | "";
 const buttonGroupGapRecord: Record<ButtonGroupGap, 1> = {
   tight: 1,

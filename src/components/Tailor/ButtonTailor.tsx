@@ -2,7 +2,6 @@ import { ButtonProps } from "@shopify/polaris";
 
 import { DocLink, PropItem, TailorList } from "./shared";
 
-// This is to work around type error when upgrading to new version of polaris
 type ButtonSizes = NonNullable<ButtonProps["size"]> | "";
 const buttonSizeRecord: Record<ButtonSizes, 1> = {
   micro: 1,
@@ -79,8 +78,6 @@ const buttonPropItems: PropItem<keyof ButtonProps>[] = [
     type: "Select",
     options: buttonVariants,
   },
-
-  // Base Button Props
   { prop: "id", type: "Text" },
   { prop: "url", type: "Text" },
   { prop: "external", type: "Checkbox" },

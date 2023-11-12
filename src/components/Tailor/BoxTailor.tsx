@@ -11,7 +11,6 @@ import {
 } from "../../types";
 import { DocLink, PropItem, TailorList } from "./shared";
 
-// type Element = 'div' | 'span' | 'section' | 'legend' | 'ul' | 'li';
 const boxAsRecord: Record<NonNullable<BoxProps["as"]> | "", 1> = {
   div: 1,
   span: 1,
@@ -254,7 +253,6 @@ const boxPropsItems: PropItem<keyof BoxProps>[] = [
 ];
 
 export const BoxTailor = () => {
-  // https://polaris.shopify.com/components/layout-and-structure/box
   return (
     <>
       <DocLink

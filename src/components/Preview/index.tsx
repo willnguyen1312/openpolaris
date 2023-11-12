@@ -179,7 +179,7 @@ function ComponentWithContainer({
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
       const classes = targetComponent.className;
-      // Hack to make component fill the space
+      // Hack to make wrapped component fill the available space
       targetComponent.style.flexGrow = "1";
       setExtraClasses(classes);
     }
