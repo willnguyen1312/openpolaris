@@ -516,7 +516,6 @@ export const listOfComponent: ComponentMenuItem[] = [
 
 export const rootComponentId = "root";
 
-// TODO: Update this to use the latest type from polaris
 const toneRecord: Record<Tone | "", 1> = {
   info: 1,
   success: 1,
@@ -524,13 +523,13 @@ const toneRecord: Record<Tone | "", 1> = {
   critical: 1,
   attention: 1,
   new: 1,
-  "info-strong-experimental": 1,
-  "success-strong-experimental": 1,
-  "warning-strong-experimental": 1,
-  "critical-strong-experimental": 1,
-  "attention-strong-experimental": 1,
-  "read-only-experimental": 1,
-  "enabled-experimental": 1,
+  "attention-strong": 1,
+  "critical-strong": 1,
+  "info-strong": 1,
+  "read-only": 1,
+  "success-strong": 1,
+  "warning-strong": 1,
+  enabled: 1,
   "": 1,
 };
 
@@ -700,6 +699,7 @@ const colorBorderRecord: Record<ColorBorderAlias | "", 1> = {
   "border-inverse": 1,
   "border-magic-secondary": 1,
   "border-magic": 1,
+  "border-magic-secondary-hover": 1,
   "border-secondary": 1,
   "border-success": 1,
   "border-tertiary": 1,
@@ -781,6 +781,7 @@ const colorTextRecord: Record<ColorTextAlias | "", 1> = {
   "text-link": 1,
   "text-magic-on-bg-fill": 1,
   "text-magic": 1,
+  "text-magic-secondary": 1,
   "text-secondary": 1,
   "text-success-active": 1,
   "text-success-hover": 1,
