@@ -73,30 +73,15 @@ export function Header() {
           />
 
           <ButtonGroup>
-            <Button
-              onClick={reset}
-              tone="success"
-              variant="tertiary"
-              icon={MobileCancelMajor}
-            >
+            <Button onClick={reset} icon={MobileCancelMajor}>
               Clear
             </Button>
 
-            <Button
-              tone="success"
-              variant="tertiary"
-              icon={ExportMinor}
-              onClick={openPlayground}
-            >
+            <Button icon={ExportMinor} onClick={openPlayground}>
               Playground
             </Button>
 
-            <Button
-              onClick={handleShareClick}
-              tone="success"
-              variant="tertiary"
-              icon={ShareMinor}
-            >
+            <Button onClick={handleShareClick} icon={ShareMinor}>
               Share
             </Button>
           </ButtonGroup>
