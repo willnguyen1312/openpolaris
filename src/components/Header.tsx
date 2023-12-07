@@ -88,6 +88,15 @@ export function Header() {
         </InlineStack>
 
         <InlineStack gap="100" blockAlign="center">
+          <iframe
+            frameBorder="0"
+            src="https://ghbtns.com/github-btn.html?user=willnguyen1312&repo=openpolaris&type=star&size=large&text=false"
+            scrolling="0"
+            width="40"
+            height="30"
+            title="GitHub"
+          ></iframe>
+
           <Text as="p">Made with 💞 by</Text>
 
           <Link url="https://namnguyen.design/about" target="_blank">
