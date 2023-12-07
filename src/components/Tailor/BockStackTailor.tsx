@@ -46,6 +46,7 @@ const blockStackRoleRecord: Record<BlockStackRole, 1> = {
   menu: 1,
   listbox: 1,
   combobox: 1,
+  group: 1,
   "": 1,
 };
 const blockStackRoleOptions = Object.keys(

@@ -561,6 +561,8 @@ const spacingScaleRecord: Record<SpaceScale | "", 1> = {
 export const spacingScales = Object.keys(spacingScaleRecord) as SpaceScale[];
 
 const colorBackgroundRecord: Record<ColorBackgroundAlias | "", 1> = {
+  "avatar-seven-bg-fill": 1,
+  "avatar-six-bg-fill": 1,
   "bg-fill-active": 1,
   "bg-fill-brand-active": 1,
   "bg-fill-brand-disabled": 1,
@@ -748,6 +750,8 @@ export const colorIconAliases = Object.keys(
 ) as ColorIconAlias[];
 
 const colorTextRecord: Record<ColorTextAlias | "", 1> = {
+  "avatar-seven-text-on-bg-fill": 1,
+  "avatar-six-text-on-bg-fill": 1,
   "text-brand-hover": 1,
   "text-brand-on-bg-fill-active": 1,
   "text-brand-on-bg-fill-disabled": 1,
@@ -832,6 +836,7 @@ const BorderWidthScaleRecord: Record<BorderWidthScale | "", 1> = {
   "025": 1,
   "050": 1,
   "100": 1,
+  "0": 1,
   "": 1,
 };
 

@@ -35,10 +35,12 @@ const textAsOptions = Object.keys(textAsRecord);
 
 const textToneRecord: Record<NonNullable<TextProps["tone"] | "">, 1> = {
   success: 1,
+  subdued: 1,
+  magic: 1,
   critical: 1,
   caution: 1,
-  subdued: 1,
   "text-inverse": 1,
+  "magic-subdued": 1,
   "": 1,
 };
 const textToneOptions = Object.keys(textToneRecord);
@@ -62,6 +64,7 @@ const textVariantRecord: Record<NonNullable<TextProps["variant"] | "">, 1> = {
   bodySm: 1,
   bodyMd: 1,
   bodyLg: 1,
+  bodyXs: 1,
   "": 1,
 };
 const textVariantOptions = Object.keys(textVariantRecord);

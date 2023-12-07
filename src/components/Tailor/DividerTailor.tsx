@@ -8,6 +8,7 @@ const dividerBorderWithRecord: Record<DividerBorderWidths, 1> = {
   "025": 1,
   "050": 1,
   "100": 1,
+  "0": 1,
   "": 1,
 };
 const dividerBorderWidths = Object.keys(
