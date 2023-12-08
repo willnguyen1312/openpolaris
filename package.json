@@ -29,6 +29,7 @@
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
     "lz-string": "^1.5.0",
+    "million": "^2.6.4",
     "nanoid": "^5.0.4",
     "prettier": "3.1.0",
     "prism-react-renderer": "^2.3.0",
@@ -38,7 +39,7 @@
     "react-split-pane": "^0.1.92",
     "react-use": "^17.4.2",
     "typescript": "^5.3.3",
-    "vite": "^5.0.6",
+    "vite": "^5.0.7",
     "zustand": "^4.4.7"
   }
 }
