@@ -110,19 +110,25 @@ function buildComponentProps(
       } else if (typeof value === "number" && !Number.isNaN(value)) {
         result += `${key}=${normalizePropValue({ value })} `;
       } else if (typeof value === "boolean") {
-        const isNotSkip =
+        const defaultTrue =
           specialComponentWithDefaultTrueProps[
             component.componentName as ComponentName
           ]?.includes(key);
 
-        if (!value && isNotSkip) {
+        if (!value && defaultTrue) {
           result += `${key}={${value}}`;
+          return;
+        }
+
+        if (value && defaultTrue) {
           return;
         }
 
         if (!value) {
           return;
         }
+
+        result += `${key} `;
       } else if (typeof value === "object" && Object.keys(value).length) {
         if (Array.isArray(value)) {
           const normalizedPropValue = normalizePropValue({ value });
