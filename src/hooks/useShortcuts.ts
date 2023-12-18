@@ -4,6 +4,7 @@ import { RenderedComponent } from "../types";
 
 export const useShortcuts = () => {
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
+  const toggleShowCodePanel = usePolarisStore.use.toggleShowCodePanel();
   const activeComponent = usePolarisStore.use.activeComponent();
   const deleteActiveComponent = usePolarisStore.use.deleteActiveComponent();
   const renderedComponents = usePolarisStore.use.renderedComponents();
@@ -31,7 +32,7 @@ export const useShortcuts = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const { code, shiftKey } = e;
+      const { code, shiftKey, ctrlKey } = e;
 
       const isInputFocused = document.activeElement?.tagName === "INPUT";
 
@@ -61,6 +62,9 @@ export const useShortcuts = () => {
         );
         const nextIndex = (index + 1) % componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
+      } else if (code === "Backquote" && ctrlKey) {
+        e.preventDefault();
+        toggleShowCodePanel();
       }
     };
 
