@@ -964,7 +964,7 @@ export const defaultProps: Record<ComponentName, any> = {
     action: "",
     autoComplete: false,
     encType: "" as FormProps["encType"],
-    implicitSubmit: false,
+    implicitSubmit: true,
     method: "" as FormProps["method"],
     name: "",
     noValidate: false,

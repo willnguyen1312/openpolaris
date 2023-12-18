@@ -123,8 +123,6 @@ function buildComponentProps(
         if (!value) {
           return;
         }
-
-        result += `${key} `;
       } else if (typeof value === "object" && Object.keys(value).length) {
         if (Array.isArray(value)) {
           const normalizedPropValue = normalizePropValue({ value });
