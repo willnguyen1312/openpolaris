@@ -68,6 +68,13 @@ export function MainBody() {
             <ActionList
               items={[
                 {
+                  content: "Add product form",
+                  helpText: "A form to add product to your store",
+                  onAction: () => {
+                    loadFromTemplate(TemplateType.addProductForm);
+                  },
+                },
+                {
                   content: "Setting page",
                   helpText: "A page to manage your app settings",
                   onAction: () => {

@@ -1,0 +1,233 @@
+[
+  {
+    "children": [
+      {
+        "children": [
+          {
+            "children": [
+              {
+                "children": [
+                  {
+                    "children": [],
+                    "id": "OHJ3f3cbBwBYCTdI9D_Br",
+                    "componentName": "TextField",
+                    "props": {
+                      "label": "Title",
+                      "name": "",
+                      "id": "",
+                      "variant": "",
+                      "value": "",
+                      "type": "text",
+                      "autoComplete": "off",
+                      "align": "",
+                      "role": "",
+                      "autoFocus": false,
+                      "connectedRight": "",
+                      "connectedLeft": "",
+                      "clearButton": false,
+                      "disabled": false,
+                      "error": "",
+                      "focused": false,
+                      "helpText": "",
+                      "inputMode": "",
+                      "labelAction": {
+                        "id": "",
+                        "content": "",
+                        "accessibilityLabel": "",
+                        "url": "",
+                        "external": false,
+                        "target": ""
+                      },
+                      "labelHidden": false,
+                      "largeStep": "",
+                      "minLength": "",
+                      "maxLength": "",
+                      "min": "",
+                      "max": "",
+                      "step": "",
+                      "monospaced": false,
+                      "multiline": false,
+                      "pattern": "",
+                      "placeholder": "",
+                      "prefix": "",
+                      "suffix": "",
+                      "suggestion": "",
+                      "maxHeight": "",
+                      "readOnly": false,
+                      "requiredIndicator": false,
+                      "selectTextOnFocus": false,
+                      "showCharacterCount": false,
+                      "spellCheck": false,
+                      "verticalContent": "",
+                      "ariaOwns": "",
+                      "ariaActiveDescendant": "",
+                      "ariaAutocomplete": "",
+                      "ariaControls": "",
+                      "ariaExpanded": false
+                    }
+                  },
+                  {
+                    "children": [],
+                    "id": "aKClztF1HW1xyURGOUUTI",
+                    "componentName": "TextField",
+                    "props": {
+                      "label": "Description",
+                      "name": "",
+                      "id": "",
+                      "variant": "",
+                      "value": "",
+                      "type": "text",
+                      "autoComplete": "off",
+                      "align": "",
+                      "role": "",
+                      "autoFocus": false,
+                      "connectedRight": "",
+                      "connectedLeft": "",
+                      "clearButton": false,
+                      "disabled": false,
+                      "error": "",
+                      "focused": false,
+                      "helpText": "",
+                      "inputMode": "",
+                      "labelAction": {
+                        "id": "",
+                        "content": "",
+                        "accessibilityLabel": "",
+                        "url": "",
+                        "external": false,
+                        "target": ""
+                      },
+                      "labelHidden": false,
+                      "largeStep": "",
+                      "minLength": "",
+                      "maxLength": "",
+                      "min": "",
+                      "max": "",
+                      "step": "",
+                      "monospaced": false,
+                      "multiline": true,
+                      "pattern": "",
+                      "placeholder": "",
+                      "prefix": "",
+                      "suffix": "",
+                      "suggestion": "",
+                      "maxHeight": "",
+                      "readOnly": false,
+                      "requiredIndicator": false,
+                      "selectTextOnFocus": false,
+                      "showCharacterCount": false,
+                      "spellCheck": false,
+                      "verticalContent": "",
+                      "ariaOwns": "",
+                      "ariaActiveDescendant": "",
+                      "ariaAutocomplete": "",
+                      "ariaControls": "",
+                      "ariaExpanded": false
+                    }
+                  }
+                ],
+                "id": "LQwcEcbVpGr1SapVfLmQA",
+                "componentName": "FormLayout",
+                "props": {}
+              }
+            ],
+            "id": "JRRz1_JzgZCsTO2GsOL_p",
+            "componentName": "Form",
+            "props": {
+              "acceptCharset": "",
+              "action": "",
+              "autoComplete": false,
+              "encType": "",
+              "implicitSubmit": true,
+              "method": "",
+              "name": "",
+              "noValidate": false,
+              "preventDefault": false,
+              "target": ""
+            }
+          }
+        ],
+        "id": "fDHjBXJo2WW7HvvHHHmT9",
+        "componentName": "Card",
+        "props": {
+          "background": "",
+          "padding": "",
+          "roundedAbove": ""
+        }
+      }
+    ],
+    "id": "A3UG3NbdakOKG2YIadGJs",
+    "componentName": "Page",
+    "props": {
+      "title": "Add Product",
+      "subtitle": "",
+      "titleMetadata": "",
+      "additionalMetadata": "",
+      "compactTitle": false,
+      "fullWidth": false,
+      "narrowWidth": false,
+      "titleHidden": false,
+      "filterActions": false,
+      "primaryAction": {
+        "content": "Save",
+        "accessibilityLabel": "",
+        "destructive": false,
+        "external": false,
+        "disabled": false,
+        "id": "",
+        "outline": false,
+        "plain": false,
+        "loading": false,
+        "url": "",
+        "target": "",
+        "primary": false,
+        "helpText": ""
+      },
+      "secondaryActions": [
+        {
+          "content": "",
+          "loading": false,
+          "disabled": false,
+          "external": false,
+          "id": "",
+          "accessibilityLabel": "",
+          "url": "",
+          "destructive": false,
+          "helpText": ""
+        },
+        {
+          "content": "",
+          "loading": false,
+          "disabled": false,
+          "external": false,
+          "id": "",
+          "accessibilityLabel": "",
+          "url": "",
+          "destructive": false,
+          "helpText": ""
+        }
+      ],
+      "backAction": {
+        "url": "",
+        "accessibilityLabel": "",
+        "content": "",
+        "id": ""
+      },
+      "pagination": {
+        "hasPrevious": false,
+        "hasNext": false
+      },
+      "actionGroups": [
+        {
+          "title": "",
+          "actions": [
+            {
+              "content": ""
+            }
+          ],
+          "disabled": false
+        }
+      ]
+    }
+  }
+]

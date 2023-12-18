@@ -7,6 +7,7 @@ import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
 import { defaultProps } from "../defaultProps";
+import addProductFormJson from "../templates/addProductForm.json" assert { type: "json" };
 import settingsPageJson from "../templates/settingsPage.json" assert { type: "json" };
 import {
   ComponentAcceptType,
@@ -20,9 +21,11 @@ import { generateId } from "../utils/generateId";
 
 export const enum TemplateType {
   settingsPage = "settingsPage",
+  addProductForm = "addProductForm",
 }
 
 const templateMap = {
+  [TemplateType.addProductForm]: addProductFormJson,
   [TemplateType.settingsPage]: settingsPageJson,
 };
 
