@@ -75,6 +75,7 @@ type StoreActions = {
   setRenderedComponents: (value: RenderedComponent[]) => void;
   setLastRenderedComponents: (value: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
+  toggleShowCodePanel: () => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
@@ -160,6 +161,10 @@ const useStoreBase = createWithEqualityFn(
         setIsShowCodePanel: (value: boolean) =>
           set((state: StoreState) => {
             state.isShowCodePanel = value;
+          }),
+        toggleShowCodePanel: () =>
+          set((state: StoreState) => {
+            state.isShowCodePanel = !state.isShowCodePanel;
           }),
 
         isBuilderMode: false,

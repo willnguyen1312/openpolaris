@@ -517,19 +517,20 @@ export const listOfComponent: ComponentMenuItem[] = [
 export const rootComponentId = "root";
 
 const toneRecord: Record<Tone | "", 1> = {
-  info: 1,
-  success: 1,
-  warning: 1,
-  critical: 1,
-  attention: 1,
-  new: 1,
   "attention-strong": 1,
   "critical-strong": 1,
   "info-strong": 1,
   "read-only": 1,
   "success-strong": 1,
   "warning-strong": 1,
+  attention: 1,
+  critical: 1,
   enabled: 1,
+  info: 1,
+  magic: 1,
+  new: 1,
+  success: 1,
+  warning: 1,
   "": 1,
 };
 
