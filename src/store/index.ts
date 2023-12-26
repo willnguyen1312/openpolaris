@@ -62,6 +62,7 @@ interface StoreState {
   searchComponentInput: string;
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
+  isSuccinctCode: boolean;
   isBuilderMode: boolean;
   hasError: boolean;
   activeDraggableId: string | null;
@@ -76,6 +77,8 @@ type StoreActions = {
   setLastRenderedComponents: (value: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
   toggleShowCodePanel: () => void;
+  setIsSuccinctCode: (value: boolean) => void;
+  toggleSuccinctCode: () => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
@@ -166,6 +169,17 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.isShowCodePanel = !state.isShowCodePanel;
           }),
+
+        isSuccinctCode: false,
+        setIsSuccinctCode: (value: boolean) =>
+          set((state: StoreState) => {
+            state.isSuccinctCode = value;
+          }),
+        toggleSuccinctCode: () => {
+          set((state: StoreState) => {
+            state.isSuccinctCode = !state.isSuccinctCode;
+          });
+        },
 
         isBuilderMode: false,
         setIsBuilderMode: (value: boolean) =>

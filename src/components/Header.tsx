@@ -21,8 +21,10 @@ import styles from "./Header.module.css";
 
 export function Header() {
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
-  const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
+  const isSuccinctCode = usePolarisStore.use.isSuccinctCode();
+  const toggleSuccinctCode = usePolarisStore.use.toggleSuccinctCode();
+  const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const lastRenderedComponents = usePolarisStore.use.lastRenderedComponents();
@@ -64,6 +66,12 @@ export function Header() {
             onChange={toggleIsShowCodePanel}
             checked={isShowCodePanel}
             label="Code panel"
+          />
+
+          <Checkbox
+            onChange={toggleSuccinctCode}
+            checked={isSuccinctCode}
+            label="Succinct code"
           />
 
           <Checkbox

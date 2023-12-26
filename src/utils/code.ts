@@ -187,7 +187,16 @@ const traverse = (
   node.children.forEach((child) => traverse(child, visit));
 };
 
-export const generateCode = async (value: RenderedComponent[]) => {
+export const generateCode = async (
+  value: RenderedComponent[],
+  {
+    isSuccinctCode,
+  }: {
+    isSuccinctCode: boolean;
+  } = {
+    isSuccinctCode: false,
+  },
+) => {
   const importedComponents = new Set<ComponentName>([]);
   const importedIcons = new Set<string>();
 
@@ -212,7 +221,23 @@ export const generateCode = async (value: RenderedComponent[]) => {
     return acc;
   }, "");
 
-  const result = `
+  const result = isSuccinctCode
+    ? `
+    import {${[...importedComponents]
+      .sort()
+      .join(",")}} from '@shopify/polaris'; ${
+      [...importedIcons].length
+        ? `import { ${[...importedIcons]
+            .sort()
+            .join(",")} } from "@shopify/polaris-icons";`
+        : ""
+    }
+    
+    export default function App() {
+      return ${code};
+    };
+    `
+    : `
     import {${[...importedComponents, "AppProvider"]
       .sort()
       .join(",")}} from '@shopify/polaris'; ${

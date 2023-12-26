@@ -10,6 +10,7 @@ import styles from "./CodePanel.module.css";
 export const CodePanel = () => {
   const [code, setCode] = useState("");
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
+  const isSuccinctCode = usePolarisStore.use.isSuccinctCode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const [active, setActive] = useState(false);
   const closeToast = () => setActive(false);
@@ -17,12 +18,14 @@ export const CodePanel = () => {
 
   useEffect(() => {
     async function run() {
-      const result = await generateCode(renderedComponents);
+      const result = await generateCode(renderedComponents, {
+        isSuccinctCode,
+      });
       setCode(result);
     }
 
     run();
-  }, [renderedComponents]);
+  }, [renderedComponents, isSuccinctCode]);
 
   const handleCopyClick = () => {
     showToast();
