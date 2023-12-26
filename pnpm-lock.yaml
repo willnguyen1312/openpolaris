@@ -39,8 +39,8 @@ dependencies:
     specifier: ^3.5.0
     version: 3.5.0(vite@5.0.10)
   classnames:
-    specifier: ^2.3.2
-    version: 2.3.2
+    specifier: ^2.4.0
+    version: 2.4.0
   immer:
     specifier: ^10.0.3
     version: 10.0.3
@@ -1294,10 +1294,10 @@ packages:
       fsevents: 2.3.3
     dev: false
 
-  /classnames@2.3.2:
+  /classnames@2.4.0:
     resolution:
       {
-        integrity: sha512-CSbhY4cFEJRe6/GQzIk5qXZ4Jeg5pcsP7b5peFSDpffpe1cqjASH/n9UTjBwOp6XpMSTwQ8Za2K5V02ueA7Tmw==,
+        integrity: sha512-lWxiIlphgAhTLN657pwU/ofFxsUTOWc2CRIFeoV5st0MGRJHStUnWIUJgDHxjUO/F0mXzGufXIM4Lfu/8h+MpA==,
       }
     dev: false
 
