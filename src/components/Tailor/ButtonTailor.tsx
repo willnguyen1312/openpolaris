@@ -40,6 +40,7 @@ const buttonVariantRecord: Record<ButtonVariants, 1> = {
   primary: 1,
   tertiary: 1,
   monochromePlain: 1,
+  secondary: 1,
   "": 1,
 };
 const buttonVariants = Object.keys(buttonVariantRecord) as ButtonVariants[];

@@ -10,7 +10,7 @@ import {
   Text as PolarisText,
   TextField,
 } from "@shopify/polaris";
-import { SearchMinor } from "@shopify/polaris-icons";
+import { SearchIcon } from "@shopify/polaris-icons";
 import iconMetadata from "@shopify/polaris-icons/metadata";
 import { get as lodashGet } from "lodash-es";
 import { FunctionComponent, useEffect, useState } from "react";
@@ -197,7 +197,7 @@ export const Icon: FunctionComponent<{
       onChange={updateText}
       label={label || getHumanReadableName(prop)}
       value={inputValue}
-      prefix={<PolarisIcon source={SearchMinor} tone="base" />}
+      prefix={<PolarisIcon source={SearchIcon} tone="base" />}
       placeholder="Search"
       autoComplete="off"
     />

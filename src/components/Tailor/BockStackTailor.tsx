@@ -8,6 +8,8 @@ const blockStackAsRecord: Record<NonNullable<BlockStackAs>, 1> = {
   ul: 1,
   ol: 1,
   fieldset: 1,
+  li: 1,
+  span: 1,
   "": 1,
 };
 const blockStackAsOptions = Object.keys(blockStackAsRecord) as BlockStackAs[];

@@ -7,11 +7,7 @@ import {
   Text,
   Toast,
 } from "@shopify/polaris";
-import {
-  ExportMinor,
-  MobileCancelMajor,
-  ShareMinor,
-} from "@shopify/polaris-icons";
+import { ExportIcon, XIcon, ShareIcon } from "@shopify/polaris-icons";
 import { usePolarisStore } from "../store";
 
 import { useState } from "react";
@@ -81,15 +77,14 @@ export function Header() {
           />
 
           <ButtonGroup>
-            <Button onClick={reset} icon={MobileCancelMajor}>
+            <Button onClick={reset} icon={XIcon}>
               Clear
             </Button>
-
-            <Button icon={ExportMinor} onClick={openPlayground}>
+            <Button icon={ExportIcon} onClick={openPlayground}>
               Playground
             </Button>
-
-            <Button onClick={handleShareClick} icon={ShareMinor}>
+            XIcon
+            <Button onClick={handleShareClick} icon={ShareIcon}>
               Share
             </Button>
           </ButtonGroup>

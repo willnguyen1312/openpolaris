@@ -1,5 +1,5 @@
 import { Button, Toast } from "@shopify/polaris";
-import { ClipboardMinor } from "@shopify/polaris-icons";
+import { ClipboardIcon } from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { Highlight, themes } from "prism-react-renderer";
 import { useEffect, useState } from "react";
@@ -43,7 +43,7 @@ export const CodePanel = () => {
       <div className={styles.copyButtonWrapper}>
         <Button
           onClick={handleCopyClick}
-          icon={ClipboardMinor}
+          icon={ClipboardIcon}
           accessibilityLabel="Copy"
           tone="success"
           variant="primary"
