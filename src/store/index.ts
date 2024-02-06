@@ -86,7 +86,7 @@ type StoreActions = {
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
   duplicateActiveComponent: () => void;
-  reCover: () => void;
+  recover: () => void;
   reset: () => void;
 
   // DnD stuff
@@ -153,7 +153,7 @@ const useStoreBase = createWithEqualityFn(
             state.lastRenderedComponents = [];
           });
         },
-        reCover: () => {
+        recover: () => {
           set((state: StoreState) => {
             state.activeComponent = null;
             state.renderedComponents = cloneDeep(state.lastRenderedComponents);

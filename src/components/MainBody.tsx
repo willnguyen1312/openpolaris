@@ -20,7 +20,7 @@ export function MainBody() {
   const renderedComponent = usePolarisStore.use.renderedComponents();
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
-  const reCover = usePolarisStore.use.reCover();
+  const recover = usePolarisStore.use.recover();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setHasError = usePolarisStore.use.setHasError();
   const isEmpty = renderedComponent.length === 0;
@@ -45,7 +45,7 @@ export function MainBody() {
           </Box>
         );
       }}
-      onReset={reCover}
+      onReset={recover}
       onError={() => {
         setHasError(true);
       }}
