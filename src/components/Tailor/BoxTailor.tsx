@@ -34,6 +34,7 @@ const boxLineStyleOptions = Object.keys(boxLineStyleRecord) as NonNullable<
 >[];
 
 const overFlowRecord: Record<NonNullable<BoxProps["overflowX"]> | "", 1> = {
+  clip: 1,
   hidden: 1,
   scroll: 1,
   "": 1,

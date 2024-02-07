@@ -55,6 +55,7 @@ const fontWeightRecord: Record<NonNullable<TextProps["fontWeight"] | "">, 1> = {
 const fontWeightOptions = Object.keys(fontWeightRecord);
 
 const textVariantRecord: Record<NonNullable<TextProps["variant"] | "">, 1> = {
+  headingXs: 1,
   headingSm: 1,
   headingMd: 1,
   headingLg: 1,
