@@ -1,6 +1,7 @@
 import sdk from "@stackblitz/sdk";
 import { RenderedComponent } from "../types";
 import { generateCode } from "./code";
+import { dependencies } from "../../package.json";
 
 // Reference - https://developer.stackblitz.com/guides/integration/create-with-sdk
 export const openProject = async (value: RenderedComponent[]) => {
@@ -33,10 +34,10 @@ root.render(
 }`,
       },
       dependencies: {
-        "@shopify/polaris": "^12.0.0",
-        "@shopify/polaris-icons": "^7.9.0",
-        "@types/react": "^18.2.0",
-        "@types/react-dom": "^18.2.0",
+        "@shopify/polaris": dependencies["@shopify/polaris"],
+        "@shopify/polaris-icons": dependencies["@shopify/polaris-icons"],
+        "@types/react": dependencies["@types/react"],
+        "@types/react-dom": dependencies["@types/react-dom"],
       },
       template: "create-react-app",
       title: `Open Polaris Playground 🐻‍❄️`,
