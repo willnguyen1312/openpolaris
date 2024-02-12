@@ -562,8 +562,15 @@ const spacingScaleRecord: Record<SpaceScale | "", 1> = {
 export const spacingScales = Object.keys(spacingScaleRecord) as SpaceScale[];
 
 const colorBackgroundRecord: Record<ColorBackgroundAlias | "", 1> = {
+  "avatar-bg-fill": 1,
+  "avatar-five-bg-fill": 1,
+  "avatar-four-bg-fill": 1,
+  "avatar-one-bg-fill": 1,
   "avatar-seven-bg-fill": 1,
   "avatar-six-bg-fill": 1,
+  "avatar-three-bg-fill": 1,
+  "avatar-two-bg-fill": 1,
+  "backdrop-bg": 1,
   "bg-fill-active": 1,
   "bg-fill-brand-active": 1,
   "bg-fill-brand-disabled": 1,
@@ -658,14 +665,7 @@ const colorBackgroundRecord: Record<ColorBackgroundAlias | "", 1> = {
   "bg-surface-warning-hover": 1,
   "bg-surface-warning": 1,
   "bg-surface": 1,
-  bg: 1,
-  "avatar-bg-fill": 1,
-  "avatar-five-bg-fill": 1,
-  "avatar-four-bg-fill": 1,
-  "avatar-one-bg-fill": 1,
-  "avatar-three-bg-fill": 1,
-  "avatar-two-bg-fill": 1,
-  "backdrop-bg": 1,
+  "button-gradient-bg-fill": 1,
   "checkbox-bg-surface-disabled": 1,
   "input-bg-surface-active": 1,
   "input-bg-surface-hover": 1,
@@ -676,8 +676,10 @@ const colorBackgroundRecord: Record<ColorBackgroundAlias | "", 1> = {
   "nav-bg-surface": 1,
   "nav-bg": 1,
   "radio-button-bg-surface-disabled": 1,
+  "scrollbar-thumb-bg-hover": 1,
   "video-thumbnail-play-button-bg-fill-hover": 1,
   "video-thumbnail-play-button-bg-fill": 1,
+  bg: 1,
   "": 1,
 };
 
