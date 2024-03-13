@@ -4,6 +4,6 @@ export const decode = (input: string) => {
   return JSON.parse(lzString.decompressFromEncodedURIComponent(input));
 };
 
-export const encode = (input: string) => {
-  return lzString.compressToEncodedURIComponent(input);
+export const encode = (input: object) => {
+  return lzString.compressToEncodedURIComponent(JSON.stringify(input));
 };

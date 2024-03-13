@@ -34,9 +34,7 @@ export function Header() {
 
   const handleShareClick = () => {
     showToast();
-    const code = encode(
-      JSON.stringify({ renderedComponents, lastRenderedComponents }),
-    );
+    const code = encode({ renderedComponents, lastRenderedComponents });
     const href = `?code=${code}`;
     window.history.replaceState("", "", href);
     navigator.clipboard.writeText(window.location.origin + href);
