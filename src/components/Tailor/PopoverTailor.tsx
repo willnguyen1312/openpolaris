@@ -8,6 +8,7 @@ const popoverPreferredPositionRecord: Record<
   above: 1,
   below: 1,
   mostSpace: 1,
+  cover: 1,
   "": 1,
 };
 const popoverPreferredPositionOptions = Object.keys(
