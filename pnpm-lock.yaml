@@ -30,8 +30,8 @@ dependencies:
     specifier: ^4.17.12
     version: 4.17.12
   "@types/react":
-    specifier: ^18.2.65
-    version: 18.2.65
+    specifier: ^18.2.66
+    version: 18.2.66
   "@types/react-dom":
     specifier: ^18.2.22
     version: 18.2.22
@@ -82,7 +82,7 @@ dependencies:
     version: 5.1.6
   zustand:
     specifier: ^4.5.2
-    version: 4.5.2(@types/react@18.2.65)(immer@10.0.4)(react@18.2.0)
+    version: 4.5.2(@types/react@18.2.66)(immer@10.0.4)(react@18.2.0)
 
 packages:
   /@babel/runtime@7.23.2:
@@ -583,7 +583,7 @@ packages:
     dependencies:
       "@shopify/polaris-icons": 8.8.0
       "@shopify/polaris-tokens": 8.8.0
-      "@types/react": 18.2.65
+      "@types/react": 18.2.66
       "@types/react-dom": 18.2.22
       "@types/react-transition-group": 4.4.7
       react: 18.2.0
@@ -804,7 +804,7 @@ packages:
         integrity: sha512-fHkBXPeNtfvri6gdsMYyW+dW7RXFo6Ad09nLFK0VQWR7yGLai/Cyvyj696gbwYvBnhGtevUG9cET0pmUbMtoPQ==,
       }
     dependencies:
-      "@types/react": 18.2.65
+      "@types/react": 18.2.66
     dev: false
 
   /@types/react-transition-group@4.4.7:
@@ -813,13 +813,13 @@ packages:
         integrity: sha512-ICCyBl5mvyqYp8Qeq9B5G/fyBSRC0zx3XM3sCC6KkcMsNeAHqXBKkmat4GqdJET5jtYUpZXrxI5flve5qhi2Eg==,
       }
     dependencies:
-      "@types/react": 18.2.65
+      "@types/react": 18.2.66
     dev: false
 
-  /@types/react@18.2.65:
+  /@types/react@18.2.66:
     resolution:
       {
-        integrity: sha512-98TsY0aW4jqx/3RqsUXwMDZSWR1Z4CUlJNue8ueS2/wcxZOsz4xmW1X8ieaWVRHcmmQM3R8xVA4XWB3dJnWwDQ==,
+        integrity: sha512-OYTmMI4UigXeFMF/j4uv0lBBEbongSgptPrHBxqME44h9+yNov+oL6Z3ocJKo0WyXR84sQUNeyIp9MRfckvZpg==,
       }
     dependencies:
       "@types/prop-types": 15.7.8
@@ -1538,7 +1538,7 @@ packages:
       fsevents: 2.3.3
     dev: false
 
-  /zustand@4.5.2(@types/react@18.2.65)(immer@10.0.4)(react@18.2.0):
+  /zustand@4.5.2(@types/react@18.2.66)(immer@10.0.4)(react@18.2.0):
     resolution:
       {
         integrity: sha512-2cN1tPkDVkwCy5ickKrI7vijSjPksFRfqS6237NzT0vqSsztTNnQdHw9mmN7uBdk3gceVXU0a+21jFzFzAc9+g==,
@@ -1556,7 +1556,7 @@ packages:
       react:
         optional: true
     dependencies:
-      "@types/react": 18.2.65
+      "@types/react": 18.2.66
       immer: 10.0.4
       react: 18.2.0
       use-sync-external-store: 1.2.0(react@18.2.0)
