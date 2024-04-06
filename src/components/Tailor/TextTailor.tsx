@@ -37,9 +37,13 @@ const textToneRecord: Record<NonNullable<TextProps["tone"] | "">, 1> = {
   success: 1,
   subdued: 1,
   magic: 1,
+  inherit: 1,
+  disabled: 1,
   critical: 1,
   caution: 1,
+  base: 1,
   "text-inverse": 1,
+  "text-inverse-secondary": 1,
   "magic-subdued": 1,
   "": 1,
 };
