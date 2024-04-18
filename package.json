@@ -11,6 +11,7 @@
     "format": "prettier -w --cache .",
     "build": "pnpm typecheck && vite build",
     "typecheck": "tsc",
+    "live": "pnpm run build && netlify deploy --prod",
     "preview": "vite preview"
   },
   "dependencies": {
