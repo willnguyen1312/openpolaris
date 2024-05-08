@@ -130,6 +130,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
       style={{
         margin: 0,
         padding: 0,
+        width: "fit-content",
+        height: "fit-content",
       }}
     >
       <Component {...finalComponentProps} {...extraProps} />
