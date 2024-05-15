@@ -3,3 +3,7 @@
   --left-sidebar-max-width: 18rem;
   --right-sidebar-max-width: 18rem;
 }
+
+.Polaris-Select .Polaris-Select__SelectedOption {
+  color: black;
+}
