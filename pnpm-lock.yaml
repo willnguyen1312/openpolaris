@@ -17,11 +17,11 @@ importers:
         specifier: ^3.2.2
         version: 3.2.2(react@18.3.1)
       "@shopify/polaris":
-        specifier: ^13.3.0
-        version: 13.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        specifier: ^13.4.0
+        version: 13.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       "@shopify/polaris-icons":
-        specifier: ^9.0.1
-        version: 9.0.1(react@18.3.1)
+        specifier: ^9.1.0
+        version: 9.1.0(react@18.3.1)
       "@shopify/polaris-tokens":
         specifier: ^9.1.0
         version: 9.1.0
@@ -32,8 +32,8 @@ importers:
         specifier: ^4.17.12
         version: 4.17.12
       "@types/react":
-        specifier: ^18.3.1
-        version: 18.3.1
+        specifier: ^18.3.2
+        version: 18.3.2
       "@types/react-dom":
         specifier: ^18.3.0
         version: 18.3.0
@@ -84,7 +84,7 @@ importers:
         version: 5.2.11
       zustand:
         specifier: ^4.5.2
-        version: 4.5.2(@types/react@18.3.1)(immer@10.1.1)(react@18.3.1)
+        version: 4.5.2(@types/react@18.3.2)(immer@10.1.1)(react@18.3.1)
 
 packages:
   "@babel/runtime@7.23.2":
@@ -445,11 +445,10 @@ packages:
     cpu: [x64]
     os: [win32]
 
-  "@shopify/polaris-icons@9.0.1":
+  "@shopify/polaris-icons@9.1.0":
     resolution:
       {
-        integrity: sha512-g3V76HcxTXcp6DuKOIWIE08pj95yfzqZw7fnVTGQ1q49PRXTHWh0byDivQCt8wiQPenzWm2pWeme/Ix057nDLw==,
-        tarball: https://registry.npmjs.org/@shopify/polaris-icons/-/polaris-icons-9.0.1.tgz,
+        integrity: sha512-KygYw+/Hud15oTUMw0feU+NYZkOoZ8CjQARRAEFIiZ8L85C3lqCv0Pg+gdA8g7PJdJV16SYXAFtv1HxzZNrTPQ==,
       }
     engines: { node: ">=20.10.0" }
     peerDependencies:
@@ -459,15 +458,13 @@ packages:
     resolution:
       {
         integrity: sha512-nIsOJYNENqfGC/O1Rjo+w4rytLa+9Cp841KTbq/lDwCsBKXBLf+RUOeXTvO070j8Qnc5PJ5ZvRs9EWU7XsQFDA==,
-        tarball: https://registry.npmjs.org/@shopify/polaris-tokens/-/polaris-tokens-9.1.0.tgz,
       }
     engines: { node: ">=20.10.0" }
 
-  "@shopify/polaris@13.3.0":
+  "@shopify/polaris@13.4.0":
     resolution:
       {
-        integrity: sha512-Tv8k3iPS2WaLEsCXh94yxyq3hCSVBM0uUneZMtGLavFbVS4iaAzWhFhSFehSaYcjR8h6lLKxZOOCX62kKG9Xfw==,
-        tarball: https://registry.npmjs.org/@shopify/polaris/-/polaris-13.3.0.tgz,
+        integrity: sha512-nCN2AW1vUSXm8gIZyOG64qXwVSP1kLpUn310vnMll4ogFpzyYQPn1VtFBC1Ylx6htHMyj6YSA5ZkIz3vCTpg7g==,
       }
     engines: { node: ">=20.10.0" }
     peerDependencies:
@@ -642,10 +639,10 @@ packages:
         integrity: sha512-ICCyBl5mvyqYp8Qeq9B5G/fyBSRC0zx3XM3sCC6KkcMsNeAHqXBKkmat4GqdJET5jtYUpZXrxI5flve5qhi2Eg==,
       }
 
-  "@types/react@18.3.1":
+  "@types/react@18.3.2":
     resolution:
       {
-        integrity: sha512-V0kuGBX3+prX+DQ/7r2qsv1NsdfnCLnTgnRJ1pYnxykBhGMz+qj+box5lq7XsO5mtZsBqpjwwTu/7wszPfMBcw==,
+        integrity: sha512-Btgg89dAnqD4vV7R3hlwOxgqobUQKgx3MmrQRi0yYbs/P0ym8XozIAlkqVilPqHQwXs4e9Tf63rrCgl58BcO4w==,
       }
 
   "@vitejs/plugin-react-swc@3.6.0":
@@ -1292,7 +1289,7 @@ snapshots:
   "@rollup/rollup-win32-x64-msvc@4.13.0":
     optional: true
 
-  "@shopify/polaris-icons@9.0.1(react@18.3.1)":
+  "@shopify/polaris-icons@9.1.0(react@18.3.1)":
     dependencies:
       react: 18.3.1
 
@@ -1300,11 +1297,11 @@ snapshots:
     dependencies:
       deepmerge: 4.3.1
 
-  "@shopify/polaris@13.3.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
+  "@shopify/polaris@13.4.0(react-dom@18.3.1(react@18.3.1))(react@18.3.1)":
     dependencies:
-      "@shopify/polaris-icons": 9.0.1(react@18.3.1)
+      "@shopify/polaris-icons": 9.1.0(react@18.3.1)
       "@shopify/polaris-tokens": 9.1.0
-      "@types/react": 18.3.1
+      "@types/react": 18.3.2
       "@types/react-dom": 18.3.0
       "@types/react-transition-group": 4.4.7
       react: 18.3.1
@@ -1380,13 +1377,13 @@ snapshots:
 
   "@types/react-dom@18.3.0":
     dependencies:
-      "@types/react": 18.3.1
+      "@types/react": 18.3.2
 
   "@types/react-transition-group@4.4.7":
     dependencies:
-      "@types/react": 18.3.1
+      "@types/react": 18.3.2
 
-  "@types/react@18.3.1":
+  "@types/react@18.3.2":
     dependencies:
       "@types/prop-types": 15.7.8
       csstype: 3.1.2
@@ -1679,10 +1676,10 @@ snapshots:
     optionalDependencies:
       fsevents: 2.3.3
 
-  zustand@4.5.2(@types/react@18.3.1)(immer@10.1.1)(react@18.3.1):
+  zustand@4.5.2(@types/react@18.3.2)(immer@10.1.1)(react@18.3.1):
     dependencies:
       use-sync-external-store: 1.2.0(react@18.3.1)
     optionalDependencies:
-      "@types/react": 18.3.1
+      "@types/react": 18.3.2
       immer: 10.1.1
       react: 18.3.1
