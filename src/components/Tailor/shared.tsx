@@ -141,7 +141,6 @@ const iconList = Object.keys(iconMetadata)
     value: icon,
     label: icon,
   }));
-
 export const Icon: FunctionComponent<{
   prop: string;
   label?: string;
@@ -188,6 +187,11 @@ export const Icon: FunctionComponent<{
   };
 
   const syncWithIconInStore = () => {
+    if (inputValue !== activeComponent.props[prop]) {
+      setActiveComponentPropValue(prop, "");
+      setInputValue("");
+      return;
+    }
     setInputValue(activeComponent.props[prop] ?? "");
   };
 
