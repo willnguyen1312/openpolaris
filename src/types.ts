@@ -1169,7 +1169,7 @@ const targetRecord: Record<Target | "", 1> = {
 };
 export const targetOptions = Object.keys(targetRecord);
 
-const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
+export const parentComponentAcceptTypeSet = new Set<ComponentAcceptType>([
   ComponentAcceptType.Parent,
 ]);
 

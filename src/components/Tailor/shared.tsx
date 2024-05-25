@@ -141,6 +141,7 @@ const iconList = Object.keys(iconMetadata)
     value: icon,
     label: icon,
   }));
+
 export const Icon: FunctionComponent<{
   prop: string;
   label?: string;

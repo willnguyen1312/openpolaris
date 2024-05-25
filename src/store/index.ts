@@ -15,6 +15,7 @@ import {
   RenderedComponent,
   acceptComponentsMap,
   listOfComponent,
+  parentComponentList,
   rootComponentId,
 } from "../types";
 import { generateId } from "../utils/generateId";
@@ -95,6 +96,9 @@ type StoreActions = {
   duplicateActiveComponent: () => void;
   recover: () => void;
   reset: () => void;
+  changeActiveComponent: (
+    newComponentName: RenderedComponent["componentName"],
+  ) => void;
 
   // DnD stuff
   handleDragEnd: (event: DragEndEvent) => void;
@@ -127,6 +131,53 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        changeActiveComponent: (componentName) =>
+          set((state: StoreState) => {
+            if (state.activeComponent) {
+              allDo(state);
+
+              const newComponent = {
+                children: parentComponentList.includes(componentName)
+                  ? state.activeComponent.children
+                  : [],
+                id: state.activeComponent.id,
+                componentName,
+                props: cloneDeep(defaultProps[componentName]),
+              };
+
+              const oldComponentProps = state.activeComponent.props;
+              for (const key in newComponent.props) {
+                if (oldComponentProps[key] && key !== "children") {
+                  newComponent.props[key] = oldComponentProps[key];
+                }
+              }
+
+              state.activeComponent = newComponent;
+              const parentComponent = findComponentBy(
+                state.renderedComponents,
+                (component) =>
+                  component.children.some(
+                    (child) => child.id === state.activeComponent?.id,
+                  ),
+              );
+
+              if (parentComponent) {
+                const index = parentComponent.children.findIndex(
+                  (child) => child.id === state.activeComponent?.id,
+                );
+                parentComponent.children[index] = newComponent;
+                return;
+              }
+
+              // Root component
+              state.renderedComponents = state.renderedComponents.map(
+                (component) =>
+                  component.id === state.activeComponent?.id
+                    ? newComponent
+                    : component,
+              );
+            }
+          }),
         undoStack: [],
         undo: () =>
           set((state: StoreState) => {

@@ -1,7 +1,7 @@
-import { ComponentType } from "react";
+import { ComponentType, FunctionComponent, useState } from "react";
 
 import { usePolarisStore } from "../../store";
-import { ComponentName } from "../../types";
+import { ComponentName, RenderedComponent } from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { ActionListTailor } from "./ActionListTailor";
 import { AvatarTailor } from "./AvatarTailor";
@@ -69,6 +69,9 @@ import { TextTailor } from "./TextTailor";
 import { ThumbnailTailor } from "./ThumbnailTailor";
 import { TooltipTailor } from "./TooltipTailor";
 import { VideoThumbnailTailor } from "./VideoThumbnailTailor";
+import { Autocomplete, BlockStack, Icon } from "@shopify/polaris";
+import { defaultProps } from "../../defaultProps";
+import { SearchIcon } from "@shopify/polaris-icons";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Actions
@@ -158,11 +161,74 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   TextField: TextFieldTailor,
 };
 
+const componentList = Object.keys(componentMap).map((componentName) => ({
+  value: componentName,
+  label: componentName,
+}));
+
+const SwitchComponents = () => {
+  const activeComponent =
+    usePolarisStore.use.activeComponent() as RenderedComponent;
+  const changeActiveComponent = usePolarisStore.use.changeActiveComponent();
+
+  const [value, setValue] = useState(activeComponent.componentName);
+  const [options, setOptions] = useState(componentList);
+
+  const textField = (
+    <Autocomplete.TextField
+      onBlur={() => {
+        if (!defaultProps[value]) {
+          setValue(activeComponent.componentName);
+        }
+      }}
+      onChange={(value) => {
+        setValue(value as RenderedComponent["componentName"]);
+
+        if (value === "") {
+          setOptions(componentList);
+          return;
+        }
+
+        const filterRegex = new RegExp(value, "i");
+        const resultOptions = componentList.filter((option) =>
+          option.label.match(filterRegex),
+        );
+        setOptions(resultOptions);
+      }}
+      label={"Component"}
+      value={value}
+      prefix={<Icon source={SearchIcon} tone="base" />}
+      placeholder="Search"
+      autoComplete="off"
+    />
+  );
+
+  return (
+    <Autocomplete
+      options={options}
+      selected={
+        activeComponent.componentName ? [activeComponent.componentName] : []
+      }
+      onSelect={(selected) => {
+        const componentName = selected[0] as RenderedComponent["componentName"];
+        setValue(componentName);
+        changeActiveComponent(componentName);
+      }}
+      textField={textField}
+    />
+  );
+};
+
 export const Tailor = () => {
   const activeComponent = usePolarisStore.use.activeComponent();
 
   //    @ts-ignore
   const Component = componentMap[activeComponent?.componentName ?? ""];
 
-  return Component ? <Component /> : null;
+  return Component ? (
+    <BlockStack gap="200">
+      <Component />
+      <SwitchComponents />
+    </BlockStack>
+  ) : null;
 };
