@@ -1,4 +1,4 @@
-import { ComponentType, FunctionComponent, useState } from "react";
+import { ComponentType, useState } from "react";
 
 import { usePolarisStore } from "../../store";
 import { ComponentName, RenderedComponent } from "../../types";
