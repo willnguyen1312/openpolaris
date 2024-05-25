@@ -9,7 +9,7 @@ import { AppProvider, Frame, Grid } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useMouse } from "react-use";
 import { useShortcuts } from "../hooks/useShortcuts";
 import { usePolarisStore } from "../store";
@@ -21,6 +21,7 @@ import { Overlay } from "./Overlay";
 import { RightSideBar } from "./RightSideBar";
 
 export function App() {
+  const [loaded, setLoaded] = useState(false);
   const ref = useRef(document.body);
   const { docX, docY } = useMouse(ref);
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
@@ -56,6 +57,14 @@ export function App() {
       } catch (_) {}
     }
   }, []);
+
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <AppProvider i18n={enTranslations}>

@@ -129,10 +129,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
       className={classNames(styles.simpleWrapper, extraClasses, {
         [styles.simpleWrapperSelected]: isSelected && !isDragging,
       })}
-      style={{
-        margin: 0,
-        padding: 0,
-      }}
     >
       <Component {...finalComponentProps} {...extraProps} />
     </DragAndDropItem>
