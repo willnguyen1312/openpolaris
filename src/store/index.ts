@@ -81,7 +81,6 @@ type StoreActions = {
   loadFromTemplate: (template: TemplateType) => void;
   setSearchComponentInput: (value: string) => void;
   setRenderedComponents: (value: RenderedComponent[]) => void;
-  setLastRenderedComponents: (value: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
   setIsShowLeftBar: (value: boolean) => void;
   setIsShowRightBar: (value: boolean) => void;
@@ -175,15 +174,10 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.renderedComponents = value;
           }),
-        setLastRenderedComponents: (value) =>
-          set((state: StoreState) => {
-            state.lastRenderedComponents = value;
-          }),
         reset: () => {
           set((state: StoreState) => {
             state.activeComponent = null;
             state.renderedComponents = [];
-            state.lastRenderedComponents = [];
             state.hasError = false;
             state.isShowLeftBar = true;
             state.isShowRightBar = true;

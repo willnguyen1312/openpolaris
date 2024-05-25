@@ -9,7 +9,7 @@ import { AppProvider, Frame, Grid, GridCellProps } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
-import { useEffect, useMemo, useRef } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useMouse } from "react-use";
 import { useShortcuts } from "../hooks/useShortcuts";
 import { usePolarisStore } from "../store";
@@ -21,6 +21,7 @@ import { Overlay } from "./Overlay";
 import { RightSideBar } from "./RightSideBar";
 
 export function App() {
+  const [loaded, setLoaded] = useState(false);
   const ref = useRef(document.body);
   const { docX, docY } = useMouse(ref);
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
@@ -29,8 +30,6 @@ export function App() {
   const isShowLeftBar = usePolarisStore.use.isShowLeftBar();
   const isShowRightBar = usePolarisStore.use.isShowRightBar();
   const isShowTopBar = usePolarisStore.use.isShowTopBar();
-  const setLastRenderedComponents =
-    usePolarisStore.use.setLastRenderedComponents();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
 
   const mouseSensor = useSensor(MouseSensor, {
@@ -47,16 +46,26 @@ export function App() {
   useShortcuts();
 
   useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    const code = urlParams.get("code");
+    const currentURL = window.location.href;
+    const id = currentURL.split("/").pop();
 
-    if (code) {
-      try {
-        const { renderedComponents = [], lastRenderedComponents = [] } =
-          decode(code);
-        setRenderedComponents(renderedComponents);
-        setLastRenderedComponents(lastRenderedComponents);
-      } catch (_) {}
+    async function fetchCode() {
+      const data = await fetch(`/shorten/${id}`).then((res) => res.json());
+      if (data.code) {
+        try {
+          const { renderedComponents = [] } = decode(data.code);
+          setRenderedComponents(renderedComponents);
+        } catch (_) {
+        } finally {
+          setLoaded(true);
+        }
+      }
+    }
+
+    if (id) {
+      fetchCode();
+    } else {
+      setLoaded(true);
     }
   }, []);
 
@@ -95,6 +104,10 @@ export function App() {
       rightColumnSpan: { md: 1, lg: 2, xl: 2 },
     };
   }, [isShowLeftBar, isShowRightBar]);
+
+  if (!loaded) {
+    return null;
+  }
 
   return (
     <AppProvider i18n={enTranslations}>

@@ -23,7 +23,6 @@ export function TopBar() {
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
-  const lastRenderedComponents = usePolarisStore.use.lastRenderedComponents();
   const reset = usePolarisStore.use.reset();
   const [active, setActive] = useState(false);
   const closeToast = () => setActive(false);
@@ -33,12 +32,19 @@ export function TopBar() {
   const toggleIsBuilderMode = () => setIsBuilderMode(!isBuilderMode);
   const toggleIsSuccinctCode = () => setIsSuccinctCode(!isSuccinctCode);
 
-  const handleShareClick = () => {
+  const handleShareClick = async () => {
     showToast();
-    const code = encode({ renderedComponents, lastRenderedComponents });
-    const href = `?code=${code}`;
-    window.history.replaceState("", "", href);
-    navigator.clipboard.writeText(window.location.origin + href);
+    const code = encode({ renderedComponents });
+    const data = await fetch("/shorten", {
+      method: "POST",
+      body: JSON.stringify({ code }),
+    }).then((res) => res.json());
+
+    if (data.id) {
+      const newURL = window.location.origin + "/" + data.id;
+      window.history.replaceState("", "", newURL);
+      navigator.clipboard.writeText(newURL);
+    }
   };
 
   const toastMarkup = active ? (
