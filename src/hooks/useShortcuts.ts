@@ -45,6 +45,7 @@ export const useShortcuts = () => {
       } else if (code === "Escape") {
         setActiveComponent(null);
       } else if (code === "KeyD" && shiftKey && activeComponent) {
+        e.preventDefault();
         duplicateActiveComponent();
       } else if (code === "ArrowUp" && activeComponent) {
         e.preventDefault();

@@ -97,7 +97,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     if (targetComponent) {
       const classes = targetComponent.className;
       // Hack to make component fill the space
-      targetComponent.style.flexGrow = "1";
+      targetComponent.style.width = "100%";
+      targetComponent.style.height = "100%";
+
       setExtraClasses(classes);
     }
   }, [renderedComponents]);
@@ -130,8 +132,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
       style={{
         margin: 0,
         padding: 0,
-        width: "fit-content",
-        height: "fit-content",
       }}
     >
       <Component {...finalComponentProps} {...extraProps} />
