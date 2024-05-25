@@ -729,8 +729,8 @@ export const colorBorderAliases = Object.keys(
   colorBorderRecord,
 ) as ColorBorderAlias[];
 
-export const colorBorderAliasesWithTransparent = colorBorderAliases.concat(
-  "transparent" as ColorBorderAlias,
+export const colorBorderAliasesWithTransparent = ["transparent"].concat(
+  colorBorderAliases,
 ) as ColorBorderAlias[];
 
 const colorIconRecord: Record<ColorIconAlias | "", 1> = {
@@ -762,7 +762,6 @@ export const colorIconAliases = Object.keys(
 ) as ColorIconAlias[];
 
 const colorTextRecord: Record<ColorTextAlias | "", 1> = {
-  "": 1,
   "avatar-five-text-on-bg-fill": 1,
   "avatar-four-text-on-bg-fill": 1,
   "avatar-one-text-on-bg-fill": 1,
@@ -821,6 +820,7 @@ const colorTextRecord: Record<ColorTextAlias | "", 1> = {
   "text-warning": 1,
   "video-thumbnail-play-button-text-on-bg-fill": 1,
   text: 1,
+  "": 1,
 };
 
 export const colorTextAliases = Object.keys(
