@@ -36,10 +36,13 @@ export const CodePanel = () => {
     <Toast content="Code copied to clipboard" onDismiss={closeToast} />
   ) : null;
 
-  if (!isShowCodePanel) return null;
-
   return (
-    <div className={styles.wrapper}>
+    <div
+      style={{
+        display: isShowCodePanel ? "block" : "none",
+      }}
+      className={styles.wrapper}
+    >
       <div className={styles.copyButtonWrapper}>
         <Button
           onClick={handleCopyClick}

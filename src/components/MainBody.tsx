@@ -93,20 +93,20 @@ export function MainBody() {
     </ErrorBoundary>
   );
 
-  if (!isShowCodePanel) {
-    return body;
-  }
-
   return (
     // @ts-ignore
     <SplitPane
       style={{ overflow: "auto", position: "relative" }}
       defaultSize="50%"
-      resizerStyle={{
-        border: `4px solid ${themes.light.color["color-bg-fill-success"]}`,
-        zIndex: 20,
-        cursor: "row-resize",
-      }}
+      resizerStyle={
+        isShowCodePanel
+          ? {
+              border: `4px solid ${themes.light.color["color-bg-fill-success"]}`,
+              zIndex: 20,
+              cursor: "row-resize",
+            }
+          : {}
+      }
       split="horizontal"
       className={styles.splitPanel}
     >
