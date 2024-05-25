@@ -469,7 +469,7 @@ export const defaultProps: Record<ComponentName, any> = {
     accessibilityLabel: "",
   } satisfies AvatarProps,
   Icon: {
-    source: "CirclePlusMinor",
+    source: "DeliveryFilledIcon",
     tone: "" as IconProps["tone"],
     accessibilityLabel: "",
   } satisfies IconProps,
