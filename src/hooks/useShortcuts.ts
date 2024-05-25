@@ -46,7 +46,8 @@ export const useShortcuts = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const { code, ctrlKey, shiftKey } = e;
+      const { code, shiftKey, metaKey, ctrlKey } = e;
+      const hasModifierKey = metaKey || ctrlKey;
 
       const isInputFocused = document.activeElement?.tagName === "INPUT";
 
@@ -61,12 +62,12 @@ export const useShortcuts = () => {
       } else if (code === "KeyD" && activeComponent) {
         e.preventDefault();
         duplicateActiveComponent();
-      } else if (code === "KeyZ" && ctrlKey && !shiftKey) {
+      } else if (code === "KeyZ" && hasModifierKey && !shiftKey) {
         e.preventDefault();
         undo();
       } else if (
-        (code === "KeyY" && ctrlKey) ||
-        (shiftKey && ctrlKey && code === "KeyZ")
+        (code === "KeyY" && hasModifierKey) ||
+        (shiftKey && hasModifierKey && code === "KeyZ")
       ) {
         e.preventDefault();
         redo();
@@ -86,16 +87,16 @@ export const useShortcuts = () => {
         );
         const nextIndex = (index + 1) % componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
-      } else if (code === "Backquote" && ctrlKey) {
+      } else if (code === "Backquote" && hasModifierKey) {
         e.preventDefault();
         setIsShowCodePanel(!isShowCodePanel);
-      } else if (code === "Digit1" && ctrlKey) {
+      } else if (code === "Digit1" && hasModifierKey) {
         e.preventDefault();
         setIsShowLeftBar(!isShowLeftBar);
-      } else if (code === "Digit2" && ctrlKey) {
+      } else if (code === "Digit2" && hasModifierKey) {
         e.preventDefault();
         setIsShowRightBar(!isShowRightBar);
-      } else if (code === "Digit3" && ctrlKey) {
+      } else if (code === "Digit3" && hasModifierKey) {
         e.preventDefault();
         const newShowTopBar = !isShowTopBar;
         setIsShowTopBar(newShowTopBar);
