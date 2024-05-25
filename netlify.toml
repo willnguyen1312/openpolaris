@@ -1,0 +1,20 @@
+[functions]
+# Sets a custom directory for Netlify Functions
+directory = "netlify/functions/"
+
+# The following routes are meant for the Netlify functions
+[[redirects]]
+from = "/shorten/*"
+to = "/shorten/*"
+status = 200
+
+[[redirects]]
+from = "/shorten"
+to = "/shorten"
+status = 200
+
+# Redirect all traffic to the index
+[[redirects]]
+from = "/*"
+to = "/index.html"
+status = 200
