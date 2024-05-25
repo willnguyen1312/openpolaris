@@ -6,10 +6,6 @@
   cursor: pointer;
 }
 
-.emptyChild {
-  min-height: var(--p-height-800);
-}
-
 .builderMode {
   background: var(--p-color-bg-surface-success);
   border: 0.5px dashed var(--p-color-border-focus);

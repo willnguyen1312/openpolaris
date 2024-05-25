@@ -153,7 +153,6 @@ function ComponentWithContainer({
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
   // @ts-ignore
   const Component = lodashGet(Polaris, component.componentName.split("."));
-  const isEmptyChild = !component.children.length;
   const isSelected = activeComponent?.id === component.id;
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const isDragging = activeDraggableId === component.id;
@@ -224,7 +223,6 @@ function ComponentWithContainer({
       id={id}
       component={component}
       className={classNames(styles.containerWrapper, extraClasses, {
-        [styles.emptyChild]: isEmptyChild,
         [styles.containerWrapperSelected]: isSelected && !isDragging,
         [styles.builderMode]: isBuilderMode,
       })}
