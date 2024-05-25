@@ -228,7 +228,7 @@ export const Tailor = () => {
   return Component ? (
     <BlockStack gap="200">
       <Component />
-      <SwitchComponents />
+      <SwitchComponents key={activeComponent?.componentName} />
     </BlockStack>
   ) : null;
 };
