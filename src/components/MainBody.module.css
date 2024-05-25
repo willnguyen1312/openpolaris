@@ -4,7 +4,7 @@
 }
 
 .bodyWrapperWithoutCodePanel {
-  height: calc(100vh - var(--header-height));
+  height: calc(100vh - var(--topbar-height));
 }
 
 .isOver {
@@ -12,5 +12,5 @@
 }
 
 .splitPanel {
-  height: calc(100vh - var(--header-height)) !important;
+  height: calc(100vh - var(--topbar-height)) !important;
 }

@@ -5,28 +5,30 @@ import {
   MouseSensor,
   useSensor,
 } from "@dnd-kit/core";
-import { AppProvider, Frame, Grid } from "@shopify/polaris";
+import { AppProvider, Frame, Grid, GridCellProps } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import enTranslations from "@shopify/polaris/locales/en.json";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import { useMouse } from "react-use";
 import { useShortcuts } from "../hooks/useShortcuts";
 import { usePolarisStore } from "../store";
 import { decode } from "../utils/encoder";
-import { Header } from "./Header";
+import { TopBar } from "./TopBar";
 import { LeftSideBar } from "./LeftSideBar";
 import { MainBody } from "./MainBody";
 import { Overlay } from "./Overlay";
 import { RightSideBar } from "./RightSideBar";
 
 export function App() {
-  const [loaded, setLoaded] = useState(false);
   const ref = useRef(document.body);
   const { docX, docY } = useMouse(ref);
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const setRenderedComponents = usePolarisStore.use.setRenderedComponents();
+  const isShowLeftBar = usePolarisStore.use.isShowLeftBar();
+  const isShowRightBar = usePolarisStore.use.isShowRightBar();
+  const isShowTopBar = usePolarisStore.use.isShowTopBar();
   const setLastRenderedComponents =
     usePolarisStore.use.setLastRenderedComponents();
   const handleDragEnd = usePolarisStore.use.handleDragEnd();
@@ -58,13 +60,41 @@ export function App() {
     }
   }, []);
 
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
+  const {
+    leftColumnSpan,
+    mainColumnSpan,
+    rightColumnSpan,
+  }: {
+    leftColumnSpan?: GridCellProps["columnSpan"];
+    mainColumnSpan?: GridCellProps["columnSpan"];
+    rightColumnSpan?: GridCellProps["columnSpan"];
+  } = useMemo(() => {
+    if (!isShowLeftBar && isShowRightBar) {
+      return {
+        mainColumnSpan: { md: 5, lg: 10, xl: 10 },
+        rightColumnSpan: { md: 1, lg: 2, xl: 2 },
+      };
+    }
 
-  if (!loaded) {
-    return null;
-  }
+    if (isShowLeftBar && !isShowRightBar) {
+      return {
+        leftColumnSpan: { md: 1, lg: 2, xl: 2 },
+        mainColumnSpan: { md: 5, lg: 10, xl: 10 },
+      };
+    }
+
+    if (!isShowLeftBar && !isShowRightBar) {
+      return {
+        mainColumnSpan: { md: 6, lg: 12, xl: 12 },
+      };
+    }
+
+    return {
+      leftColumnSpan: { md: 1, lg: 2, xl: 2 },
+      mainColumnSpan: { md: 4, lg: 8, xl: 8 },
+      rightColumnSpan: { md: 1, lg: 2, xl: 2 },
+    };
+  }, [isShowLeftBar, isShowRightBar]);
 
   return (
     <AppProvider i18n={enTranslations}>
@@ -74,19 +104,23 @@ export function App() {
         onDragEnd={handleDragEnd}
       >
         <Frame>
-          <Header />
+          {isShowTopBar && <TopBar />}
           <Grid gap={{ md: "0", lg: "0", xl: "0" }}>
-            <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
-              <LeftSideBar />
-            </Grid.Cell>
+            {isShowLeftBar && (
+              <Grid.Cell columnSpan={leftColumnSpan}>
+                <LeftSideBar />
+              </Grid.Cell>
+            )}
 
-            <Grid.Cell columnSpan={{ md: 4, lg: 8, xl: 8 }}>
+            <Grid.Cell columnSpan={mainColumnSpan}>
               <MainBody />
             </Grid.Cell>
 
-            <Grid.Cell columnSpan={{ md: 1, lg: 2, xl: 2 }}>
-              <RightSideBar />
-            </Grid.Cell>
+            {isShowRightBar && (
+              <Grid.Cell columnSpan={rightColumnSpan}>
+                <RightSideBar />
+              </Grid.Cell>
+            )}
           </Grid>
         </Frame>
 

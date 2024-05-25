@@ -1,5 +1,5 @@
 :root {
-  --header-height: 80px;
+  --topbar-height: 80px;
 
   --left-sidebar-max-width: 18rem;
   --right-sidebar-max-width: 18rem;
@@ -7,7 +7,7 @@
 
 @media (min-width: 1028px) {
   :root {
-    --header-height: 60px;
+    --topbar-height: 60px;
   }
 }
 

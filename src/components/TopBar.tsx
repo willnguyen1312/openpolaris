@@ -10,16 +10,16 @@ import {
 import { ExportIcon, XIcon, ShareIcon } from "@shopify/polaris-icons";
 import { usePolarisStore } from "../store";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { encode } from "../utils/encoder";
 import { openProject } from "../utils/playground";
-import styles from "./Header.module.css";
+import styles from "./Topbar.module.css";
 
-export function Header() {
+export function TopBar() {
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isBuilderMode = usePolarisStore.use.isBuilderMode();
   const isSuccinctCode = usePolarisStore.use.isSuccinctCode();
-  const toggleSuccinctCode = usePolarisStore.use.toggleSuccinctCode();
+  const setIsSuccinctCode = usePolarisStore.use.setIsSuccinctCode();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const renderedComponents = usePolarisStore.use.renderedComponents();
@@ -31,6 +31,7 @@ export function Header() {
 
   const toggleIsShowCodePanel = () => setIsShowCodePanel(!isShowCodePanel);
   const toggleIsBuilderMode = () => setIsBuilderMode(!isBuilderMode);
+  const toggleIsSuccinctCode = () => setIsSuccinctCode(!isSuccinctCode);
 
   const handleShareClick = () => {
     showToast();
@@ -48,6 +49,17 @@ export function Header() {
     openProject(renderedComponents);
   };
 
+  useEffect(() => {
+    // Add event listener for window resize
+    window.addEventListener("resize", () => {
+      if (window.innerWidth >= 1028) {
+        document.documentElement.style.setProperty("--topbar-height", "60px");
+      } else {
+        document.documentElement.style.setProperty("--topbar-height", "80px");
+      }
+    });
+  }, []);
+
   return (
     <div className={styles.wrapper}>
       <InlineStack align="space-between">
@@ -63,7 +75,7 @@ export function Header() {
           />
 
           <Checkbox
-            onChange={toggleSuccinctCode}
+            onChange={toggleIsSuccinctCode}
             checked={isSuccinctCode}
             label="Succinct code"
           />

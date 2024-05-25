@@ -1,5 +1,5 @@
 .wrapper {
-  height: var(--header-height);
+  height: var(--topbar-height);
   overflow: hidden;
   padding: var(--p-space-400);
 

@@ -62,6 +62,9 @@ interface StoreState {
   searchComponentInput: string;
   activeComponent: RenderedComponent | null;
   isShowCodePanel: boolean;
+  isShowLeftBar: boolean;
+  isShowRightBar: boolean;
+  isShowTopBar: boolean;
   isSuccinctCode: boolean;
   isBuilderMode: boolean;
   hasError: boolean;
@@ -80,9 +83,10 @@ type StoreActions = {
   setRenderedComponents: (value: RenderedComponent[]) => void;
   setLastRenderedComponents: (value: RenderedComponent[]) => void;
   setIsShowCodePanel: (value: boolean) => void;
-  toggleShowCodePanel: () => void;
+  setIsShowLeftBar: (value: boolean) => void;
+  setIsShowRightBar: (value: boolean) => void;
+  setIsShowTopBar: (value: boolean) => void;
   setIsSuccinctCode: (value: boolean) => void;
-  toggleSuccinctCode: () => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
@@ -181,6 +185,9 @@ const useStoreBase = createWithEqualityFn(
             state.renderedComponents = [];
             state.lastRenderedComponents = [];
             state.hasError = false;
+            state.isShowLeftBar = true;
+            state.isShowRightBar = true;
+            state.isShowTopBar = true;
             state.undoStack = [];
             state.redoStack = [];
           });
@@ -197,9 +204,20 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.isShowCodePanel = value;
           }),
-        toggleShowCodePanel: () =>
+        isShowLeftBar: true,
+        setIsShowLeftBar: (value: boolean) =>
           set((state: StoreState) => {
-            state.isShowCodePanel = !state.isShowCodePanel;
+            state.isShowLeftBar = value;
+          }),
+        isShowRightBar: true,
+        setIsShowRightBar: (value: boolean) =>
+          set((state: StoreState) => {
+            state.isShowRightBar = value;
+          }),
+        isShowTopBar: true,
+        setIsShowTopBar: (value: boolean) =>
+          set((state: StoreState) => {
+            state.isShowTopBar = value;
           }),
 
         isSuccinctCode: false,
@@ -207,11 +225,6 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.isSuccinctCode = value;
           }),
-        toggleSuccinctCode: () => {
-          set((state: StoreState) => {
-            state.isSuccinctCode = !state.isSuccinctCode;
-          });
-        },
 
         isBuilderMode: false,
         setIsBuilderMode: (value: boolean) =>
