@@ -358,7 +358,10 @@ const useStoreBase = createWithEqualityFn(
             );
 
             if (containerComponent) {
-              containerComponent.children.push(clonedComponent);
+              const index = containerComponent.children.findIndex(
+                (component) => component.id === state.activeComponent?.id,
+              );
+              containerComponent.children.splice(index, 0, clonedComponent);
               return;
             }
 
