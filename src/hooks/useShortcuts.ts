@@ -34,7 +34,7 @@ export const useShortcuts = () => {
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      const { code, shiftKey, ctrlKey } = e;
+      const { code, ctrlKey } = e;
 
       const isInputFocused = document.activeElement?.tagName === "INPUT";
 
@@ -46,7 +46,7 @@ export const useShortcuts = () => {
         deleteActiveComponent();
       } else if (code === "Escape") {
         setActiveComponent(null);
-      } else if (code === "KeyD" && shiftKey && activeComponent) {
+      } else if (code === "KeyD" && activeComponent) {
         e.preventDefault();
         duplicateActiveComponent();
       } else if (code === "KeyZ") {
