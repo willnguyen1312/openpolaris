@@ -68,9 +68,13 @@ interface StoreState {
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
   renderedComponents: RenderedComponent[];
+  undoStack: RenderedComponent[][];
+  redoStack: RenderedComponent[][];
 }
 
 type StoreActions = {
+  undo: () => void;
+  redo: () => void;
   loadFromTemplate: (template: TemplateType) => void;
   setSearchComponentInput: (value: string) => void;
   setRenderedComponents: (value: RenderedComponent[]) => void;
@@ -111,15 +115,40 @@ export const findComponentBy = (
   return null;
 };
 
+const allDo = (state: StoreState) => {
+  state.undoStack.push(cloneDeep(state.renderedComponents));
+  state.redoStack = [];
+};
+
 const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        undoStack: [],
+        undo: () =>
+          set((state: StoreState) => {
+            if (state.undoStack.length === 0) {
+              return;
+            }
+            state.redoStack.push(cloneDeep(state.renderedComponents));
+            state.renderedComponents = cloneDeep(state.undoStack.pop()) || [];
+          }),
+        redoStack: [],
+        redo: () =>
+          set((state: StoreState) => {
+            if (state.redoStack.length === 0) {
+              return;
+            }
+
+            state.undoStack.push(cloneDeep(state.renderedComponents));
+            state.renderedComponents = cloneDeep(state.redoStack.pop()) || [];
+          }),
         loadFromTemplate: (template) =>
           set((state: StoreState) => {
             const loadedTemplate = templateMap[template];
 
             if (loadedTemplate) {
+              allDo(state);
               state.lastRenderedComponents = cloneDeep(
                 state.renderedComponents,
               );
@@ -151,6 +180,9 @@ const useStoreBase = createWithEqualityFn(
             state.activeComponent = null;
             state.renderedComponents = [];
             state.lastRenderedComponents = [];
+            state.hasError = false;
+            state.undoStack = [];
+            state.redoStack = [];
           });
         },
         recover: () => {
@@ -212,6 +244,7 @@ const useStoreBase = createWithEqualityFn(
               );
 
               if (foundComponent) {
+                allDo(state);
                 lodashSet(foundComponent.props, name, value);
               }
             }
@@ -222,6 +255,7 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             const activeComponentId = state.activeComponent?.id;
             if (activeComponentId) {
+              allDo(state);
               const parentComponent = findComponentBy(
                 state.renderedComponents,
                 (component) =>
@@ -250,6 +284,7 @@ const useStoreBase = createWithEqualityFn(
             if (!state.activeComponent) {
               return;
             }
+            allDo(state);
             const clonedComponent = cloneDeep(state.activeComponent);
 
             traverse(clonedComponent, (node) => {
@@ -352,6 +387,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Case drag from the menu to the canvas, not on top of any component
             if (isComponentFromMenu && isOverCanvas) {
+              allDo(state);
               console.info(
                 "drag from menu to canvas, not on top of any component",
               );
@@ -374,6 +410,7 @@ const useStoreBase = createWithEqualityFn(
               isOverRootComponents &&
               overContainerCannotHaveChildren
             ) {
+              allDo(state);
               console.info(
                 "drag from menu to canvas, on top of the root components that cannot have children",
               );
@@ -395,6 +432,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Case drag from the menu to the parent component that can have children
             if (isComponentFromMenu && overContainer) {
+              allDo(state);
               console.info(
                 "drag from menu to the parent component that can have children",
               );
@@ -433,11 +471,14 @@ const useStoreBase = createWithEqualityFn(
                 ComponentAcceptType.Parent;
 
               if (canHaveAnyChildren) {
+                allDo(state);
                 let index = overContainer.children.findIndex(
                   (component) => component.id === overId,
                 );
                 index = index === -1 ? overContainer.children.length : index;
                 overContainer.children.splice(index, 0, activeComponent);
+                state.undoStack.push(cloneDeep(state.renderedComponents));
+                state.redoStack = [];
                 state.renderedComponents = state.renderedComponents.filter(
                   (component) => component.id !== activeId,
                 );
@@ -456,6 +497,7 @@ const useStoreBase = createWithEqualityFn(
             ) {
               console.info("drag from canvas to canvas");
 
+              allDo(state);
               state.renderedComponents = arrayMove(
                 state.renderedComponents,
                 state.renderedComponents.findIndex(
@@ -471,6 +513,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Case drag from the component to the canvas
             if (isOverCanvas && activeContainer) {
+              allDo(state);
               console.info("drag from component to canvas");
 
               const index = activeContainer.children.findIndex(
@@ -484,6 +527,7 @@ const useStoreBase = createWithEqualityFn(
 
             // Case drag inside the same parent component
             if (activeContainer && activeContainer === overContainer) {
+              allDo(state);
               console.info("drag inside the parent component");
 
               activeContainer.children = arrayMove(
@@ -505,6 +549,7 @@ const useStoreBase = createWithEqualityFn(
               overContainer &&
               activeContainer !== overContainer
             ) {
+              allDo(state);
               console.info("drag from the one parent to another parent");
 
               const oldIndex = activeContainer.children.findIndex(
@@ -529,12 +574,13 @@ const useStoreBase = createWithEqualityFn(
 
             // Case drag root component to canvas
             if (isOverCanvas && !activeContainer) {
+              allDo(state);
               console.info("drag root component to canvas");
 
               const index = state.renderedComponents.findIndex(
                 (component) => component.id === activeId,
               );
-
+              allDo(state);
               state.renderedComponents = arrayMove(
                 state.renderedComponents,
                 index,

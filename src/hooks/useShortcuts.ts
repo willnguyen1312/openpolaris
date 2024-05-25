@@ -10,6 +10,8 @@ export const useShortcuts = () => {
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const duplicateActiveComponent =
     usePolarisStore.use.duplicateActiveComponent();
+  const undo = usePolarisStore.use.undo();
+  const redo = usePolarisStore.use.redo();
 
   const componentListForCycle = useMemo(() => {
     const result: RenderedComponent[] = [];
@@ -47,6 +49,12 @@ export const useShortcuts = () => {
       } else if (code === "KeyD" && shiftKey && activeComponent) {
         e.preventDefault();
         duplicateActiveComponent();
+      } else if (code === "KeyZ") {
+        e.preventDefault();
+        undo();
+      } else if (code === "KeyY") {
+        e.preventDefault();
+        redo();
       } else if (code === "ArrowUp" && activeComponent) {
         e.preventDefault();
         const index = componentListForCycle.findIndex(
