@@ -47,7 +47,12 @@ export default async (req: Request) => {
     }
   }
 
-  return new Response("Hello, world!");
+  return new Response(JSON.stringify({ message: "Not found" }), {
+    status: 404,
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 };
 
 export const config: Config = {

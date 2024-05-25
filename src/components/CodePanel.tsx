@@ -2,12 +2,13 @@ import { Button, Toast } from "@shopify/polaris";
 import { ClipboardIcon } from "@shopify/polaris-icons";
 import classNames from "classnames";
 import { Highlight, themes } from "prism-react-renderer";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePolarisStore } from "../store";
 import { generateCode } from "../utils/code";
 import styles from "./CodePanel.module.css";
 
 export const CodePanel = () => {
+  const wrapperRef = useRef<HTMLDivElement>(null);
   const [code, setCode] = useState("");
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isSuccinctCode = usePolarisStore.use.isSuccinctCode();
@@ -27,6 +28,15 @@ export const CodePanel = () => {
     run();
   }, [renderedComponents, isSuccinctCode]);
 
+  useEffect(() => {
+    const wrapperElement = wrapperRef.current;
+    const parentElement = wrapperElement?.parentElement;
+
+    if (parentElement) {
+      parentElement.style.display = isShowCodePanel ? "block" : "none";
+    }
+  }, [isShowCodePanel]);
+
   const handleCopyClick = () => {
     showToast();
     navigator.clipboard.writeText(code);
@@ -37,12 +47,7 @@ export const CodePanel = () => {
   ) : null;
 
   return (
-    <div
-      style={{
-        display: isShowCodePanel ? "block" : "none",
-      }}
-      className={styles.wrapper}
-    >
+    <div ref={wrapperRef} className={styles.wrapper}>
       <div className={styles.copyButtonWrapper}>
         <Button
           onClick={handleCopyClick}

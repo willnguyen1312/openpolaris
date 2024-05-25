@@ -50,15 +50,17 @@ export function App() {
     const id = currentURL.split("/").pop();
 
     async function fetchCode() {
-      const data = await fetch(`/shorten/${id}`).then((res) => res.json());
-      if (data.code) {
-        try {
+      const data = await fetch(`/shorten/${id}`)
+        .then((res) => res.json())
+        .catch(() => ({}));
+      try {
+        if (data.code) {
           const { renderedComponents = [] } = decode(data.code);
           setRenderedComponents(renderedComponents);
-        } catch (_) {
-        } finally {
-          setLoaded(true);
         }
+      } catch (_) {
+      } finally {
+        setLoaded(true);
       }
     }
 
