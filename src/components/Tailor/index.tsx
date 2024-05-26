@@ -77,6 +77,7 @@ import { VideoThumbnailTailor } from "./VideoThumbnailTailor";
 import { Autocomplete, BlockStack, Icon } from "@shopify/polaris";
 import { defaultProps } from "../../defaultProps";
 import { SearchIcon } from "@shopify/polaris-icons";
+import { FormLayoutTailor } from "./FormLayoutTailor";
 
 const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   // Actions
@@ -94,6 +95,7 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   Divider: DividerTailor,
   EmptyState: EmptyStateTailor,
   "FormLayout.Group": FormLayoutGroupTailor,
+  FormLayout: FormLayoutTailor,
   Grid: GridTailor,
   "Grid.Cell": GridCellTailor,
   InlineGrid: InlineGridTailor,

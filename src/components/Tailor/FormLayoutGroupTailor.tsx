@@ -22,7 +22,7 @@ export const FormLayoutGroupTailor = () => {
     <>
       <DocLink
         target="_blank"
-        url="https://polaris.shopify.com/components/layout-and-structure/form-layout"
+        url="https://polaris.shopify.com/components/layout-and-structure/form-layout?example=form-layout-field-group"
       >
         Form layout
       </DocLink>
