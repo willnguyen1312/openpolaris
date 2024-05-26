@@ -67,6 +67,12 @@ const boxPositionOptions = Object.keys(boxPositionRecord) as NonNullable<
   BoxProps["position"]
 >[];
 
+interface Person {
+  name?: string;
+  age?: number;
+  address?: string;
+}
+
 const boxPropsItems: PropItem<keyof BoxProps>[] = [
   { prop: "as", type: "Select", options: boxAsOptions },
   { prop: "background", type: "Select", options: colorBackgroundAliases },
@@ -159,12 +165,23 @@ const boxPropsItems: PropItem<keyof BoxProps>[] = [
     options: spacingScales,
   },
   {
+    prop: "paddingBlock",
+    type: "Select",
+    options: spacingScales,
+  },
+  {
     prop: "paddingBlockStart",
     type: "Select",
     options: spacingScales,
   },
   {
     prop: "paddingBlockEnd",
+    type: "Select",
+    options: spacingScales,
+  },
+
+  {
+    prop: "paddingInline",
     type: "Select",
     options: spacingScales,
   },
