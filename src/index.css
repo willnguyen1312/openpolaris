@@ -2,7 +2,7 @@
   --topbar-height: 80px;
 }
 
-@media (min-width: 1028px) {
+@media (min-width: 1132px) {
   :root {
     --topbar-height: 60px;
   }

@@ -68,6 +68,7 @@ interface StoreState {
   isShowTopBar: boolean;
   isSuccinctCode: boolean;
   isBuilderMode: boolean;
+  isKeyboardShortcutsModalOpen: boolean;
   hasError: boolean;
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
@@ -87,6 +88,7 @@ type StoreActions = {
   setIsShowRightBar: (value: boolean) => void;
   setIsShowTopBar: (value: boolean) => void;
   setIsSuccinctCode: (value: boolean) => void;
+  setIsKeyboardShortcutsModalOpen: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
@@ -131,6 +133,11 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        isKeyboardShortcutsModalOpen: false,
+        setIsKeyboardShortcutsModalOpen: (value) =>
+          set((state: StoreState) => {
+            state.isKeyboardShortcutsModalOpen = value;
+          }),
         changeActiveComponent: (componentName) =>
           set((state: StoreState) => {
             if (state.activeComponent) {

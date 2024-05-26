@@ -9,12 +9,16 @@ export const useShortcuts = () => {
     ),
   );
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
+  const setIsKeyboardShortcutsModalOpen =
+    usePolarisStore.use.setIsKeyboardShortcutsModalOpen();
   const setIsShowLeftBar = usePolarisStore.use.setIsShowLeftBar();
   const setIsShowRightBar = usePolarisStore.use.setIsShowRightBar();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
   const setIsShowTopBar = usePolarisStore.use.setIsShowTopBar();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isShowLeftBar = usePolarisStore.use.isShowLeftBar();
+  const isKeyboardShortcutsModalOpen =
+    usePolarisStore.use.isKeyboardShortcutsModalOpen();
   const isShowRightBar = usePolarisStore.use.isShowRightBar();
   const isShowTopBar = usePolarisStore.use.isShowTopBar();
   const activeComponent = usePolarisStore.use.activeComponent();
@@ -47,6 +51,7 @@ export const useShortcuts = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const { code, shiftKey, metaKey, ctrlKey } = e;
+      e.preventDefault();
       const hasModifierKey = metaKey || ctrlKey;
 
       const isInputFocused = document.activeElement?.tagName === "INPUT";
@@ -55,24 +60,42 @@ export const useShortcuts = () => {
         return;
       }
 
-      if ((code === "Backspace" || code === "Delete") && activeComponent) {
-        deleteActiveComponent();
-      } else if (code === "Escape") {
-        setActiveComponent(null);
-      } else if (code === "KeyD" && activeComponent) {
-        e.preventDefault();
-        duplicateActiveComponent();
-      } else if (code === "KeyZ" && hasModifierKey && !shiftKey) {
-        e.preventDefault();
-        undo();
-      } else if (
-        (code === "KeyY" && hasModifierKey) ||
-        (shiftKey && hasModifierKey && code === "KeyZ")
+      if (
+        (code === "Backspace" || code === "Delete") &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
       ) {
-        e.preventDefault();
+        deleteActiveComponent();
+      } else if (code === "Escape" && !isKeyboardShortcutsModalOpen) {
+        setActiveComponent(null);
+      } else if (
+        code === "KeyD" &&
+        hasModifierKey &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
+      ) {
+        duplicateActiveComponent();
+      } else if (
+        code === "KeyZ" &&
+        hasModifierKey &&
+        !shiftKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
+        undo();
+      } else if (code === "KeyK" && hasModifierKey) {
+        setIsKeyboardShortcutsModalOpen(!isKeyboardShortcutsModalOpen);
+      } else if (
+        shiftKey &&
+        hasModifierKey &&
+        code === "KeyZ" &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         redo();
-      } else if (code === "ArrowUp" && activeComponent) {
-        e.preventDefault();
+      } else if (
+        code === "ArrowUp" &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
@@ -80,24 +103,39 @@ export const useShortcuts = () => {
           (index - 1 + componentListForCycle.length) %
           componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
-      } else if (code === "ArrowDown" && activeComponent) {
-        e.preventDefault();
+      } else if (
+        code === "ArrowDown" &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
         const nextIndex = (index + 1) % componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
-      } else if (code === "Backquote" && hasModifierKey) {
-        e.preventDefault();
+      } else if (
+        code === "Digit1" &&
+        hasModifierKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         setIsShowCodePanel(!isShowCodePanel);
-      } else if (code === "Digit1" && hasModifierKey) {
-        e.preventDefault();
+      } else if (
+        code === "Digit2" &&
+        hasModifierKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         setIsShowLeftBar(!isShowLeftBar);
-      } else if (code === "Digit2" && hasModifierKey) {
-        e.preventDefault();
+      } else if (
+        code === "Digit3" &&
+        hasModifierKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         setIsShowRightBar(!isShowRightBar);
-      } else if (code === "Digit3" && hasModifierKey) {
-        e.preventDefault();
+      } else if (
+        code === "Digit4" &&
+        hasModifierKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
         const newShowTopBar = !isShowTopBar;
         setIsShowTopBar(newShowTopBar);
 
@@ -126,5 +164,6 @@ export const useShortcuts = () => {
     isShowLeftBar,
     isShowRightBar,
     isShowTopBar,
+    isKeyboardShortcutsModalOpen,
   ]);
 };
