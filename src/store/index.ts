@@ -136,8 +136,11 @@ const useStoreBase = createWithEqualityFn(
             if (state.activeComponent) {
               allDo(state);
 
+              const isParentComponent =
+                parentComponentList.includes(componentName);
+
               const newComponent = {
-                children: parentComponentList.includes(componentName)
+                children: isParentComponent
                   ? state.activeComponent.children
                   : [],
                 id: state.activeComponent.id,
@@ -150,6 +153,10 @@ const useStoreBase = createWithEqualityFn(
                 if (oldComponentProps[key] && key !== "children") {
                   newComponent.props[key] = oldComponentProps[key];
                 }
+              }
+
+              if (!isParentComponent) {
+                newComponent.props.children = oldComponentProps.children;
               }
 
               state.activeComponent = newComponent;

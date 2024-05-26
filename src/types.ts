@@ -965,7 +965,7 @@ export const acceptComponentsMap: Record<
     type: ComponentAcceptType.Parent,
   },
   Text: {
-    type: ComponentAcceptType.Parent,
+    type: ComponentAcceptType.Single,
   },
   Avatar: {
     type: ComponentAcceptType.Single,
@@ -1179,6 +1179,23 @@ export const parentComponentList: ComponentName[] = Object.keys(
   .map((componentName) => {
     if (
       parentComponentAcceptTypeSet.has(
+        acceptComponentsMap[componentName as ComponentName]
+          ?.type as ComponentAcceptType,
+      )
+    ) {
+      return componentName;
+    }
+
+    return null;
+  })
+  .filter(Boolean) as ComponentName[];
+
+export const singleComponentList: ComponentName[] = Object.keys(
+  acceptComponentsMap,
+)
+  .map((componentName) => {
+    if (
+      !parentComponentAcceptTypeSet.has(
         acceptComponentsMap[componentName as ComponentName]
           ?.type as ComponentAcceptType,
       )

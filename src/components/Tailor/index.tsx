@@ -1,7 +1,12 @@
-import { ComponentType, useState } from "react";
+import { ComponentType, useRef, useState } from "react";
 
 import { usePolarisStore } from "../../store";
-import { ComponentName, RenderedComponent } from "../../types";
+import {
+  ComponentName,
+  RenderedComponent,
+  parentComponentList,
+  singleComponentList,
+} from "../../types";
 import { AccountConnectionTailor } from "./AccountConnectionTailor";
 import { ActionListTailor } from "./ActionListTailor";
 import { AvatarTailor } from "./AvatarTailor";
@@ -161,7 +166,12 @@ const componentMap: Partial<Record<ComponentName, ComponentType>> = {
   TextField: TextFieldTailor,
 };
 
-const componentList = Object.keys(componentMap).map((componentName) => ({
+const parentComponentListOptions = parentComponentList.map((componentName) => ({
+  value: componentName,
+  label: componentName,
+}));
+
+const singleComponentListOptions = singleComponentList.map((componentName) => ({
   value: componentName,
   label: componentName,
 }));
@@ -169,10 +179,15 @@ const componentList = Object.keys(componentMap).map((componentName) => ({
 const SwitchComponents = () => {
   const activeComponent =
     usePolarisStore.use.activeComponent() as RenderedComponent;
+  const initialOptionsRef = useRef(
+    parentComponentList.includes(activeComponent.componentName)
+      ? parentComponentListOptions
+      : singleComponentListOptions,
+  );
   const changeActiveComponent = usePolarisStore.use.changeActiveComponent();
+  const [options, setOptions] = useState(initialOptionsRef.current);
 
   const [value, setValue] = useState(activeComponent.componentName);
-  const [options, setOptions] = useState(componentList);
 
   const textField = (
     <Autocomplete.TextField
@@ -185,12 +200,12 @@ const SwitchComponents = () => {
         setValue(value as RenderedComponent["componentName"]);
 
         if (value === "") {
-          setOptions(componentList);
+          setOptions(initialOptionsRef.current);
           return;
         }
 
         const filterRegex = new RegExp(value, "i");
-        const resultOptions = componentList.filter((option) =>
+        const resultOptions = initialOptionsRef.current.filter((option) =>
           option.label.match(filterRegex),
         );
         setOptions(resultOptions);
