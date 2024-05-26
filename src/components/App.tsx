@@ -20,8 +20,6 @@ import { MainBody } from "./MainBody";
 import { Overlay } from "./Overlay";
 import { RightSideBar } from "./RightSideBar";
 
-import styles from "./App.module.css";
-
 export function App() {
   const [loaded, setLoaded] = useState(false);
   const ref = useRef(document.body);
@@ -115,46 +113,44 @@ export function App() {
 
   return (
     <AppProvider i18n={enTranslations}>
-      <div className={styles.wrapper}>
-        <DndContext
-          sensors={[mouseSensor]}
-          onDragStart={handleDragStart}
-          onDragEnd={handleDragEnd}
-        >
-          <Frame>
-            {isShowTopBar && <TopBar />}
-            <Grid gap={{ md: "0", lg: "0", xl: "0" }}>
-              {isShowLeftBar && (
-                <Grid.Cell columnSpan={leftColumnSpan}>
-                  <LeftSideBar />
-                </Grid.Cell>
-              )}
-
-              <Grid.Cell columnSpan={mainColumnSpan}>
-                <MainBody />
+      <DndContext
+        sensors={[mouseSensor]}
+        onDragStart={handleDragStart}
+        onDragEnd={handleDragEnd}
+      >
+        <Frame>
+          {isShowTopBar && <TopBar />}
+          <Grid gap={{ md: "0", lg: "0", xl: "0" }}>
+            {isShowLeftBar && (
+              <Grid.Cell columnSpan={leftColumnSpan}>
+                <LeftSideBar />
               </Grid.Cell>
+            )}
 
-              {isShowRightBar && (
-                <Grid.Cell columnSpan={rightColumnSpan}>
-                  <RightSideBar />
-                </Grid.Cell>
-              )}
-            </Grid>
-          </Frame>
+            <Grid.Cell columnSpan={mainColumnSpan}>
+              <MainBody />
+            </Grid.Cell>
 
-          <DragOverlay
-            style={{
-              position: "fixed",
-              top: docY,
-              left: docX,
-              transform: `translate(-${themes.light.width["width-300"]}, -${themes.light.width["width-300"]})`,
-            }}
-            dropAnimation={null}
-          >
-            {activeDraggableId ? <Overlay id={activeDraggableId} /> : null}
-          </DragOverlay>
-        </DndContext>
-      </div>
+            {isShowRightBar && (
+              <Grid.Cell columnSpan={rightColumnSpan}>
+                <RightSideBar />
+              </Grid.Cell>
+            )}
+          </Grid>
+        </Frame>
+
+        <DragOverlay
+          style={{
+            position: "fixed",
+            top: docY,
+            left: docX,
+            transform: `translate(-${themes.light.width["width-300"]}, -${themes.light.width["width-300"]})`,
+          }}
+          dropAnimation={null}
+        >
+          {activeDraggableId ? <Overlay id={activeDraggableId} /> : null}
+        </DragOverlay>
+      </DndContext>
     </AppProvider>
   );
 }
