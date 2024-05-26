@@ -1,6 +1,5 @@
 .wrapper {
   height: calc(100vh - var(--topbar-height));
-  max-width: var(--right-sidebar-max-width);
   overscroll-behavior: contain;
   overflow: scroll;
   padding: var(--p-space-400);
