@@ -51,7 +51,6 @@ export const useShortcuts = () => {
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       const { code, shiftKey, metaKey, ctrlKey } = e;
-      e.preventDefault();
       const hasModifierKey = metaKey || ctrlKey;
 
       const isInputFocused = document.activeElement?.tagName === "INPUT";
@@ -65,8 +64,10 @@ export const useShortcuts = () => {
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         deleteActiveComponent();
       } else if (code === "Escape" && !isKeyboardShortcutsModalOpen) {
+        e.preventDefault();
         setActiveComponent(null);
       } else if (
         code === "KeyD" &&
@@ -74,6 +75,7 @@ export const useShortcuts = () => {
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         duplicateActiveComponent();
       } else if (
         code === "KeyZ" &&
@@ -81,8 +83,10 @@ export const useShortcuts = () => {
         !shiftKey &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         undo();
       } else if (code === "KeyK" && hasModifierKey) {
+        e.preventDefault();
         setIsKeyboardShortcutsModalOpen(!isKeyboardShortcutsModalOpen);
       } else if (
         shiftKey &&
@@ -90,12 +94,14 @@ export const useShortcuts = () => {
         code === "KeyZ" &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         redo();
       } else if (
         code === "ArrowUp" &&
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
@@ -108,6 +114,7 @@ export const useShortcuts = () => {
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         const index = componentListForCycle.findIndex(
           (component) => component.id === activeComponent.id,
         );
@@ -118,24 +125,28 @@ export const useShortcuts = () => {
         hasModifierKey &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         setIsShowCodePanel(!isShowCodePanel);
       } else if (
         code === "Digit2" &&
         hasModifierKey &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         setIsShowLeftBar(!isShowLeftBar);
       } else if (
         code === "Digit3" &&
         hasModifierKey &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         setIsShowRightBar(!isShowRightBar);
       } else if (
         code === "Digit4" &&
         hasModifierKey &&
         !isKeyboardShortcutsModalOpen
       ) {
+        e.preventDefault();
         const newShowTopBar = !isShowTopBar;
         setIsShowTopBar(newShowTopBar);
 
