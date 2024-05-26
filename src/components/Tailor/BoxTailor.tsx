@@ -67,12 +67,6 @@ const boxPositionOptions = Object.keys(boxPositionRecord) as NonNullable<
   BoxProps["position"]
 >[];
 
-interface Person {
-  name?: string;
-  age?: number;
-  address?: string;
-}
-
 const boxPropsItems: PropItem<keyof BoxProps>[] = [
   { prop: "as", type: "Select", options: boxAsOptions },
   { prop: "background", type: "Select", options: colorBackgroundAliases },
