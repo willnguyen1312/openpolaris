@@ -17,6 +17,7 @@ import {
   listOfComponent,
   parentComponentList,
   rootComponentId,
+  singleComponentList,
 } from "../types";
 import { generateId } from "../utils/generateId";
 
@@ -639,15 +640,25 @@ const useStoreBase = createWithEqualityFn(
               allDo(state);
               console.info("drag inside the parent component");
 
-              activeContainer.children = arrayMove(
-                activeContainer.children,
-                activeContainer.children.findIndex(
-                  (component) => component.id === activeId,
-                ),
-                activeContainer.children.findIndex(
-                  (component) => component.id === overId,
-                ),
+              const isACtiveComponentSimple = singleComponentList.includes(
+                activeComponent?.componentName as ComponentName,
               );
+              const isOverComponentSimple = singleComponentList.includes(
+                overComponent?.componentName as ComponentName,
+              );
+
+              if (isACtiveComponentSimple && isOverComponentSimple) {
+                activeContainer.children = arrayMove(
+                  activeContainer.children,
+                  activeContainer.children.findIndex(
+                    (component) => component.id === activeId,
+                  ),
+                  activeContainer.children.findIndex(
+                    (component) => component.id === overId,
+                  ),
+                );
+                return;
+              }
 
               return;
             }
