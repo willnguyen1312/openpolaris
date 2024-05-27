@@ -113,6 +113,7 @@ export function TopBar() {
   const toggleIsSuccinctCode = () => setIsSuccinctCode(!isSuccinctCode);
 
   const handleShareClick = async () => {
+    showToast();
     const code = encode({ renderedComponents });
     const data = await fetch("/shorten", {
       method: "POST",
@@ -123,7 +124,6 @@ export function TopBar() {
       const newURL = window.location.origin + "/" + data.id;
       window.history.replaceState("", "", newURL);
       navigator.clipboard.writeText(newURL);
-      showToast();
     }
   };
 
