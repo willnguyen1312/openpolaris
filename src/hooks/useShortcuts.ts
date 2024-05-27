@@ -147,9 +147,12 @@ export const useShortcuts = () => {
         e.preventDefault();
         moveComponent("left");
       } else if (
-        code === "Digit1" &&
-        hasModifierKey &&
-        !isKeyboardShortcutsModalOpen
+        (code === "Digit1" &&
+          hasModifierKey &&
+          !isKeyboardShortcutsModalOpen) ||
+        (code === "Backquote" &&
+          hasModifierKey &&
+          !isKeyboardShortcutsModalOpen)
       ) {
         e.preventDefault();
         setIsShowCodePanel(!isShowCodePanel);
