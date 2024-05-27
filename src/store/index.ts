@@ -705,30 +705,31 @@ const useStoreBase = createWithEqualityFn(
             }
 
             // Case drag inside the same parent component
-            if (activeContainer && activeContainer === overContainer) {
-              allDo(state);
+            const isACtiveComponentSimple = singleComponentList.includes(
+              activeComponent?.componentName as ComponentName,
+            );
+            const isOverComponentSimple = singleComponentList.includes(
+              overComponent?.componentName as ComponentName,
+            );
+            if (
+              activeContainer &&
+              activeContainer === overContainer &&
+              isACtiveComponentSimple &&
+              isOverComponentSimple
+            ) {
               console.info("drag inside the parent component");
 
-              const isACtiveComponentSimple = singleComponentList.includes(
-                activeComponent?.componentName as ComponentName,
-              );
-              const isOverComponentSimple = singleComponentList.includes(
-                overComponent?.componentName as ComponentName,
-              );
+              allDo(state);
 
-              if (isACtiveComponentSimple && isOverComponentSimple) {
-                activeContainer.children = arrayMove(
-                  activeContainer.children,
-                  activeContainer.children.findIndex(
-                    (component) => component.id === activeId,
-                  ),
-                  activeContainer.children.findIndex(
-                    (component) => component.id === overId,
-                  ),
-                );
-                return;
-              }
-
+              activeContainer.children = arrayMove(
+                activeContainer.children,
+                activeContainer.children.findIndex(
+                  (component) => component.id === activeId,
+                ),
+                activeContainer.children.findIndex(
+                  (component) => component.id === overId,
+                ),
+              );
               return;
             }
 
