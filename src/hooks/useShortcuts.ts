@@ -108,6 +108,7 @@ export const useShortcuts = () => {
         setIsBuilderMode(!isBuilderMode);
       } else if (
         code === "ArrowUp" &&
+        !shiftKey &&
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
@@ -121,6 +122,7 @@ export const useShortcuts = () => {
         setActiveComponent(componentListForCycle[nextIndex]);
       } else if (
         code === "ArrowDown" &&
+        !shiftKey &&
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
@@ -131,21 +133,21 @@ export const useShortcuts = () => {
         const nextIndex = (index + 1) % componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
       } else if (
-        code === "ArrowRight" &&
+        (code === "ArrowRight" || code === "ArrowDown") &&
         shiftKey &&
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
         e.preventDefault();
-        moveComponent("right");
+        moveComponent("down");
       } else if (
-        code === "ArrowLeft" &&
+        (code === "ArrowLeft" || code === "ArrowUp") &&
         shiftKey &&
         activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
         e.preventDefault();
-        moveComponent("left");
+        moveComponent("up");
       } else if (
         (code === "Digit1" &&
           hasModifierKey &&

@@ -54,12 +54,20 @@ const shortcuts: ShortCutItem[] = [
     description: "Redo",
   },
   {
-    key: "ctrl / cmd + Shift + ←",
-    description: "Move active component to left",
+    key: "ctrl / cmd + Shift + ↑",
+    description: "Move active component up",
   },
   {
     key: "ctrl / cmd + Shift + →",
-    description: "Move active component to right",
+    description: "Move active component right",
+  },
+  {
+    key: "ctrl / cmd + Shift + ↓",
+    description: "Move active component down",
+  },
+  {
+    key: "ctrl / cmd + Shift + ←",
+    description: "Move active component left",
   },
   {
     key: "ctrl / cmd + 1",

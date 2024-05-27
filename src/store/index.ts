@@ -98,7 +98,7 @@ type StoreActions = {
   deleteActiveComponent: () => void;
   duplicateActiveComponent: () => void;
   recover: () => void;
-  moveComponent: (direction: "left" | "right") => void;
+  moveComponent: (direction: "up" | "down") => void;
   reset: () => void;
   changeActiveComponent: (
     newComponentName: RenderedComponent["componentName"],
@@ -135,7 +135,7 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
-        moveComponent: (direction: "left" | "right") =>
+        moveComponent: (direction) =>
           set((state: StoreState) => {
             if (!state.activeComponent) {
               return;
@@ -155,7 +155,7 @@ const useStoreBase = createWithEqualityFn(
             const index = childrenList.findIndex(
               (child) => child.id === state.activeComponent?.id,
             );
-            const newIndex = direction === "left" ? index - 1 : index + 1;
+            const newIndex = direction === "up" ? index - 1 : index + 1;
             if (newIndex < 0) {
               childrenList.push(childrenList.splice(index, 1)[0]);
             } else if (newIndex >= childrenList.length) {
