@@ -8,6 +8,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: max-content;
+  width: fit-content;
   min-width: var(--p-width-2000);
 }

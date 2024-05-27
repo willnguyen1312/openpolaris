@@ -148,7 +148,7 @@ export function App() {
           }}
           dropAnimation={null}
         >
-          {activeDraggableId ? <Overlay id={activeDraggableId} /> : null}
+          {activeDraggableId ? <Overlay /> : null}
         </DragOverlay>
       </DndContext>
     </AppProvider>
