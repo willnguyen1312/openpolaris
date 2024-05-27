@@ -511,9 +511,14 @@ const useStoreBase = createWithEqualityFn(
                 node.children.some((child) => child.id === overContainer.id),
               );
 
+              const childrenList = parent
+                ? parent.children
+                : state.renderedComponents;
+
               // Move active component to the index of the over component
-              const index = parent?.children.findIndex(
-                (component) => component.id === overContainer.id,
+              const index = childrenList.findIndex(
+                (component) =>
+                  component.id === overContainer.id || component.id === overId,
               );
 
               if (
@@ -530,7 +535,16 @@ const useStoreBase = createWithEqualityFn(
                 };
 
                 state.activeComponent = component;
-                parent?.children.splice(index, 0, state.activeComponent);
+                if (parent) {
+                  parent.children.splice(index, 0, state.activeComponent);
+                } else {
+                  state.renderedComponents.splice(
+                    index,
+                    0,
+                    state.activeComponent,
+                  );
+                }
+
                 return;
               }
 
