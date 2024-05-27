@@ -11,6 +11,7 @@ export const useShortcuts = () => {
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const setIsKeyboardShortcutsModalOpen =
     usePolarisStore.use.setIsKeyboardShortcutsModalOpen();
+  const moveComponent = usePolarisStore.use.moveComponent();
   const setIsShowLeftBar = usePolarisStore.use.setIsShowLeftBar();
   const setIsShowRightBar = usePolarisStore.use.setIsShowRightBar();
   const setIsShowCodePanel = usePolarisStore.use.setIsShowCodePanel();
@@ -120,6 +121,22 @@ export const useShortcuts = () => {
         );
         const nextIndex = (index + 1) % componentListForCycle.length;
         setActiveComponent(componentListForCycle[nextIndex]);
+      } else if (
+        code === "ArrowRight" &&
+        shiftKey &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
+      ) {
+        e.preventDefault();
+        moveComponent("right");
+      } else if (
+        code === "ArrowLeft" &&
+        shiftKey &&
+        activeComponent &&
+        !isKeyboardShortcutsModalOpen
+      ) {
+        e.preventDefault();
+        moveComponent("left");
       } else if (
         code === "Digit1" &&
         hasModifierKey &&

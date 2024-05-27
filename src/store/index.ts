@@ -97,6 +97,7 @@ type StoreActions = {
   deleteActiveComponent: () => void;
   duplicateActiveComponent: () => void;
   recover: () => void;
+  moveComponent: (direction: "left" | "right") => void;
   reset: () => void;
   changeActiveComponent: (
     newComponentName: RenderedComponent["componentName"],
@@ -133,6 +134,39 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        moveComponent: (direction: "left" | "right") =>
+          set((state: StoreState) => {
+            if (!state.activeComponent) {
+              return;
+            }
+
+            allDo(state);
+            let parentComponent = findComponentBy(
+              state.renderedComponents,
+              (component) =>
+                component.children.some(
+                  (child) => child.id === state.activeComponent?.id,
+                ),
+            );
+            const childrenList = parentComponent
+              ? parentComponent.children
+              : state.renderedComponents;
+            const index = childrenList.findIndex(
+              (child) => child.id === state.activeComponent?.id,
+            );
+            const newIndex = direction === "left" ? index - 1 : index + 1;
+            if (newIndex < 0) {
+              childrenList.push(childrenList.splice(index, 1)[0]);
+            } else if (newIndex >= childrenList.length) {
+              childrenList.unshift(childrenList.splice(index, 1)[0]);
+            } else {
+              childrenList.splice(
+                newIndex,
+                0,
+                childrenList.splice(index, 1)[0],
+              );
+            }
+          }),
         isKeyboardShortcutsModalOpen: false,
         setIsKeyboardShortcutsModalOpen: (value) =>
           set((state: StoreState) => {
