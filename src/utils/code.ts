@@ -234,7 +234,7 @@ export const generateCode = async (
     }
     
     export default function App() {
-      return ${code};
+      return <>${code}</>;
     };
     `
     : `
