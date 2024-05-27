@@ -27,6 +27,7 @@ export function App() {
   const setActiveDraggableId = usePolarisStore.use.setActiveDraggableId();
   const activeDraggableId = usePolarisStore.use.activeDraggableId();
   const setRenderedComponents = usePolarisStore.use.setRenderedComponents();
+  const setIsHoldShift = usePolarisStore.use.setIsHoldShift();
   const isShowLeftBar = usePolarisStore.use.isShowLeftBar();
   const isShowRightBar = usePolarisStore.use.isShowRightBar();
   const isShowTopBar = usePolarisStore.use.isShowTopBar();
@@ -106,6 +107,26 @@ export function App() {
       rightColumnSpan: { md: 1, lg: 2, xl: 2 },
     };
   }, [isShowLeftBar, isShowRightBar]);
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.shiftKey) {
+        setIsHoldShift(true);
+      }
+    };
+
+    const handleKeyUp = () => {
+      setIsHoldShift(false);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, []);
 
   if (!loaded) {
     return null;

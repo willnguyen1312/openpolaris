@@ -70,6 +70,7 @@ interface StoreState {
   isSuccinctCode: boolean;
   isBuilderMode: boolean;
   isKeyboardShortcutsModalOpen: boolean;
+  isHoldShift: boolean;
   hasError: boolean;
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
@@ -93,6 +94,7 @@ type StoreActions = {
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
+  setIsHoldShift: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -135,6 +137,11 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        isHoldShift: false,
+        setIsHoldShift: (value) =>
+          set((state: StoreState) => {
+            state.isHoldShift = value;
+          }),
         moveComponent: (direction) =>
           set((state: StoreState) => {
             if (!state.activeComponent) {
@@ -494,6 +501,68 @@ const useStoreBase = createWithEqualityFn(
               !!overContainer &&
               acceptComponentsMap[overContainer.componentName]?.type ===
                 ComponentAcceptType.Single;
+
+            // Case drag with shift key
+            if (overContainer && state.isHoldShift) {
+              allDo(state);
+              console.info("drag with shift key");
+
+              const parent = findComponentBy(state.renderedComponents, (node) =>
+                node.children.some((child) => child.id === overContainer.id),
+              );
+
+              // Move active component to the index of the over component
+              const index = parent?.children.findIndex(
+                (component) => component.id === overContainer.id,
+              );
+
+              if (
+                index !== -1 &&
+                index !== undefined &&
+                !activeContainer &&
+                overContainer
+              ) {
+                const component = {
+                  children: [],
+                  id: generateId(),
+                  componentName: activeId as ComponentName,
+                  props: defaultProps[activeId as ComponentName],
+                };
+
+                state.activeComponent = component;
+                parent?.children.splice(index, 0, state.activeComponent);
+                return;
+              }
+
+              if (
+                index !== -1 &&
+                index !== undefined &&
+                activeContainer &&
+                overContainer
+              ) {
+                // Delete activeComponent in the tree
+                const activeComponentParent = findComponentBy(
+                  state.renderedComponents,
+                  (node) =>
+                    node.children.some((child) => child.id === activeId),
+                );
+                activeComponentParent?.children.splice(
+                  activeComponentParent.children.findIndex(
+                    (component) => component.id === activeId,
+                  ),
+                  1,
+                );
+
+                // Insert activeComponent to the index of the over component
+                parent?.children.splice(
+                  index,
+                  0,
+                  activeComponent as RenderedComponent,
+                );
+              }
+
+              return;
+            }
 
             // Case drag from the menu to the canvas, not on top of any component
             if (isComponentFromMenu && isOverCanvas) {
