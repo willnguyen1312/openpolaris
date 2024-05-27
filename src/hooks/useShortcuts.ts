@@ -9,6 +9,7 @@ export const useShortcuts = () => {
     ),
   );
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
+  const setIsBuilderMode = usePolarisStore.use.setIsBuilderMode();
   const setIsKeyboardShortcutsModalOpen =
     usePolarisStore.use.setIsKeyboardShortcutsModalOpen();
   const moveComponent = usePolarisStore.use.moveComponent();
@@ -18,6 +19,7 @@ export const useShortcuts = () => {
   const setIsShowTopBar = usePolarisStore.use.setIsShowTopBar();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const isShowLeftBar = usePolarisStore.use.isShowLeftBar();
+  const isBuilderMode = usePolarisStore.use.isBuilderMode();
   const isKeyboardShortcutsModalOpen =
     usePolarisStore.use.isKeyboardShortcutsModalOpen();
   const isShowRightBar = usePolarisStore.use.isShowRightBar();
@@ -97,6 +99,13 @@ export const useShortcuts = () => {
       ) {
         e.preventDefault();
         redo();
+      } else if (
+        code === "KeyB" &&
+        hasModifierKey &&
+        !isKeyboardShortcutsModalOpen
+      ) {
+        e.preventDefault();
+        setIsBuilderMode(!isBuilderMode);
       } else if (
         code === "ArrowUp" &&
         activeComponent &&
@@ -192,6 +201,7 @@ export const useShortcuts = () => {
     isShowLeftBar,
     isShowRightBar,
     isShowTopBar,
+    isBuilderMode,
     isKeyboardShortcutsModalOpen,
   ]);
 };

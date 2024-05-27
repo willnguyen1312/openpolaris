@@ -42,6 +42,10 @@ const shortcuts: ShortCutItem[] = [
     description: "Duplicate active component",
   },
   {
+    key: "ctrl / cmd + b",
+    description: "Toggle builder mode",
+  },
+  {
     key: "ctrl / cmd + z",
     description: "Undo",
   },
