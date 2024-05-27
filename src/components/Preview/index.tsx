@@ -96,9 +96,9 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
       const classes = targetComponent.className;
-      // Hack to make component fill the space
-      targetComponent.style.width = "100%";
-      targetComponent.style.height = "100%";
+      // Hack to make component fill the space - I might not need this? 🙈
+      // targetComponent.style.width = "100%";
+      // targetComponent.style.height = "100%";
 
       setExtraClasses(classes);
     }
