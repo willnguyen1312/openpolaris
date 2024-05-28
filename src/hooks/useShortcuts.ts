@@ -75,7 +75,6 @@ export const useShortcuts = () => {
       } else if (
         code === "KeyD" &&
         hasModifierKey &&
-        activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
         e.preventDefault();

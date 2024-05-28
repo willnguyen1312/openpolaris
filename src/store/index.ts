@@ -163,7 +163,6 @@ const useStoreBase = createWithEqualityFn(
             });
 
             state.selectingComponents = finalValue;
-            console.log("selectingComponents", finalValue);
           });
         },
         isHoldShift: false,
@@ -458,34 +457,68 @@ const useStoreBase = createWithEqualityFn(
 
         duplicateActiveComponent: () =>
           set((state: StoreState) => {
-            if (!state.activeComponent) {
+            if (
+              !state.activeComponent &&
+              state.selectingComponents.length === 0
+            ) {
               return;
             }
             allDo(state);
-            const clonedComponent = cloneDeep(state.activeComponent);
 
-            traverse(clonedComponent, (node) => {
-              node.id = generateId();
-            });
+            if (state.selectingComponents.length > 0) {
+              state.selectingComponents.forEach((component) => {
+                const clonedComponent = cloneDeep(component);
 
-            const containerComponent = findComponentBy(
-              state.renderedComponents,
-              (component) =>
-                component.children.some(
-                  (child) => child.id === state.activeComponent?.id,
-                ),
-            );
+                traverse(clonedComponent, (node) => {
+                  node.id = generateId();
+                });
 
-            if (containerComponent) {
-              const index = containerComponent.children.findIndex(
-                (component) => component.id === state.activeComponent?.id,
-              );
-              containerComponent.children.splice(index, 0, clonedComponent);
+                const containerComponent = findComponentBy(
+                  state.renderedComponents,
+                  (child) =>
+                    child.children.some((child) => child.id === component.id),
+                );
+
+                if (containerComponent) {
+                  const index = containerComponent.children.findIndex(
+                    (child) => child.id === component.id,
+                  );
+                  containerComponent.children.splice(index, 0, clonedComponent);
+                  return;
+                }
+
+                // If the containerComponent is null, it means that the activeComponent is from top level components
+                state.renderedComponents.push(clonedComponent);
+              });
               return;
             }
 
-            // If the containerComponent is null, it means that the activeComponent is from top level components
-            state.renderedComponents.push(clonedComponent);
+            if (state.activeComponent) {
+              const clonedComponent = cloneDeep(state.activeComponent);
+
+              traverse(clonedComponent, (node) => {
+                node.id = generateId();
+              });
+
+              const containerComponent = findComponentBy(
+                state.renderedComponents,
+                (component) =>
+                  component.children.some(
+                    (child) => child.id === state.activeComponent?.id,
+                  ),
+              );
+
+              if (containerComponent) {
+                const index = containerComponent.children.findIndex(
+                  (component) => component.id === state.activeComponent?.id,
+                );
+                containerComponent.children.splice(index, 0, clonedComponent);
+                return;
+              }
+
+              // If the containerComponent is null, it means that the activeComponent is from top level components
+              state.renderedComponents.push(clonedComponent);
+            }
           }),
 
         // DnD stuff

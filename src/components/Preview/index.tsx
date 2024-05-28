@@ -242,6 +242,7 @@ function DragAndDropItem({
   const isSelectingComponent = selectingComponents.some(
     (selectingComponent) => selectingComponent.id === component.id,
   );
+
   const finalClassName = classNames(className, {
     [styles.isOver]: isOver && isParentComponent,
     [styles.isSelectingComponent]: isSelectingComponent,
@@ -251,6 +252,7 @@ function DragAndDropItem({
     <div
       ref={setNodeRef}
       onPointerDown={(event) => {
+        event.stopPropagation();
         if (isHoldAlt) {
           const extra = activeComponent ? [activeComponent] : [];
           setSelectingComponent(
@@ -259,8 +261,7 @@ function DragAndDropItem({
           return;
         }
 
-        if (!isHoldShift) {
-          event.stopPropagation();
+        if (!isHoldShift && selectingComponents.length > 0) {
           setActiveComponentId(component);
         }
       }}
