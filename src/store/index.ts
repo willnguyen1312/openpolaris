@@ -401,33 +401,8 @@ const useStoreBase = createWithEqualityFn(
 
         deleteActiveComponent: () =>
           set((state: StoreState) => {
-            const activeComponentId = state.activeComponent?.id;
-            if (activeComponentId) {
-              allDo(state);
-              const parentComponent = findComponentBy(
-                state.renderedComponents,
-                (component) =>
-                  component.children.some(
-                    (child) => child.id === activeComponentId,
-                  ),
-              );
-
-              state.activeComponent = null;
-              if (parentComponent) {
-                parentComponent.children = parentComponent.children.filter(
-                  (child) => child.id !== activeComponentId,
-                );
-                return;
-              }
-
-              // If the parentComponent is null, it means that the activeComponent is from top level components
-              state.renderedComponents = state.renderedComponents.filter(
-                (component) => component.id !== activeComponentId,
-              );
-            }
-
+            allDo(state);
             if (state.selectingComponents.length > 0) {
-              allDo(state);
               state.selectingComponents.forEach((component) => {
                 const activeComponentId = component.id;
                 const parentComponent = findComponentBy(
@@ -452,6 +427,31 @@ const useStoreBase = createWithEqualityFn(
                 );
               });
               state.selectingComponents = [];
+            }
+
+            const activeComponentId = state.activeComponent?.id;
+
+            if (activeComponentId) {
+              const parentComponent = findComponentBy(
+                state.renderedComponents,
+                (component) =>
+                  component.children.some(
+                    (child) => child.id === activeComponentId,
+                  ),
+              );
+
+              state.activeComponent = null;
+              if (parentComponent) {
+                parentComponent.children = parentComponent.children.filter(
+                  (child) => child.id !== activeComponentId,
+                );
+                return;
+              }
+
+              // If the parentComponent is null, it means that the activeComponent is from top level components
+              state.renderedComponents = state.renderedComponents.filter(
+                (component) => component.id !== activeComponentId,
+              );
             }
           }),
 
