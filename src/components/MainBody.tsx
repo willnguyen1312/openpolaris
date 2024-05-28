@@ -103,8 +103,21 @@ export function MainBody() {
 
     window.addEventListener("pointerup", handlePointerUp);
 
+    const handlePointerMove = (event: PointerEvent) => {
+      if (rect) {
+        event.preventDefault();
+        setRect({
+          ...rect,
+          secondPosition: [event.clientX, event.clientY],
+        });
+      }
+    };
+
+    window.addEventListener("pointermove", handlePointerMove);
+
     return () => {
       window.removeEventListener("pointerup", handlePointerUp);
+      window.removeEventListener("pointermove", handlePointerMove);
     };
   }, [
     rect,
@@ -149,15 +162,6 @@ export function MainBody() {
           if (isHoldShift) {
             setRect({
               firstPosition: [event.clientX, event.clientY],
-              secondPosition: [event.clientX, event.clientY],
-            });
-          }
-        }}
-        onPointerMove={(event) => {
-          if (rect) {
-            event.preventDefault();
-            setRect({
-              ...rect,
               secondPosition: [event.clientX, event.clientY],
             });
           }

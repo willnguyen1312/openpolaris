@@ -689,7 +689,9 @@ const useStoreBase = createWithEqualityFn(
               };
 
               state.renderedComponents.push(component);
-              state.activeComponent = component;
+              if (state.selectingComponents.length === 0) {
+                state.activeComponent = component;
+              }
               return;
             }
 

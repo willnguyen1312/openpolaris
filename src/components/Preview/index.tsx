@@ -252,8 +252,8 @@ function DragAndDropItem({
     <div
       ref={setNodeRef}
       onPointerDown={(event) => {
-        event.stopPropagation();
         if (isHoldAlt) {
+          event.stopPropagation();
           const extra = activeComponent ? [activeComponent] : [];
           setSelectingComponent(
             selectingComponents.concat(extra).concat(component),
@@ -262,6 +262,7 @@ function DragAndDropItem({
         }
 
         if (!isHoldShift && selectingComponents.length > 0) {
+          event.stopPropagation();
           setActiveComponentId(component);
         }
       }}
