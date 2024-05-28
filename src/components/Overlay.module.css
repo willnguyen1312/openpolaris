@@ -1,6 +1,6 @@
 .wrapper {
   cursor: none;
-  background: var(--p-color-bg-surface-success-active);
+  background: var(--shopify-color);
   border-radius: var(--p-border-radius-200);
   padding: var(--p-space-100) var(--p-space-200);
   display: flex;
@@ -8,4 +8,5 @@
   justify-content: center;
   height: var(--p-height-500);
   width: var(--p-width-500);
+  border-radius: 99999px;
 }

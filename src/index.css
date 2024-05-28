@@ -1,5 +1,6 @@
 :root {
   --topbar-height: 80px;
+  --shopify-color: #96bf48;
 }
 
 @media (min-width: 1132px) {
