@@ -708,6 +708,46 @@ const useStoreBase = createWithEqualityFn(
                 acceptComponentsMap[overContainer.componentName]?.type ===
                 ComponentAcceptType.Parent;
 
+              if (state.selectingComponents.length > 0) {
+                allDo(state);
+
+                state.selectingComponents.forEach((component) => {
+                  let parentComponent = null;
+                  for (const renderedComponent of state.renderedComponents) {
+                    if (
+                      renderedComponent.children.some(
+                        (child) => child.id === component.id,
+                      )
+                    ) {
+                      parentComponent = renderedComponent;
+                      break;
+                    }
+                  }
+
+                  if (parentComponent) {
+                    parentComponent.children.splice(
+                      parentComponent.children.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
+                    );
+                  } else {
+                    state.renderedComponents.splice(
+                      state.renderedComponents.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
+                    );
+                  }
+
+                  overContainer.children.push(component);
+                });
+
+                state.undoStack.push(cloneDeep(state.renderedComponents));
+                state.redoStack = [];
+                return;
+              }
+
               if (canHaveAnyChildren) {
                 allDo(state);
                 let index = overContainer.children.findIndex(
@@ -816,8 +856,18 @@ const useStoreBase = createWithEqualityFn(
                   }
 
                   if (parentComponent) {
-                    parentComponent.children = parentComponent.children.filter(
-                      (child) => child.id !== component.id,
+                    parentComponent.children.splice(
+                      parentComponent.children.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
+                    );
+                  } else {
+                    state.renderedComponents.splice(
+                      state.renderedComponents.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
                     );
                   }
 
@@ -853,6 +903,46 @@ const useStoreBase = createWithEqualityFn(
             if (isOverCanvas && !activeContainer) {
               allDo(state);
               console.info("drag root component to canvas");
+
+              if (state.selectingComponents.length > 0) {
+                allDo(state);
+
+                state.selectingComponents.forEach((component) => {
+                  let parentComponent = null;
+                  for (const renderedComponent of state.renderedComponents) {
+                    if (
+                      renderedComponent.children.some(
+                        (child) => child.id === component.id,
+                      )
+                    ) {
+                      parentComponent = renderedComponent;
+                      break;
+                    }
+                  }
+
+                  if (parentComponent) {
+                    parentComponent.children.splice(
+                      parentComponent.children.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
+                    );
+                  } else {
+                    state.renderedComponents.splice(
+                      state.renderedComponents.findIndex(
+                        (child) => child.id === component.id,
+                      ),
+                      1,
+                    );
+                  }
+
+                  state.renderedComponents.push(component);
+                });
+
+                state.undoStack.push(cloneDeep(state.renderedComponents));
+                state.redoStack = [];
+                return;
+              }
 
               const index = state.renderedComponents.findIndex(
                 (component) => component.id === activeId,
