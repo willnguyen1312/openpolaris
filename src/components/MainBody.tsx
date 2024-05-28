@@ -7,7 +7,7 @@ import styles from "./MainBody.module.css";
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
-import { MouseEvent } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
@@ -17,19 +17,76 @@ export function MainBody() {
     id: rootComponentId,
   });
 
-  const renderedComponent = usePolarisStore.use.renderedComponents();
+  const renderedComponents = usePolarisStore.use.renderedComponents();
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const recover = usePolarisStore.use.recover();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setHasError = usePolarisStore.use.setHasError();
-  const isEmpty = renderedComponent.length === 0;
+  const isEmpty = renderedComponents.length === 0;
+  const [rect, setRect] = useState<{
+    firstPosition: [number, number];
+    secondPosition: [number, number];
+  }>();
+  const [isSelecting, setIsSelecting] = useState(false);
+
+  useEffect(() => {
+    const handleMouseUp = () => {
+      setRect(undefined);
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.shiftKey) {
+        setIsSelecting(true);
+      }
+    };
+
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (!event.shiftKey) {
+        setIsSelecting(false);
+      }
+    };
+
+    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [isSelecting]);
 
   const handleWrapperClick = (event: MouseEvent) => {
     if (event.target === event.currentTarget) {
       setActiveComponent(null);
     }
   };
+
+  const rectDimension = (() => {
+    if (!rect) {
+      return null;
+    }
+
+    const top =
+      rect.firstPosition[1] < rect.secondPosition[1]
+        ? rect.firstPosition[1]
+        : rect.secondPosition[1];
+    const left =
+      rect.firstPosition[0] < rect.secondPosition[0]
+        ? rect.firstPosition[0]
+        : rect.secondPosition[0];
+    const width = Math.abs(rect.firstPosition[0] - rect.secondPosition[0]);
+    const height = Math.abs(rect.firstPosition[1] - rect.secondPosition[1]);
+
+    return {
+      top,
+      left,
+      width,
+      height,
+    };
+  })();
 
   const body = (
     <ErrorBoundary
@@ -58,7 +115,38 @@ export function MainBody() {
           [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
         })}
         onClick={handleWrapperClick}
+        onMouseDown={(event) => {
+          if (isSelecting) {
+            setRect({
+              firstPosition: [event.clientX, event.clientY],
+              secondPosition: [event.clientX, event.clientY],
+            });
+          }
+        }}
+        onMouseMove={(event) => {
+          if (rect) {
+            event.preventDefault();
+            setRect({
+              ...rect,
+              secondPosition: [event.clientX, event.clientY],
+            });
+          }
+        }}
+        style={{
+          userSelect: isSelecting ? "none" : "auto",
+        }}
       >
+        {!isEmpty && rectDimension && (
+          <div
+            style={{
+              position: "fixed",
+              border: "1px solid red",
+              ...rectDimension,
+              zIndex: 100,
+            }}
+          />
+        )}
+
         {isEmpty ? (
           <>
             <EmptyState
@@ -87,7 +175,7 @@ export function MainBody() {
           </>
         ) : null}
 
-        {renderedComponent.map((component) => {
+        {renderedComponents.map((component) => {
           return <Preview key={component.id} component={component} />;
         })}
       </div>
