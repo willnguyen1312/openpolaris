@@ -8,7 +8,7 @@ import { RenderedComponent, parentComponentList } from "../../types";
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
 import { PropsWithRef, ReactNode, useEffect, useState } from "react";
-import { findComponentBy, usePolarisStore } from "../../store";
+import { usePolarisStore } from "../../store";
 import { normalizePropValue } from "../../utils/code";
 import { collectPathsHasKey } from "../../utils/object";
 import styles from "./Preview.module.css";
@@ -90,8 +90,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     if (targetComponent) {
       const classes = targetComponent.className;
       // Hack to make component fill the space - I might not need this? 🙈
-      targetComponent.style.width = "100%";
-      targetComponent.style.height = "100%";
+      // targetComponent.style.width = "100%";
+      // targetComponent.style.height = "100%";
 
       setExtraClasses(classes);
     }
@@ -146,25 +146,26 @@ function ComponentWithContainer({
   const [extraClasses, setExtraClasses] = useState("");
 
   useEffect(() => {
-    const parentComponent = findComponentBy(renderedComponents, (component) =>
-      component.children.some((child) => child.id === id),
-    );
+    // const parentComponent = findComponentBy(renderedComponents, (component) =>
+    //   component.children.some((child) => child.id === id),
+    // );
 
-    const isCompoundComponent =
-      component.componentName.includes(".") &&
-      component.componentName.includes(
-        parentComponent?.componentName as string,
-      );
+    // const isCompoundComponent =
+    //   component.componentName.includes(".") &&
+    //   component.componentName.includes(
+    //     parentComponent?.componentName as string,
+    //   );
 
-    if (!isCompoundComponent) {
-      return;
-    }
+    // if (!isCompoundComponent) {
+    //   return;
+    // }
 
     const wrapperComponent = document.getElementById(id);
     const targetComponent = wrapperComponent?.firstChild as HTMLElement;
     if (targetComponent) {
       const classes = targetComponent.className;
       // Hack to make wrapped component fill the available space
+      // targetComponent.style.flexGrow = "1";
       targetComponent.style.width = "100%";
       targetComponent.style.height = "100%";
       setExtraClasses(classes);
