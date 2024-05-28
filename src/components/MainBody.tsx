@@ -51,6 +51,7 @@ export function MainBody() {
       }}
     >
       <div
+        id="main"
         ref={setNodeRef}
         className={classNames(styles.bodyWrapper, {
           [styles.isOver]: isOver,

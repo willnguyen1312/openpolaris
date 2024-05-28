@@ -56,7 +56,10 @@ export const useShortcuts = () => {
       const { code, shiftKey, metaKey, ctrlKey } = e;
       const hasModifierKey = metaKey || ctrlKey;
 
-      const isInputFocused = document.activeElement?.tagName === "INPUT";
+      const mainBody = document.getElementById("main") as HTMLDivElement;
+      const isInputFocused =
+        document.activeElement?.tagName === "INPUT" &&
+        !mainBody.contains(document.activeElement);
 
       if (isInputFocused) {
         return;
