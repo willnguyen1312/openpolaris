@@ -761,8 +761,6 @@ const useStoreBase = createWithEqualityFn(
                   overContainer.children.push(component);
                 });
 
-                state.undoStack.push(cloneDeep(state.renderedComponents));
-                state.redoStack = [];
                 return;
               }
 
@@ -773,8 +771,6 @@ const useStoreBase = createWithEqualityFn(
                 );
                 index = index === -1 ? overContainer.children.length : index;
                 overContainer.children.splice(index, 0, activeComponent);
-                state.undoStack.push(cloneDeep(state.renderedComponents));
-                state.redoStack = [];
                 state.renderedComponents = state.renderedComponents.filter(
                   (component) => component.id !== activeId,
                 );
@@ -923,8 +919,6 @@ const useStoreBase = createWithEqualityFn(
               console.info("drag root component to canvas");
 
               if (state.selectingComponents.length > 0) {
-                allDo(state);
-
                 state.selectingComponents.forEach((component) => {
                   let parentComponent = null;
                   for (const renderedComponent of state.renderedComponents) {
@@ -957,8 +951,6 @@ const useStoreBase = createWithEqualityFn(
                   state.renderedComponents.push(component);
                 });
 
-                state.undoStack.push(cloneDeep(state.renderedComponents));
-                state.redoStack = [];
                 return;
               }
 
