@@ -21,6 +21,7 @@ export function MainBody() {
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const recover = usePolarisStore.use.recover();
+  const isHoldShift = usePolarisStore.use.isHoldShift();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setHasError = usePolarisStore.use.setHasError();
   const isEmpty = renderedComponents.length === 0;
@@ -28,35 +29,18 @@ export function MainBody() {
     firstPosition: [number, number];
     secondPosition: [number, number];
   }>();
-  const [isSelecting, setIsSelecting] = useState(false);
 
   useEffect(() => {
     const handleMouseUp = () => {
       setRect(undefined);
     };
 
-    const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.shiftKey) {
-        setIsSelecting(true);
-      }
-    };
-
-    const handleKeyUp = (event: KeyboardEvent) => {
-      if (!event.shiftKey) {
-        setIsSelecting(false);
-      }
-    };
-
     window.addEventListener("mouseup", handleMouseUp);
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
 
     return () => {
       window.removeEventListener("mouseup", handleMouseUp);
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
     };
-  }, [isSelecting]);
+  }, []);
 
   const handleWrapperClick = (event: MouseEvent) => {
     if (event.target === event.currentTarget) {
@@ -116,7 +100,7 @@ export function MainBody() {
         })}
         onClick={handleWrapperClick}
         onMouseDown={(event) => {
-          if (isSelecting) {
+          if (isHoldShift) {
             setRect({
               firstPosition: [event.clientX, event.clientY],
               secondPosition: [event.clientX, event.clientY],
@@ -133,7 +117,7 @@ export function MainBody() {
           }
         }}
         style={{
-          userSelect: isSelecting ? "none" : "auto",
+          userSelect: isHoldShift ? "none" : "auto",
         }}
       >
         {!isEmpty && rectDimension && (
