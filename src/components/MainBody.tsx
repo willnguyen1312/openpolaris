@@ -7,7 +7,7 @@ import styles from "./MainBody.module.css";
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
-import { MouseEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
@@ -31,22 +31,16 @@ export function MainBody() {
   }>();
 
   useEffect(() => {
-    const handleMouseUp = () => {
+    const handlePointerUp = () => {
       setRect(undefined);
     };
 
-    window.addEventListener("mouseup", handleMouseUp);
+    window.addEventListener("pointerup", handlePointerUp);
 
     return () => {
-      window.removeEventListener("mouseup", handleMouseUp);
+      window.removeEventListener("pointerup", handlePointerUp);
     };
   }, []);
-
-  const handleWrapperClick = (event: MouseEvent) => {
-    if (event.target === event.currentTarget) {
-      setActiveComponent(null);
-    }
-  };
 
   const rectDimension = (() => {
     if (!rect) {
@@ -98,8 +92,11 @@ export function MainBody() {
           [styles.isOver]: isOver,
           [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
         })}
-        onClick={handleWrapperClick}
-        onMouseDown={(event) => {
+        onPointerDown={(event) => {
+          if (event.target === event.currentTarget) {
+            setActiveComponent(null);
+          }
+
           if (isHoldShift) {
             setRect({
               firstPosition: [event.clientX, event.clientY],
@@ -107,7 +104,7 @@ export function MainBody() {
             });
           }
         }}
-        onMouseMove={(event) => {
+        onPointerMove={(event) => {
           if (rect) {
             event.preventDefault();
             setRect({

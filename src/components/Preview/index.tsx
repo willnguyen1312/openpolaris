@@ -79,7 +79,6 @@ export const Preview = ({ component }: { component: RenderedComponent }) => {
 function SimpleComponent({ component }: { component: RenderedComponent }) {
   // @ts-ignore
   const Component = lodashGet(Polaris, component.componentName.split("."));
-  const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
   const { icon, source } = component.props;
@@ -122,10 +121,6 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     <DragAndDropItem
       id={id}
       component={component}
-      onPointerDown={(event: PointerEvent) => {
-        event.stopPropagation();
-        setActiveComponentId(component);
-      }}
       className={classNames(styles.simpleWrapper, extraClasses, {
         [styles.simpleWrapperSelected]: isSelected && !isDragging,
       })}
@@ -141,7 +136,6 @@ function ComponentWithContainer({
   component: RenderedComponent;
 }) {
   const { id, children } = component;
-  const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const activeComponent = usePolarisStore.use.activeComponent();
   const setActiveComponentPropValue =
@@ -222,10 +216,6 @@ function ComponentWithContainer({
         [styles.containerWrapperSelected]: isSelected && !isDragging,
         [styles.builderMode]: isBuilderMode,
       })}
-      onPointerDown={(event: PointerEvent) => {
-        event.stopPropagation();
-        setActiveComponentId(component);
-      }}
     >
       {componentMarkup}
     </DragAndDropItem>
@@ -240,8 +230,11 @@ function DragAndDropItem({
   component: RenderedComponent;
   children: ReactNode;
 } & PropsWithRef<JSX.IntrinsicElements["div"]>) {
+  const isHoldShift = usePolarisStore.use.isHoldShift();
+  const setActiveComponentId = usePolarisStore.use.setActiveComponent();
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
+    disabled: isHoldShift,
   });
 
   const { className = "", ...rest } = props;
@@ -255,6 +248,13 @@ function DragAndDropItem({
   return (
     <div
       ref={setNodeRef}
+      onPointerDown={(event: PointerEvent) => {
+        if (isHoldShift) {
+          return;
+        }
+        event.stopPropagation();
+        setActiveComponentId(component);
+      }}
       {...rest}
       {...attributes}
       {...listeners}

@@ -77,9 +77,11 @@ interface StoreState {
   renderedComponents: RenderedComponent[];
   undoStack: RenderedComponent[][];
   redoStack: RenderedComponent[][];
+  selectingComponent: RenderedComponent[];
 }
 
 type StoreActions = {
+  setSelectingComponent: (value: RenderedComponent) => void;
   undo: () => void;
   redo: () => void;
   loadFromTemplate: (template: TemplateType) => void;
@@ -137,10 +139,19 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
+        selectingComponent: [],
+        setSelectingComponent: (value) => {
+          set((state: StoreState) => {
+            state.selectingComponent.push(value);
+          });
+        },
         isHoldShift: false,
         setIsHoldShift: (value) =>
           set((state: StoreState) => {
             state.isHoldShift = value;
+            // if (!state.isHoldShift) {
+            //   state.selectingComponent = [];
+            // }
           }),
         moveComponent: (direction) =>
           set((state: StoreState) => {
