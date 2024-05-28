@@ -144,6 +144,10 @@ const useStoreBase = createWithEqualityFn(
         selectingComponents: [],
         setSelectingComponent: (value) => {
           set((state: StoreState) => {
+            if (value.length === 0) {
+              state.selectingComponents = [];
+              return;
+            }
             const idSet = new Set(value.map((item) => item.id));
             const finalValue: RenderedComponent[] = [];
 
