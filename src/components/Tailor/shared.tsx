@@ -189,8 +189,8 @@ export const Icon: FunctionComponent<{
 
   const syncWithIconInStore = () => {
     if (inputValue !== activeComponent.props[prop]) {
-      setActiveComponentPropValue(prop, "");
-      setInputValue("");
+      setActiveComponentPropValue(prop, activeComponent.props[prop]);
+      setInputValue(activeComponent.props[prop] ?? "");
       return;
     }
     setInputValue(activeComponent.props[prop] ?? "");
