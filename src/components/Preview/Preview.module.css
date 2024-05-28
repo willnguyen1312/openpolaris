@@ -18,6 +18,10 @@
   background: var(--p-color-bg-fill-info);
 }
 
+.isSelectingComponent {
+  border: 0.5px solid var(--p-color-border-focus);
+}
+
 .containerWrapperSelected {
   border: 0.5px solid var(--p-color-border-focus);
 }

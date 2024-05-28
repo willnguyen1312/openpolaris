@@ -232,6 +232,7 @@ function DragAndDropItem({
 } & PropsWithRef<JSX.IntrinsicElements["div"]>) {
   const isHoldShift = usePolarisStore.use.isHoldShift();
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const selectingComponents = usePolarisStore.use.selectingComponents();
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
     disabled: isHoldShift,
@@ -241,8 +242,13 @@ function DragAndDropItem({
   const isParentComponent = parentComponentList.includes(
     component.componentName,
   );
+
+  const isSelectingComponent = selectingComponents.some(
+    (selectingComponent) => selectingComponent.id === component.id,
+  );
   const finalClassName = classNames(className, {
     [styles.isOver]: isOver && isParentComponent,
+    [styles.isSelectingComponent]: isSelectingComponent,
   });
 
   return (

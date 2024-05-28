@@ -78,7 +78,7 @@ interface StoreState {
   renderedComponents: RenderedComponent[];
   undoStack: RenderedComponent[][];
   redoStack: RenderedComponent[][];
-  selectingComponent: RenderedComponent[];
+  selectingComponents: RenderedComponent[];
 }
 
 type StoreActions = {
@@ -141,10 +141,10 @@ const useStoreBase = createWithEqualityFn(
   devtools(
     persist(
       immer<StoreState & StoreActions>((set) => ({
-        selectingComponent: [],
+        selectingComponents: [],
         setSelectingComponent: (value) => {
           set((state: StoreState) => {
-            state.selectingComponent = value;
+            state.selectingComponents = value;
           });
         },
         isHoldShift: false,
@@ -300,7 +300,7 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.activeComponent = null;
             state.renderedComponents = [];
-            state.selectingComponent = [];
+            state.selectingComponents = [];
             state.hasError = false;
             state.isShowLeftBar = true;
             state.isShowRightBar = true;
