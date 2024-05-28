@@ -257,9 +257,7 @@ function DragAndDropItem({
   return (
     <div
       ref={setNodeRef}
-      onPointerDown={(event: PointerEvent) => {
-        event.stopPropagation();
-
+      onPointerDown={() => {
         if (isHoldAlt) {
           const extra = activeComponent ? [activeComponent] : [];
           setSelectingComponent(

@@ -1,7 +1,7 @@
 import { useDroppable } from "@dnd-kit/core";
 import { ErrorBoundary } from "react-error-boundary";
 import SplitPane from "react-split-pane";
-import { rootComponentId } from "../types";
+import { RenderedComponent, rootComponentId } from "../types";
 import styles from "./MainBody.module.css";
 
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
@@ -60,7 +60,19 @@ export function MainBody() {
       if (!isHoldShift) {
         return;
       }
-      const allElements = renderedComponents.map((component) => {
+      const allComponents: RenderedComponent[] = [];
+      function dfs(node: RenderedComponent) {
+        allComponents.push(node);
+
+        if (node?.children) {
+          node.children.forEach((child) => {
+            dfs(child);
+          });
+        }
+      }
+
+      renderedComponents.forEach(dfs);
+      const allElements = allComponents.map((component) => {
         return document.getElementById(component.id);
       });
 
@@ -82,7 +94,7 @@ export function MainBody() {
       });
 
       setSelectingComponent(
-        renderedComponents.filter((component) =>
+        allComponents.filter((component) =>
           intersectedComponents.some((element) => element?.id === component.id),
         ),
       );

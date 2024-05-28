@@ -44,9 +44,7 @@ export const useShortcuts = () => {
       }
     }
 
-    renderedComponents.forEach((component) => {
-      component && dfs(component);
-    });
+    renderedComponents.forEach(dfs);
 
     return result;
   }, [renderedComponents]);
