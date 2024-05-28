@@ -7,13 +7,7 @@ import { RenderedComponent, parentComponentList } from "../../types";
 
 import { useSortable } from "@dnd-kit/sortable";
 import { omitBy } from "lodash-es";
-import {
-  PointerEvent,
-  PropsWithRef,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import { PropsWithRef, ReactNode, useEffect, useState } from "react";
 import { findComponentBy, usePolarisStore } from "../../store";
 import { normalizePropValue } from "../../utils/code";
 import { collectPathsHasKey } from "../../utils/object";
@@ -185,7 +179,6 @@ function ComponentWithContainer({
         return;
       }
 
-      event.stopPropagation();
       setActiveComponentPropValue("open", false);
     };
 

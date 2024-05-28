@@ -144,8 +144,26 @@ const useStoreBase = createWithEqualityFn(
         selectingComponents: [],
         setSelectingComponent: (value) => {
           set((state: StoreState) => {
-            state.selectingComponents = value;
-            console.log("selectingComponents", value);
+            const idSet = new Set(value.map((item) => item.id));
+            const finalValue: RenderedComponent[] = [];
+
+            value.forEach((item) => {
+              const parentComponent = findComponentBy(
+                state.renderedComponents,
+                (component) => {
+                  return component.children.some(
+                    (child) => child.id === item.id,
+                  );
+                },
+              );
+
+              if (!parentComponent || !idSet.has(parentComponent.id)) {
+                finalValue.push(item);
+              }
+            });
+
+            state.selectingComponents = finalValue;
+            console.log("selectingComponents", finalValue);
           });
         },
         isHoldShift: false,
