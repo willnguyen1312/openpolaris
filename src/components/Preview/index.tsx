@@ -231,11 +231,13 @@ function DragAndDropItem({
   children: ReactNode;
 } & PropsWithRef<JSX.IntrinsicElements["div"]>) {
   const isHoldShift = usePolarisStore.use.isHoldShift();
+  const isHoldAlt = usePolarisStore.use.isHoldAlt();
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const selectingComponents = usePolarisStore.use.selectingComponents();
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
     id: component.id,
-    disabled: isHoldShift,
+    disabled: isHoldShift || isHoldAlt,
   });
 
   const { className = "", ...rest } = props;
@@ -255,11 +257,17 @@ function DragAndDropItem({
     <div
       ref={setNodeRef}
       onPointerDown={(event: PointerEvent) => {
-        if (isHoldShift) {
+        event.stopPropagation();
+        event.preventDefault();
+
+        if (isHoldAlt) {
+          setSelectingComponent(selectingComponents.concat(component));
           return;
         }
-        event.stopPropagation();
-        setActiveComponentId(component);
+
+        if (!isHoldShift) {
+          setActiveComponentId(component);
+        }
       }}
       {...rest}
       {...attributes}

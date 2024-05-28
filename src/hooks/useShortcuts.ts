@@ -67,7 +67,6 @@ export const useShortcuts = () => {
 
       if (
         (code === "Backspace" || code === "Delete") &&
-        activeComponent &&
         !isKeyboardShortcutsModalOpen
       ) {
         e.preventDefault();

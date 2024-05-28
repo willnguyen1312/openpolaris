@@ -71,7 +71,7 @@ interface StoreState {
   isBuilderMode: boolean;
   isKeyboardShortcutsModalOpen: boolean;
   isHoldShift: boolean;
-  isHoldCtrl: boolean;
+  isHoldAlt: boolean;
   hasError: boolean;
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
@@ -98,7 +98,7 @@ type StoreActions = {
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
   setIsHoldShift: (value: boolean) => void;
-  setIsHoldCtrl: (value: boolean) => void;
+  setIsHoldAlt: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -145,6 +145,7 @@ const useStoreBase = createWithEqualityFn(
         setSelectingComponent: (value) => {
           set((state: StoreState) => {
             state.selectingComponents = value;
+            console.log("selectingComponents", value);
           });
         },
         isHoldShift: false,
@@ -152,10 +153,10 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.isHoldShift = value;
           }),
-        isHoldCtrl: false,
-        setIsHoldCtrl: (value) =>
+        isHoldAlt: false,
+        setIsHoldAlt: (value) =>
           set((state: StoreState) => {
-            state.isHoldCtrl = value;
+            state.isHoldAlt = value;
           }),
         moveComponent: (direction) =>
           set((state: StoreState) => {
@@ -406,6 +407,34 @@ const useStoreBase = createWithEqualityFn(
               state.renderedComponents = state.renderedComponents.filter(
                 (component) => component.id !== activeComponentId,
               );
+            }
+
+            if (state.selectingComponents.length > 0) {
+              allDo(state);
+              state.selectingComponents.forEach((component) => {
+                const activeComponentId = component.id;
+                const parentComponent = findComponentBy(
+                  state.renderedComponents,
+                  (component) =>
+                    component.children.some(
+                      (child) => child.id === activeComponentId,
+                    ),
+                );
+
+                state.activeComponent = null;
+                if (parentComponent) {
+                  parentComponent.children = parentComponent.children.filter(
+                    (child) => child.id !== activeComponentId,
+                  );
+                  return;
+                }
+
+                // If the parentComponent is null, it means that the activeComponent is from top level components
+                state.renderedComponents = state.renderedComponents.filter(
+                  (component) => component.id !== activeComponentId,
+                );
+              });
+              state.selectingComponents = [];
             }
           }),
 

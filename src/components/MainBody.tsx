@@ -57,6 +57,9 @@ export function MainBody() {
 
   useEffect(() => {
     const handlePointerUp = () => {
+      if (!isHoldShift) {
+        return;
+      }
       const allElements = renderedComponents.map((component) => {
         return document.getElementById(component.id);
       });
@@ -91,7 +94,13 @@ export function MainBody() {
     return () => {
       window.removeEventListener("pointerup", handlePointerUp);
     };
-  }, [rect, renderedComponents, rectDimension, setSelectingComponent]);
+  }, [
+    rect,
+    renderedComponents,
+    rectDimension,
+    setSelectingComponent,
+    isHoldShift,
+  ]);
 
   const body = (
     <ErrorBoundary
@@ -122,10 +131,7 @@ export function MainBody() {
         onPointerDown={(event) => {
           if (event.target === event.currentTarget) {
             setActiveComponent(null);
-
-            if (!isHoldShift) {
-              setSelectingComponent([]);
-            }
+            setSelectingComponent([]);
           }
 
           if (isHoldShift) {
