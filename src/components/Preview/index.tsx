@@ -90,8 +90,8 @@ function SimpleComponent({ component }: { component: RenderedComponent }) {
     if (targetComponent) {
       const classes = targetComponent.className;
       // Hack to make component fill the space - I might not need this? 🙈
-      // targetComponent.style.width = "100%";
-      // targetComponent.style.height = "100%";
+      targetComponent.style.width = "100%";
+      targetComponent.style.height = "100%";
 
       setExtraClasses(classes);
     }
@@ -165,7 +165,8 @@ function ComponentWithContainer({
     if (targetComponent) {
       const classes = targetComponent.className;
       // Hack to make wrapped component fill the available space
-      targetComponent.style.flexGrow = "1";
+      targetComponent.style.width = "100%";
+      targetComponent.style.height = "100%";
       setExtraClasses(classes);
     }
   }, [renderedComponents]);
