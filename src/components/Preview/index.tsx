@@ -258,7 +258,6 @@ function DragAndDropItem({
       ref={setNodeRef}
       onPointerDown={(event: PointerEvent) => {
         event.stopPropagation();
-        event.preventDefault();
 
         if (isHoldAlt) {
           setSelectingComponent(selectingComponents.concat(component));

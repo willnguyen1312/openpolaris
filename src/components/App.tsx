@@ -115,7 +115,7 @@ export function App() {
         setIsHoldShift(true);
       }
 
-      if (event.altKey || event.metaKey) {
+      if (event.altKey) {
         setIsHoldAlt(true);
       }
     };
@@ -125,7 +125,7 @@ export function App() {
         setIsHoldShift(false);
       }
 
-      if (!event.altKey && !event.metaKey) {
+      if (!event.altKey) {
         setIsHoldAlt(false);
       }
     };
