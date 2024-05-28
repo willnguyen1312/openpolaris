@@ -1008,6 +1008,7 @@ const useStoreBase = createWithEqualityFn(
       })),
       { name: "openPolaris" },
     ),
+    { enabled: true },
   ),
   shallow,
 );

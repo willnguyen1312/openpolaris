@@ -225,7 +225,7 @@ function DragAndDropItem({
 } & PropsWithRef<JSX.IntrinsicElements["div"]>) {
   const isHoldShift = usePolarisStore.use.isHoldShift();
   const isHoldAlt = usePolarisStore.use.isHoldAlt();
-  const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const activeComponent = usePolarisStore.use.activeComponent();
   const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const selectingComponents = usePolarisStore.use.selectingComponents();
@@ -245,7 +245,8 @@ function DragAndDropItem({
 
   const finalClassName = classNames(className, {
     [styles.isOver]: isOver && isParentComponent,
-    [styles.isSelectingComponent]: isSelectingComponent,
+    [styles.isSelectingComponent]:
+      isSelectingComponent || activeComponent === component,
   });
 
   return (
@@ -261,9 +262,9 @@ function DragAndDropItem({
           return;
         }
 
-        if (!isHoldShift && selectingComponents.length > 0) {
+        if (!isHoldShift && selectingComponents.length === 0) {
           event.stopPropagation();
-          setActiveComponentId(component);
+          setActiveComponent(component);
         }
       }}
       {...rest}
