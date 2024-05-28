@@ -71,6 +71,7 @@ interface StoreState {
   isBuilderMode: boolean;
   isKeyboardShortcutsModalOpen: boolean;
   isHoldShift: boolean;
+  isHoldCtrl: boolean;
   hasError: boolean;
   activeDraggableId: string | null;
   lastRenderedComponents: RenderedComponent[];
@@ -81,7 +82,7 @@ interface StoreState {
 }
 
 type StoreActions = {
-  setSelectingComponent: (value: RenderedComponent) => void;
+  setSelectingComponent: (value: RenderedComponent[]) => void;
   undo: () => void;
   redo: () => void;
   loadFromTemplate: (template: TemplateType) => void;
@@ -97,6 +98,7 @@ type StoreActions = {
   setIsBuilderMode: (value: boolean) => void;
   setHasError: (value: boolean) => void;
   setIsHoldShift: (value: boolean) => void;
+  setIsHoldCtrl: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
@@ -142,16 +144,18 @@ const useStoreBase = createWithEqualityFn(
         selectingComponent: [],
         setSelectingComponent: (value) => {
           set((state: StoreState) => {
-            state.selectingComponent.push(value);
+            state.selectingComponent = value;
           });
         },
         isHoldShift: false,
         setIsHoldShift: (value) =>
           set((state: StoreState) => {
             state.isHoldShift = value;
-            // if (!state.isHoldShift) {
-            //   state.selectingComponent = [];
-            // }
+          }),
+        isHoldCtrl: false,
+        setIsHoldCtrl: (value) =>
+          set((state: StoreState) => {
+            state.isHoldCtrl = value;
           }),
         moveComponent: (direction) =>
           set((state: StoreState) => {
@@ -296,6 +300,7 @@ const useStoreBase = createWithEqualityFn(
           set((state: StoreState) => {
             state.activeComponent = null;
             state.renderedComponents = [];
+            state.selectingComponent = [];
             state.hasError = false;
             state.isShowLeftBar = true;
             state.isShowRightBar = true;

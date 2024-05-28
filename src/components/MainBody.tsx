@@ -7,7 +7,7 @@ import styles from "./MainBody.module.css";
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
@@ -18,6 +18,7 @@ export function MainBody() {
   });
 
   const renderedComponents = usePolarisStore.use.renderedComponents();
+  const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
   const recover = usePolarisStore.use.recover();
@@ -30,19 +31,7 @@ export function MainBody() {
     secondPosition: [number, number];
   }>();
 
-  useEffect(() => {
-    const handlePointerUp = () => {
-      setRect(undefined);
-    };
-
-    window.addEventListener("pointerup", handlePointerUp);
-
-    return () => {
-      window.removeEventListener("pointerup", handlePointerUp);
-    };
-  }, []);
-
-  const rectDimension = (() => {
+  const rectDimension = useMemo(() => {
     if (!rect) {
       return null;
     }
@@ -64,7 +53,45 @@ export function MainBody() {
       width,
       height,
     };
-  })();
+  }, [rect]);
+
+  useEffect(() => {
+    const handlePointerUp = () => {
+      const allElements = renderedComponents.map((component) => {
+        return document.getElementById(component.id);
+      });
+
+      // Check which component is intersected with the rect
+      const intersectedComponents = allElements.filter((element) => {
+        if (!element || !rectDimension) {
+          return false;
+        }
+
+        const rect1 = element.getBoundingClientRect();
+        const rect2 = rectDimension;
+
+        return (
+          rect1.left < rect2.left + rect2.width &&
+          rect1.left + rect1.width > rect2.left &&
+          rect1.top < rect2.top + rect2.height &&
+          rect1.top + rect1.height > rect2.top
+        );
+      });
+
+      setSelectingComponent(
+        renderedComponents.filter((component) =>
+          intersectedComponents.some((element) => element?.id === component.id),
+        ),
+      );
+      setRect(undefined);
+    };
+
+    window.addEventListener("pointerup", handlePointerUp);
+
+    return () => {
+      window.removeEventListener("pointerup", handlePointerUp);
+    };
+  }, [rect, renderedComponents, rectDimension, setSelectingComponent]);
 
   const body = (
     <ErrorBoundary
@@ -95,6 +122,10 @@ export function MainBody() {
         onPointerDown={(event) => {
           if (event.target === event.currentTarget) {
             setActiveComponent(null);
+
+            if (!isHoldShift) {
+              setSelectingComponent([]);
+            }
           }
 
           if (isHoldShift) {
