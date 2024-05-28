@@ -57,6 +57,7 @@ export function MainBody() {
 
   useEffect(() => {
     const handlePointerUp = () => {
+      setRect(undefined);
       if (!isHoldShift) {
         return;
       }
@@ -98,7 +99,6 @@ export function MainBody() {
           intersectedComponents.some((element) => element?.id === component.id),
         ),
       );
-      setRect(undefined);
     };
 
     window.addEventListener("pointerup", handlePointerUp);
