@@ -801,6 +801,34 @@ const useStoreBase = createWithEqualityFn(
               allDo(state);
               console.info("drag from the one parent to another parent");
 
+              if (state.selectingComponents.length > 0) {
+                state.selectingComponents.forEach((component) => {
+                  let parentComponent = null;
+                  for (const renderedComponent of state.renderedComponents) {
+                    if (
+                      renderedComponent.children.some(
+                        (child) => child.id === component.id,
+                      )
+                    ) {
+                      parentComponent = renderedComponent;
+                      break;
+                    }
+                  }
+
+                  if (parentComponent) {
+                    parentComponent.children = parentComponent.children.filter(
+                      (child) => child.id !== component.id,
+                    );
+                  }
+
+                  overContainer.children.push(component);
+                });
+
+                state.selectingComponents = [];
+
+                return;
+              }
+
               const oldIndex = activeContainer.children.findIndex(
                 (component) => component.id === activeId,
               );

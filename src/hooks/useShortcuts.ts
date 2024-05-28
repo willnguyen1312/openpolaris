@@ -37,7 +37,7 @@ export const useShortcuts = () => {
     function dfs(node: RenderedComponent) {
       result.push(node);
 
-      if (node.children) {
+      if (node?.children) {
         node.children.forEach((child) => {
           dfs(child);
         });

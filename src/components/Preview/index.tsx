@@ -233,6 +233,7 @@ function DragAndDropItem({
   const isHoldShift = usePolarisStore.use.isHoldShift();
   const isHoldAlt = usePolarisStore.use.isHoldAlt();
   const setActiveComponentId = usePolarisStore.use.setActiveComponent();
+  const activeComponent = usePolarisStore.use.activeComponent();
   const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const selectingComponents = usePolarisStore.use.selectingComponents();
   const { attributes, listeners, setNodeRef, isOver } = useSortable({
@@ -260,7 +261,10 @@ function DragAndDropItem({
         event.stopPropagation();
 
         if (isHoldAlt) {
-          setSelectingComponent(selectingComponents.concat(component));
+          const extra = activeComponent ? [activeComponent] : [];
+          setSelectingComponent(
+            selectingComponents.concat(extra).concat(component),
+          );
           return;
         }
 
