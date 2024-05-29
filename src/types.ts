@@ -1019,16 +1019,16 @@ export const acceptComponentsMap: Record<
     type: ComponentAcceptType.Parent,
   },
   "Listbox.Option": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   "Listbox.TextOption": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   "Listbox.Loading": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   "Listbox.Header": {
-    type: ComponentAcceptType.Single,
+    type: ComponentAcceptType.Parent,
   },
   "Listbox.Section": {
     type: ComponentAcceptType.Parent,

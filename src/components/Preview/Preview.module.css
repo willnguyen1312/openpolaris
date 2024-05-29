@@ -9,23 +9,26 @@
 }
 
 .builderMode {
-  background: var(--p-color-bg-surface-success);
-  border: 0.5px dashed var(--p-color-border-focus);
-  padding: var(--p-space-400);
+  background: var(--p-color-bg-surface-success) !important;
+  border: 0.5px dashed var(--p-color-border-focus) !important;
+  padding: var(--p-space-400) !important;
+  width: 100% !important;
+  height: auto !important;
+  clip-path: none !important;
 }
 
 .isOver {
-  background: var(--p-color-bg-fill-info);
+  background: var(--p-color-bg-fill-info) !important;
 }
 
 .isSelectingComponent {
-  border: 0.5px solid var(--p-color-border-focus);
+  border: 0.5px solid var(--p-color-border-focus) !important;
 }
 
 .containerWrapperSelected {
-  border: 0.5px solid var(--p-color-border-focus);
+  border: 0.5px solid var(--p-color-border-focus) !important;
 }
 
 .simpleWrapperSelected > *:first-child {
-  border: 0.5px solid var(--p-color-border-focus);
+  border: 0.5px solid var(--p-color-border-focus) !important;
 }

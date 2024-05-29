@@ -12,3 +12,10 @@
 .Polaris-Select .Polaris-Select__SelectedOption {
   color: black;
 }
+
+.Polaris-Text--visuallyHidden {
+  position: static !important;
+  clip-path: none !important;
+  width: auto !important;
+  height: auto !important;
+}
