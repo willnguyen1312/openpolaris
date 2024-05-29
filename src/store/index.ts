@@ -90,9 +90,7 @@ interface StoreState {
   isKeyboardShortcutsModalOpen: boolean;
   isHoldShift: boolean;
   isHoldAlt: boolean;
-  hasError: boolean;
   activeDraggableId: string | null;
-  lastRenderedComponents: RenderedComponent[];
   renderedComponents: RenderedComponent[];
   undoStack: RenderedComponent[][];
   redoStack: RenderedComponent[][];
@@ -114,14 +112,12 @@ type StoreActions = {
   setIsKeyboardShortcutsModalOpen: (value: boolean) => void;
   setActiveDraggableId: (id: string | null) => void;
   setIsBuilderMode: (value: boolean) => void;
-  setHasError: (value: boolean) => void;
   setIsHoldShift: (value: boolean) => void;
   setIsHoldAlt: (value: boolean) => void;
   setActiveComponent: (component: RenderedComponent | null) => void;
   setActiveComponentPropValue: (name: string, value: any) => void;
   deleteActiveComponent: () => void;
   duplicateActiveComponent: () => void;
-  recover: () => void;
   moveComponent: (direction: "up" | "down") => void;
   reset: () => void;
   changeActiveComponent: (
@@ -314,17 +310,8 @@ const useStoreBase = createWithEqualityFn(
 
             if (loadedTemplate) {
               allDo(state);
-              state.lastRenderedComponents = cloneDeep(
-                state.renderedComponents,
-              );
-              // @ts-ignore
-              state.renderedComponents = loadedTemplate;
+              state.renderedComponents = loadedTemplate as RenderedComponent[];
             }
-          }),
-        hasError: false,
-        setHasError: (value) =>
-          set((state: StoreState) => {
-            state.hasError = value;
           }),
         searchComponentInput: "",
         setSearchComponentInput: (value) =>
@@ -341,19 +328,11 @@ const useStoreBase = createWithEqualityFn(
             state.activeComponent = null;
             state.renderedComponents = [];
             state.selectingComponents = [];
-            state.hasError = false;
             state.isShowLeftBar = true;
             state.isShowRightBar = true;
             state.isShowTopBar = true;
             state.undoStack = [];
             state.redoStack = [];
-          });
-        },
-        recover: () => {
-          set((state: StoreState) => {
-            state.activeComponent = null;
-            state.renderedComponents = cloneDeep(state.lastRenderedComponents);
-            state.hasError = false;
           });
         },
         isShowCodePanel: false,
@@ -550,12 +529,11 @@ const useStoreBase = createWithEqualityFn(
             const activeId = active.id;
             const overId = over?.id;
 
-            if (activeId === overId || !overId || state.hasError) {
+            if (activeId === overId || !overId) {
               return;
             }
 
             state.activeDraggableId = null;
-            state.lastRenderedComponents = cloneDeep(state.renderedComponents);
 
             const isOverCanvas = overId === rootComponentId;
             const isComponentFromMenu = listOfComponent.some(

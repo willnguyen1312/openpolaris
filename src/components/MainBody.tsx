@@ -21,10 +21,9 @@ export function MainBody() {
   const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
   const setActiveComponent = usePolarisStore.use.setActiveComponent();
-  const recover = usePolarisStore.use.recover();
+  const reset = usePolarisStore.use.reset();
   const isHoldShift = usePolarisStore.use.isHoldShift();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
-  const setHasError = usePolarisStore.use.setHasError();
   const isEmpty = renderedComponents.length === 0;
   const [rect, setRect] = useState<{
     firstPosition: [number, number];
@@ -128,9 +127,79 @@ export function MainBody() {
   ]);
 
   const body = (
+    <div
+      id="main"
+      ref={setNodeRef}
+      className={classNames(styles.bodyWrapper, {
+        [styles.isOver]: isOver,
+        [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
+      })}
+      onPointerDown={(event) => {
+        if (event.target === event.currentTarget) {
+          setActiveComponent(null);
+          setSelectingComponent([]);
+        }
+
+        if (isHoldShift) {
+          setRect({
+            firstPosition: [event.clientX, event.clientY],
+            secondPosition: [event.clientX, event.clientY],
+          });
+        }
+      }}
+      style={{
+        userSelect: isHoldShift ? "none" : "auto",
+      }}
+    >
+      {!isEmpty && rectDimension && (
+        <div
+          style={{
+            position: "fixed",
+            border: "1px solid red",
+            ...rectDimension,
+            zIndex: 100,
+          }}
+        />
+      )}
+
+      {isEmpty ? (
+        <>
+          <EmptyState
+            heading="Drag some component or choose from pre-built templates below to start building your merchant app"
+            image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
+          />
+
+          <ActionList
+            items={[
+              {
+                content: "Add product form",
+                helpText: "A form to add product to your store",
+                onAction: () => {
+                  loadFromTemplate(TemplateType.addProductForm);
+                },
+              },
+              {
+                content: "Setting page",
+                helpText: "A page to manage your app settings",
+                onAction: () => {
+                  loadFromTemplate(TemplateType.settingsPage);
+                },
+              },
+            ]}
+          />
+        </>
+      ) : null}
+
+      {renderedComponents.map((component) => {
+        return <Preview key={component.id} component={component} />;
+      })}
+    </div>
+  );
+
+  return (
     <ErrorBoundary
-      fallbackRender={({ resetErrorBoundary, error }) => {
-        const title = `Error: ${error.message}, the app state will be recovered on dismiss`;
+      fallbackRender={({ resetErrorBoundary }) => {
+        const title = `Oh no 🙈, something went wrong! The application will try to recover upon dismissal 🥹`;
         return (
           <Box padding="400">
             <Banner
@@ -141,100 +210,27 @@ export function MainBody() {
           </Box>
         );
       }}
-      onReset={recover}
-      onError={() => {
-        setHasError(true);
-      }}
+      onReset={reset}
     >
-      <div
-        id="main"
-        ref={setNodeRef}
-        className={classNames(styles.bodyWrapper, {
-          [styles.isOver]: isOver,
-          [styles.bodyWrapperWithoutCodePanel]: !isShowCodePanel,
-        })}
-        onPointerDown={(event) => {
-          if (event.target === event.currentTarget) {
-            setActiveComponent(null);
-            setSelectingComponent([]);
-          }
-
-          if (isHoldShift) {
-            setRect({
-              firstPosition: [event.clientX, event.clientY],
-              secondPosition: [event.clientX, event.clientY],
-            });
-          }
-        }}
-        style={{
-          userSelect: isHoldShift ? "none" : "auto",
-        }}
+      {/* @ts-ignore */}
+      <SplitPane
+        style={{ overflow: "auto", position: "relative" }}
+        defaultSize="50%"
+        resizerStyle={
+          isShowCodePanel
+            ? {
+                border: `4px solid ${themes.light.color["color-bg-fill-success"]}`,
+                zIndex: 20,
+                cursor: "row-resize",
+              }
+            : {}
+        }
+        split="horizontal"
+        className={styles.splitPanel}
       >
-        {!isEmpty && rectDimension && (
-          <div
-            style={{
-              position: "fixed",
-              border: "1px solid red",
-              ...rectDimension,
-              zIndex: 100,
-            }}
-          />
-        )}
-
-        {isEmpty ? (
-          <>
-            <EmptyState
-              heading="Drag some component or choose from pre-built templates below to start building your merchant app"
-              image="https://cdn.shopify.com/s/files/1/0262/4071/2726/files/emptystate-files.png"
-            />
-
-            <ActionList
-              items={[
-                {
-                  content: "Add product form",
-                  helpText: "A form to add product to your store",
-                  onAction: () => {
-                    loadFromTemplate(TemplateType.addProductForm);
-                  },
-                },
-                {
-                  content: "Setting page",
-                  helpText: "A page to manage your app settings",
-                  onAction: () => {
-                    loadFromTemplate(TemplateType.settingsPage);
-                  },
-                },
-              ]}
-            />
-          </>
-        ) : null}
-
-        {renderedComponents.map((component) => {
-          return <Preview key={component.id} component={component} />;
-        })}
-      </div>
+        {body}
+        <CodePanel />
+      </SplitPane>
     </ErrorBoundary>
-  );
-
-  return (
-    // @ts-ignore
-    <SplitPane
-      style={{ overflow: "auto", position: "relative" }}
-      defaultSize="50%"
-      resizerStyle={
-        isShowCodePanel
-          ? {
-              border: `4px solid ${themes.light.color["color-bg-fill-success"]}`,
-              zIndex: 20,
-              cursor: "row-resize",
-            }
-          : {}
-      }
-      split="horizontal"
-      className={styles.splitPanel}
-    >
-      {body}
-      <CodePanel />
-    </SplitPane>
   );
 }
