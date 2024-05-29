@@ -13,7 +13,7 @@
   color: black;
 }
 
-.Polaris-Text--visuallyHidden {
+#main .Polaris-Text--visuallyHidden {
   position: static !important;
   clip-path: none !important;
   width: auto !important;
