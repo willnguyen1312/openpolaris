@@ -31,6 +31,7 @@
     "@types/shortid": "^0.0.32",
     "@vitejs/plugin-react-swc": "^3.7.0",
     "classnames": "^2.5.1",
+    "idb-keyval": "^6.2.1",
     "immer": "^10.1.1",
     "lodash-es": "^4.17.21",
     "lz-string": "^1.5.0",
