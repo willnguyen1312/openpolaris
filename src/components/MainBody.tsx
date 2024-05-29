@@ -7,7 +7,7 @@ import styles from "./MainBody.module.css";
 import { ActionList, Banner, Box, EmptyState } from "@shopify/polaris";
 import { themes } from "@shopify/polaris-tokens";
 import classNames from "classnames";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { TemplateType, usePolarisStore } from "../store";
 import { CodePanel } from "./CodePanel";
 import { Preview } from "./Preview";
@@ -16,7 +16,7 @@ export function MainBody() {
   const { isOver, setNodeRef } = useDroppable({
     id: rootComponentId,
   });
-  const loadedRef = useRef(false);
+
   const renderedComponents = usePolarisStore.use.renderedComponents();
   const setSelectingComponent = usePolarisStore.use.setSelectingComponent();
   const loadFromTemplate = usePolarisStore.use.loadFromTemplate();
@@ -25,7 +25,7 @@ export function MainBody() {
   const isHoldShift = usePolarisStore.use.isHoldShift();
   const isShowCodePanel = usePolarisStore.use.isShowCodePanel();
   const setHasError = usePolarisStore.use.setHasError();
-  const [isEmpty, setIsEmpty] = useState(false);
+  const isEmpty = renderedComponents.length === 0;
   const [rect, setRect] = useState<{
     firstPosition: [number, number];
     secondPosition: [number, number];
@@ -126,17 +126,6 @@ export function MainBody() {
     setSelectingComponent,
     isHoldShift,
   ]);
-
-  useEffect(() => {
-    loadedRef.current = true;
-    setTimeout(
-      () => {
-        setIsEmpty(renderedComponents.length === 0);
-        // Wait a second to make sure the state is fully hydrated from the storage
-      },
-      loadedRef.current ? 0 : 1000,
-    );
-  }, [renderedComponents]);
 
   const body = (
     <ErrorBoundary

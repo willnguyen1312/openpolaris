@@ -69,7 +69,9 @@ export function App() {
     if (id) {
       fetchCode();
     } else {
-      setLoaded(true);
+      setTimeout(() => {
+        setLoaded(true);
+      }, 141);
     }
   }, []);
 
