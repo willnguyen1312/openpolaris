@@ -13,7 +13,7 @@
   color: black;
 }
 
-#main .Polaris-Text--visuallyHidden {
+#main .Polaris-Text--visuallyHidden:has(.Polaris-Listbox) {
   position: static !important;
   clip-path: none !important;
   width: auto !important;
