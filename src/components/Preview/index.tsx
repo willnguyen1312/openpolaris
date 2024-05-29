@@ -258,9 +258,10 @@ function DragAndDropItem({
         if (isHoldAlt) {
           event.stopPropagation();
           const extra = activeComponent ? [activeComponent] : [];
-          setSelectingComponent(
-            selectingComponents.concat(extra).concat(component),
-          );
+          const value = selectingComponents.concat(extra).concat(component);
+
+          // Filter duplicated components
+          setSelectingComponent([...new Set(value)]);
           return;
         }
 
