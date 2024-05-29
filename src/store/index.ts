@@ -897,16 +897,14 @@ const useStoreBase = createWithEqualityFn(
               if (state.selectingComponents.length > 0) {
                 state.selectingComponents.forEach((component) => {
                   let parentComponent = null;
-                  for (const renderedComponent of state.renderedComponents) {
-                    if (
-                      renderedComponent.children.some(
+                  parentComponent = findComponentBy(
+                    state.renderedComponents,
+                    (node) => {
+                      return node.children.some(
                         (child) => child.id === component.id,
-                      )
-                    ) {
-                      parentComponent = renderedComponent;
-                      break;
-                    }
-                  }
+                      );
+                    },
+                  );
 
                   if (parentComponent) {
                     parentComponent.children.splice(
