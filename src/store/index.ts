@@ -2,7 +2,13 @@ import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
 import { cloneDeep, set as lodashSet } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
-import { devtools, persist } from "zustand/middleware";
+import {
+  devtools,
+  persist,
+  createJSONStorage,
+  StateStorage,
+} from "zustand/middleware";
+import { get, set, del } from "idb-keyval";
 import { immer } from "zustand/middleware/immer";
 import { shallow } from "zustand/shallow";
 import { createWithEqualityFn } from "zustand/traditional";
@@ -20,6 +26,18 @@ import {
   singleComponentList,
 } from "../types";
 import { generateId } from "../utils/generateId";
+
+const storage: StateStorage = {
+  getItem: async (name: string): Promise<string | null> => {
+    return (await get(name)) || null;
+  },
+  setItem: async (name: string, value: string): Promise<void> => {
+    await set(name, value);
+  },
+  removeItem: async (name: string): Promise<void> => {
+    await del(name);
+  },
+};
 
 export const enum TemplateType {
   settingsPage = "settingsPage",
@@ -1008,9 +1026,11 @@ const useStoreBase = createWithEqualityFn(
             console.info("No case matched");
           }),
       })),
-      { name: "openPolaris" },
+      { name: "openPolaris", storage: createJSONStorage(() => storage) },
     ),
-    { enabled: true },
+    {
+      enabled: true,
+    },
   ),
   shallow,
 );
