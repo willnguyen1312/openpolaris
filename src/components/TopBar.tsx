@@ -38,6 +38,14 @@ const shortcuts: ShortCutItem[] = [
     description: "Delete active component",
   },
   {
+    key: "Alt",
+    description: "Hold it to select multiple components by clicking",
+  },
+  {
+    key: "Shift",
+    description: "Hold it to select multiple components by selecting",
+  },
+  {
     key: "ctrl / cmd + d",
     description: "Duplicate active component",
   },
