@@ -1,6 +1,6 @@
 import { DragEndEvent } from "@dnd-kit/core";
 import { arrayMove } from "@dnd-kit/sortable";
-import { cloneDeep, set as lodashSet } from "lodash-es";
+import { cloneDeep, set as lodashSet, debounce } from "lodash-es";
 import { StoreApi, UseBoundStore } from "zustand";
 import {
   devtools,
@@ -146,10 +146,12 @@ export const findComponentBy = (
   return null;
 };
 
-const allDo = (state: StoreState) => {
+const _allDo = (state: StoreState) => {
   state.undoStack.push(cloneDeep(state.renderedComponents));
   state.redoStack = [];
 };
+
+const allDo = debounce(_allDo, 1000, { leading: true });
 
 const useStoreBase = createWithEqualityFn(
   devtools(
