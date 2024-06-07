@@ -21,8 +21,8 @@
     "@netlify/blobs": "^7.3.0",
     "@netlify/edge-functions": "^2.8.1",
     "@netlify/functions": "^2.7.0",
-    "@shopify/polaris": "^13.4.0",
-    "@shopify/polaris-icons": "^9.1.0",
+    "@shopify/polaris": "^13.5.0",
+    "@shopify/polaris-icons": "^9.1.1",
     "@shopify/polaris-tokens": "^9.1.0",
     "@stackblitz/sdk": "^1.10.0",
     "@types/lodash-es": "^4.17.12",
@@ -36,7 +36,7 @@
     "lodash-es": "^4.17.21",
     "lz-string": "^1.5.0",
     "nanoid": "^5.0.7",
-    "netlify-cli": "^17.25.0",
+    "netlify-cli": "^17.26.1",
     "prettier": "3.2.5",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.3.1",
@@ -46,7 +46,7 @@
     "react-use": "^17.5.0",
     "shortid": "^2.2.16",
     "typescript": "^5.4.5",
-    "vite": "^5.2.12",
+    "vite": "^5.2.13",
     "zustand": "^4.5.2"
   }
 }
