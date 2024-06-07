@@ -877,6 +877,7 @@ export const defaultProps: Record<ComponentName, any> = {
     bleedBlockEnd: "" as CheckboxProps["bleedBlockEnd"],
     bleedInlineStart: "" as CheckboxProps["bleedInlineStart"],
     bleedInlineEnd: "" as CheckboxProps["bleedInlineEnd"],
+    tone: "" as CheckboxProps["tone"],
   } satisfies CheckboxProps,
   ChoiceList: {
     title: "Company name",
@@ -991,6 +992,7 @@ export const defaultProps: Record<ComponentName, any> = {
     fill: false,
     helpText: "",
     value: "disabled",
+    tone: "" as RadioButtonProps["tone"],
   } satisfies RadioButtonProps,
   RangeSlider: {
     label: "Opacity percentage",

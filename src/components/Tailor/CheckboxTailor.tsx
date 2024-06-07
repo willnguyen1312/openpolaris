@@ -1,6 +1,13 @@
 import { CheckboxProps } from "@shopify/polaris";
 import { DocLink, PropItem, TailorList } from "./shared";
 
+const checkboxToneRecord: Record<NonNullable<CheckboxProps["tone"] | "">, 1> = {
+  magic: 1,
+  "": 1,
+};
+
+const checkboxToneOptions = Object.keys(checkboxToneRecord);
+
 const checkboxPropsItems: PropItem<keyof CheckboxProps>[] = [
   {
     prop: "label",
@@ -53,6 +60,11 @@ const checkboxPropsItems: PropItem<keyof CheckboxProps>[] = [
   {
     prop: "ariaDescribedBy",
     type: "Text",
+  },
+  {
+    prop: "tone",
+    type: "Select",
+    options: checkboxToneOptions,
   },
 ];
 

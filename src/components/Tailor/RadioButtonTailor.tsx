@@ -2,6 +2,13 @@ import { Link, RadioButtonProps } from "@shopify/polaris";
 import { spacingScales } from "../../types";
 import { PropItem, TailorList } from "./shared";
 
+const radioToneRecord: Record<NonNullable<RadioButtonProps["tone"] | "">, 1> = {
+  magic: 1,
+  "": 1,
+};
+
+const radioToneOptions = Object.keys(radioToneRecord);
+
 const radioButtonPropsItems: PropItem<keyof RadioButtonProps>[] = [
   {
     prop: "bleed",
@@ -68,6 +75,11 @@ const radioButtonPropsItems: PropItem<keyof RadioButtonProps>[] = [
   {
     prop: "helpText",
     type: "Text",
+  },
+  {
+    prop: "tone",
+    type: "Select",
+    options: radioToneOptions,
   },
 ];
 
