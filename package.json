@@ -20,9 +20,9 @@
     "@dnd-kit/utilities": "^3.2.2",
     "@netlify/blobs": "^7.3.0",
     "@netlify/edge-functions": "^2.8.1",
-    "@netlify/functions": "^2.7.0",
-    "@shopify/polaris": "^13.5.0",
-    "@shopify/polaris-icons": "^9.1.1",
+    "@netlify/functions": "^2.8.0",
+    "@shopify/polaris": "^13.6.0",
+    "@shopify/polaris-icons": "^9.2.0",
     "@shopify/polaris-tokens": "^9.1.0",
     "@stackblitz/sdk": "^1.10.0",
     "@types/lodash-es": "^4.17.12",
@@ -36,7 +36,7 @@
     "lodash-es": "^4.17.21",
     "lz-string": "^1.5.0",
     "nanoid": "^5.0.7",
-    "netlify-cli": "^17.27.0",
+    "netlify-cli": "^17.29.0",
     "prettier": "3.2.5",
     "prism-react-renderer": "^2.3.1",
     "react": "^18.3.1",
@@ -45,8 +45,8 @@
     "react-split-pane": "^0.1.92",
     "react-use": "^17.5.0",
     "shortid": "^2.2.16",
-    "typescript": "^5.4.5",
+    "typescript": "^5.5.2",
     "vite": "^5.3.1",
-    "zustand": "^4.5.2"
+    "zustand": "^4.5.3"
   }
 }
