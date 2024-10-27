@@ -1,11 +1,13 @@
 .simpleWrapper {
   cursor: pointer;
-  margin: 0;
-  padding: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .containerWrapper {
   cursor: pointer;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 .builderMode {
