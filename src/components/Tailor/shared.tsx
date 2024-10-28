@@ -12,7 +12,7 @@ import {
 } from "@shopify/polaris";
 import { SearchIcon } from "@shopify/polaris-icons";
 import iconMetadata from "@shopify/polaris-icons/metadata";
-import { get as lodashGet } from "lodash-es";
+import { get } from "lodash-es";
 import { FunctionComponent, useEffect, useState } from "react";
 
 import { usePolarisStore } from "../../store";
@@ -52,7 +52,7 @@ export const Text: FunctionComponent<{
     <TextField
       onChange={handleChange}
       label={label || getHumanReadableName(prop)}
-      value={lodashGet(activeComponent.props, prop) || ""}
+      value={get(activeComponent.props, prop) || ""}
       autoComplete="off"
     />
   );
@@ -81,7 +81,7 @@ export const Number: FunctionComponent<{
       type="number"
       onChange={handleChange}
       label={label || getHumanReadableName(prop)}
-      value={lodashGet(activeComponent.props, prop) || ""}
+      value={get(activeComponent.props, prop) || ""}
       autoComplete="off"
     />
   );
@@ -105,7 +105,7 @@ export const Select: FunctionComponent<{
     <div className={styles.selectWrapper}>
       <PolarisSelect
         options={options}
-        value={lodashGet(activeComponent.props, prop) || ""}
+        value={get(activeComponent.props, prop) || ""}
         label={label || getHumanReadableName(prop)}
         onChange={handleChange}
       />
@@ -129,7 +129,7 @@ export const Checkbox: FunctionComponent<{
   return (
     <PolarisCheckbox
       label={label ?? getHumanReadableName(prop)}
-      checked={lodashGet(activeComponent.props, prop)}
+      checked={get(activeComponent.props, prop)}
       onChange={handleChange}
     />
   );
@@ -232,7 +232,7 @@ const Complex: FunctionComponent<{ prop: string; level?: number }> = ({
     usePolarisStore.use.activeComponent() as RenderedComponent;
 
   // @ts-ignore
-  const propObject = lodashGet(activeComponent.props, prop);
+  const propObject = get(activeComponent.props, prop);
   const keys = Object.keys(propObject);
   const isTopLevel = level === 0;
 
