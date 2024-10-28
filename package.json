@@ -9,9 +9,9 @@
   "scripts": {
     "dev": "vite --host",
     "format": "prettier -w --cache .",
-    "build": "pnpm run typecheck && vite build",
+    "build": "pnpm typecheck && vite build",
     "typecheck": "tsc",
-    "live": "pnpm run build && netlify deploy --prod",
+    "live": "pnpm build && netlify deploy --prod",
     "preview": "vite preview"
   },
   "dependencies": {
