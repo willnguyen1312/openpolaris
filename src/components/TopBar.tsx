@@ -221,7 +221,7 @@ export function TopBar() {
 
             <Text as="p">Made with 💞 by</Text>
 
-            <Link url="https://namnguyen.design/about" target="_blank">
+            <Link url="https://namnguyen.netlify.app/about" target="_blank">
               Nam Nguyen
             </Link>
           </InlineStack>
