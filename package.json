@@ -48,5 +48,8 @@
     "typescript": "^5.9.3",
     "vite": "^5.4.10",
     "zustand": "^5.0.8"
+  },
+  "devDependencies": {
+    "node-gyp": "^12.1.0"
   }
 }
