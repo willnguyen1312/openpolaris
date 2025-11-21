@@ -2,6 +2,8 @@
   cursor: pointer;
   margin: 0 !important;
   padding: 0 !important;
+  width: max-content !important;
+  height: max-content !important;
 }
 
 .containerWrapper {
